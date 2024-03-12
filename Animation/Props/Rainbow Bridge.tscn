@@ -1,0 +1,69 @@
+[gd_scene load_steps=15 format=3 uid="uid://duh2fgo5sbdhf"]
+
+[ext_resource type="Texture2D" uid="uid://wxdjsyvxkjv8" path="res://Sprites/Levels/Hazards/Rainbow Bridge 1.PNG" id="1_yd7a2"]
+[ext_resource type="Texture2D" uid="uid://dluh3f6m18mod" path="res://Sprites/Levels/Hazards/Rainbow Bridge 2.PNG" id="2_bqnk3"]
+[ext_resource type="Texture2D" uid="uid://c75auomiyj1y8" path="res://Sprites/Levels/Hazards/Rainbow Bridge 3.PNG" id="3_lyq2v"]
+[ext_resource type="Texture2D" uid="uid://3n2rtdwmmv7p" path="res://Sprites/Levels/Hazards/Rainbow Bridge 4.PNG" id="4_v7evk"]
+[ext_resource type="Texture2D" uid="uid://weoe1itmtoa6" path="res://Sprites/Levels/Hazards/Rainbow Bridge 5.PNG" id="5_x8j4d"]
+[ext_resource type="Texture2D" uid="uid://dmvsebqj7qfg0" path="res://Sprites/Levels/Hazards/Rainbow Bridge 6.PNG" id="6_wnh83"]
+[ext_resource type="Texture2D" uid="uid://db25k8abfg3mj" path="res://Sprites/Levels/Hazards/Rainbow Bridge 7.PNG" id="7_nqmm1"]
+[ext_resource type="Texture2D" uid="uid://bttslndyd47lx" path="res://Sprites/Levels/Hazards/Rainbow Bridge 8.PNG" id="8_ajcs2"]
+[ext_resource type="Texture2D" uid="uid://bfrmd0s632fvu" path="res://Sprites/Levels/Hazards/Rainbow Bridge 9.PNG" id="9_np4xd"]
+[ext_resource type="Texture2D" uid="uid://bfc2a44twvktc" path="res://Sprites/Levels/Hazards/Rainbow Bridge 10.PNG" id="10_hg5n6"]
+[ext_resource type="Texture2D" uid="uid://bb46onthcth8i" path="res://Sprites/Levels/Hazards/Rainbow Bridge 11.PNG" id="11_t1ud8"]
+[ext_resource type="Texture2D" uid="uid://cphptxwv6f4kv" path="res://Sprites/Levels/Hazards/Rainbow Bridge 12.PNG" id="12_s2ffv"]
+[ext_resource type="Texture2D" uid="uid://d4emhdr4kntxl" path="res://Sprites/Levels/Hazards/Rainbow Bridge 13.PNG" id="13_nunq5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyue"]
+animations = [{
+"frames": [{
+"duration": 30.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_yd7a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bqnk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lyq2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7evk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x8j4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wnh83")
+}, {
+"duration": 30.0,
+"texture": ExtResource("7_nqmm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ajcs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_np4xd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hg5n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_t1ud8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_s2ffv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nunq5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywyue")
+frame_progress = 0.777411

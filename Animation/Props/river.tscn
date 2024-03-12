@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbidmpo05am5v"]
+
+[ext_resource type="Texture2D" uid="uid://cr8ni6g52ljqy" path="res://Sprites/Levels/Hazards/River 1.PNG" id="1_2s8wh"]
+[ext_resource type="Texture2D" uid="uid://5yq6fkob2q0c" path="res://Sprites/Levels/Hazards/River 2.PNG" id="2_ytnvl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpaxs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2s8wh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ytnvl")
+}],
+"loop": true,
+"name": &"River",
+"speed": 2.0
+}]
+
+[node name="River" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_lpaxs")
+animation = &"River"

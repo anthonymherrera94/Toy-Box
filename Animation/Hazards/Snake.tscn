@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6v7wtcomvvie"]
+
+[ext_resource type="Texture2D" uid="uid://ikb8xggcfv8a" path="res://Sprites/Levels/Hazards/Snake Down 1.PNG" id="1_vv6kd"]
+[ext_resource type="Texture2D" uid="uid://co3dotvpgf4ob" path="res://Sprites/Levels/Hazards/Snake Down 2.PNG" id="2_mk3nf"]
+[ext_resource type="Texture2D" uid="uid://dxpybeg5ccd61" path="res://Sprites/Levels/Hazards/Snake Down 3.PNG" id="3_2gq4w"]
+[ext_resource type="Texture2D" uid="uid://viiqanftndm2" path="res://Sprites/Levels/Hazards/Snake Down 4.PNG" id="4_xtlxi"]
+[ext_resource type="Texture2D" uid="uid://waov15c8je7x" path="res://Sprites/Levels/Hazards/Snake Down 5.PNG" id="5_i0heh"]
+[ext_resource type="Texture2D" uid="uid://bni8cgfqj0sid" path="res://Sprites/Levels/Hazards/Snake Down 6.PNG" id="6_kfmux"]
+[ext_resource type="Texture2D" uid="uid://dskdbnkx3rh34" path="res://Sprites/Levels/Hazards/Snake Down 7.PNG" id="7_pyntu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyue"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("1_vv6kd")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_mk3nf")
+}, {
+"duration": 2.0,
+"texture": ExtResource("1_vv6kd")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_mk3nf")
+}, {
+"duration": 2.0,
+"texture": ExtResource("1_vv6kd")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_mk3nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2gq4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xtlxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i0heh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kfmux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pyntu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kfmux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pyntu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kfmux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pyntu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i0heh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2gq4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_vv6kd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywyue")
+frame_progress = 0.579527

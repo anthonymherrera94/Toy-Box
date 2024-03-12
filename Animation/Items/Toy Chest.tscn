@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpe4hoqv7k44s"]
+
+[ext_resource type="Texture2D" uid="uid://45govg3ppyck" path="res://Sprites/Items/Important items/Toy Chest.png" id="1_5swbq"]
+[ext_resource type="Texture2D" uid="uid://c2ubr81snqqku" path="res://Sprites/Items/Important items/Toy Chest Closed.png" id="2_mwvg5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nq64"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_md1o3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5swbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mwvg5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.4, 0.8)
+shape = SubResource("RectangleShape2D_4nq64")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_md1o3")
+frame_progress = 0.379461

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ds735w2acmb1c"
+path="res://.godot/imported/Arcade Zone.mp3-bdf16ca179a7897fda88bff3890e640e.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Arcade Zone.mp3"
+dest_files=["res://.godot/imported/Arcade Zone.mp3-bdf16ca179a7897fda88bff3890e640e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

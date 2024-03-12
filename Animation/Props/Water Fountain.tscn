@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8mova5073m38"]
+
+[ext_resource type="Texture2D" uid="uid://dwcigtvgith7j" path="res://Sprites/Levels/Blocks/Rainbow Heaven/Water Fountain 1.PNG" id="1_mr4t0"]
+[ext_resource type="Texture2D" uid="uid://breu2jusnnw8b" path="res://Sprites/Levels/Blocks/Rainbow Heaven/Water Fountain 2.PNG" id="2_dwewe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxv8l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mr4t0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dwewe")
+}],
+"loop": true,
+"name": &"Water Fountain",
+"speed": 3.0
+}]
+
+[node name="Water Fountain" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_uxv8l")
+animation = &"Water Fountain"
+frame_progress = 0.395275

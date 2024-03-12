@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://f47k6qjblxnw"]
+
+[ext_resource type="Texture2D" uid="uid://bdnw3ytmeboap" path="res://Sprites/Levels/Hazards/Oil Drum 1.PNG" id="1_i46vv"]
+[ext_resource type="Texture2D" uid="uid://bbcflxdlfcoyg" path="res://Sprites/Levels/Hazards/Oil Drum 2.PNG" id="2_15fxd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i46vv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_15fxd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywyue")
+frame_progress = 0.698915

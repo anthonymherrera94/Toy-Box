@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjp1grusyw31g"]
+
+[ext_resource type="Texture2D" uid="uid://b5pho4g8xyjev" path="res://Sprites/Levels/Hazards/Ball 1.PNG" id="1_dikml"]
+[ext_resource type="Texture2D" uid="uid://dusakowd2b5eu" path="res://Sprites/Levels/Hazards/Ball 2.PNG" id="2_j84hd"]
+[ext_resource type="Texture2D" uid="uid://blopn3t3fccu2" path="res://Sprites/Levels/Hazards/Ball 3.PNG" id="3_lps5m"]
+[ext_resource type="Texture2D" uid="uid://uhy1783exi67" path="res://Sprites/Levels/Hazards/Ball 4.PNG" id="4_q04kg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dikml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j84hd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lps5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q04kg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywyue")
+frame_progress = 0.692001

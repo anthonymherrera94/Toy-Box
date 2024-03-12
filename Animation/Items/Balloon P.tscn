@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc6ujktq2tkho"]
+
+[ext_resource type="Texture2D" uid="uid://dktpt05fic5mq" path="res://Sprites/Items/Important items/Balloon P1.png" id="1_e53ja"]
+[ext_resource type="Texture2D" uid="uid://cs0rf5mjr6vvq" path="res://Sprites/Items/Important items/Balloon P2.png" id="2_bmfhk"]
+[ext_resource type="Texture2D" uid="uid://2l7igc7liuvk" path="res://Sprites/Items/Important items/Balloon P3.png" id="3_doypk"]
+[ext_resource type="Texture2D" uid="uid://c3tqj61uhydit" path="res://Sprites/Items/Important items/Balloon P4.png" id="4_w8cis"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e53ja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bmfhk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_doypk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w8cis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_doypk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bmfhk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywyue")
+frame_progress = 0.709533

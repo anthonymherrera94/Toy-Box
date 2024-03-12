@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://f5f0xvj6mgyd"
+path="res://.godot/imported/Toy Town.mp3-9e326a0d490412456ea3958956188322.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Toy Town.mp3"
+dest_files=["res://.godot/imported/Toy Town.mp3-9e326a0d490412456ea3958956188322.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

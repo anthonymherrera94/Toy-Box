@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dorxachf2njir"]
+
+[ext_resource type="Texture2D" uid="uid://b1l7pne4tkwpn" path="res://Sprites/Items/Important items/invincibility 1.png" id="1_r27go"]
+[ext_resource type="Texture2D" uid="uid://crnwtjpfbs3fr" path="res://Sprites/Items/Important items/invincibility 2.png" id="2_qptdc"]
+[ext_resource type="Texture2D" uid="uid://cow83weakvbmj" path="res://Sprites/Items/Important items/invincibility 3.png" id="3_0bg0k"]
+[ext_resource type="Texture2D" uid="uid://uwsyforprby8" path="res://Sprites/Items/Important items/invincibility 4.png" id="4_oq2ac"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qbpdn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r27go")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qptdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0bg0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oq2ac")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_qbpdn")
+frame_progress = 0.76941

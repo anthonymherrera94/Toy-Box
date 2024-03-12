@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cthq2tkrc54ck"]
+
+[ext_resource type="Texture2D" uid="uid://coe754ae22sgw" path="res://Sprites/Items/Power Ups/Jack-in-the-box 1.png" id="1_s1kfp"]
+[ext_resource type="Texture2D" uid="uid://ctj6743ihq58o" path="res://Sprites/Items/Power Ups/Jack-in-the-box 2.png" id="2_xvsc3"]
+[ext_resource type="Texture2D" uid="uid://ljgh5bqeei8f" path="res://Sprites/Items/Power Ups/Jack-in-the-box 3.png" id="3_7kcdv"]
+[ext_resource type="Texture2D" uid="uid://dbt1v6horqa6m" path="res://Sprites/Items/Power Ups/Jack-in-the-box 4.png" id="4_5hfwx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s1kfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xvsc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7kcdv")
+}, {
+"duration": 8.0,
+"texture": ExtResource("4_5hfwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7kcdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xvsc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_s1kfp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywyue")
+frame_progress = 0.982392

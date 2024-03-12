@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmkpyh7kfcujm"]
+
+[ext_resource type="Texture2D" uid="uid://cweh117jlhais" path="res://Sprites/Levels/Hazards/Bomb 1.PNG" id="1_gn0i8"]
+[ext_resource type="Texture2D" uid="uid://6xvdl1yrqdkv" path="res://Sprites/Levels/Hazards/Bomb 2.PNG" id="2_cfw17"]
+[ext_resource type="Texture2D" uid="uid://b5kkhy0drrhas" path="res://Sprites/Levels/Hazards/Bomb 3.PNG" id="3_2bway"]
+[ext_resource type="Texture2D" uid="uid://dulq2ufkew16t" path="res://Sprites/Levels/Hazards/Bomb 4.PNG" id="4_0mq3n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywyue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gn0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_gn0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_gn0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_gn0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_gn0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cfw17")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_0mq3n")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_0mq3n")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_0mq3n")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_0mq3n")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_2bway")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_0mq3n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ywyue")
+frame_progress = 0.616496
