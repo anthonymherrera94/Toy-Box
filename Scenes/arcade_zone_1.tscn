@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://5ps8mcd747s7"]
+[gd_scene load_steps=5 format=3 uid="uid://5ps8mcd747s7"]
 
-[ext_resource type="Texture2D" uid="uid://d3p1ncknqki5m" path="res://Sprites/Levels/Levels/Arcade Zone 1.PNG" id="1_xgtes"]
+[ext_resource type="Texture2D" uid="uid://d3p1ncknqki5m" path="res://Sprites/Levels/Levels/Arcade Zone 1.png" id="1_xgtes"]
+[ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/aoy.tscn" id="2_814gm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h36y8"]
 
@@ -9,10 +10,11 @@
 [node name="Arcade Zone 1" type="Node2D"]
 
 [node name="ArcadeZone1" type="Sprite2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(113, 148)
 texture = ExtResource("1_xgtes")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(113, 140)
 
 [node name="16 x 16 collision" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-48, 32)
@@ -166,3 +168,6 @@ position = Vector2(0, 124)
 rotation = 1.5708
 scale = Vector2(0.4, 10.4)
 shape = SubResource("RectangleShape2D_g80su")
+
+[node name="Aoy" parent="." instance=ExtResource("2_814gm")]
+position = Vector2(81, 69)
