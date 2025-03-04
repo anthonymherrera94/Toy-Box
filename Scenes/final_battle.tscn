@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpjn0c6nhdfyi"]
 
-[ext_resource type="Texture2D" uid="uid://dhfgne77jww4t" path="res://Sprites/Levels/Levels/Final Battle.PNG" id="1_p1w0h"]
+[ext_resource type="Texture2D" uid="uid://dhfgne77jww4t" path="res://Sprites/Levels/Levels/Final Battle.png" id="1_p1w0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0k2j2"]
 

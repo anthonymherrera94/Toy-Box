@@ -50,8 +50,9 @@ _data = {
 "fade_in": SubResource("Animation_okliw")
 }
 
-[node name="Fade" type="CanvasLayer"]
+[node name="Fade" type="CanvasLayer" node_paths=PackedStringArray("anim")]
 script = ExtResource("1_7trna")
+anim = NodePath("AnimationPlayer")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 15

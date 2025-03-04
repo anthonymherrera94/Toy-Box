@@ -1,9 +1,11 @@
-extends CanvasLayer
+class_name Menu extends CanvasLayer
 
+@export var title_anim: AnimatedSprite2D
+@export var player: AnimatedSprite2D
+@export var player_run: AnimationPlayer
 
-@onready var title_anim = $AnimatedSprite2D
-@onready var player = $Player
-@export var scene : PackedScene
+@export var scene: PackedScene
+
 
 func _ready():
 	title_anim.play("idle") 
@@ -11,7 +13,7 @@ func _ready():
 
 func _on_animated_sprite_2d_animation_finished():
 	player.play("right")
-	$PlayerRun.play("start_run")
+	player_run.play("start_run")
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):

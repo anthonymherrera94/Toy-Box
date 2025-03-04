@@ -107,15 +107,16 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3tbe"]
-size = Vector2(12, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
+radius = 8.0
 
-[node name="Aoy" type="CharacterBody2D"]
+[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim")]
 script = ExtResource("1_wi7vf")
+player_anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n6lcf")
 animation = &"WalkLeft"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_s3tbe")
+shape = SubResource("CircleShape2D_2v3qo")

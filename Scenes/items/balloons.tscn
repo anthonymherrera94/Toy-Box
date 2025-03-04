@@ -158,8 +158,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g076h"]
 size = Vector2(11, 12)
 
-[node name="Balloons" type="Area2D"]
+[node name="Balloons" type="Area2D" node_paths=PackedStringArray("balloon_anim")]
 script = ExtResource("1_ejpq6")
+balloon_anim = NodePath("AnimatedSprite2D")
 balloon_type = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

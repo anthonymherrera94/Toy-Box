@@ -1,6 +1,5 @@
-extends CharacterBody2D
+class_name Character extends CharacterBody2D
 
-class_name Character
 
 enum STATE{
 	IDLE_DOWN,

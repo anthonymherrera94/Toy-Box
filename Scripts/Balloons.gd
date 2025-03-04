@@ -1,6 +1,7 @@
-extends Area2D
+class_name Balloons extends Area2D
 
-@onready var balloon_anim = $AnimatedSprite2D
+@export var balloon_anim: AnimatedSprite2D
+
 enum BALLOON_TYPE{
 	S,
 	U,

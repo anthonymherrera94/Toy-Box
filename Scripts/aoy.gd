@@ -1,8 +1,8 @@
-extends Character
+class_name Aoy extends Character
 
-@onready var move_speed = 80
-var input = Vector2.ZERO
-@onready var player_anim = $AnimatedSprite2D
+var move_speed := 80.0
+var input := Vector2.ZERO
+@export var player_anim: AnimatedSprite2D
 
 func _process(delta):
 	input = get_input()
