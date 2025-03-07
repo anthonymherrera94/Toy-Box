@@ -1,0 +1,172 @@
+[gd_scene load_steps=21 format=3 uid="uid://caeyw58brrar7"]
+
+[ext_resource type="Script" path="res://Scripts/characters/Aoy.gd" id="1_ilnme"]
+[ext_resource type="Texture2D" uid="uid://c1wi2caj7njo7" path="res://Sprites/Characters/Aoy/Aoy D1.png" id="2_qxx25"]
+[ext_resource type="Texture2D" uid="uid://mhmqhyah3lgr" path="res://Sprites/Characters/Aoy/Aoy Stand L.png" id="3_p8srk"]
+[ext_resource type="Texture2D" uid="uid://bvunsqprailsj" path="res://Sprites/Characters/Aoy/Aoy Stand R.png" id="4_b45cx"]
+[ext_resource type="Texture2D" uid="uid://cpk6ahvqpgxl0" path="res://Sprites/Characters/Aoy/Aoy U1.png" id="5_4xumu"]
+[ext_resource type="Texture2D" uid="uid://b5m2xyur5tyoq" path="res://Sprites/Characters/Aoy/Aoy KO.png" id="6_m6m0e"]
+[ext_resource type="Texture2D" uid="uid://dhxx0ryla64wx" path="res://Sprites/Characters/Aoy/Aoy D2.png" id="6_yrlur"]
+[ext_resource type="Texture2D" uid="uid://pkna8wlxtbt4" path="res://Sprites/Characters/Aoy/Aoy D3.png" id="7_etnj4"]
+[ext_resource type="Texture2D" uid="uid://db4qnn43xw4px" path="res://Sprites/Characters/Aoy/Aoy L1.png" id="8_ebg64"]
+[ext_resource type="Texture2D" uid="uid://cag6wsga16jlb" path="res://Sprites/Characters/Aoy/Aoy L2.png" id="9_7tjba"]
+[ext_resource type="Texture2D" uid="uid://tvbmflq4oe4n" path="res://Sprites/Characters/Aoy/Aoy L3.png" id="10_lf8nl"]
+[ext_resource type="Texture2D" uid="uid://72ujfprt0s38" path="res://Sprites/Characters/Aoy/Aoy R1.png" id="11_h41tp"]
+[ext_resource type="Texture2D" uid="uid://bymhhjvxnk3od" path="res://Sprites/Characters/Aoy/Aoy R2.png" id="12_838qh"]
+[ext_resource type="Texture2D" uid="uid://ddn6b3pnvv2q6" path="res://Sprites/Characters/Aoy/Aoy R3.png" id="13_uhx5d"]
+[ext_resource type="Texture2D" uid="uid://bdi2r2fl1j0wt" path="res://Sprites/Characters/Aoy/Aoy U2.png" id="14_yh4ob"]
+[ext_resource type="Texture2D" uid="uid://b03h1amx7xj8k" path="res://Sprites/Characters/Aoy/Aoy U3.png" id="15_njtc5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6lcf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qxx25")
+}],
+"loop": true,
+"name": &"IdleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p8srk")
+}],
+"loop": true,
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_b45cx")
+}],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4xumu")
+}],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_m6m0e")
+}],
+"loop": true,
+"name": &"KO",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qxx25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yrlur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_etnj4")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ebg64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7tjba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lf8nl")
+}],
+"loop": true,
+"name": &"WalkLeft",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_h41tp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_838qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uhx5d")
+}],
+"loop": true,
+"name": &"WalkRight",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4xumu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yh4ob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_njtc5")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kne6l"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw5bp"]
+size = Vector2(16, 16)
+
+[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "check_left", "check_right", "check_up", "check_down")]
+script = ExtResource("1_ilnme")
+player_anim = NodePath("AnimatedSprite2D")
+check_left = NodePath("CheckLeft")
+check_right = NodePath("CheckRight")
+check_up = NodePath("CheckUp")
+check_down = NodePath("CheckDown")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n6lcf")
+animation = &"IdleDown"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2v3qo")
+
+[node name="Colliding" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
+shape = SubResource("CircleShape2D_kne6l")
+
+[node name="CheckLeft" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckLeft"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="CheckRight" type="Area2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRight"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="CheckUp" type="Area2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckUp"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="CheckDown" type="Area2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[connection signal="body_entered" from="Colliding" to="." method="_on_colliding_body_entered"]

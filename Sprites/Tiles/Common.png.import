@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4e05ndcdbyok"
-path="res://.godot/imported/Wall.svg-49dae502f2727b57759d3be2322882c3.ctex"
+uid="uid://bjepigulh873y"
+path="res://.godot/imported/Common.png-2cb1575f02f61334bf9b349b905f2ffb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Wall.svg"
-dest_files=["res://.godot/imported/Wall.svg-49dae502f2727b57759d3be2322882c3.ctex"]
+source_file="res://Sprites/Tiles/Common.png"
+dest_files=["res://.godot/imported/Common.png-2cb1575f02f61334bf9b349b905f2ffb.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

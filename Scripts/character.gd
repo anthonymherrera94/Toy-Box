@@ -9,7 +9,8 @@ enum STATE{
 	WALK_DOWN,
 	WALK_UP,
 	WALK_LEFT,
-	WALK_RIGHT
+	WALK_RIGHT,
+	KO
 }
 
 var state = STATE.IDLE_DOWN

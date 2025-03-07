@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://ceouuyxbirjs5"]
+
+[ext_resource type="Script" path="res://Scripts/characters/Enemy.gd" id="1_dlwpr"]
+[ext_resource type="Texture2D" uid="uid://bt3107skn3ago" path="res://Sprites/Characters/TicTacToe/Toe D1.png" id="2_f241k"]
+[ext_resource type="Texture2D" uid="uid://hy5yrvk712cu" path="res://Sprites/Characters/TicTacToe/Toe D2.png" id="3_gpjo4"]
+[ext_resource type="Texture2D" uid="uid://dseigp8yucf22" path="res://Sprites/Characters/TicTacToe/Toe L1.png" id="4_kod87"]
+[ext_resource type="Texture2D" uid="uid://e4gk1bobejlh" path="res://Sprites/Characters/TicTacToe/Toe L2.png" id="5_skt8k"]
+[ext_resource type="Texture2D" uid="uid://bqh5vqlyx4ek5" path="res://Sprites/Characters/TicTacToe/Toe R1.png" id="6_dvb1d"]
+[ext_resource type="Texture2D" uid="uid://dqcpe58f3kr75" path="res://Sprites/Characters/TicTacToe/Toe R2.png" id="7_pr7dr"]
+[ext_resource type="Texture2D" uid="uid://b3wqcgpbyc1q5" path="res://Sprites/Characters/TicTacToe/Toe U1.png" id="8_pu5qr"]
+[ext_resource type="Texture2D" uid="uid://dr2fgac0ri4ge" path="res://Sprites/Characters/TicTacToe/Toe U2.png" id="9_sokki"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5w0y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f241k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gpjo4")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kod87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_skt8k")
+}],
+"loop": true,
+"name": &"WalkLeft",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_dvb1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pr7dr")
+}],
+"loop": true,
+"name": &"WalkRight",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_pu5qr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sokki")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
+radius = 8.0
+
+[node name="Toe" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "navigation")]
+script = ExtResource("1_dlwpr")
+player_anim = NodePath("AnimatedSprite2D")
+navigation = NodePath("NavigationAgent2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t5w0y")
+animation = &"WalkUp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2v3qo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 6.0
