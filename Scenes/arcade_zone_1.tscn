@@ -1,17 +1,22 @@
-[gd_scene load_steps=7 format=4 uid="uid://5ps8mcd747s7"]
+[gd_scene load_steps=9 format=4 uid="uid://5ps8mcd747s7"]
 
-[ext_resource type="Script" path="res://Scripts/SceneController.gd" id="1_kv0ah"]
+[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_kv0ah"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="1_t8ybu"]
 [ext_resource type="Texture2D" uid="uid://d3p1ncknqki5m" path="res://Sprites/Levels/Levels/Arcade Zone 1.png" id="1_xgtes"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_814gm"]
+[ext_resource type="PackedScene" uid="uid://ixjpv3ga5bky" path="res://Scenes/arcade_zone_2.tscn" id="2_bbch6"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_uetb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h36y8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g80su"]
 
-[node name="Arcade Zone 1" type="Node2D" node_paths=PackedStringArray("walls")]
+[node name="Arcade Zone 1" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
 script = ExtResource("1_kv0ah")
 walls = NodePath("Walls")
+game_ui = NodePath("GameUI")
+map_size = Rect2i(0, 0, 12, 13)
+next_level = ExtResource("2_bbch6")
 
 [node name="ArcadeZone1" type="Sprite2D" parent="."]
 position = Vector2(113, 148)
@@ -192,3 +197,5 @@ It's very useful and comfortable!"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(112, 148)
+
+[node name="GameUI" parent="." instance=ExtResource("6_uetb7")]

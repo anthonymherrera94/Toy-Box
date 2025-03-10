@@ -5,12 +5,14 @@ class_name Fade extends CanvasLayer
 
 
 func start_fade_in(scene: PackedScene):
-	anim.play("fade_in")
+	play_fade_in_animation()
 	#scene = _scene
 	await anim.animation_finished
-	get_tree().change_scene_to_file(scene.resource_path)
+	get_tree().change_scene_to_packed(scene)
 	queue_free()
 
+func play_fade_in_animation():
+	anim.play("fade_in")
 
 
 

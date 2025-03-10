@@ -126,6 +126,7 @@ radius = 8.0
 size = Vector2(16, 16)
 
 [node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "check_left", "check_right", "check_up", "check_down")]
+z_index = 2
 script = ExtResource("1_ilnme")
 player_anim = NodePath("AnimatedSprite2D")
 check_left = NodePath("CheckLeft")

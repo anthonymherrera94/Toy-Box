@@ -1,18 +1,23 @@
-[gd_scene load_steps=8 format=4 uid="uid://dng84j1cl75d3"]
+[gd_scene load_steps=10 format=4 uid="uid://dng84j1cl75d3"]
 
 [ext_resource type="Texture2D" uid="uid://dq56555ghieby" path="res://Sprites/Levels/Levels/Xobs Party 3.PNG" id="1_1npnm"]
-[ext_resource type="Script" path="res://Scripts/SceneController.gd" id="1_ti2u7"]
+[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_ti2u7"]
+[ext_resource type="PackedScene" uid="uid://bpjn0c6nhdfyi" path="res://Scenes/final_battle.tscn" id="2_lpjw0"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_ycbrk"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_jmlc8"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/MovableCamera.tscn" id="5_mdx67"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="7_sk21l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vglf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nm3iw"]
 
-[node name="Xob\'s Party 3" type="Node2D" node_paths=PackedStringArray("walls")]
+[node name="Xob\'s Party 3" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
 script = ExtResource("1_ti2u7")
 walls = NodePath("Walls")
+game_ui = NodePath("GameUI")
+map_size = Rect2i(-11, -10, 9, 10)
+next_level = ExtResource("2_lpjw0")
 
 [node name="XobsParty3" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -368,3 +373,5 @@ tile_set = ExtResource("2_ycbrk")
 position = Vector2(0, 8)
 
 [node name="Camera2D" parent="Aoy" instance=ExtResource("5_mdx67")]
+
+[node name="GameUI" parent="." instance=ExtResource("7_sk21l")]

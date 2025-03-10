@@ -1,17 +1,22 @@
-[gd_scene load_steps=7 format=4 uid="uid://61u0gpkf3fep"]
+[gd_scene load_steps=9 format=4 uid="uid://61u0gpkf3fep"]
 
 [ext_resource type="Texture2D" uid="uid://cyk1v8s66uyy7" path="res://Sprites/Levels/Levels/Toy Town 3.PNG" id="1_0g60s"]
-[ext_resource type="Script" path="res://Scripts/SceneController.gd" id="1_j7mn8"]
+[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_j7mn8"]
+[ext_resource type="PackedScene" uid="uid://di6p0kpcaq675" path="res://Scenes/sweet_lands_1.tscn" id="2_cvnhk"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_v15gm"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_tim6o"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_7bv17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywx8b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxly1"]
 
-[node name="Toy Town 3" type="Node2D" node_paths=PackedStringArray("walls")]
+[node name="Toy Town 3" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
 script = ExtResource("1_j7mn8")
 walls = NodePath("Walls")
+game_ui = NodePath("GameUI")
+map_size = Rect2i(-7, -9, 5, 7)
+next_level = ExtResource("2_cvnhk")
 
 [node name="ToyTown3" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -176,3 +181,5 @@ position = Vector2(0, 24)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 8)
+
+[node name="GameUI" parent="." instance=ExtResource("6_7bv17")]

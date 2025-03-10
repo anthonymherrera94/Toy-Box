@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgeecpdk5cqku"]
+
+[ext_resource type="Script" path="res://Scripts/items/Treats.gd" id="1_iqs3x"]
+[ext_resource type="Texture2D" uid="uid://ctmb3rcbldrpe" path="res://Sprites/Items/Treats/Treat 5.png" id="2_lap5b"]
+[ext_resource type="Texture2D" uid="uid://dwbm8v6ae6o6" path="res://Sprites/Items/Treats/Treat 1.png" id="3_4otkc"]
+[ext_resource type="Texture2D" uid="uid://c4ybmyikc7hwc" path="res://Sprites/Items/Treats/Treat 2.png" id="4_jjy7g"]
+[ext_resource type="Texture2D" uid="uid://cyblgnrlvwmcs" path="res://Sprites/Items/Treats/Treat 3.png" id="5_1cooh"]
+[ext_resource type="Texture2D" uid="uid://dhwp0vpvtutla" path="res://Sprites/Items/Treats/Treat 4.png" id="6_0g0py"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vgsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lap5b")
+}],
+"loop": true,
+"name": &"Cake",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4otkc")
+}],
+"loop": true,
+"name": &"Candy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jjy7g")
+}],
+"loop": true,
+"name": &"CandyCane",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1cooh")
+}],
+"loop": true,
+"name": &"ChocolateBar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_0g0py")
+}],
+"loop": true,
+"name": &"IceCream",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g076h"]
+size = Vector2(11, 12)
+
+[node name="Treats" type="Area2D" node_paths=PackedStringArray("treat_anim")]
+script = ExtResource("1_iqs3x")
+treat_anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8vgsd")
+animation = &"Cake"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_g076h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

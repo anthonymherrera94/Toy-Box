@@ -61,6 +61,7 @@ animations = [{
 radius = 8.0
 
 [node name="Tic" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "navigation")]
+z_index = 1
 script = ExtResource("1_jsgqv")
 player_anim = NodePath("AnimatedSprite2D")
 navigation = NodePath("NavigationAgent2D")

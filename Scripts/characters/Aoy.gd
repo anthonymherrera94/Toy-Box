@@ -88,9 +88,17 @@ func animate():
 				state = STATE.IDLE_DOWN
 
 
-func _on_colliding_body_entered(body: Node2D) -> void:
+func _on_colliding_body_entered(body: Node2D):
 	if body is Enemy:
 		if state != STATE.KO:
 			player_anim.play("KO")
 			state = STATE.KO
-			Globals.restart()
+			restart_level()
+
+func restart_level():
+	var scene_obj: Fade = Globals.fade_scene.instantiate()
+	get_parent().add_child(scene_obj)
+	scene_obj.play_fade_in_animation()
+	await scene_obj.anim.animation_finished
+	queue_free()
+	get_tree().reload_current_scene()

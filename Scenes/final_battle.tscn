@@ -1,18 +1,20 @@
-[gd_scene load_steps=8 format=4 uid="uid://bpjn0c6nhdfyi"]
+[gd_scene load_steps=9 format=4 uid="uid://bpjn0c6nhdfyi"]
 
-[ext_resource type="Script" path="res://Scripts/SceneController.gd" id="1_aavbu"]
+[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_aavbu"]
 [ext_resource type="Texture2D" uid="uid://dhfgne77jww4t" path="res://Sprites/Levels/Levels/Final Battle.png" id="1_p1w0h"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_buqmo"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_lle1b"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/MovableCamera.tscn" id="5_xiv4b"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_lldh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0k2j2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5b1e"]
 
-[node name="Final Battle" type="Node2D" node_paths=PackedStringArray("walls")]
+[node name="Final Battle" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
 script = ExtResource("1_aavbu")
 walls = NodePath("Walls")
+game_ui = NodePath("GameUI")
 
 [node name="FinalBattle" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -325,3 +327,5 @@ tile_set = ExtResource("2_lle1b")
 position = Vector2(0, 6)
 
 [node name="Camera2D" parent="Aoy" instance=ExtResource("5_xiv4b")]
+
+[node name="GameUI" parent="." instance=ExtResource("6_lldh7")]

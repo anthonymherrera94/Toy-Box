@@ -1,18 +1,23 @@
-[gd_scene load_steps=8 format=4 uid="uid://ixjpv3ga5bky"]
+[gd_scene load_steps=10 format=4 uid="uid://ixjpv3ga5bky"]
 
 [ext_resource type="Texture2D" uid="uid://bro1xfobtfj85" path="res://Sprites/Levels/Levels/Arcade Zone 2.png" id="1_6t5rs"]
-[ext_resource type="Script" path="res://Scripts/SceneController.gd" id="1_m7e1n"]
+[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_m7e1n"]
+[ext_resource type="PackedScene" uid="uid://bte1wsjuwyj0t" path="res://Scenes/arcade_zone_3.tscn" id="2_hpjsa"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="3_jwhbg"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_x7nvk"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/MovableCamera.tscn" id="5_sp1qw"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="7_tc6i4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twft1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afixi"]
 
-[node name="Arcade Zone 2" type="Node2D" node_paths=PackedStringArray("walls")]
+[node name="Arcade Zone 2" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
 script = ExtResource("1_m7e1n")
 walls = NodePath("Walls")
+game_ui = NodePath("GameUI")
+map_size = Rect2i(-7, -14, 5, 9)
+next_level = ExtResource("2_hpjsa")
 
 [node name="ArcadeZone2" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -293,3 +298,5 @@ tile_set = ExtResource("3_jwhbg")
 [node name="Aoy" parent="." instance=ExtResource("3_x7nvk")]
 
 [node name="Camera2D" parent="Aoy" instance=ExtResource("5_sp1qw")]
+
+[node name="GameUI" parent="." instance=ExtResource("7_tc6i4")]
