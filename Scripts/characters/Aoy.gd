@@ -6,6 +6,7 @@ var move_speed := 80.0
 var input := Vector2.ZERO
 
 @export var player_anim: AnimatedSprite2D
+@export var toy: Sprite2D
 
 @export_category("Checkers")
 @export var check_left: Area2D
@@ -13,7 +14,11 @@ var input := Vector2.ZERO
 @export var check_up: Area2D
 @export var check_down: Area2D
 
+var picked_toy := false
+var picked_key := false
+
 signal change_pos
+signal restart
 
 
 func _process(delta):
@@ -96,9 +101,13 @@ func _on_colliding_body_entered(body: Node2D):
 			restart_level()
 
 func restart_level():
-	var scene_obj: Fade = Globals.fade_scene.instantiate()
-	get_parent().add_child(scene_obj)
-	scene_obj.play_fade_in_animation()
-	await scene_obj.anim.animation_finished
-	queue_free()
-	get_tree().reload_current_scene()
+	restart.emit()
+
+
+func pick_toy(texture: Texture2D):
+	toy.texture = texture
+	picked_toy = true
+
+func drop_toy():
+	toy.texture = null
+	picked_toy = false

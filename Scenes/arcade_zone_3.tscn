@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_bhvgc"]
 [ext_resource type="PackedScene" uid="uid://cyyfcahagbk5d" path="res://Scenes/xob's_party_1.tscn" id="2_qil2n"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_kxv0l"]
-[ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/MovableCamera.tscn" id="5_xbht0"]
+[ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_xbht0"]
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="7_b0dxg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccbrw"]

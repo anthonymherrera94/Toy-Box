@@ -166,7 +166,13 @@ _data = {
 "start_run": SubResource("Animation_2oejy")
 }
 
-[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("title_anim", "player", "player_run")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("title_anim", "player", "player_run")]
+custom_minimum_size = Vector2(224, 288)
+layout_mode = 3
+anchor_right = 0.117
+anchor_bottom = 0.267
+offset_right = -224.64
+offset_bottom = -288.36
 script = ExtResource("1_nnigb")
 title_anim = NodePath("AnimatedSprite2D")
 player = NodePath("Player")
@@ -179,6 +185,7 @@ sprite_frames = SubResource("SpriteFrames_apyyv")
 animation = &"idle"
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0

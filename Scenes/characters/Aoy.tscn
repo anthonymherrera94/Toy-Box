@@ -125,10 +125,12 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw5bp"]
 size = Vector2(16, 16)
 
-[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "check_left", "check_right", "check_up", "check_down")]
+[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "toy", "check_left", "check_right", "check_up", "check_down")]
+process_mode = 1
 z_index = 2
 script = ExtResource("1_ilnme")
 player_anim = NodePath("AnimatedSprite2D")
+toy = NodePath("Toy")
 check_left = NodePath("CheckLeft")
 check_right = NodePath("CheckRight")
 check_up = NodePath("CheckUp")
@@ -169,5 +171,9 @@ position = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown"]
 shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="Toy" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
 
 [connection signal="body_entered" from="Colliding" to="." method="_on_colliding_body_entered"]

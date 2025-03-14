@@ -1,26 +1,31 @@
-[gd_scene load_steps=12 format=4 uid="uid://cua72rre142t6"]
+[gd_scene load_steps=18 format=4 uid="uid://cua72rre142t6"]
 
 [ext_resource type="Texture2D" uid="uid://dypt4051ep42e" path="res://Sprites/Levels/Levels/Toy Town 1.PNG" id="1_0ov88"]
 [ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_o4kly"]
 [ext_resource type="PackedScene" uid="uid://cr6hvixe2en31" path="res://Scenes/toy_town_2.tscn" id="2_k10x1"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_sy11i"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_24beh"]
+[ext_resource type="Texture2D" uid="uid://dhtm8w6pnoc35" path="res://Sprites/Items/Toys/Roly Poly Clown.png" id="4_8ovj8"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_oosm0"]
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_p0kfx"]
+[ext_resource type="Texture2D" uid="uid://cuva8a8mpoqqv" path="res://Sprites/Items/Toys/Spinning Top.png" id="6_y607j"]
 [ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="7_rgtv3"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="8_v5mu3"]
+[ext_resource type="Texture2D" uid="uid://xf2lwkyef6ar" path="res://Sprites/Items/Toys/Teddy Bear.png" id="8_vn8ic"]
+[ext_resource type="Texture2D" uid="uid://c3shr54dayhxu" path="res://Sprites/Items/Toys/Toy Car.png" id="10_txd1y"]
+[ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="15_i4tau"]
+[ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="22_b08r6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_voqs1"]
 size = Vector2(16, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3ndc"]
 
-[node name="Toy Town 1" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
+[node name="Toy Town 1" type="Node2D"]
 script = ExtResource("1_o4kly")
-walls = NodePath("Walls")
-game_ui = NodePath("GameUI")
 map_size = Rect2i(-7, -7, 5, 6)
-next_level = ExtResource("2_k10x1")
+toys_textures = Array[Texture2D]([ExtResource("8_vn8ic"), ExtResource("6_y607j"), ExtResource("4_8ovj8"), ExtResource("10_txd1y")])
+next_scene = ExtResource("2_k10x1")
 
 [node name="ToyTown1" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -183,4 +188,12 @@ position = Vector2(96, -96)
 [node name="Toe" parent="." instance=ExtResource("8_v5mu3")]
 position = Vector2(96, 112)
 
+[node name="ToyChest" parent="." instance=ExtResource("22_b08r6")]
+
 [node name="GameUI" parent="." instance=ExtResource("6_p0kfx")]
+layout_direction = 0
+offset_right = -112.0
+offset_bottom = -144.0
+
+[node name="Door" parent="." instance=ExtResource("15_i4tau")]
+position = Vector2(0, 80)

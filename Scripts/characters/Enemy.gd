@@ -2,7 +2,7 @@ class_name Enemy extends Character
 
 var map_offset: Vector2
 
-var move_speed := 80.0
+var move_speed := 60.0
 var input := Vector2.ZERO
 @export var player_anim: AnimatedSprite2D
 @export var navigation: NavigationAgent2D

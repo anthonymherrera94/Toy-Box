@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpqtsjc5umcq2"]
+
+[ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
+[ext_resource type="Script" path="res://Scripts/overlay.gd" id="1_btq4h"]
+[ext_resource type="Texture2D" uid="uid://bk6b1qfg0d71a" path="res://Overlay.png" id="1_vdnv0"]
+[ext_resource type="PackedScene" uid="uid://bynji6lrovmbq" path="res://Scenes/items/balloons.tscn" id="2_vcrxe"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="3_bb1nd"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="4_4sp8s"]
+[ext_resource type="PackedScene" uid="uid://k0j7ujbqyukg" path="res://Scenes/fade.tscn" id="4_5g481"]
+[ext_resource type="PackedScene" uid="uid://bi41guy5y3fyx" path="res://Scenes/items/key.tscn" id="5_6qwki"]
+[ext_resource type="PackedScene" uid="uid://cua72rre142t6" path="res://Scenes/toy_town_1.tscn" id="5_nm1dm"]
+
+[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_btq4h")
+balloon = ExtResource("2_vcrxe")
+treat = ExtResource("3_bb1nd")
+toy = ExtResource("4_4sp8s")
+key = ExtResource("5_6qwki")
+fade = ExtResource("4_5g481")
+menu = ExtResource("1_47hrg")
+first_level = ExtResource("5_nm1dm")
+viewport = NodePath("SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 48.0
+offset_right = 1344.0
+offset_bottom = 1024.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(768, 976)
+size_2d_override = Vector2i(224, 288)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vdnv0")

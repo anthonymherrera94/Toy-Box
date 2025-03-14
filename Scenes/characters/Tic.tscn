@@ -61,12 +61,14 @@ animations = [{
 radius = 8.0
 
 [node name="Tic" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "navigation")]
+process_mode = 1
 z_index = 1
 script = ExtResource("1_jsgqv")
 player_anim = NodePath("AnimatedSprite2D")
 navigation = NodePath("NavigationAgent2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 sprite_frames = SubResource("SpriteFrames_qavws")
 animation = &"WalkDown"
 
