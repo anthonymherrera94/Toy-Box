@@ -34,6 +34,7 @@ project/assembly_name="Toy Box"
 [gui]
 
 theme/custom="res://Theme.tres"
+theme/custom_font="res://Fonts/PressStart2P.ttf"
 
 [input]
 

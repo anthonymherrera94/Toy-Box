@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://djvm4wwytnha8"
-path="res://.godot/imported/ARCADE_N.TTF-a51c15b32a174ffe971b86c3e71621e9.fontdata"
+uid="uid://cfn6wsi7j1iqa"
+path="res://.godot/imported/PressStart2P.ttf-7617c668717e326a1e78f1cee760913b.fontdata"
 
 [deps]
 
-source_file="res://Fonts/ARCADE_N.TTF"
-dest_files=["res://.godot/imported/ARCADE_N.TTF-a51c15b32a174ffe971b86c3e71621e9.fontdata"]
+source_file="res://Fonts/PressStart2P.ttf"
+dest_files=["res://.godot/imported/PressStart2P.ttf-7617c668717e326a1e78f1cee760913b.fontdata"]
 
 [params]
 
