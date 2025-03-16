@@ -1,23 +1,25 @@
-[gd_scene load_steps=10 format=4 uid="uid://6qi5fr1qtsth"]
+[gd_scene load_steps=14 format=4 uid="uid://6qi5fr1qtsth"]
 
 [ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_5lobh"]
 [ext_resource type="Texture2D" uid="uid://ey27a62l808b" path="res://Sprites/Levels/Levels/Rainbow Heaven 2.png" id="1_mjwmu"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_fdve6"]
-[ext_resource type="PackedScene" uid="uid://chlrt0kqt316h" path="res://Scenes/rainbow_heaven_3.tscn" id="2_sjiu1"]
+[ext_resource type="PackedScene" uid="uid://chlrt0kqt316h" path="res://Scenes/rainbow_heaven_3.tscn" id="2_hu0gt"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_623jq"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_pg0rp"]
+[ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_8hj53"]
+[ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="6_chgw4"]
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="7_ro511"]
+[ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="7_vome4"]
+[ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="8_c266e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wgra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbpkp"]
 
-[node name="Rainbow Heaven 2" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
+[node name="Rainbow Heaven 2" type="Node2D"]
 script = ExtResource("1_5lobh")
-walls = NodePath("Walls")
-game_ui = NodePath("GameUI")
 map_size = Rect2i(-10, -8, 8, 5)
-next_level = ExtResource("2_sjiu1")
+next_scene = ExtResource("2_hu0gt")
 
 [node name="RainbowHeaven2" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -194,5 +196,17 @@ tile_set = ExtResource("2_fdve6")
 position = Vector2(0, -32)
 
 [node name="Camera2D" parent="Aoy" instance=ExtResource("5_pg0rp")]
+
+[node name="Tic" parent="." instance=ExtResource("6_8hj53")]
+position = Vector2(-144, 112)
+
+[node name="Tac" parent="." instance=ExtResource("7_vome4")]
+position = Vector2(144, 112)
+
+[node name="Toe" parent="." instance=ExtResource("8_c266e")]
+position = Vector2(0, 112)
+
+[node name="ToyChest" parent="." instance=ExtResource("6_chgw4")]
+position = Vector2(0, -32)
 
 [node name="GameUI" parent="." instance=ExtResource("7_ro511")]

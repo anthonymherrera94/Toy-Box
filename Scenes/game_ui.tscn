@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://83j1bck4eopc" path="res://Scenes/prefabs/life.tscn" id="2_sj2bp"]
 
 [node name="GameUI" type="Control" node_paths=PackedStringArray("score", "lives")]
+visible = false
 custom_minimum_size = Vector2(224, 288)
 layout_direction = 1
 layout_mode = 3

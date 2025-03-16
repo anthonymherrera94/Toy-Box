@@ -1,23 +1,25 @@
-[gd_scene load_steps=10 format=4 uid="uid://c5i5kmfru0umv"]
+[gd_scene load_steps=14 format=4 uid="uid://c5i5kmfru0umv"]
 
 [ext_resource type="Texture2D" uid="uid://dck1xdboey6nm" path="res://Sprites/Levels/Levels/Xobs Party 2.PNG" id="1_2luxc"]
 [ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_hjo5h"]
-[ext_resource type="PackedScene" uid="uid://dng84j1cl75d3" path="res://Scenes/xob's_party_3.tscn" id="2_j60mq"]
+[ext_resource type="PackedScene" uid="uid://dng84j1cl75d3" path="res://Scenes/xob's_party_3.tscn" id="2_6bkvh"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_ry3o7"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_e70w2"]
+[ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="4_522xv"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_is7es"]
+[ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_q4yau"]
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="7_eeohi"]
+[ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="7_l350c"]
+[ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="8_opnng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mg4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ro48"]
 
-[node name="Xob\'s Party 2" type="Node2D" node_paths=PackedStringArray("walls", "game_ui")]
+[node name="Xob\'s Party 2" type="Node2D"]
 script = ExtResource("1_hjo5h")
-walls = NodePath("Walls")
-game_ui = NodePath("GameUI")
 map_size = Rect2i(-9, -9, 7, 8)
-next_level = ExtResource("2_j60mq")
+next_scene = ExtResource("2_6bkvh")
 
 [node name="XobsParty2" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -299,5 +301,17 @@ tile_set = ExtResource("2_ry3o7")
 position = Vector2(0, 16)
 
 [node name="Camera2D" parent="Aoy" instance=ExtResource("5_is7es")]
+
+[node name="Tic" parent="." instance=ExtResource("6_q4yau")]
+position = Vector2(-128, -128)
+
+[node name="Tac" parent="." instance=ExtResource("7_l350c")]
+position = Vector2(128, -128)
+
+[node name="Toe" parent="." instance=ExtResource("8_opnng")]
+position = Vector2(-128, 144)
+
+[node name="ToyChest" parent="." instance=ExtResource("4_522xv")]
+position = Vector2(0, 16)
 
 [node name="GameUI" parent="." instance=ExtResource("7_eeohi")]

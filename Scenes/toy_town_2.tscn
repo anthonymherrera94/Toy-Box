@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=4 uid="uid://cr6hvixe2en31"]
+[gd_scene load_steps=13 format=4 uid="uid://cr6hvixe2en31"]
 
 [ext_resource type="Texture2D" uid="uid://kskescbvrnj5" path="res://Sprites/Levels/Levels/Toy Town 2.PNG" id="1_cn8hm"]
 [ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_pvayp"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_8y5fs"]
+[ext_resource type="PackedScene" uid="uid://61u0gpkf3fep" path="res://Scenes/toy_town_3.tscn" id="2_of0xr"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_83722"]
+[ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="5_ae0qr"]
+[ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="5_yvcpw"]
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_7bwxb"]
+[ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="6_cpqn8"]
+[ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_8dhpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogooo"]
 
@@ -13,6 +18,7 @@
 [node name="Toy Town 2" type="Node2D"]
 script = ExtResource("1_pvayp")
 map_size = Rect2i(-7, -7, 5, 6)
+next_scene = ExtResource("2_of0xr")
 
 [node name="ToyTown2" type="Sprite2D" parent="."]
 position = Vector2(0, 8)
@@ -168,5 +174,17 @@ position = Vector2(0, 16)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 8)
+
+[node name="Tic" parent="." instance=ExtResource("5_yvcpw")]
+position = Vector2(-96, -96)
+
+[node name="Tac" parent="." instance=ExtResource("6_cpqn8")]
+position = Vector2(96, 112)
+
+[node name="Toe" parent="." instance=ExtResource("7_8dhpg")]
+position = Vector2(-96, 112)
+
+[node name="ToyChest" parent="." instance=ExtResource("5_ae0qr")]
+position = Vector2(0, 16)
 
 [node name="GameUI" parent="." instance=ExtResource("6_7bwxb")]

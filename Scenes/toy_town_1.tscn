@@ -190,10 +190,10 @@ position = Vector2(96, 112)
 
 [node name="ToyChest" parent="." instance=ExtResource("22_b08r6")]
 
+[node name="Door" parent="." instance=ExtResource("15_i4tau")]
+position = Vector2(0, 80)
+
 [node name="GameUI" parent="." instance=ExtResource("6_p0kfx")]
 layout_direction = 0
 offset_right = -112.0
 offset_bottom = -144.0
-
-[node name="Door" parent="." instance=ExtResource("15_i4tau")]
-position = Vector2(0, 80)
