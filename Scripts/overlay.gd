@@ -5,8 +5,10 @@ enum Event { StartGame, ChangeLevel, RestartGame }
 @export_category("Scenes")
 @export var balloon: PackedScene
 @export var treat: PackedScene
+@export var card: PackedScene
 @export var toy: PackedScene
 @export var key: PackedScene
+@export var power_up: PackedScene
 @export var fade: PackedScene
 @export var menu: PackedScene
 @export var first_level: PackedScene
@@ -23,6 +25,7 @@ var lives := 3
 
 
 func _ready() -> void:
+	randomize()
 	return_to_menu()
 
 
@@ -73,8 +76,10 @@ func start_scene(_scene: PackedScene) -> void:
 	scene.next_level.connect(_on_next_level)
 	scene.balloon_scene = balloon
 	scene.treat_scene = treat
+	scene.card_scene = card
 	scene.toy_scene = toy
 	scene.key_scene = key
+	scene.power_up_scene = power_up
 	viewport.add_child(scene)
 	scene.set_lives(lives)
 	level = scene

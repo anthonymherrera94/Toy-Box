@@ -1,0 +1,16 @@
+[gd_resource type="AnimatedTexture" load_steps=5 format=3 uid="uid://dakjseenl84w7"]
+
+[ext_resource type="Texture2D" uid="uid://dktpt05fic5mq" path="res://Sprites/Items/Important items/Balloon P1.png" id="1_xuqrv"]
+[ext_resource type="Texture2D" uid="uid://cs0rf5mjr6vvq" path="res://Sprites/Items/Important items/Balloon P2.png" id="2_pqhxp"]
+[ext_resource type="Texture2D" uid="uid://2l7igc7liuvk" path="res://Sprites/Items/Important items/Balloon P3.png" id="3_7p4nk"]
+[ext_resource type="Texture2D" uid="uid://c3tqj61uhydit" path="res://Sprites/Items/Important items/Balloon P4.png" id="4_ylijp"]
+
+[resource]
+frames = 4
+frame_0/texture = ExtResource("1_xuqrv")
+frame_1/texture = ExtResource("2_pqhxp")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_7p4nk")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_ylijp")
+frame_3/duration = 1.0

@@ -21,13 +21,20 @@ var toy_chest: ToyChest
 
 var balloon_scene: PackedScene
 var treat_scene: PackedScene
+var card_scene: PackedScene
 var toy_scene: PackedScene
 var key_scene: PackedScene
 var door_scene: PackedScene
+var power_up_scene: PackedScene
 
+var cards_amount := 3
+
+var current_balloon: Balloons.BALLOON_TYPE = 0
 var current_treat: Treats.TREAT_TYPE = 0
 
-#The spawn delay for treats in seconds
+var balloon: Balloons
+
+# The spawn delay for treats and balloons in seconds
 const treats_spawn_delay := 5.0
 
 var treats_spawn_timer := Timer.new()
@@ -69,6 +76,9 @@ func _ready() -> void:
 		map_offset = tiles.position
 		tiles.hide()
 	
+	for i in range(cards_amount):
+		spawn_card()
+	
 	for i in toys_textures:
 		spawn_toy(i)
 	
@@ -104,6 +114,20 @@ func spawn_toy(texture: Texture2D) -> void:
 	obj.set_sprite(texture)
 	toys_left += 1
 
+func spawn_card() -> void:
+	var obj: Cards = card_scene.instantiate()
+	obj.picked.connect(_on_card_picked)
+	obj.position = pick_random_pos()
+	add_child(obj)
+
+func spawn_balloon() -> void:
+	var obj: Balloons = balloon_scene.instantiate()
+	obj.balloon_type = current_balloon
+	obj.position = pick_random_pos()
+	add_child(obj)
+	
+	balloon = obj
+
 func spawn_treat() -> void:
 	if not is_treat_picked:
 		current_treat = 0
@@ -116,7 +140,6 @@ func spawn_treat() -> void:
 	obj.picked.connect(_on_treat_picked)
 	obj.position = pick_random_pos()
 	add_child(obj)
-	obj.set_type()
 	
 	treat = obj
 
@@ -126,11 +149,20 @@ func spawn_key() -> void:
 	obj.position = pick_random_pos()
 	add_child(obj)
 
+func spawn_power_up() -> void:
+	var obj: PowerUp = power_up_scene.instantiate()
+	obj.power_up_type = randi() % PowerUp.POWER_UP_TYPE.size()
+	obj.position = pick_random_pos()
+	add_child(obj)
+
 
 func _on_aoy_change_pos(pos: Vector2) -> void:
 	for i in enemies:
 		i.set_targer_pos(pos)
 
+
+func _on_card_picked() -> void:
+	spawn_power_up()
 
 func _on_treat_picked() -> void:
 	match current_treat:
