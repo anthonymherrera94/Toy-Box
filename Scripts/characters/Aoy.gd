@@ -95,10 +95,13 @@ func animate():
 
 func _on_colliding_body_entered(body: Node2D):
 	if body is Enemy:
-		if state != STATE.KO:
-			player_anim.play("KO")
-			state = STATE.KO
-			restart_level()
+		lose()
+
+func lose():
+	if state != STATE.KO:
+		player_anim.play("KO")
+		state = STATE.KO
+		restart_level()
 
 func restart_level():
 	restart.emit()

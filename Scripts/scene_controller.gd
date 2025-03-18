@@ -1,5 +1,7 @@
 class_name SceneController extends Node2D
 
+enum XobSpawnSide { Top, Bottom, Left, Right }
+
 var map_offset: Vector2
 
 @export_category("Map Characteristics")
@@ -26,6 +28,7 @@ var toy_scene: PackedScene
 var key_scene: PackedScene
 var door_scene: PackedScene
 var power_up_scene: PackedScene
+var xob_scene: PackedScene
 
 var cards_amount := 3
 
@@ -46,6 +49,11 @@ var door: Door
 var score := 0
 
 var toys_left := 0
+
+var bonus_time := 10000
+var bonus_time_timer := Timer.new()
+
+var xob: Xob
 
 signal restart
 signal next_level
@@ -85,6 +93,10 @@ func _ready() -> void:
 	add_child(treats_spawn_timer)
 	treats_spawn_timer.timeout.connect(spawn_treat)
 	treats_spawn_timer.start(treats_spawn_delay)
+	
+	add_child(bonus_time_timer)
+	bonus_time_timer.timeout.connect(_on_bonus_time_tick)
+	bonus_time_timer.start(0.1)
 	
 	game_ui.show()
 	game_ui.set_score(0)
@@ -155,10 +167,33 @@ func spawn_power_up() -> void:
 	obj.position = pick_random_pos()
 	add_child(obj)
 
+func spawn_xob() -> void:
+	var obj: Xob = xob_scene.instantiate()
+	var side: XobSpawnSide = randi() % XobSpawnSide.size()
+	
+	match side:
+		XobSpawnSide.Top:
+			obj.position = Vector2(randf_range(map_size.position.x * 16, map_size.size.x * 16), map_size.position.y * 16)
+		XobSpawnSide.Bottom:
+			obj.position = Vector2(randf_range(map_size.position.x * 16, map_size.size.x * 16), map_size.size.y * 16)
+		XobSpawnSide.Left:
+			obj.position = Vector2(map_size.position.x * 16, randf_range(map_size.position.y * 16, map_size.size.y * 16))
+		XobSpawnSide.Right:
+			obj.position = Vector2(map_size.size.x * 16, randf_range(map_size.position.y * 16, map_size.size.y * 16))
+	
+	obj.position += map_offset
+	
+	add_child(obj)
+	
+	xob = obj
+
 
 func _on_aoy_change_pos(pos: Vector2) -> void:
 	for i in enemies:
 		i.set_targer_pos(pos)
+	
+	if xob != null:
+		xob.set_targer_pos(pos)
 
 
 func _on_card_picked() -> void:
@@ -205,3 +240,12 @@ func add_score(points: int) -> void:
 
 func set_lives(amount: int) -> void:
 	game_ui.set_lives(amount)
+
+
+func _on_bonus_time_tick() -> void:
+	if bonus_time > 0:
+		bonus_time -= 10
+	else:
+		if xob == null: spawn_xob()
+	
+	game_ui.set_bonus_time(bonus_time)
