@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpqtsjc5umcq2"]
+[gd_scene load_steps=14 format=3 uid="uid://dpqtsjc5umcq2"]
 
 [ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
 [ext_resource type="Script" path="res://Scripts/overlay.gd" id="1_btq4h"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bi41guy5y3fyx" path="res://Scenes/items/key.tscn" id="5_6qwki"]
 [ext_resource type="PackedScene" uid="uid://cua72rre142t6" path="res://Scenes/toy_town_1.tscn" id="5_nm1dm"]
 [ext_resource type="PackedScene" uid="uid://310dq2pscnnp" path="res://Scenes/items/power_up.tscn" id="7_oj44a"]
+[ext_resource type="PackedScene" uid="uid://bckmmpq6uqfdm" path="res://Scenes/items/gemstone.tscn" id="8_7unab"]
 [ext_resource type="PackedScene" uid="uid://quligbsidjgx" path="res://Scenes/characters/Xob.tscn" id="8_35kfe"]
 
 [node name="Overlay" type="Control" node_paths=PackedStringArray("viewport")]
@@ -28,6 +29,7 @@ card = ExtResource("4_30y6x")
 toy = ExtResource("4_4sp8s")
 key = ExtResource("5_6qwki")
 power_up = ExtResource("7_oj44a")
+gemstone = ExtResource("8_7unab")
 xob = ExtResource("8_35kfe")
 fade = ExtResource("4_5g481")
 menu = ExtResource("1_47hrg")

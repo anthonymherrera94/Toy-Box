@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://caeyw58brrar7"]
+[gd_scene load_steps=34 format=3 uid="uid://caeyw58brrar7"]
 
 [ext_resource type="Script" path="res://Scripts/characters/Aoy.gd" id="1_ilnme"]
 [ext_resource type="Texture2D" uid="uid://c1wi2caj7njo7" path="res://Sprites/Characters/Aoy/Aoy D1.png" id="2_qxx25"]
@@ -16,6 +16,17 @@
 [ext_resource type="Texture2D" uid="uid://ddn6b3pnvv2q6" path="res://Sprites/Characters/Aoy/Aoy R3.png" id="13_uhx5d"]
 [ext_resource type="Texture2D" uid="uid://bdi2r2fl1j0wt" path="res://Sprites/Characters/Aoy/Aoy U2.png" id="14_yh4ob"]
 [ext_resource type="Texture2D" uid="uid://b03h1amx7xj8k" path="res://Sprites/Characters/Aoy/Aoy U3.png" id="15_njtc5"]
+[ext_resource type="Texture2D" uid="uid://ca2aw6f7ryd8a" path="res://Sprites/Items/Power Ups/Toy Hammer (side view).png" id="17_rcacr"]
+[ext_resource type="Texture2D" uid="uid://cfjbkdsbkkf7q" path="res://Sprites/Items/Power Ups/Toy Hammer D.png" id="18_14gmc"]
+[ext_resource type="Texture2D" uid="uid://3v1h6pc8ytli" path="res://Sprites/Items/Power Ups/Toy Hammer L.png" id="18_dxyum"]
+[ext_resource type="Texture2D" uid="uid://bsmbh211tt5h2" path="res://Sprites/Items/Power Ups/Toy Hammer R.png" id="19_rdb7h"]
+[ext_resource type="Texture2D" uid="uid://bosbkhjf2hep6" path="res://Sprites/Items/Power Ups/Toy Hammer (top view).png" id="20_e865u"]
+[ext_resource type="Texture2D" uid="uid://btjulilk8juqq" path="res://Sprites/Items/Power Ups/Toy Hammer U.png" id="21_87b4f"]
+[ext_resource type="Texture2D" uid="uid://3dknwlnu5tr8" path="res://Sprites/Items/Power Ups/Bubble Gun D.png" id="23_ixfxo"]
+[ext_resource type="Texture2D" uid="uid://dtrnksw6ikxfa" path="res://Sprites/Items/Power Ups/Bubble Gun L.png" id="24_ilwnn"]
+[ext_resource type="Texture2D" uid="uid://41j5wfg4pm8r" path="res://Sprites/Items/Power Ups/Bubble Gun R.png" id="25_qdoiv"]
+[ext_resource type="Texture2D" uid="uid://0fut2t0uknxa" path="res://Sprites/Items/Power Ups/Bubble Gun U.png" id="26_pla0j"]
+[ext_resource type="Texture2D" uid="uid://coe754ae22sgw" path="res://Sprites/Items/Power Ups/Jack-in-the-box 1.png" id="27_e5ol3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6lcf"]
 animations = [{
@@ -116,6 +127,88 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ap180"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_e865u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_14gmc")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_rcacr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dxyum")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_rcacr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rdb7h")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_e865u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_87b4f")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5vur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_ixfxo")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_ilwnn")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_qdoiv")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_pla0j")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
 radius = 6.0
 
@@ -125,11 +218,14 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw5bp"]
 size = Vector2(16, 16)
 
-[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "toy", "check_left", "check_right", "check_up", "check_down")]
+[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "hammer", "bubble_gun", "jack_in_the_box", "toy", "check_left", "check_right", "check_up", "check_down")]
 process_mode = 1
 z_index = 2
 script = ExtResource("1_ilnme")
 player_anim = NodePath("AnimatedSprite2D")
+hammer = NodePath("Hammer")
+bubble_gun = NodePath("BubbleGun")
+jack_in_the_box = NodePath("JackInTheBox")
 toy = NodePath("Toy")
 check_left = NodePath("CheckLeft")
 check_right = NodePath("CheckRight")
@@ -139,6 +235,21 @@ check_down = NodePath("CheckDown")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n6lcf")
 animation = &"IdleDown"
+
+[node name="Hammer" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ap180")
+animation = &"Down"
+
+[node name="BubbleGun" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_m5vur")
+animation = &"Down"
+
+[node name="JackInTheBox" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("27_e5ol3")
+offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2v3qo")

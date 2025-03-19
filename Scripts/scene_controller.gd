@@ -28,6 +28,7 @@ var toy_scene: PackedScene
 var key_scene: PackedScene
 var door_scene: PackedScene
 var power_up_scene: PackedScene
+var gemstone_scene: PackedScene
 var xob_scene: PackedScene
 
 var cards_amount := 3
@@ -52,6 +53,13 @@ var toys_left := 0
 
 var bonus_time := 10000
 var bonus_time_timer := Timer.new()
+
+const bonus_round_duration := 20.0
+var bonus_round_timer := Timer.new()
+
+var bonus_round := false
+
+var gemstones: Array[Gemstone]
 
 var xob: Xob
 
@@ -98,6 +106,9 @@ func _ready() -> void:
 	bonus_time_timer.timeout.connect(_on_bonus_time_tick)
 	bonus_time_timer.start(0.1)
 	
+	add_child(bonus_round_timer)
+	bonus_round_timer.timeout.connect(_on_bonus_round_timer_end)
+	
 	game_ui.show()
 	game_ui.set_score(0)
 
@@ -136,6 +147,7 @@ func spawn_balloon() -> void:
 	var obj: Balloons = balloon_scene.instantiate()
 	obj.balloon_type = current_balloon
 	obj.position = pick_random_pos()
+	obj.popped.connect(_on_balloon_popped)
 	add_child(obj)
 	
 	balloon = obj
@@ -166,6 +178,23 @@ func spawn_power_up() -> void:
 	obj.power_up_type = randi() % PowerUp.POWER_UP_TYPE.size()
 	obj.position = pick_random_pos()
 	add_child(obj)
+
+func spawn_gemstones() -> void:
+	var segment := 0
+	
+	for x in range(map_size.position.x, map_size.size.x):
+		for y in range(map_size.position.y, map_size.size.y):
+			var obj_pos: Vector2i = Vector2i(x, y)
+			
+			if tiles.get_cell_atlas_coords(obj_pos - Vector2i.ONE) == Vector2i(1, 0) \
+			and segment == 0:
+				var obj: Gemstone = gemstone_scene.instantiate()
+				obj.picked.connect(_on_gemstone_picked)
+				add_child(obj)
+				gemstones.append(obj)
+			
+			if segment < 3: segment += 1
+			else: segment = 0
 
 func spawn_xob() -> void:
 	var obj: Xob = xob_scene.instantiate()
@@ -229,9 +258,28 @@ func _on_toy_dropped() -> void:
 	else:
 		spawn_key()
 
+func _on_balloon_popped() -> void:
+	bonus_round = true
+	bonus_round_timer.start(bonus_round_duration)
+	spawn_gemstones()
+
+func _on_gemstone_picked() -> void:
+	add_score(300)
+
+func _on_bonus_round_timer_end() -> void:
+	bonus_round = false
+	remove_gemstones()
+
 func _on_indoor() -> void:
 	get_tree().paused = true
 	next_level.emit(next_scene)
+
+
+func remove_gemstones() -> void:
+	for i in gemstones:
+		i.queue_free()
+	
+	gemstones.clear()
 
 
 func add_score(points: int) -> void:

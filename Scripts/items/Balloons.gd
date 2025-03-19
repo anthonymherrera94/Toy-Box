@@ -14,6 +14,9 @@ enum BALLOON_TYPE{
 
 var is_popped := false
 
+signal popped
+
+
 func _ready():
 	set_type()
 	
@@ -44,6 +47,8 @@ func _on_body_entered(body: Node2D) -> void:
 				balloon_anim.play("EPop")
 			BALLOON_TYPE.R:
 				balloon_anim.play("RPop")
+		
+		popped.emit()
 		
 		is_popped = true
 	

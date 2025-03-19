@@ -9,6 +9,7 @@ enum Event { StartGame, ChangeLevel, RestartGame }
 @export var toy: PackedScene
 @export var key: PackedScene
 @export var power_up: PackedScene
+@export var gemstone: PackedScene
 @export var xob: PackedScene
 @export var fade: PackedScene
 @export var menu: PackedScene
@@ -80,6 +81,7 @@ func start_scene(_scene: PackedScene) -> void:
 	scene.card_scene = card
 	scene.toy_scene = toy
 	scene.key_scene = key
+	scene.gemstone_scene = gemstone
 	scene.xob_scene = xob
 	scene.power_up_scene = power_up
 	viewport.add_child(scene)

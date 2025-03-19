@@ -6,6 +6,11 @@ var move_speed := 80.0
 var input := Vector2.ZERO
 
 @export var player_anim: AnimatedSprite2D
+
+@export var hammer: AnimatedSprite2D
+@export var bubble_gun: AnimatedSprite2D
+@export var jack_in_the_box: Sprite2D
+
 @export var toy: Sprite2D
 
 @export_category("Checkers")
@@ -16,6 +21,9 @@ var input := Vector2.ZERO
 
 var picked_toy := false
 var picked_key := false
+
+var power_up_count := 0
+var power_up_type: PowerUp.POWER_UP_TYPE
 
 signal change_pos
 signal restart
@@ -44,20 +52,57 @@ func move():
 		position = snapped_pos
 		velocity = Vector2.ZERO
 		
+		if power_up_count > 0:
+			hide_power_ups()
+			
+			match power_up_type:
+				PowerUp.POWER_UP_TYPE.ToyHammer:
+					hammer.show()
+				PowerUp.POWER_UP_TYPE.BubbleGun:
+					bubble_gun.show()
+				PowerUp.POWER_UP_TYPE.JackInTheBox:
+					jack_in_the_box.show()
+		else:
+			hide_power_ups()
+		
 		if input != Vector2.ZERO:
 			if input.abs().x > input.abs().y:
 				if input.x > 0:
 					if not check_right.has_overlapping_bodies():
+						var power_up_pos := Vector2.RIGHT * 8
+						
+						hammer.position = power_up_pos
+						bubble_gun.position = power_up_pos
+						jack_in_the_box.position = power_up_pos
+						
 						velocity = Vector2.RIGHT * move_speed
 				else:
 					if not check_left.has_overlapping_bodies():
+						var power_up_pos := Vector2.LEFT * 8
+						
+						hammer.position = power_up_pos
+						bubble_gun.position = power_up_pos
+						jack_in_the_box.position = power_up_pos
+						
 						velocity = Vector2.LEFT * move_speed
 			else:
 				if input.y > 0:
 					if not check_down.has_overlapping_bodies():
+						var power_up_pos := Vector2.DOWN * 8
+						
+						hammer.position = power_up_pos
+						bubble_gun.position = power_up_pos
+						jack_in_the_box.position = power_up_pos
+						
 						velocity = Vector2.DOWN * move_speed
 				else:
 					if not check_up.has_overlapping_bodies():
+						var power_up_pos := Vector2.UP * 8
+						
+						hammer.position = power_up_pos
+						bubble_gun.position = power_up_pos
+						jack_in_the_box.position = power_up_pos
+						
 						velocity = Vector2.UP * move_speed
 
 
@@ -66,17 +111,34 @@ func animate():
 		if velocity.abs().x > velocity.abs().y:
 			if velocity.x < 0:
 				player_anim.play("WalkLeft")
+				
+				hammer.play("Left")
+				bubble_gun.play("Left")
+				
 				state = STATE.WALK_LEFT
 			else:
 				player_anim.play("WalkRight")
+				
+				hammer.play("Right")
+				bubble_gun.play("Right")
+				
 				state = STATE.WALK_RIGHT
 		else:
 			if velocity.y < 0:
 				player_anim.play("WalkUp")
+				
+				hammer.play("Up")
+				bubble_gun.play("Up")
+				
 				state = STATE.WALK_UP
 			else:
 				player_anim.play("WalkDown")
+				
+				hammer.play("Down")
+				bubble_gun.play("Down")
+				
 				state = STATE.WALK_DOWN
+	
 	else:
 		match state:
 			STATE.WALK_LEFT:
@@ -91,6 +153,14 @@ func animate():
 			STATE.WALK_DOWN:
 				player_anim.play("IdleDown")
 				state = STATE.IDLE_DOWN
+		
+		hammer.stop()
+		bubble_gun.stop()
+
+func hide_power_ups():
+	hammer.hide()
+	bubble_gun.hide()
+	jack_in_the_box.hide()
 
 
 func _on_colliding_body_entered(body: Node2D):
