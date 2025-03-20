@@ -29,14 +29,25 @@ var key_scene: PackedScene
 var door_scene: PackedScene
 var power_up_scene: PackedScene
 var gemstone_scene: PackedScene
+var tic_scene: PackedScene
+var tac_scene: PackedScene
+var toe_scene: PackedScene
+var fire_bubble_scene: PackedScene
+var jack_in_the_box_scene: PackedScene
+var enemy_respawn_anim: PackedScene
 var xob_scene: PackedScene
 
 var cards_amount := 3
 
-var current_balloon: Balloons.BALLOON_TYPE = 0
-var current_treat: Treats.TREAT_TYPE = 0
-
+var current_balloon: Balloons.BALLOON_TYPE
 var balloon: Balloons
+var is_balloon_spawned := false
+
+const pop_balloon_delay := 3.0
+
+var pop_balloon_timer := Timer.new()
+
+var current_treat: Treats.TREAT_TYPE = 0
 
 # The spawn delay for treats and balloons in seconds
 const treats_spawn_delay := 5.0
@@ -63,8 +74,13 @@ var gemstones: Array[Gemstone]
 
 var xob: Xob
 
+const respawn_delay := 3
+var respawn_delay_timer := Timer.new()
+
 signal restart
 signal next_level
+
+signal balloon_popped
 
 
 func _ready() -> void:
@@ -77,9 +93,12 @@ func _ready() -> void:
 			i.map_offset = map_offset
 			i.change_pos.connect(_on_aoy_change_pos)
 			i.restart.connect(func(): restart.emit())
+			i.shoot_fire_bubble.connect(_on_shoot_fire_bubble)
+			i.put_jack_in_the_box.connect(_on_jack_in_the_box_putted)
 			aoy = i
 		if i is Enemy:
 			i.map_offset = map_offset
+			i.defeated.connect(_on_enemy_defeated)
 			enemies.append(i)
 		if i is ToyChest:
 			i.toy_dropped.connect(_on_toy_dropped)
@@ -107,7 +126,12 @@ func _ready() -> void:
 	bonus_time_timer.start(0.1)
 	
 	add_child(bonus_round_timer)
-	bonus_round_timer.timeout.connect(_on_bonus_round_timer_end)
+	bonus_round_timer.timeout.connect(_on_bonus_round_time_end)
+	
+	add_child(pop_balloon_timer)
+	pop_balloon_timer.timeout.connect(_on_pop_balloon_time_end)
+	
+	respawn_delay_timer.one_shot = true
 	
 	game_ui.show()
 	game_ui.set_score(0)
@@ -151,6 +175,8 @@ func spawn_balloon() -> void:
 	add_child(obj)
 	
 	balloon = obj
+	
+	pop_balloon_timer.start(pop_balloon_delay)
 
 func spawn_treat() -> void:
 	if not is_treat_picked:
@@ -196,6 +222,17 @@ func spawn_gemstones() -> void:
 			if segment < 3: segment += 1
 			else: segment = 0
 
+func spawn_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
+	var obj: FireBubble = fire_bubble_scene.instantiate()
+	obj.direction = direction
+	obj.position = pos
+	add_child(obj)
+
+func spawn_jack_in_the_box(pos: Vector2) -> void:
+	var obj: JackInTheBox = jack_in_the_box_scene.instantiate()
+	obj.position = pos
+	add_child(obj)
+
 func spawn_xob() -> void:
 	var obj: Xob = xob_scene.instantiate()
 	var side: XobSpawnSide = randi() % XobSpawnSide.size()
@@ -216,17 +253,51 @@ func spawn_xob() -> void:
 	
 	xob = obj
 
+func respawn_enemy(type: Enemy.TYPE) -> void:
+	var anim: AnimatedSprite2D = enemy_respawn_anim.instantiate()
+	anim.position = pick_random_pos()
+	
+	respawn_delay_timer.start(respawn_delay)
+	await respawn_delay_timer.timeout
+	
+	var obj: Enemy
+	
+	match type:
+		Enemy.TYPE.Tic:
+			obj = tic_scene.instantiate()
+		Enemy.TYPE.Tac:
+			obj = tac_scene.instantiate()
+		Enemy.TYPE.Toe:
+			obj = toe_scene.instantiate()
+	
+	obj.map_offset = map_offset
+	obj.defeated.connect(_on_enemy_defeated)
+	obj.position = anim.position
+	
+	add_child(obj)
+	enemies.append(obj)
+	
+	anim.queue_free()
+
 
 func _on_aoy_change_pos(pos: Vector2) -> void:
 	for i in enemies:
-		i.set_targer_pos(pos)
+		if i != null: i.set_targer_pos(pos)
 	
 	if xob != null:
 		xob.set_targer_pos(pos)
 
 
 func _on_card_picked() -> void:
-	spawn_power_up()
+	if current_balloon != Balloons.BALLOON_TYPE.Nothing:
+		if not is_balloon_spawned:
+			spawn_balloon()
+			is_balloon_spawned = true
+		else:
+			spawn_power_up()
+	
+	else:
+		spawn_power_up()
 
 func _on_treat_picked() -> void:
 	match current_treat:
@@ -258,17 +329,30 @@ func _on_toy_dropped() -> void:
 	else:
 		spawn_key()
 
+func _on_pop_balloon_time_end() -> void:
+	balloon.pop_animation()
+
 func _on_balloon_popped() -> void:
 	bonus_round = true
 	bonus_round_timer.start(bonus_round_duration)
+	balloon_popped.emit()
 	spawn_gemstones()
 
 func _on_gemstone_picked() -> void:
 	add_score(300)
 
-func _on_bonus_round_timer_end() -> void:
+func _on_bonus_round_time_end() -> void:
 	bonus_round = false
 	remove_gemstones()
+
+func _on_shoot_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
+	spawn_fire_bubble(pos, direction)
+
+func _on_jack_in_the_box_putted(pos: Vector2) -> void:
+	spawn_jack_in_the_box(pos)
+
+func _on_enemy_defeated(type: Enemy.TYPE) -> void:
+	respawn_enemy(type)
 
 func _on_indoor() -> void:
 	get_tree().paused = true

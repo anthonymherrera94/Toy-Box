@@ -50,9 +50,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_ngjew")
 }],
-"loop": true,
+"loop": false,
 "name": &"EPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -75,9 +75,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_844db")
 }],
-"loop": true,
+"loop": false,
 "name": &"PPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -100,9 +100,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_alx1r")
 }],
-"loop": true,
+"loop": false,
 "name": &"RPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,9 +125,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("21_sodfr")
 }],
-"loop": true,
+"loop": false,
 "name": &"SPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,9 +150,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("26_vf5g4")
 }],
-"loop": true,
+"loop": false,
 "name": &"UPop",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g076h"]
@@ -165,7 +165,7 @@ balloon_type = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r17jt")
-animation = &"E"
+animation = &"EPop"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -2)

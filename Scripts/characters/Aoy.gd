@@ -3,6 +3,7 @@ class_name Aoy extends Character
 var map_offset: Vector2
 
 var move_speed := 80.0
+var increased_move_speed := 160.0
 var input := Vector2.ZERO
 
 @export var player_anim: AnimatedSprite2D
@@ -28,21 +29,50 @@ var power_up_type: PowerUp.POWER_UP_TYPE
 signal change_pos
 signal restart
 
+signal shoot_fire_bubble
+signal put_jack_in_the_box
+
 
 func _process(delta):
 	input = get_input()
+	
+	if Input.is_action_just_pressed("action"): action_pressed()
+	
 	if state != STATE.KO:
 		animate()
 	
+
 func _physics_process(delta):
 	if state != STATE.KO:
 		move()
 		move_and_slide()
 	
+
 func get_input() -> Vector2:
 	input.x = Input.get_axis("move_left", "move_right")
 	input.y = Input.get_axis("move_up", "move_down")
 	return input
+
+func action_pressed() -> void:
+	if power_up_count > 0:
+		match power_up_type:
+			PowerUp.POWER_UP_TYPE.BubbleGun:
+				match state:
+					STATE.IDLE_RIGHT, STATE.WALK_RIGHT:
+						shoot_fire_bubble.emit(global_position, FireBubble.DIRECTION.Right)
+					STATE.IDLE_LEFT, STATE.WALK_LEFT:
+						shoot_fire_bubble.emit(global_position, FireBubble.DIRECTION.Left)
+					STATE.IDLE_UP, STATE.WALK_UP:
+						shoot_fire_bubble.emit(global_position, FireBubble.DIRECTION.Up)
+					STATE.IDLE_DOWN, STATE.WALK_DOWN:
+						shoot_fire_bubble.emit(global_position, FireBubble.DIRECTION.Down)
+				
+				power_up_count -= 1
+			
+			PowerUp.POWER_UP_TYPE.JackInTheBox:
+				put_jack_in_the_box.emit(global_position)
+				
+				power_up_count -= 1
 
 func move():
 	var snapped_pos = position.snapped(Vector2(16, 16))
@@ -62,6 +92,9 @@ func move():
 					bubble_gun.show()
 				PowerUp.POWER_UP_TYPE.JackInTheBox:
 					jack_in_the_box.show()
+				PowerUp.POWER_UP_TYPE.RollerSkate:
+					move_speed = increased_move_speed
+		
 		else:
 			hide_power_ups()
 		
@@ -165,7 +198,14 @@ func hide_power_ups():
 
 func _on_colliding_body_entered(body: Node2D):
 	if body is Enemy:
-		lose()
+		if power_up_count == 0:
+			lose()
+		else:
+			match power_up_type:
+				PowerUp.POWER_UP_TYPE.ToyHammer:
+					power_up_count -= 1
+					body.defeat()
+
 
 func lose():
 	if state != STATE.KO:

@@ -66,6 +66,7 @@ z_index = 1
 script = ExtResource("1_dlwpr")
 player_anim = NodePath("AnimatedSprite2D")
 navigation = NodePath("NavigationAgent2D")
+type = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3

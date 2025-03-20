@@ -7,7 +7,8 @@ enum BALLOON_TYPE{
 	U,
 	P,
 	E,
-	R
+	R,
+	Nothing
 }
 
 @export var balloon_type: BALLOON_TYPE
@@ -36,22 +37,26 @@ func set_type():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Aoy:
-		match balloon_type:
-			BALLOON_TYPE.S:
-				balloon_anim.play("SPop")
-			BALLOON_TYPE.U:
-				balloon_anim.play("UPop")
-			BALLOON_TYPE.P:
-				balloon_anim.play("PPop")
-			BALLOON_TYPE.E:
-				balloon_anim.play("EPop")
-			BALLOON_TYPE.R:
-				balloon_anim.play("RPop")
+		pop_animation()
 		
 		popped.emit()
-		
-		is_popped = true
+
+
+func pop_animation() -> void:
+	match balloon_type:
+		BALLOON_TYPE.S:
+			balloon_anim.play("SPop")
+		BALLOON_TYPE.U:
+			balloon_anim.play("UPop")
+		BALLOON_TYPE.P:
+			balloon_anim.play("PPop")
+		BALLOON_TYPE.E:
+			balloon_anim.play("EPop")
+		BALLOON_TYPE.R:
+			balloon_anim.play("RPop")
 	
+	is_popped = true
+
 func _on_animation_finished() -> void:
 	if is_popped:
 		queue_free()

@@ -10,6 +10,12 @@ enum Event { StartGame, ChangeLevel, RestartGame }
 @export var key: PackedScene
 @export var power_up: PackedScene
 @export var gemstone: PackedScene
+@export var enemy_respawn_anim: PackedScene
+@export var tic: PackedScene
+@export var tac: PackedScene
+@export var toe: PackedScene
+@export var fire_bubble: PackedScene
+@export var jack_in_the_box: PackedScene
 @export var xob: PackedScene
 @export var fade: PackedScene
 @export var menu: PackedScene
@@ -24,6 +30,8 @@ var level: SceneController
 var change_on_level: PackedScene
 
 var lives := 3
+
+var current_balloon: Balloons.BALLOON_TYPE = 0
 
 
 func _ready() -> void:
@@ -42,11 +50,13 @@ func _on_restart() -> void:
 	else:
 		event = Event.RestartGame
 		lives = 3
+	
 	fade_in()
 
 func _on_next_level(scene: PackedScene) -> void:
 	event = Event.ChangeLevel
 	change_on_level = scene
+	
 	fade_in()
 
 
@@ -82,8 +92,16 @@ func start_scene(_scene: PackedScene) -> void:
 	scene.toy_scene = toy
 	scene.key_scene = key
 	scene.gemstone_scene = gemstone
+	scene.enemy_respawn_anim = enemy_respawn_anim
+	scene.tic_scene = tic
+	scene.tac_scene = tac
+	scene.toe_scene = toe
+	scene.fire_bubble_scene = fire_bubble
+	scene.jack_in_the_box_scene = jack_in_the_box
 	scene.xob_scene = xob
 	scene.power_up_scene = power_up
+	scene.current_balloon = current_balloon
+	scene.balloon_popped.connect(_on_balloon_popped)
 	viewport.add_child(scene)
 	scene.set_lives(lives)
 	level = scene
@@ -93,3 +111,10 @@ func return_to_menu() -> void:
 	obj.start_game.connect(_on_start_game)
 	viewport.add_child(obj)
 	_menu = obj
+	
+	current_balloon = 0
+
+
+func _on_balloon_popped() -> void:
+	if current_balloon < Balloons.BALLOON_TYPE.size() - 1:
+		current_balloon += 1

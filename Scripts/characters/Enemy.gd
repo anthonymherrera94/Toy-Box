@@ -1,11 +1,21 @@
 class_name Enemy extends Character
 
+enum TYPE {
+	Tic,
+	Tac,
+	Toe
+}
+
 var map_offset: Vector2
 
 var move_speed := 60.0
 var input := Vector2.ZERO
 @export var player_anim: AnimatedSprite2D
 @export var navigation: NavigationAgent2D
+
+@export var type: TYPE
+
+signal defeated
 
 
 func _process(delta):
@@ -39,3 +49,8 @@ func animate():
 			player_anim.play("WalkUp")
 		if input.y > 0.5:
 			player_anim.play("WalkDown")
+
+
+func defeat():
+	defeated.emit(type)
+	queue_free()
