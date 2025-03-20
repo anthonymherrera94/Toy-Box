@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpqtsjc5umcq2"]
+[gd_scene load_steps=20 format=3 uid="uid://dpqtsjc5umcq2"]
 
 [ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
 [ext_resource type="Script" path="res://Scripts/overlay.gd" id="1_btq4h"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="9_uh11q"]
 [ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="10_4unoi"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="11_rl0wf"]
+[ext_resource type="PackedScene" uid="uid://djx8jf6sxq80q" path="res://Scenes/items/fire_bubble.tscn" id="13_4hnf8"]
+[ext_resource type="PackedScene" uid="uid://nht053k5uafh" path="res://Scenes/items/jack_in_the_box.tscn" id="14_qtn6b"]
 
 [node name="Overlay" type="Control" node_paths=PackedStringArray("viewport")]
 process_mode = 3
@@ -38,6 +40,8 @@ enemy_respawn_anim = ExtResource("9_5j2rb")
 tic = ExtResource("9_uh11q")
 tac = ExtResource("10_4unoi")
 toe = ExtResource("11_rl0wf")
+fire_bubble = ExtResource("13_4hnf8")
+jack_in_the_box = ExtResource("14_qtn6b")
 xob = ExtResource("8_35kfe")
 fade = ExtResource("4_5g481")
 menu = ExtResource("1_47hrg")

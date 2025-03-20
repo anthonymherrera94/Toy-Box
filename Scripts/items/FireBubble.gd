@@ -10,7 +10,7 @@ enum DIRECTION {
 @export var anim: AnimatedSprite2D
 
 var direction: DIRECTION
-var speed := 40.0
+var speed := 240.0
 
 
 func _physics_process(delta: float) -> void:
@@ -29,6 +29,11 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body.defeat()
 		anim.play("popped")
+	
+	if body is Aoy:
+		return
+	
+	queue_free()
 
 
 func _on_animation_finished() -> void:

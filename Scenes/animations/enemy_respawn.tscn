@@ -20,4 +20,3 @@ animations = [{
 [node name="EnemyRespawn" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_tenai")
 autoplay = "default"
-frame_progress = 0.0286678
