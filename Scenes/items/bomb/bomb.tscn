@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://crw14xyu2l4se"]
+
+[ext_resource type="Script" path="res://Scripts/items/bomb/Bomb.gd" id="1_13ehy"]
+[ext_resource type="Texture2D" uid="uid://cweh117jlhais" path="res://Sprites/Levels/Hazards/Bomb 1.PNG" id="2_217ts"]
+[ext_resource type="Texture2D" uid="uid://6xvdl1yrqdkv" path="res://Sprites/Levels/Hazards/Bomb 2.PNG" id="3_d0d5s"]
+[ext_resource type="Texture2D" uid="uid://b5kkhy0drrhas" path="res://Sprites/Levels/Hazards/Bomb 3.PNG" id="4_mukw3"]
+[ext_resource type="Texture2D" uid="uid://dulq2ufkew16t" path="res://Sprites/Levels/Hazards/Bomb 4.PNG" id="5_7pntd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18hro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_217ts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d0d5s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_217ts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d0d5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mukw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7pntd")
+}],
+"loop": false,
+"name": &"prepare",
+"speed": 5.0
+}]
+
+[node name="Bomb" type="Node2D" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_13ehy")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_18hro")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

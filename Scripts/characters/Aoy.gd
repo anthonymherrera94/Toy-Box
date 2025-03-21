@@ -2,8 +2,9 @@ class_name Aoy extends Character
 
 var map_offset: Vector2
 
-var move_speed := 80.0
-var increased_move_speed := 160.0
+var move_speed: float
+var ordinary_move_speed := 80.0
+var increased_move_speed := 120.0
 var input := Vector2.ZERO
 
 @export var player_anim: AnimatedSprite2D
@@ -13,6 +14,8 @@ var input := Vector2.ZERO
 @export var jack_in_the_box: Sprite2D
 
 @export var toy: Sprite2D
+
+@export var invincibility_timer: Timer
 
 @export_category("Checkers")
 @export var check_left: Area2D
@@ -24,13 +27,20 @@ var picked_toy := false
 var picked_key := false
 
 var power_up_count := 0
-var power_up_type: PowerUp.POWER_UP_TYPE
+var power_up_type: PowerUp.TYPE
+
+var previous_anim: StringName
+var is_invincibility := false
 
 signal change_pos
-signal restart
+signal lose_live
 
 signal shoot_fire_bubble
 signal put_jack_in_the_box
+
+
+func _ready() -> void:
+	move_speed = ordinary_move_speed
 
 
 func _process(delta):
@@ -38,7 +48,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("action"): action_pressed()
 	
-	if state != STATE.KO:
+	if state != STATE.KO and player_anim.animation != "Hitted":
 		animate()
 	
 
@@ -56,7 +66,7 @@ func get_input() -> Vector2:
 func action_pressed() -> void:
 	if power_up_count > 0:
 		match power_up_type:
-			PowerUp.POWER_UP_TYPE.BubbleGun:
+			PowerUp.TYPE.BubbleGun:
 				match state:
 					STATE.IDLE_RIGHT, STATE.WALK_RIGHT:
 						shoot_fire_bubble.emit(global_position, FireBubble.DIRECTION.Right)
@@ -69,7 +79,7 @@ func action_pressed() -> void:
 				
 				power_up_count -= 1
 			
-			PowerUp.POWER_UP_TYPE.JackInTheBox:
+			PowerUp.TYPE.JackInTheBox:
 				put_jack_in_the_box.emit(global_position)
 				
 				power_up_count -= 1
@@ -86,15 +96,14 @@ func move():
 			hide_power_ups()
 			
 			match power_up_type:
-				PowerUp.POWER_UP_TYPE.ToyHammer:
+				PowerUp.TYPE.ToyHammer:
 					hammer.show()
-				PowerUp.POWER_UP_TYPE.BubbleGun:
+				PowerUp.TYPE.BubbleGun:
 					bubble_gun.show()
-				PowerUp.POWER_UP_TYPE.JackInTheBox:
+				PowerUp.TYPE.JackInTheBox:
 					jack_in_the_box.show()
-				PowerUp.POWER_UP_TYPE.RollerSkate:
+				PowerUp.TYPE.RollerSkate:
 					move_speed = increased_move_speed
-		
 		else:
 			hide_power_ups()
 		
@@ -109,6 +118,8 @@ func move():
 						jack_in_the_box.position = power_up_pos
 						
 						velocity = Vector2.RIGHT * move_speed
+						
+						state = STATE.WALK_RIGHT
 				else:
 					if not check_left.has_overlapping_bodies():
 						var power_up_pos := Vector2.LEFT * 8
@@ -118,6 +129,8 @@ func move():
 						jack_in_the_box.position = power_up_pos
 						
 						velocity = Vector2.LEFT * move_speed
+						
+						state = STATE.WALK_LEFT
 			else:
 				if input.y > 0:
 					if not check_down.has_overlapping_bodies():
@@ -128,6 +141,8 @@ func move():
 						jack_in_the_box.position = power_up_pos
 						
 						velocity = Vector2.DOWN * move_speed
+						
+						state = STATE.WALK_DOWN
 				else:
 					if not check_up.has_overlapping_bodies():
 						var power_up_pos := Vector2.UP * 8
@@ -137,6 +152,30 @@ func move():
 						jack_in_the_box.position = power_up_pos
 						
 						velocity = Vector2.UP * move_speed
+						
+						state = STATE.WALK_UP
+		
+		else:
+			match state:
+				STATE.WALK_RIGHT:
+					state = STATE.IDLE_RIGHT
+				STATE.WALK_LEFT:
+					state = STATE.IDLE_LEFT
+				STATE.WALK_UP:
+					state = STATE.IDLE_UP
+				STATE.WALK_DOWN:
+					state = STATE.IDLE_DOWN
+	
+	else:
+		match state:
+			STATE.WALK_RIGHT:
+				velocity = Vector2.RIGHT * move_speed
+			STATE.WALK_LEFT:
+				velocity = Vector2.LEFT * move_speed
+			STATE.WALK_UP:
+				velocity = Vector2.UP * move_speed
+			STATE.WALK_DOWN:
+				velocity = Vector2.DOWN * move_speed
 
 
 func animate():
@@ -147,48 +186,36 @@ func animate():
 				
 				hammer.play("Left")
 				bubble_gun.play("Left")
-				
-				state = STATE.WALK_LEFT
 			else:
 				player_anim.play("WalkRight")
 				
 				hammer.play("Right")
 				bubble_gun.play("Right")
-				
-				state = STATE.WALK_RIGHT
 		else:
 			if velocity.y < 0:
 				player_anim.play("WalkUp")
 				
 				hammer.play("Up")
 				bubble_gun.play("Up")
-				
-				state = STATE.WALK_UP
 			else:
 				player_anim.play("WalkDown")
 				
 				hammer.play("Down")
 				bubble_gun.play("Down")
-				
-				state = STATE.WALK_DOWN
-	
 	else:
-		match state:
-			STATE.WALK_LEFT:
-				player_anim.play("IdleLeft")
-				state = STATE.IDLE_LEFT
-			STATE.WALK_RIGHT:
-				player_anim.play("IdleRight")
-				state = STATE.IDLE_RIGHT
-			STATE.WALK_UP:
-				player_anim.play("IdleUp")
-				state = STATE.IDLE_UP
-			STATE.WALK_DOWN:
-				player_anim.play("IdleDown")
-				state = STATE.IDLE_DOWN
-		
 		hammer.stop()
 		bubble_gun.stop()
+	
+	match state:
+		STATE.IDLE_LEFT:
+			player_anim.play("IdleLeft")
+		STATE.IDLE_RIGHT:
+			player_anim.play("IdleRight")
+		STATE.IDLE_UP:
+			player_anim.play("IdleUp")
+		STATE.IDLE_DOWN:
+			player_anim.play("IdleDown")
+
 
 func hide_power_ups():
 	hammer.hide()
@@ -199,22 +226,27 @@ func hide_power_ups():
 func _on_colliding_body_entered(body: Node2D):
 	if body is Enemy:
 		if power_up_count == 0:
-			lose()
+			if not is_invincibility: hitted()
 		else:
 			match power_up_type:
-				PowerUp.POWER_UP_TYPE.ToyHammer:
+				PowerUp.TYPE.ToyHammer:
 					power_up_count -= 1
 					body.defeat()
+				PowerUp.TYPE.RollerSkate:
+					if not is_invincibility:
+						power_up_count = 0
+						move_speed = ordinary_move_speed
+						hitted()
+				_:
+					if not is_invincibility: hitted()
 
 
-func lose():
-	if state != STATE.KO:
-		player_anim.play("KO")
-		state = STATE.KO
-		restart_level()
-
-func restart_level():
-	restart.emit()
+func hitted():
+	previous_anim = player_anim.animation
+	player_anim.play("Hitted")
+	is_invincibility = true
+	invincibility_timer.start()
+	lose_live.emit()
 
 
 func pick_toy(texture: Texture2D):
@@ -224,3 +256,12 @@ func pick_toy(texture: Texture2D):
 func drop_toy():
 	toy.texture = null
 	picked_toy = false
+
+
+func _on_animation_finished() -> void:
+	if player_anim.animation == "Hitted":
+		player_anim.play(previous_anim)
+
+
+func _on_invincibility_timeout() -> void:
+	is_invincibility = false

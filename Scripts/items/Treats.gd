@@ -2,7 +2,7 @@ class_name Treats extends Area2D
 
 @export var treat_anim: AnimatedSprite2D
 
-enum TREAT_TYPE{
+enum TYPE {
 	Candy,
 	CandyCane,
 	ChocolateBar,
@@ -10,7 +10,7 @@ enum TREAT_TYPE{
 	Cake
 }
 
-@export var treat_type: TREAT_TYPE
+@export var treat_type: TYPE
 
 signal picked
 
@@ -20,15 +20,15 @@ func _ready():
 	
 func set_type():
 	match treat_type:
-		TREAT_TYPE.Candy:
+		TYPE.Candy:
 			treat_anim.play("Candy")
-		TREAT_TYPE.CandyCane:
+		TYPE.CandyCane:
 			treat_anim.play("CandyCane")
-		TREAT_TYPE.ChocolateBar:
+		TYPE.ChocolateBar:
 			treat_anim.play("ChocolateBar")
-		TREAT_TYPE.IceCream:
+		TYPE.IceCream:
 			treat_anim.play("IceCream")
-		TREAT_TYPE.Cake:
+		TYPE.Cake:
 			treat_anim.play("Cake")
 
 

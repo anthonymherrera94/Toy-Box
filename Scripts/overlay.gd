@@ -26,6 +26,13 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export_category("Nodes")
 @export var viewport: SubViewport
 
+@export_category("Timers")
+@export var treats_respawn_timer: Timer
+@export var bonus_round_timer: Timer
+@export var respawn_delay_timer: Timer
+@export var bonus_time_tick: Timer
+
+
 var event: Event
 var _menu: Menu
 var level: SceneController
@@ -33,34 +40,38 @@ var change_on_level: PackedScene
 
 var lives := 3
 
-var current_balloon: Balloons.BALLOON_TYPE = 0
-
-const respawn_delay := 3
-var respawn_delay_timer := Timer.new()
+var popped_balloons: Array[Balloons.TYPE]
+var current_balloon: Balloons.TYPE = 0
 
 
 func _ready() -> void:
 	randomize()
 	return_to_menu()
 	
-	respawn_delay_timer.one_shot = true
-	add_child(respawn_delay_timer)
+	treats_respawn_timer.timeout.connect(spawn_treat)
+	bonus_round_timer.timeout.connect(_on_bonus_round_time_end)
+	bonus_time_tick.timeout.connect(_on_bonus_time_tick)
 
 
 func _on_start_game() -> void:
 	event = Event.StartGame
 	fade_in()
 
-func _on_restart() -> void:
+func _on_lose_live() -> void:
 	if lives > 0:
-		event = Event.ChangeLevel
 		lives -= 1
+		
+		level.set_lives(lives)
 	else:
-		event = Event.RestartGame
+		event = Event.ChangeLevel
 		lives = 3
-	
-	respawn_delay_timer.stop()
-	fade_in()
+		
+		treats_respawn_timer.stop()
+		bonus_round_timer.stop()
+		respawn_delay_timer.stop()
+		bonus_time_tick.stop()
+		fade_in()
+
 
 func _on_next_level(scene: PackedScene) -> void:
 	event = Event.ChangeLevel
@@ -96,7 +107,7 @@ func start_scene(_scene: PackedScene) -> void:
 	
 	level = scene
 	
-	scene.restart.connect(_on_restart)
+	scene.lose_live.connect(_on_lose_live)
 	scene.next_level.connect(_on_next_level)
 	scene.balloon_popped.connect(_on_balloon_popped)
 	scene.spawn_balloon.connect(spawn_balloon)
@@ -107,11 +118,16 @@ func start_scene(_scene: PackedScene) -> void:
 	scene.spawn_key.connect(spawn_key)
 	scene.spawn_power_up.connect(spawn_power_up)
 	scene.spawn_toy.connect(spawn_toy)
-	scene.spawn_treat.connect(spawn_treat)
 	scene.spawn_xob.connect(spawn_xob)
 	scene.respawn_enemy.connect(respawn_enemy)
 	viewport.add_child(scene)
 	scene.set_lives(lives)
+	
+	for i in popped_balloons:
+		scene.set_popped_balloon(i)
+	
+	treats_respawn_timer.start()
+	bonus_time_tick.start()
 
 
 func spawn_toy(texture: Texture2D) -> void:
@@ -128,7 +144,7 @@ func spawn_card() -> void:
 	level.add_child(obj)
 
 func spawn_balloon() -> void:
-	if current_balloon != Balloons.BALLOON_TYPE.Nothing:
+	if current_balloon != Balloons.TYPE.Nothing:
 		var obj: Balloons = balloon.instantiate()
 		obj.balloon_type = current_balloon
 		obj.position = level.pick_random_pos()
@@ -162,7 +178,7 @@ func spawn_key() -> void:
 
 func spawn_power_up() -> void:
 	var obj: PowerUp = power_up.instantiate()
-	obj.power_up_type = randi() % PowerUp.POWER_UP_TYPE.size()
+	obj.power_up_type = randi() % PowerUp.TYPE.size()
 	obj.position = level.pick_random_pos()
 	level.add_child(obj)
 
@@ -183,8 +199,10 @@ func spawn_gemstones() -> void:
 				level.add_child(obj)
 				level.gemstones.append(obj)
 			
-			if segment < 1: segment += 1
+			if segment < 3: segment += 1
 			else: segment = 0
+	
+	bonus_round_timer.start()
 
 
 func spawn_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
@@ -206,15 +224,15 @@ func spawn_xob() -> void:
 	match side:
 		XobSpawnSide.Top:
 			obj.position = Vector2(randf_range(level.map_size.position.x * 16, level.map_size.size.x * 16), \
-			level.map_size.position.y * 16)
+			level.map_size.position.y * 16 - 2 * 16)
 		XobSpawnSide.Bottom:
 			obj.position = Vector2(randf_range(level.map_size.position.x * 16, level.map_size.size.x * 16), \
-			level.map_size.size.y * 16)
+			level.map_size.size.y * 16 + 2 * 16)
 		XobSpawnSide.Left:
-			obj.position = Vector2(level.map_size.position.x * 16, \
+			obj.position = Vector2(level.map_size.position.x * 16 - 2 * 16, \
 			randf_range(level.map_size.position.y * 16, level.map_size.size.y * 16))
 		XobSpawnSide.Right:
-			obj.position = Vector2(level.map_size.size.x * 16, \
+			obj.position = Vector2(level.map_size.size.x * 16 + 2 * 16, \
 			randf_range(level.map_size.position.y * 16, level.map_size.size.y * 16))
 	
 	obj.position += level.map_offset
@@ -230,7 +248,7 @@ func respawn_enemy(type: Enemy.TYPE) -> void:
 	
 	level.add_child(anim)
 	
-	respawn_delay_timer.start(respawn_delay)
+	respawn_delay_timer.start(respawn_delay_timer.wait_time)
 	await respawn_delay_timer.timeout
 	
 	var obj: Enemy
@@ -262,6 +280,14 @@ func return_to_menu() -> void:
 	current_balloon = 0
 
 
-func _on_balloon_popped() -> void:
-	if current_balloon < Balloons.BALLOON_TYPE.size() - 1:
+func _on_balloon_popped(type: Balloons.TYPE) -> void:
+	if current_balloon < Balloons.TYPE.size() - 1:
 		current_balloon += 1
+		popped_balloons.append(type)
+
+
+func _on_bonus_time_tick() -> void:
+	if level != null: level._on_bonus_time_tick()
+
+func _on_bonus_round_time_end() -> void:
+	if level != null: level._on_bonus_round_time_end()

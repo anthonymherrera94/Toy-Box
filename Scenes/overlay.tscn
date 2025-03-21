@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://djx8jf6sxq80q" path="res://Scenes/items/fire_bubble.tscn" id="13_4hnf8"]
 [ext_resource type="PackedScene" uid="uid://nht053k5uafh" path="res://Scenes/items/jack_in_the_box.tscn" id="14_qtn6b"]
 
-[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport")]
+[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "treats_respawn_timer", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -47,6 +47,10 @@ fade = ExtResource("4_5g481")
 menu = ExtResource("1_47hrg")
 first_level = ExtResource("5_nm1dm")
 viewport = NodePath("SubViewportContainer/SubViewport")
+treats_respawn_timer = NodePath("TreatsRespawn")
+bonus_round_timer = NodePath("BonusRound")
+respawn_delay_timer = NodePath("RespawnDelay")
+bonus_time_tick = NodePath("BonusTimeTick")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
@@ -72,3 +76,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_vdnv0")
+
+[node name="TreatsRespawn" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="BonusRound" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="RespawnDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="BonusTimeTick" type="Timer" parent="."]
+wait_time = 0.1

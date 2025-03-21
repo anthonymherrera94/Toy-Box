@@ -21,11 +21,11 @@ var balloons: Dictionary
 
 func _ready() -> void:
 	balloons = {
-		Balloons.BALLOON_TYPE.S: balloon_s,
-		Balloons.BALLOON_TYPE.U: balloon_u,
-		Balloons.BALLOON_TYPE.P: balloon_p,
-		Balloons.BALLOON_TYPE.E: balloon_e,
-		Balloons.BALLOON_TYPE.R: balloon_r
+		Balloons.TYPE.S: balloon_s,
+		Balloons.TYPE.U: balloon_u,
+		Balloons.TYPE.P: balloon_p,
+		Balloons.TYPE.E: balloon_e,
+		Balloons.TYPE.R: balloon_r
 	}
 	
 	for i in balloons:
@@ -51,5 +51,5 @@ func clear_lives() -> void:
 	for i in lives.get_children():
 		i.queue_free()
 
-func pop_balloon(_type: Balloons.BALLOON_TYPE) -> void:
+func pop_balloon(_type: Balloons.TYPE) -> void:
 	balloons[_type].show()
