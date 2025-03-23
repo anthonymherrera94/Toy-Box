@@ -7,9 +7,11 @@ signal fade_in_over
 
 
 func start_fade_in():
+	get_tree().paused = true
 	play_fade_in_animation()
 	#scene = _scene
 	await anim.animation_finished
+	get_tree().paused = false
 	fade_in_over.emit()
 	queue_free()
 

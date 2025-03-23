@@ -1,4 +1,4 @@
-class_name GameUI extends Control
+class_name GameUI extends CanvasLayer
 
 @export_category("Scenes")
 @export var life: PackedScene

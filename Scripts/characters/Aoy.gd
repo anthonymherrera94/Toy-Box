@@ -2,10 +2,10 @@ class_name Aoy extends Character
 
 var map_offset: Vector2
 
-var move_speed: float
+var input := Vector2.ZERO
+var move_speed := 80.0
 var ordinary_move_speed := 80.0
 var increased_move_speed := 120.0
-var input := Vector2.ZERO
 
 @export var player_anim: AnimatedSprite2D
 
@@ -16,12 +16,6 @@ var input := Vector2.ZERO
 @export var toy: Sprite2D
 
 @export var invincibility_timer: Timer
-
-@export_category("Checkers")
-@export var check_left: Area2D
-@export var check_right: Area2D
-@export var check_up: Area2D
-@export var check_down: Area2D
 
 var picked_toy := false
 var picked_key := false
@@ -226,7 +220,10 @@ func hide_power_ups():
 func _on_colliding_body_entered(body: Node2D):
 	if body is Enemy:
 		if power_up_count == 0:
-			if not is_invincibility: hitted()
+			if not is_invincibility:
+				body.snap_to_grid()
+				hitted()
+		
 		else:
 			match power_up_type:
 				PowerUp.TYPE.ToyHammer:
@@ -236,12 +233,18 @@ func _on_colliding_body_entered(body: Node2D):
 					if not is_invincibility:
 						power_up_count = 0
 						move_speed = ordinary_move_speed
+						body.snap_to_grid()
 						hitted()
 				_:
-					if not is_invincibility: hitted()
+					if not is_invincibility:
+						body.snap_to_grid()
+						hitted()
 
 
 func hitted():
+	snap_to_grid()
+	collision_mask = 0
+	
 	previous_anim = player_anim.animation
 	player_anim.play("Hitted")
 	is_invincibility = true
@@ -265,3 +268,4 @@ func _on_animation_finished() -> void:
 
 func _on_invincibility_timeout() -> void:
 	is_invincibility = false
+	collision_mask = 1

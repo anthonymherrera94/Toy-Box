@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://drmw5ddw1arun"]
+[gd_scene load_steps=11 format=3 uid="uid://drmw5ddw1arun"]
 
-[ext_resource type="Script" path="res://Scripts/characters/Enemy.gd" id="1_jsgqv"]
 [ext_resource type="Texture2D" uid="uid://bkawaa3tvnpj" path="res://Sprites/Characters/TicTacToe/Tic D1.png" id="2_n0pja"]
 [ext_resource type="Texture2D" uid="uid://bln63csh3w7un" path="res://Sprites/Characters/TicTacToe/Tic D2.png" id="3_ldyg3"]
 [ext_resource type="Texture2D" uid="uid://b4lelbaum63e" path="res://Sprites/Characters/TicTacToe/Tic L1.png" id="4_3p2lt"]
@@ -9,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d3wtt62qo1u31" path="res://Sprites/Characters/TicTacToe/Tic R2.png" id="7_lydxg"]
 [ext_resource type="Texture2D" uid="uid://bvt6gd4thsb2c" path="res://Sprites/Characters/TicTacToe/Tic U1.png" id="8_22sc0"]
 [ext_resource type="Texture2D" uid="uid://ymh0r22453cg" path="res://Sprites/Characters/TicTacToe/Tic U2.png" id="9_3queh"]
+[ext_resource type="PackedScene" uid="uid://c42pjt7acga4v" path="res://Scenes/characters/EnemyBase.tscn" id="9_n2a04"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qavws"]
 animations = [{
@@ -57,27 +57,14 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
-radius = 8.0
-
-[node name="Tic" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "navigation")]
+[node name="Tic" type="Node2D"]
 process_mode = 1
 z_index = 1
-script = ExtResource("1_jsgqv")
-player_anim = NodePath("AnimatedSprite2D")
-navigation = NodePath("NavigationAgent2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-process_mode = 3
+[node name="EnemyBase" parent="." node_paths=PackedStringArray("player_anim") instance=ExtResource("9_n2a04")]
+player_anim = NodePath("AnimatedSprite2D")
+type = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
 sprite_frames = SubResource("SpriteFrames_qavws")
 animation = &"WalkDown"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2v3qo")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-target_desired_distance = 5.0
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 6.0

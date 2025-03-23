@@ -20,4 +20,3 @@ func _on_animated_sprite_2d_animation_finished():
 func _process(delta):
 	if Input.is_action_just_pressed("start"):
 		start_game.emit()
-		get_tree().paused = true

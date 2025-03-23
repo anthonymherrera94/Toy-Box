@@ -1,5 +1,11 @@
 class_name Character extends CharacterBody2D
 
+@export_category("Checkers")
+@export var check_left: Area2D
+@export var check_right: Area2D
+@export var check_up: Area2D
+@export var check_down: Area2D
+
 
 enum STATE{
 	IDLE_DOWN,
@@ -37,6 +43,12 @@ func handle_state():
 		STATE.WALK_RIGHT:
 			state_walk_right()
 	
+
+func snap_to_grid() -> void:
+	var snapped_pos = position.snapped(Vector2(16, 16))
+	position = snapped_pos
+	velocity = Vector2.ZERO
+
 
 func state_idle_down():
 	pass

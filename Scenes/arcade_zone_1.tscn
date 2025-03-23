@@ -187,10 +187,10 @@ tile_map_data = PackedByteArray("AAAFAAgAAgAAAAAAAAAFAAkAAgAAAAAAAAAFAAoAAgAAAAA
 tile_set = ExtResource("1_t8ybu")
 
 [node name="Aoy" parent="." instance=ExtResource("2_814gm")]
-position = Vector2(113, 60)
+position = Vector2(113, 76)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(112, 148)
+position = Vector2(113, 140)
 
 [node name="Tic" parent="." instance=ExtResource("6_2ycb1")]
 position = Vector2(209, 252)

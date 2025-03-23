@@ -175,9 +175,9 @@ tile_map_data = PackedByteArray("AAD4//j/AgAAAAAAAAD4//n/AgAAAAAAAAD4//r/AgAAAAA
 tile_set = ExtResource("2_sy11i")
 
 [node name="Aoy" parent="." instance=ExtResource("3_24beh")]
+position = Vector2(0, 16)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 8)
 
 [node name="Tic" parent="." instance=ExtResource("6_oosm0")]
 position = Vector2(-96, -96)
@@ -194,6 +194,3 @@ position = Vector2(96, 112)
 position = Vector2(0, 80)
 
 [node name="GameUI" parent="." instance=ExtResource("6_p0kfx")]
-layout_direction = 0
-offset_right = -112.0
-offset_bottom = -144.0

@@ -1,5 +1,7 @@
 class_name SceneController extends Node2D
 
+enum XobSpawnSide { Top, Bottom, Left, Right }
+
 var map_offset: Vector2
 
 @export_category("Map Characteristics")
@@ -19,9 +21,25 @@ var aoy: Aoy
 var enemies: Array[Enemy]
 var toy_chest: ToyChest
 
+var balloon: PackedScene
+var treat: PackedScene
+var card: PackedScene
+var toy: PackedScene
+var key: PackedScene
+var power_up: PackedScene
+var gemstone: PackedScene
+var enemy_respawn_anim: PackedScene
+var tic: PackedScene
+var tac: PackedScene
+var toe: PackedScene
+var fire_bubble: PackedScene
+var jack_in_the_box: PackedScene
+var xob: PackedScene
+
 var cards_amount := 5
 
-var balloon: Balloons
+var balloon_: Balloons
+var current_balloon: Balloons.TYPE
 var is_balloon_spawned := false
 
 const pop_balloon_delay := 5.0
@@ -29,7 +47,7 @@ var pop_balloon_timer := Timer.new()
 
 var current_treat: Treats.TYPE = 0
 
-var treat: Treats
+var treat_: Treats
 var is_treat_picked := false
 
 var door: Door
@@ -38,31 +56,23 @@ var score := 0
 
 var toys_left := 0
 
-var bonus_time := 10000
-
 var bonus_round := false
 
 var gemstones: Array[Gemstone]
 
-var xob: Xob
+var xob_: Xob
 
-signal spawn_toy
-signal spawn_card
-signal spawn_balloon
-signal spawn_power_up
-signal spawn_key
-signal spawn_gemstones
-signal spawn_xob
-
-signal spawn_fire_bubble
-signal spawn_jack_in_the_box
-
-signal respawn_enemy
-
-signal lose_live
+signal restart
 signal next_level
 
 signal balloon_popped
+
+var bonus_time := 10000
+
+var bonus_round_timer: Timer
+var respawn_delay_timer: Timer
+
+var lives := 3
 
 
 func _ready() -> void:
@@ -74,13 +84,13 @@ func _ready() -> void:
 		if i is Aoy:
 			i.map_offset = map_offset
 			i.change_pos.connect(_on_aoy_change_pos)
-			i.lose_live.connect(func(): lose_live.emit())
+			i.lose_live.connect(_on_lose_live)
 			i.shoot_fire_bubble.connect(_on_shoot_fire_bubble)
 			i.put_jack_in_the_box.connect(_on_jack_in_the_box_putted)
 			aoy = i
 		if i is Enemy:
 			i.map_offset = map_offset
-			i.defeated.connect(_on_enemy_defeated)
+			i.get_child(0).defeated.connect(_on_enemy_defeated)
 			enemies.append(i)
 		if i is ToyChest:
 			i.toy_dropped.connect(_on_toy_dropped)
@@ -94,16 +104,157 @@ func _ready() -> void:
 		tiles.hide()
 	
 	for i in range(cards_amount):
-		spawn_card.emit()
+		spawn_card()
 	
 	for i in toys_textures:
-		spawn_toy.emit(i)
+		spawn_toy(i)
 	
 	add_child(pop_balloon_timer)
 	pop_balloon_timer.timeout.connect(_on_pop_balloon_time_end)
 	
 	game_ui.show()
+	game_ui.set_lives(lives)
 	game_ui.set_score(0)
+
+
+func spawn_toy(texture: Texture2D) -> void:
+	var obj: Toy = toy.instantiate()
+	obj.position = pick_random_pos()
+	add_child(obj)
+	obj.set_sprite(texture)
+	toys_left += 1
+
+func spawn_card() -> void:
+	var obj: Cards = card.instantiate()
+	obj.picked.connect(_on_card_picked)
+	obj.position = pick_random_pos()
+	add_child(obj)
+
+func spawn_balloon() -> void:
+	if current_balloon != Balloons.TYPE.Nothing:
+		var obj: Balloons = balloon.instantiate()
+		obj.balloon_type = current_balloon
+		obj.position = pick_random_pos()
+		obj.popped.connect(_on_balloon_popped)
+		add_child(obj)
+		
+		balloon_ = obj
+		
+		pop_balloon_timer.start(pop_balloon_delay)
+
+func spawn_treat() -> void:
+	if not is_treat_picked:
+		current_treat = 0
+	is_treat_picked = false
+	
+	if treat_ != null: treat_.queue_free()
+	
+	var obj: Treats = treat.instantiate()
+	obj.treat_type = current_treat
+	obj.picked.connect(_on_treat_picked)
+	obj.position = pick_random_pos()
+	add_child(obj)
+	
+	treat_ = obj
+
+func spawn_key() -> void:
+	var obj: Key = key.instantiate()
+	obj.picked.connect(_on_key_picked)
+	obj.position = pick_random_pos()
+	add_child(obj)
+
+func spawn_power_up() -> void:
+	var obj: PowerUp = power_up.instantiate()
+	obj.power_up_type = randi() % PowerUp.TYPE.size()
+	obj.position = pick_random_pos()
+	add_child(obj)
+
+func spawn_gemstones() -> void:
+	var segment := 0
+	
+	for x in range(map_size.position.x, map_size.size.x):
+		for y in range(map_size.position.y, map_size.size.y):
+			var obj_pos: Vector2i = Vector2i(x, y)
+			
+			if tiles.get_cell_atlas_coords(obj_pos - Vector2i.ONE) == Vector2i(1, 0) \
+			and segment == 0:
+				var obj: Gemstone = gemstone.instantiate()
+				obj.picked.connect(_on_gemstone_picked)
+				
+				obj.position = obj_pos * 16
+				
+				add_child(obj)
+				gemstones.append(obj)
+			
+			if segment < 3: segment += 1
+			else: segment = 0
+	
+	bonus_round_timer.start()
+
+
+func spawn_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
+	var obj: FireBubble = fire_bubble.instantiate()
+	obj.direction = direction
+	obj.position = pos
+	add_child(obj)
+
+func spawn_jack_in_the_box(pos: Vector2) -> void:
+	var obj: JackInTheBox = jack_in_the_box.instantiate()
+	obj.position = pos
+	add_child(obj)
+
+
+func spawn_xob() -> void:
+	var obj: Xob = xob.instantiate()
+	var side: XobSpawnSide = randi() % XobSpawnSide.size()
+	
+	match side:
+		XobSpawnSide.Top:
+			obj.position = Vector2(randf_range(map_size.position.x * 16, map_size.size.x * 16), \
+			map_size.position.y * 16 - 2 * 16)
+		XobSpawnSide.Bottom:
+			obj.position = Vector2(randf_range(map_size.position.x * 16, map_size.size.x * 16), \
+			map_size.size.y * 16 + 2 * 16)
+		XobSpawnSide.Left:
+			obj.position = Vector2(map_size.position.x * 16 - 2 * 16, \
+			randf_range(map_size.position.y * 16, map_size.size.y * 16))
+		XobSpawnSide.Right:
+			obj.position = Vector2(map_size.size.x * 16 + 2 * 16, \
+			randf_range(map_size.position.y * 16, map_size.size.y * 16))
+	
+	obj.position += map_offset
+	
+	add_child(obj)
+	
+	xob_ = obj
+
+func respawn_enemy(type: Enemy.TYPE) -> void:
+	var anim: AnimatedSprite2D = enemy_respawn_anim.instantiate()
+	anim.position = pick_random_pos()
+	
+	add_child(anim)
+	
+	respawn_delay_timer.start(respawn_delay_timer.wait_time)
+	await respawn_delay_timer.timeout
+	
+	var obj: Enemy
+	
+	match type:
+		Enemy.TYPE.Tic:
+			obj = tic.instantiate()
+		Enemy.TYPE.Tac:
+			obj = tac.instantiate()
+		Enemy.TYPE.Toe:
+			obj = toe.instantiate()
+	
+	obj.map_offset = map_offset
+	obj.get_child(0).defeated.connect(_on_enemy_defeated)
+	obj.position = anim.position
+	
+	add_child(obj)
+	enemies.append(obj)
+	
+	anim.queue_free()
 
 
 func pick_random_pos() -> Vector2:
@@ -124,19 +275,16 @@ func pick_random_pos() -> Vector2:
 
 
 func _on_aoy_change_pos(pos: Vector2) -> void:
-	for i in enemies:
-		if i != null: i.set_targer_pos(pos)
-	
-	if xob != null:
-		xob.set_targer_pos(pos)
+	if xob_ != null:
+		xob_.set_targer_pos(pos)
 
 
 func _on_card_picked() -> void:
 	if not is_balloon_spawned:
-		spawn_balloon.emit()
+		spawn_balloon()
 		is_balloon_spawned = true
 	else:
-		spawn_power_up.emit()
+		spawn_power_up()
 
 func _on_treat_picked() -> void:
 	match current_treat:
@@ -166,16 +314,26 @@ func _on_toy_dropped() -> void:
 	if toys_left > 1:
 		toys_left -= 1
 	else:
-		spawn_key.emit()
+		spawn_key()
+
+
+func _on_lose_live() -> void:
+	if lives > 0:
+		lives -= 1
+		game_ui.set_lives(lives)
+		
+	else:
+		restart.emit()
+
 
 func _on_pop_balloon_time_end() -> void:
-	if balloon != null: balloon.pop_animation()
+	if balloon_ != null: balloon_.pop_animation()
 
 func _on_balloon_popped(type: Balloons.TYPE) -> void:
 	bonus_round = true
 	game_ui.pop_balloon(type)
 	balloon_popped.emit(type)
-	spawn_gemstones.emit()
+	spawn_gemstones()
 
 func _on_gemstone_picked() -> void:
 	add_score(300)
@@ -185,16 +343,15 @@ func _on_bonus_round_time_end() -> void:
 	remove_gemstones()
 
 func _on_shoot_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
-	spawn_fire_bubble.emit(pos, direction)
+	spawn_fire_bubble(pos, direction)
 
 func _on_jack_in_the_box_putted(pos: Vector2) -> void:
-	spawn_jack_in_the_box.emit(pos)
+	spawn_jack_in_the_box(pos)
 
 func _on_enemy_defeated(type: Enemy.TYPE) -> void:
-	respawn_enemy.emit(type)
+	respawn_enemy(type)
 
 func _on_indoor() -> void:
-	get_tree().paused = true
 	next_level.emit(next_scene)
 
 
@@ -209,9 +366,6 @@ func add_score(points: int) -> void:
 	score += points
 	game_ui.set_score(score)
 
-func set_lives(amount: int) -> void:
-	game_ui.set_lives(amount)
-
 func set_popped_balloon(type: Balloons.TYPE) -> void:
 	game_ui.pop_balloon(type)
 
@@ -220,6 +374,6 @@ func _on_bonus_time_tick() -> void:
 	if bonus_time > 0:
 		bonus_time -= 10
 	else:
-		if xob == null: spawn_xob.emit()
+		if xob_ == null: spawn_xob()
 	
 	game_ui.set_bonus_time(bonus_time)
