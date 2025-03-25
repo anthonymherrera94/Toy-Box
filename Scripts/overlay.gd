@@ -117,6 +117,7 @@ func start_scene(_scene: PackedScene) -> void:
 	viewport.add_child(scene)
 	
 	scene.restart.connect(_on_restart)
+	scene.next_level.connect(_on_next_level)
 	
 	for i in popped_balloons:
 		scene.set_popped_balloon(i)

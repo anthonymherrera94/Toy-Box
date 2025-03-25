@@ -177,6 +177,7 @@ func spawn_gemstones() -> void:
 			var obj_pos: Vector2i = Vector2i(x, y)
 			
 			if tiles.get_cell_atlas_coords(obj_pos - Vector2i.ONE) == Vector2i(1, 0) \
+			and obj_pos.distance_to(toy_chest.global_position / 16) > 2.0 \
 			and segment == 0:
 				var obj: Gemstone = gemstone.instantiate()
 				obj.picked.connect(_on_gemstone_picked)

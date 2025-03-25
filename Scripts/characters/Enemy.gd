@@ -6,16 +6,8 @@ enum TYPE {
 	Toe
 }
 
-enum Direction {
-	Right,
-	Left,
-	Up,
-	Down
-}
-
 var map_offset: Vector2
 
-var move_speed := 60.0
 @export var player_anim: AnimatedSprite2D
 @export var navigation: NavigationAgent2D
 
@@ -29,8 +21,6 @@ var move_speed := 60.0
 
 var change_direction_delay := 0
 
-var direction: Direction
-
 signal defeated
 
 
@@ -38,63 +28,64 @@ func _process(delta):
 	animate()
 	
 func _physics_process(delta):
-	move()
-	move_and_slide()
-	
-func move():
-	var snapped_pos = position.snapped(Vector2(16, 16))
-	
-	if position.distance_to(snapped_pos) < 1:
-		position = snapped_pos
+	if check_snapped(1.0):
+		var direction: Vector2
 		
 		if right_raycast.get_collider() is Aoy:
-			direction = Direction.Right
+			direction = Vector2.RIGHT
 		elif left_raycast.get_collider() is Aoy:
-			direction = Direction.Left
+			direction = Vector2.LEFT
 		elif up_raycast.get_collider() is Aoy:
-			direction = Direction.Up
+			direction = Vector2.UP
 		elif down_raycast.get_collider() is Aoy:
-			direction = Direction.Down
+			direction = Vector2.DOWN
 		else:
 			if change_direction_delay <= 0:
-				direction = randi() % Direction.size()
+				direction = [
+					Vector2.RIGHT,
+					Vector2.LEFT,
+					Vector2.UP,
+					Vector2.DOWN
+				].pick_random()
 				change_direction_delay = 3
 			else:
 				change_direction_delay -= 1
 		
 		match direction:
-			Direction.Right:
+			Vector2.RIGHT:
 				if check_collision(check_right):
-					velocity = Vector2.ZERO
+					snap_to_grid()
 					change_direction_delay = 0
 				else:
 					state = STATE.WALK_RIGHT
-					velocity = Vector2.RIGHT * move_speed
-			Direction.Left:
+					move(direction)
+			Vector2.LEFT:
 				if check_collision(check_left):
-					velocity = Vector2.ZERO
+					snap_to_grid()
 					change_direction_delay = 0
 				else:
 					state = STATE.WALK_LEFT
-					velocity = Vector2.LEFT * move_speed
-			Direction.Down:
+					move(direction)
+			Vector2.DOWN:
 				if check_collision(check_down):
-					velocity = Vector2.ZERO
+					snap_to_grid()
 					change_direction_delay = 0
 				else:
 					state = STATE.WALK_DOWN
-					velocity = Vector2.DOWN * move_speed
-			Direction.Up:
+					move(direction)
+			Vector2.UP:
 				if check_collision(check_up):
-					velocity = Vector2.ZERO
+					snap_to_grid()
 					change_direction_delay = 0
 				else:
 					state = STATE.WALK_UP
-					velocity = Vector2.UP * move_speed
+					move(direction)
 	
 	if velocity == Vector2.ZERO:
-		position = snapped_pos
-
+		snap_to_grid()
+	
+	move_and_slide()
+	
 
 func check_collision(collision_area: Area2D) -> bool:
 	for i in collision_area.get_overlapping_bodies():

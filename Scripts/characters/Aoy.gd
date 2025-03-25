@@ -2,10 +2,8 @@ class_name Aoy extends Character
 
 var map_offset: Vector2
 
-var input := Vector2.ZERO
-var move_speed := 80.0
-var ordinary_move_speed := 80.0
-var increased_move_speed := 120.0
+@export var ordinary_move_speed := 80.0
+@export var increased_move_speed := 120.0
 
 @export var player_anim: AnimatedSprite2D
 
@@ -23,7 +21,7 @@ var picked_key := false
 var power_up_count := 0
 var power_up_type: PowerUp.TYPE
 
-var previous_anim: StringName
+var previous_state: STATE
 var is_invincibility := false
 
 signal change_pos
@@ -34,12 +32,10 @@ signal put_jack_in_the_box
 
 
 func _ready() -> void:
-	move_speed = ordinary_move_speed
+	speed = ordinary_move_speed
 
 
 func _process(delta):
-	input = get_input()
-	
 	if Input.is_action_just_pressed("action"): action_pressed()
 	
 	if state != STATE.KO and player_anim.animation != "Hitted":
@@ -48,14 +44,90 @@ func _process(delta):
 
 func _physics_process(delta):
 	if state != STATE.KO:
-		move()
+		if check_snapped(1.0):
+			snap_to_grid()
+			change_pos.emit(position)
+			
+			hide_power_ups()
+			
+			if power_up_count > 0:
+				match power_up_type:
+					PowerUp.TYPE.ToyHammer:
+						hammer.show()
+					PowerUp.TYPE.BubbleGun:
+						bubble_gun.show()
+					PowerUp.TYPE.JackInTheBox:
+						jack_in_the_box.show()
+					PowerUp.TYPE.RollerSkate:
+						speed = increased_move_speed
+			
+			var input = get_input()
+			
+			if input != Vector2.ZERO:
+				if input.abs().x > input.abs().y:
+					if input.x > 0:
+						if not check_right.has_overlapping_bodies():
+							var power_up_pos := Vector2.RIGHT * 8
+							
+							hammer.position = power_up_pos
+							bubble_gun.position = power_up_pos
+							jack_in_the_box.position = power_up_pos
+							
+							move(Vector2.RIGHT)
+							
+							state = STATE.WALK_RIGHT
+					else:
+						if not check_left.has_overlapping_bodies():
+							var power_up_pos := Vector2.LEFT * 8
+							
+							hammer.position = power_up_pos
+							bubble_gun.position = power_up_pos
+							jack_in_the_box.position = power_up_pos
+							
+							move(Vector2.LEFT)
+							
+							state = STATE.WALK_LEFT
+				else:
+					if input.y > 0:
+						if not check_down.has_overlapping_bodies():
+							var power_up_pos := Vector2.DOWN * 8
+							
+							hammer.position = power_up_pos
+							bubble_gun.position = power_up_pos
+							jack_in_the_box.position = power_up_pos
+							
+							move(Vector2.DOWN)
+							
+							state = STATE.WALK_DOWN
+					else:
+						if not check_up.has_overlapping_bodies():
+							var power_up_pos := Vector2.UP * 8
+							
+							hammer.position = power_up_pos
+							bubble_gun.position = power_up_pos
+							jack_in_the_box.position = power_up_pos
+							
+							move(Vector2.UP)
+							
+							state = STATE.WALK_UP
+			
+			else:
+				match state:
+					STATE.WALK_RIGHT:
+						state = STATE.IDLE_RIGHT
+					STATE.WALK_LEFT:
+						state = STATE.IDLE_LEFT
+					STATE.WALK_UP:
+						state = STATE.IDLE_UP
+					STATE.WALK_DOWN:
+						state = STATE.IDLE_DOWN
+		
 		move_and_slide()
 	
 
 func get_input() -> Vector2:
-	input.x = Input.get_axis("move_left", "move_right")
-	input.y = Input.get_axis("move_up", "move_down")
-	return input
+	return Vector2(Input.get_axis("move_left", "move_right"), \
+	Input.get_axis("move_up", "move_down"))
 
 func action_pressed() -> void:
 	if power_up_count > 0:
@@ -77,138 +149,42 @@ func action_pressed() -> void:
 				put_jack_in_the_box.emit(global_position)
 				
 				power_up_count -= 1
-
-func move():
-	var snapped_pos = position.snapped(Vector2(16, 16))
 	
-	if position.distance_to(snapped_pos) < 1:
-		change_pos.emit(position)
-		position = snapped_pos
-		velocity = Vector2.ZERO
-		
-		if power_up_count > 0:
-			hide_power_ups()
-			
-			match power_up_type:
-				PowerUp.TYPE.ToyHammer:
-					hammer.show()
-				PowerUp.TYPE.BubbleGun:
-					bubble_gun.show()
-				PowerUp.TYPE.JackInTheBox:
-					jack_in_the_box.show()
-				PowerUp.TYPE.RollerSkate:
-					move_speed = increased_move_speed
-		else:
-			hide_power_ups()
-		
-		if input != Vector2.ZERO:
-			if input.abs().x > input.abs().y:
-				if input.x > 0:
-					if not check_right.has_overlapping_bodies():
-						var power_up_pos := Vector2.RIGHT * 8
-						
-						hammer.position = power_up_pos
-						bubble_gun.position = power_up_pos
-						jack_in_the_box.position = power_up_pos
-						
-						velocity = Vector2.RIGHT * move_speed
-						
-						state = STATE.WALK_RIGHT
-				else:
-					if not check_left.has_overlapping_bodies():
-						var power_up_pos := Vector2.LEFT * 8
-						
-						hammer.position = power_up_pos
-						bubble_gun.position = power_up_pos
-						jack_in_the_box.position = power_up_pos
-						
-						velocity = Vector2.LEFT * move_speed
-						
-						state = STATE.WALK_LEFT
-			else:
-				if input.y > 0:
-					if not check_down.has_overlapping_bodies():
-						var power_up_pos := Vector2.DOWN * 8
-						
-						hammer.position = power_up_pos
-						bubble_gun.position = power_up_pos
-						jack_in_the_box.position = power_up_pos
-						
-						velocity = Vector2.DOWN * move_speed
-						
-						state = STATE.WALK_DOWN
-				else:
-					if not check_up.has_overlapping_bodies():
-						var power_up_pos := Vector2.UP * 8
-						
-						hammer.position = power_up_pos
-						bubble_gun.position = power_up_pos
-						jack_in_the_box.position = power_up_pos
-						
-						velocity = Vector2.UP * move_speed
-						
-						state = STATE.WALK_UP
-		
-		else:
-			match state:
-				STATE.WALK_RIGHT:
-					state = STATE.IDLE_RIGHT
-				STATE.WALK_LEFT:
-					state = STATE.IDLE_LEFT
-				STATE.WALK_UP:
-					state = STATE.IDLE_UP
-				STATE.WALK_DOWN:
-					state = STATE.IDLE_DOWN
-	
-	else:
-		match state:
-			STATE.WALK_RIGHT:
-				velocity = Vector2.RIGHT * move_speed
-			STATE.WALK_LEFT:
-				velocity = Vector2.LEFT * move_speed
-			STATE.WALK_UP:
-				velocity = Vector2.UP * move_speed
-			STATE.WALK_DOWN:
-				velocity = Vector2.DOWN * move_speed
-
 
 func animate():
-	if velocity != Vector2.ZERO:
-		if velocity.abs().x > velocity.abs().y:
-			if velocity.x < 0:
-				player_anim.play("WalkLeft")
-				
-				hammer.play("Left")
-				bubble_gun.play("Left")
-			else:
-				player_anim.play("WalkRight")
-				
-				hammer.play("Right")
-				bubble_gun.play("Right")
-		else:
-			if velocity.y < 0:
-				player_anim.play("WalkUp")
-				
-				hammer.play("Up")
-				bubble_gun.play("Up")
-			else:
-				player_anim.play("WalkDown")
-				
-				hammer.play("Down")
-				bubble_gun.play("Down")
-	else:
-		hammer.stop()
-		bubble_gun.stop()
-	
 	match state:
 		STATE.IDLE_LEFT:
 			player_anim.play("IdleLeft")
+			hammer.stop()
+			bubble_gun.stop()
 		STATE.IDLE_RIGHT:
 			player_anim.play("IdleRight")
+			hammer.stop()
+			bubble_gun.stop()
 		STATE.IDLE_UP:
 			player_anim.play("IdleUp")
+			hammer.stop()
+			bubble_gun.stop()
 		STATE.IDLE_DOWN:
 			player_anim.play("IdleDown")
+			hammer.stop()
+			bubble_gun.stop()
+		STATE.WALK_LEFT:
+			player_anim.play("WalkLeft")
+			hammer.play("Left")
+			bubble_gun.play("Left")
+		STATE.WALK_RIGHT:
+			player_anim.play("WalkRight")
+			hammer.play("Right")
+			bubble_gun.play("Right")
+		STATE.WALK_UP:
+			player_anim.play("WalkUp")
+			hammer.play("Up")
+			bubble_gun.play("Up")
+		STATE.WALK_DOWN:
+			player_anim.play("WalkDown")
+			hammer.play("Down")
+			bubble_gun.play("Down")
 
 
 func hide_power_ups():
@@ -232,7 +208,7 @@ func _on_colliding_body_entered(body: Node2D):
 				PowerUp.TYPE.RollerSkate:
 					if not is_invincibility:
 						power_up_count = 0
-						move_speed = ordinary_move_speed
+						speed = ordinary_move_speed
 						body.snap_to_grid()
 						hitted()
 				_:
@@ -245,8 +221,8 @@ func hitted():
 	snap_to_grid()
 	collision_mask = 0
 	
-	previous_anim = player_anim.animation
-	player_anim.play("Hitted")
+	previous_state = state
+	state = STATE.HITTED
 	is_invincibility = true
 	invincibility_timer.start()
 	lose_live.emit()
@@ -262,8 +238,9 @@ func drop_toy():
 
 
 func _on_animation_finished() -> void:
-	if player_anim.animation == "Hitted":
-		player_anim.play(previous_anim)
+	match state:
+		STATE.HITTED:
+			state = previous_state
 
 
 func _on_invincibility_timeout() -> void:

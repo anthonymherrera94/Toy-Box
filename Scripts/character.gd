@@ -1,5 +1,7 @@
 class_name Character extends CharacterBody2D
 
+@export var speed := 80
+
 @export_category("Checkers")
 @export var check_left: Area2D
 @export var check_right: Area2D
@@ -16,6 +18,7 @@ enum STATE{
 	WALK_UP,
 	WALK_LEFT,
 	WALK_RIGHT,
+	HITTED,
 	KO
 }
 
@@ -43,6 +46,17 @@ func handle_state():
 		STATE.WALK_RIGHT:
 			state_walk_right()
 	
+
+func check_snapped(delimeter: float) -> bool:
+	var snapped_pos = position.snapped(Vector2(16, 16))
+	if position.distance_to(snapped_pos) < delimeter:
+		return true
+	else:
+		return false
+
+func move(direction: Vector2) -> void:
+	snap_to_grid()
+	velocity = direction * speed
 
 func snap_to_grid() -> void:
 	var snapped_pos = position.snapped(Vector2(16, 16))
