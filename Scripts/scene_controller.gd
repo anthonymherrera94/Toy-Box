@@ -42,13 +42,10 @@ var balloon_: Balloons
 var current_balloon: Balloons.TYPE
 var is_balloon_spawned := false
 
-const pop_balloon_delay := 5.0
-var pop_balloon_timer := Timer.new()
-
 var current_treat: Treats.TYPE = 0
 
 var treat_: Treats
-var is_treat_picked := false
+var is_treat_spawned := false
 
 var door: Door
 
@@ -65,10 +62,13 @@ var xob_: Xob
 signal restart
 signal next_level
 
+signal treat_picked
 signal balloon_popped
 
 var bonus_time := 10000
 
+var treats_picked_delay: Timer
+var ballon_pop_delay: Timer
 var bonus_round_timer: Timer
 var respawn_delay_timer: Timer
 
@@ -88,8 +88,8 @@ func _ready() -> void:
 			i.shoot_fire_bubble.connect(_on_shoot_fire_bubble)
 			i.put_jack_in_the_box.connect(_on_jack_in_the_box_putted)
 			aoy = i
-		if i is Enemy:
-			i.map_offset = map_offset
+		if i.get_child(0) is Enemy:
+			i.get_child(0).map_offset = map_offset
 			i.get_child(0).defeated.connect(_on_enemy_defeated)
 			enemies.append(i)
 		if i is ToyChest:
@@ -109,8 +109,8 @@ func _ready() -> void:
 	for i in toys_textures:
 		spawn_toy(i)
 	
-	add_child(pop_balloon_timer)
-	pop_balloon_timer.timeout.connect(_on_pop_balloon_time_end)
+	ballon_pop_delay.timeout.connect(_on_balloon_pop_time_end)
+	treats_picked_delay.timeout.connect(_on_treats_picked_time_end)
 	
 	game_ui.show()
 	game_ui.set_lives(lives)
@@ -140,22 +140,21 @@ func spawn_balloon() -> void:
 		
 		balloon_ = obj
 		
-		pop_balloon_timer.start(pop_balloon_delay)
+		ballon_pop_delay.start()
 
 func spawn_treat() -> void:
-	if not is_treat_picked:
-		current_treat = 0
-	is_treat_picked = false
-	
-	if treat_ != null: treat_.queue_free()
-	
-	var obj: Treats = treat.instantiate()
-	obj.treat_type = current_treat
-	obj.picked.connect(_on_treat_picked)
-	obj.position = pick_random_pos()
-	add_child(obj)
-	
-	treat_ = obj
+	if not is_treat_spawned:
+		var obj: Treats = treat.instantiate()
+		obj.treat_type = current_treat
+		obj.position = pick_random_pos()
+		obj.picked.connect(_on_treat_picked)
+		add_child(obj)
+		
+		treat_ = obj
+		
+		treats_picked_delay.start()
+		
+		is_treat_spawned = true
 
 func spawn_key() -> void:
 	var obj: Key = key.instantiate()
@@ -229,16 +228,16 @@ func spawn_xob() -> void:
 	
 	xob_ = obj
 
-func respawn_enemy(type: Enemy.TYPE) -> void:
+func respawn_enemy(type: Enemy.TYPE, spawn_pos: Vector2) -> void:
 	var anim: AnimatedSprite2D = enemy_respawn_anim.instantiate()
-	anim.position = pick_random_pos()
+	anim.position = spawn_pos
 	
 	add_child(anim)
 	
 	respawn_delay_timer.start(respawn_delay_timer.wait_time)
 	await respawn_delay_timer.timeout
 	
-	var obj: Enemy
+	var obj: Node2D
 	
 	match type:
 		Enemy.TYPE.Tic:
@@ -248,7 +247,7 @@ func respawn_enemy(type: Enemy.TYPE) -> void:
 		Enemy.TYPE.Toe:
 			obj = toe.instantiate()
 	
-	obj.map_offset = map_offset
+	obj.get_child(0).map_offset = map_offset
 	obj.get_child(0).defeated.connect(_on_enemy_defeated)
 	obj.position = anim.position
 	
@@ -300,12 +299,7 @@ func _on_treat_picked() -> void:
 		Treats.TYPE.Cake:
 			add_score(5000)
 	
-	if current_treat < Treats.TYPE.size() - 1:
-		current_treat += 1
-	else:
-		current_treat = 0
-	
-	is_treat_picked = true
+	treat_picked.emit()
 
 func _on_key_picked() -> void:
 	door.open_door()
@@ -327,14 +321,19 @@ func _on_lose_live() -> void:
 		restart.emit()
 
 
-func _on_pop_balloon_time_end() -> void:
+func _on_treats_picked_time_end() -> void:
+	if treat_ != null: treat_.queue_free()
+
+
+func _on_balloon_pop_time_end() -> void:
 	if balloon_ != null: balloon_.pop_animation()
 
 func _on_balloon_popped(type: Balloons.TYPE) -> void:
 	bonus_round = true
 	game_ui.pop_balloon(type)
 	balloon_popped.emit(type)
-	spawn_gemstones()
+	
+	if type >= Balloons.TYPE.size() - 1: spawn_gemstones()
 
 func _on_gemstone_picked() -> void:
 	add_score(300)
@@ -349,8 +348,8 @@ func _on_shoot_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> voi
 func _on_jack_in_the_box_putted(pos: Vector2) -> void:
 	spawn_jack_in_the_box(pos)
 
-func _on_enemy_defeated(type: Enemy.TYPE) -> void:
-	respawn_enemy(type)
+func _on_enemy_defeated(type: Enemy.TYPE, spawn_pos: Vector2) -> void:
+	respawn_enemy(type, spawn_pos)
 
 func _on_indoor() -> void:
 	next_level.emit(next_scene)

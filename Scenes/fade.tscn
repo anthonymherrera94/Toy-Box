@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://k0j7ujbqyukg"]
 
 [ext_resource type="Texture2D" uid="uid://dvdphqbs6phf1" path="res://icon.svg" id="1_3m7dy"]
-[ext_resource type="Script" path="res://Scripts/fade.gd" id="1_7trna"]
+[ext_resource type="Script" uid="uid://c3nr508op40j" path="res://Scripts/fade.gd" id="1_7trna"]
 
 [sub_resource type="Animation" id="Animation_jicoo"]
 length = 0.001
@@ -46,8 +46,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jvjfn"]
 _data = {
-"RESET": SubResource("Animation_jicoo"),
-"fade_in": SubResource("Animation_okliw")
+&"RESET": SubResource("Animation_jicoo"),
+&"fade_in": SubResource("Animation_okliw")
 }
 
 [node name="Fade" type="CanvasLayer" node_paths=PackedStringArray("anim")]

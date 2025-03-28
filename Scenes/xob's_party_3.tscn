@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://dng84j1cl75d3"]
 
 [ext_resource type="Texture2D" uid="uid://dq56555ghieby" path="res://Sprites/Levels/Levels/Xobs Party 3.PNG" id="1_1npnm"]
-[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_ti2u7"]
+[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_ti2u7"]
 [ext_resource type="PackedScene" uid="uid://bpjn0c6nhdfyi" path="res://Scenes/final_battle.tscn" id="2_a6y8g"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_ycbrk"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_jmlc8"]

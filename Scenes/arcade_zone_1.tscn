@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://5ps8mcd747s7"]
 
-[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_kv0ah"]
+[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_kv0ah"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="1_t8ybu"]
 [ext_resource type="Texture2D" uid="uid://d3p1ncknqki5m" path="res://Sprites/Levels/Levels/Arcade Zone 1.png" id="1_xgtes"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_814gm"]

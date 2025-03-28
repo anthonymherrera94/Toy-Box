@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b4l6nu4xrhij7"]
 
-[ext_resource type="Script" path="res://Scripts/items/bomb/Explosion.gd" id="1_dsxfn"]
+[ext_resource type="Script" uid="uid://byd1hle20dyuk" path="res://Scripts/items/bomb/Explosion.gd" id="1_dsxfn"]
 [ext_resource type="Texture2D" uid="uid://b4uadndkdg27o" path="res://Sprites/Levels/Hazards/Bomb Big Explosion Cross.PNG" id="2_vym25"]
 [ext_resource type="Texture2D" uid="uid://nvunnbfwy41o" path="res://Sprites/Levels/Hazards/Bomb  Big Explosion Line 1.PNG" id="3_3lbey"]
 [ext_resource type="Texture2D" uid="uid://bx3twiielac72" path="res://Sprites/Levels/Hazards/Bomb Big Explosion Line 2.PNG" id="4_xcaij"]

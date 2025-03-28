@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://chlrt0kqt316h"]
 
-[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_7kqrc"]
+[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_7kqrc"]
 [ext_resource type="Texture2D" uid="uid://bkhh0atvepf2l" path="res://Sprites/Levels/Levels/Rainbow Heaven 3.png" id="1_bxh48"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_l8rjk"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_to3er"]

@@ -185,6 +185,8 @@ func animate():
 			player_anim.play("WalkDown")
 			hammer.play("Down")
 			bubble_gun.play("Down")
+		STATE.HITTED:
+			player_anim.play("Hitted")
 
 
 func hide_power_ups():
@@ -238,9 +240,9 @@ func drop_toy():
 
 
 func _on_animation_finished() -> void:
-	match state:
-		STATE.HITTED:
-			state = previous_state
+	if player_anim.animation == "Hitted":
+		state = previous_state
+		animate()
 
 
 func _on_invincibility_timeout() -> void:

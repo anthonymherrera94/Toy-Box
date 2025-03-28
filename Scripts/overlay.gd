@@ -27,7 +27,9 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export var viewport: SubViewport
 
 @export_category("Timers")
-@export var treats_respawn_timer: Timer
+@export var treats_spawn_timer: Timer
+@export var treats_picked_delay: Timer
+@export var balloon_pop_delay: Timer
 @export var bonus_round_timer: Timer
 @export var respawn_delay_timer: Timer
 @export var bonus_time_tick: Timer
@@ -37,6 +39,8 @@ var _menu: Menu
 var level: SceneController
 var change_on_level: PackedScene
 
+var current_treat: Treats.TYPE = 0
+
 var popped_balloons: Array[Balloons.TYPE]
 var current_balloon: Balloons.TYPE = 0
 
@@ -45,7 +49,7 @@ func _ready() -> void:
 	randomize()
 	return_to_menu()
 	
-	treats_respawn_timer.timeout.connect(func(): level.spawn_treat())
+	treats_spawn_timer.timeout.connect(func(): level.spawn_treat())
 	bonus_round_timer.timeout.connect(_on_bonus_round_time_end)
 	bonus_time_tick.timeout.connect(_on_bonus_time_tick)
 
@@ -57,7 +61,9 @@ func _on_start_game() -> void:
 func _on_restart() -> void:
 	event = Event.ChangeLevel
 	
-	treats_respawn_timer.stop()
+	treats_spawn_timer.stop()
+	treats_picked_delay.stop()
+	balloon_pop_delay.stop()
 	bonus_round_timer.stop()
 	respawn_delay_timer.stop()
 	bonus_time_tick.stop()
@@ -110,6 +116,8 @@ func start_scene(_scene: PackedScene) -> void:
 	scene.fire_bubble = fire_bubble
 	scene.jack_in_the_box = jack_in_the_box
 	scene.xob = xob
+	scene.treats_picked_delay = treats_picked_delay
+	scene.ballon_pop_delay = balloon_pop_delay
 	scene.bonus_round_timer = bonus_round_timer
 	scene.respawn_delay_timer = respawn_delay_timer
 	scene.current_balloon = current_balloon
@@ -119,10 +127,13 @@ func start_scene(_scene: PackedScene) -> void:
 	scene.restart.connect(_on_restart)
 	scene.next_level.connect(_on_next_level)
 	
+	scene.balloon_popped.connect(_on_balloon_popped)
+	scene.treat_picked.connect(_on_treat_picked)
+	
 	for i in popped_balloons:
 		scene.set_popped_balloon(i)
 	
-	treats_respawn_timer.start()
+	treats_spawn_timer.start()
 	bonus_time_tick.start()
 
 
@@ -139,6 +150,12 @@ func _on_balloon_popped(type: Balloons.TYPE) -> void:
 	if current_balloon < Balloons.TYPE.size() - 1:
 		current_balloon += 1
 		popped_balloons.append(type)
+
+func _on_treat_picked() -> void:
+	if current_treat < Treats.TYPE.size() - 1:
+		current_treat += 1
+	else:
+		current_treat = 0
 
 
 func _on_bonus_time_tick() -> void:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://crw14xyu2l4se"]
 
-[ext_resource type="Script" path="res://Scripts/items/bomb/Bomb.gd" id="1_13ehy"]
+[ext_resource type="Script" uid="uid://067pgfsef5ov" path="res://Scripts/items/bomb/Bomb.gd" id="1_13ehy"]
 [ext_resource type="Texture2D" uid="uid://cweh117jlhais" path="res://Sprites/Levels/Hazards/Bomb 1.PNG" id="2_217ts"]
 [ext_resource type="Texture2D" uid="uid://6xvdl1yrqdkv" path="res://Sprites/Levels/Hazards/Bomb 2.PNG" id="3_d0d5s"]
 [ext_resource type="Texture2D" uid="uid://b5kkhy0drrhas" path="res://Sprites/Levels/Hazards/Bomb 3.PNG" id="4_mukw3"]

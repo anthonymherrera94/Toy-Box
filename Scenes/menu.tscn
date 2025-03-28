@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://lvb2m8anpfa4"]
 
 [ext_resource type="Texture2D" uid="uid://c8g406lx5t661" path="res://Sprites/Title/Animated Title/Toy Box Title (1).png" id="1_jbolt"]
-[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_nnigb"]
+[ext_resource type="Script" uid="uid://e0xj3k50ol3w" path="res://Scripts/menu.gd" id="1_nnigb"]
 [ext_resource type="PackedScene" uid="uid://cua72rre142t6" path="res://Scenes/toy_town_1.tscn" id="2_8xawg"]
 [ext_resource type="Texture2D" uid="uid://dyfygs1x1u7td" path="res://Sprites/Title/Animated Title/Toy Box Title (2).png" id="2_k4pyi"]
 [ext_resource type="Texture2D" uid="uid://bmicdv7wurmn6" path="res://Sprites/Title/Animated Title/Toy Box Title (3).png" id="3_jb48m"]
@@ -123,8 +123,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2e3ad"]
 _data = {
-"RESET": SubResource("Animation_0kx04"),
-"title_text": SubResource("Animation_yiscg")
+&"RESET": SubResource("Animation_0kx04"),
+&"title_text": SubResource("Animation_yiscg")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1e5go"]
@@ -163,7 +163,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ld3bi"]
 _data = {
-"start_run": SubResource("Animation_2oejy")
+&"start_run": SubResource("Animation_2oejy")
 }
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("title_anim", "player", "player_run")]

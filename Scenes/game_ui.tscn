@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://nix2txmiynxq"]
 
-[ext_resource type="Script" path="res://Scripts/game_ui.gd" id="1_2pu42"]
+[ext_resource type="Script" uid="uid://chduh2jwk1tbq" path="res://Scripts/game_ui.gd" id="1_2pu42"]
 [ext_resource type="PackedScene" uid="uid://83j1bck4eopc" path="res://Scenes/prefabs/life.tscn" id="2_sj2bp"]
 [ext_resource type="Texture2D" uid="uid://ccq788a0wyawi" path="res://Sprites/Animated/Balloon S.tres" id="3_qg1ss"]
 [ext_resource type="Texture2D" uid="uid://xkwq52ch3yih" path="res://Sprites/Animated/Balloon U.tres" id="4_xs2ul"]

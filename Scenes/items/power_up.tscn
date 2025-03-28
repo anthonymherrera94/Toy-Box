@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://310dq2pscnnp"]
 
-[ext_resource type="Script" path="res://Scripts/items/PowerUp.gd" id="1_q7h18"]
+[ext_resource type="Script" uid="uid://b5vdibtwxcyga" path="res://Scripts/items/PowerUp.gd" id="1_q7h18"]
 [ext_resource type="Texture2D" uid="uid://41j5wfg4pm8r" path="res://Sprites/Items/Power Ups/Bubble Gun R.png" id="2_wqtyl"]
 [ext_resource type="Texture2D" uid="uid://coe754ae22sgw" path="res://Sprites/Items/Power Ups/Jack-in-the-box 1.png" id="3_6utki"]
 [ext_resource type="Texture2D" uid="uid://c427rhsjpuc1g" path="res://Sprites/Items/Power Ups/Roller Skate.png" id="4_eqcl2"]

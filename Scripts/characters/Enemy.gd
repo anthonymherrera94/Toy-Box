@@ -21,23 +21,30 @@ var map_offset: Vector2
 
 var change_direction_delay := 0
 
+var start_pos: Vector2
+
 signal defeated
 
+
+func _ready() -> void:
+	start_pos = global_position
+	
 
 func _process(delta):
 	animate()
 	
+
 func _physics_process(delta):
 	if check_snapped(1.0):
 		var direction: Vector2
 		
-		if right_raycast.get_collider() is Aoy:
-			direction = Vector2.RIGHT
-		elif left_raycast.get_collider() is Aoy:
+		if check_side_for_player(left_raycast):
 			direction = Vector2.LEFT
-		elif up_raycast.get_collider() is Aoy:
+		elif check_side_for_player(right_raycast):
+			direction = Vector2.RIGHT
+		elif check_side_for_player(up_raycast):
 			direction = Vector2.UP
-		elif down_raycast.get_collider() is Aoy:
+		elif check_side_for_player(down_raycast):
 			direction = Vector2.DOWN
 		else:
 			if change_direction_delay <= 0:
@@ -50,7 +57,7 @@ func _physics_process(delta):
 				change_direction_delay = 3
 			else:
 				change_direction_delay -= 1
-		
+
 		match direction:
 			Vector2.RIGHT:
 				if check_collision(check_right):
@@ -87,6 +94,16 @@ func _physics_process(delta):
 	move_and_slide()
 	
 
+
+func check_side_for_player(raycast: RayCast2D) -> bool:
+	var obj := raycast.get_collider()
+	if obj is Aoy:
+		if not obj.is_invincibility:
+			return true
+	
+	return false
+
+
 func check_collision(collision_area: Area2D) -> bool:
 	for i in collision_area.get_overlapping_bodies():
 		if i is Aoy:
@@ -109,5 +126,5 @@ func animate():
 
 
 func defeat():
-	defeated.emit(type)
+	defeated.emit(type, start_pos)
 	queue_free()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=4 uid="uid://cua72rre142t6"]
 
 [ext_resource type="Texture2D" uid="uid://dypt4051ep42e" path="res://Sprites/Levels/Levels/Toy Town 1.PNG" id="1_0ov88"]
-[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_o4kly"]
+[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_o4kly"]
 [ext_resource type="PackedScene" uid="uid://cr6hvixe2en31" path="res://Scenes/toy_town_2.tscn" id="2_k10x1"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_sy11i"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_24beh"]

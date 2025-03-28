@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://bpjn0c6nhdfyi"]
 
-[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_aavbu"]
+[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_aavbu"]
 [ext_resource type="Texture2D" uid="uid://dhfgne77jww4t" path="res://Sprites/Levels/Levels/Final Battle.png" id="1_p1w0h"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_buqmo"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_lle1b"]

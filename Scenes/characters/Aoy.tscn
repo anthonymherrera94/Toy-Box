@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://caeyw58brrar7"]
 
-[ext_resource type="Script" path="res://Scripts/characters/Aoy.gd" id="1_ilnme"]
+[ext_resource type="Script" uid="uid://d1uolc1stkk7g" path="res://Scripts/characters/Aoy.gd" id="1_ilnme"]
 [ext_resource type="Texture2D" uid="uid://dfa3li851hjd4" path="res://Sprites/Characters/Aoy/Aoy Hit.png" id="2_33itf"]
 [ext_resource type="Texture2D" uid="uid://c1wi2caj7njo7" path="res://Sprites/Characters/Aoy/Aoy D1.png" id="2_qxx25"]
 [ext_resource type="Texture2D" uid="uid://mhmqhyah3lgr" path="res://Sprites/Characters/Aoy/Aoy Stand L.png" id="3_p8srk"]
@@ -244,7 +244,7 @@ check_down = NodePath("CheckDown")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n6lcf")
-animation = &"IdleRight"
+animation = &"Hitted"
 autoplay = "IdleRight"
 
 [node name="Hammer" type="AnimatedSprite2D" parent="."]

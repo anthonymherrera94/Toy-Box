@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://di6p0kpcaq675"]
 
-[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_7hyfk"]
+[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_7hyfk"]
 [ext_resource type="Texture2D" uid="uid://gkqgrhbq2w1l" path="res://Sprites/Levels/Levels/Sweet Land 1.PNG" id="1_jca7p"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_ltwq8"]
 [ext_resource type="PackedScene" uid="uid://dmv1m23maf3ou" path="res://Scenes/sweet_lands_2.tscn" id="2_shlw8"]

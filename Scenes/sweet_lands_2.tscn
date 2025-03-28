@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://dmv1m23maf3ou"]
 
 [ext_resource type="Texture2D" uid="uid://c5p6hfb5gatys" path="res://Sprites/Levels/Levels/Sweet Land 2.PNG" id="1_oxmmv"]
-[ext_resource type="Script" path="res://Scripts/scene_controller.gd" id="1_utgle"]
+[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_utgle"]
 [ext_resource type="PackedScene" uid="uid://baemtipd8xqff" path="res://Scenes/sweet_lands_3.tscn" id="2_8hcpe"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_fe41t"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_s5eb7"]

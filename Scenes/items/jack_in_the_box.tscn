@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://nht053k5uafh"]
 
-[ext_resource type="Script" path="res://Scripts/items/JackInTheBox.gd" id="1_2je2i"]
+[ext_resource type="Script" uid="uid://dbwwmoy62kkx" path="res://Scripts/items/JackInTheBox.gd" id="1_2je2i"]
 [ext_resource type="Texture2D" uid="uid://coe754ae22sgw" path="res://Sprites/Items/Power Ups/Jack-in-the-box 1.png" id="2_y131o"]
 [ext_resource type="Texture2D" uid="uid://ctj6743ihq58o" path="res://Sprites/Items/Power Ups/Jack-in-the-box 2.png" id="3_d5st4"]
 [ext_resource type="Texture2D" uid="uid://ljgh5bqeei8f" path="res://Sprites/Items/Power Ups/Jack-in-the-box 3.png" id="4_6n6yn"]

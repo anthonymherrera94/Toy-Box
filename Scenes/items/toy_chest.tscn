@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://mf8qe4kptclh"]
 
-[ext_resource type="Script" path="res://Scripts/items/ToyChest.gd" id="1_b3bin"]
+[ext_resource type="Script" uid="uid://b8nvgriyeff4n" path="res://Scripts/items/ToyChest.gd" id="1_b3bin"]
 [ext_resource type="Texture2D" uid="uid://c2ubr81snqqku" path="res://Sprites/Items/Important items/Toy Chest Closed.png" id="1_ek20b"]
 [ext_resource type="Texture2D" uid="uid://45govg3ppyck" path="res://Sprites/Items/Important items/Toy Chest.png" id="2_t5mje"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://xh8jwujxoio8"]
 
-[ext_resource type="Script" path="res://Scripts/items/Toy.gd" id="1_4iqk5"]
+[ext_resource type="Script" uid="uid://dsaa7tsht4j0i" path="res://Scripts/items/Toy.gd" id="1_4iqk5"]
 [ext_resource type="Texture2D" uid="uid://cr55q6xbdrvv1" path="res://Sprites/Items/Toys/Doll.png" id="2_dw4af"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cx4q6"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bckmmpq6uqfdm"]
 
-[ext_resource type="Script" path="res://Scripts/items/Gemstone.gd" id="1_51ck8"]
+[ext_resource type="Script" uid="uid://pygb6mrg7oeh" path="res://Scripts/items/Gemstone.gd" id="1_51ck8"]
 [ext_resource type="Texture2D" uid="uid://cd3ynsb3a0be" path="res://Sprites/Items/Bonus Items/Bonus Item 1.png" id="2_qgpyl"]
 [ext_resource type="Texture2D" uid="uid://11vf2bg1lmdj" path="res://Sprites/Items/Bonus Items/Bonus Item 2.png" id="3_qacdx"]
 [ext_resource type="Texture2D" uid="uid://bfi6ptcytwrmd" path="res://Sprites/Items/Bonus Items/Bonus Item 3.png" id="4_as8mc"]
