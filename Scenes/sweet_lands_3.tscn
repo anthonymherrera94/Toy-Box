@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://baemtipd8xqff"]
+[gd_scene load_steps=13 format=4 uid="uid://baemtipd8xqff"]
 
-[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_2ypdr"]
+[ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_5i2ix"]
 [ext_resource type="Texture2D" uid="uid://3tfpw2v16j6f" path="res://Sprites/Levels/Levels/Sweet Lands 3.PNG" id="1_mb4vx"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_m1r7y"]
-[ext_resource type="PackedScene" uid="uid://bhwrna88yqap4" path="res://Scenes/rainbow_heaven_1.tscn" id="2_rsmop"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_bvaxp"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_8gmsr"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_hokfh"]
@@ -17,9 +16,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j6eo"]
 
 [node name="Sweet Lands 3" type="Node2D"]
-script = ExtResource("1_2ypdr")
+
+[node name="SceneController" parent="." instance=ExtResource("1_5i2ix")]
 map_size = Rect2i(-12, -8, 10, 5)
-next_scene = ExtResource("2_rsmop")
 
 [node name="SweetLands3" type="Sprite2D" parent="."]
 position = Vector2(0, 8)

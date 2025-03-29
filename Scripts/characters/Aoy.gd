@@ -24,7 +24,10 @@ var power_up_type: PowerUp.TYPE
 var previous_state: STATE
 var is_invincibility := false
 
+var power_up_score := 0
+
 signal change_pos
+signal earn_score
 signal lose_live
 
 signal shoot_fire_bubble
@@ -33,7 +36,9 @@ signal put_jack_in_the_box
 
 func _ready() -> void:
 	speed = ordinary_move_speed
-
+	
+	super()
+	
 
 func _process(delta):
 	if Input.is_action_just_pressed("action"): action_pressed()
@@ -46,7 +51,7 @@ func _physics_process(delta):
 	if state != STATE.KO:
 		if check_snapped(1.0):
 			snap_to_grid()
-			change_pos.emit(position)
+			change_pos.emit(global_position)
 			
 			hide_power_ups()
 			
@@ -60,53 +65,31 @@ func _physics_process(delta):
 						jack_in_the_box.show()
 					PowerUp.TYPE.RollerSkate:
 						speed = increased_move_speed
+			else:
+				speed = ordinary_move_speed
 			
 			var input = get_input()
 			
 			if input != Vector2.ZERO:
 				if input.abs().x > input.abs().y:
 					if input.x > 0:
-						if not check_right.has_overlapping_bodies():
-							var power_up_pos := Vector2.RIGHT * 8
-							
-							hammer.position = power_up_pos
-							bubble_gun.position = power_up_pos
-							jack_in_the_box.position = power_up_pos
-							
+						if not check_right.has_overlapping_bodies() or flatting_enemies(check_right):
 							move(Vector2.RIGHT)
 							
 							state = STATE.WALK_RIGHT
 					else:
-						if not check_left.has_overlapping_bodies():
-							var power_up_pos := Vector2.LEFT * 8
-							
-							hammer.position = power_up_pos
-							bubble_gun.position = power_up_pos
-							jack_in_the_box.position = power_up_pos
-							
+						if not check_left.has_overlapping_bodies() or flatting_enemies(check_left):
 							move(Vector2.LEFT)
 							
 							state = STATE.WALK_LEFT
 				else:
 					if input.y > 0:
-						if not check_down.has_overlapping_bodies():
-							var power_up_pos := Vector2.DOWN * 8
-							
-							hammer.position = power_up_pos
-							bubble_gun.position = power_up_pos
-							jack_in_the_box.position = power_up_pos
-							
+						if not check_down.has_overlapping_bodies() or flatting_enemies(check_down):
 							move(Vector2.DOWN)
 							
 							state = STATE.WALK_DOWN
 					else:
-						if not check_up.has_overlapping_bodies():
-							var power_up_pos := Vector2.UP * 8
-							
-							hammer.position = power_up_pos
-							bubble_gun.position = power_up_pos
-							jack_in_the_box.position = power_up_pos
-							
+						if not check_up.has_overlapping_bodies() or flatting_enemies(check_up):
 							move(Vector2.UP)
 							
 							state = STATE.WALK_UP
@@ -115,15 +98,63 @@ func _physics_process(delta):
 				match state:
 					STATE.WALK_RIGHT:
 						state = STATE.IDLE_RIGHT
+					
+					STATE.IDLE_RIGHT:
+						if flatting_enemies(check_right):
+							move(Vector2.RIGHT)
+							
+							state = STATE.WALK_RIGHT
+					
 					STATE.WALK_LEFT:
 						state = STATE.IDLE_LEFT
+					
+					STATE.IDLE_LEFT:
+						if flatting_enemies(check_left):
+							move(Vector2.LEFT)
+							
+							state = STATE.WALK_LEFT
+					
 					STATE.WALK_UP:
 						state = STATE.IDLE_UP
+					
+					STATE.IDLE_UP:
+						if flatting_enemies(check_up):
+							move(Vector2.UP)
+							
+							state = STATE.WALK_UP
+					
 					STATE.WALK_DOWN:
 						state = STATE.IDLE_DOWN
+					
+					STATE.IDLE_DOWN:
+						if flatting_enemies(check_down):
+							move(Vector2.DOWN)
+							
+							state = STATE.WALK_DOWN
 		
 		move_and_slide()
+
+
+func move(direction: Vector2) -> void:
+	var power_up_pos := direction * 8
 	
+	hammer.position = power_up_pos
+	bubble_gun.position = power_up_pos
+	jack_in_the_box.position = power_up_pos
+	
+	super(direction)
+
+
+func flatting_enemies(area: Area2D) -> bool:
+	if power_up_type == PowerUp.TYPE.ToyHammer:
+		for body in area.get_overlapping_bodies():
+			if body is Enemy:
+				power_up_count -= 1
+				body.defeat()
+				return true
+	
+	return false
+
 
 func get_input() -> Vector2:
 	return Vector2(Input.get_axis("move_left", "move_right"), \
@@ -149,7 +180,7 @@ func action_pressed() -> void:
 				put_jack_in_the_box.emit(global_position)
 				
 				power_up_count -= 1
-	
+
 
 func animate():
 	match state:
@@ -204,13 +235,9 @@ func _on_colliding_body_entered(body: Node2D):
 		
 		else:
 			match power_up_type:
-				PowerUp.TYPE.ToyHammer:
-					power_up_count -= 1
-					body.defeat()
 				PowerUp.TYPE.RollerSkate:
 					if not is_invincibility:
 						power_up_count = 0
-						speed = ordinary_move_speed
 						body.snap_to_grid()
 						hitted()
 				_:
@@ -218,8 +245,17 @@ func _on_colliding_body_entered(body: Node2D):
 						body.snap_to_grid()
 						hitted()
 
+func earn_score_from_enemy() -> void:
+	earn_score.emit(power_up_score)
+	match power_up_score:
+		400:
+			power_up_score = 800
+		800:
+			power_up_score = 1600
+		1600:
+			power_up_score = 0
 
-func hitted():
+func hitted() -> void:
 	snap_to_grid()
 	collision_mask = 0
 	
@@ -230,11 +266,16 @@ func hitted():
 	lose_live.emit()
 
 
-func pick_toy(texture: Texture2D):
+func pick_power_up(_type: PowerUp.TYPE, _count: int) -> void:
+	power_up_type = _type
+	power_up_count = _count
+	power_up_score = 400
+
+func pick_toy(texture: Texture2D) -> void:
 	toy.texture = texture
 	picked_toy = true
 
-func drop_toy():
+func drop_toy() -> void:
 	toy.texture = null
 	picked_toy = false
 

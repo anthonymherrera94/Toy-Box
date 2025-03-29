@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://dspidvaenfjm8" path="res://Sprites/Animated/Balloon E.tres" id="6_gba2s"]
 [ext_resource type="Texture2D" uid="uid://cctjoiulvgbhl" path="res://Sprites/Animated/Balloon R.tres" id="7_aqjcd"]
 
-[node name="GameUI" type="CanvasLayer" node_paths=PackedStringArray("up", "score", "bonus", "lives", "balloon_s", "balloon_u", "balloon_p", "balloon_e", "balloon_r")]
+[node name="GameUI" type="CanvasLayer" node_paths=PackedStringArray("score", "high_score", "bonus", "lives", "balloon_s", "balloon_u", "balloon_p", "balloon_e", "balloon_r")]
 visible = false
 script = ExtResource("1_2pu42")
 life = ExtResource("2_sj2bp")
-up = NodePath("VBoxContainer/TopPanel/VBoxContainer/Counts/UpCount")
 score = NodePath("VBoxContainer/TopPanel/VBoxContainer/Counts/ScoreCount")
+high_score = NodePath("VBoxContainer/TopPanel/VBoxContainer/Counts/HighScoreCount")
 bonus = NodePath("VBoxContainer/TopPanel/VBoxContainer/Counts/BonusCount")
 lives = NodePath("VBoxContainer/BottomPanel/Stats/Lives")
 balloon_s = NodePath("VBoxContainer/BottomPanel/Stats/Balloons/S")
@@ -98,7 +98,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="UpCount" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+[node name="ScoreCount" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "0"
@@ -108,7 +108,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScoreCount" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+[node name="HighScoreCount" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "0"

@@ -9,7 +9,6 @@ enum TYPE {
 var map_offset: Vector2
 
 @export var player_anim: AnimatedSprite2D
-@export var navigation: NavigationAgent2D
 
 @export var type: TYPE
 
@@ -21,14 +20,8 @@ var map_offset: Vector2
 
 var change_direction_delay := 0
 
-var start_pos: Vector2
-
 signal defeated
 
-
-func _ready() -> void:
-	start_pos = global_position
-	
 
 func _process(delta):
 	animate()
@@ -87,6 +80,7 @@ func _physics_process(delta):
 				else:
 					state = STATE.WALK_UP
 					move(direction)
+	
 	
 	if velocity == Vector2.ZERO:
 		snap_to_grid()

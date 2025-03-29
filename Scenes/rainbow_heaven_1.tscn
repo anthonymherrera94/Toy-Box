@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=4 uid="uid://bhwrna88yqap4"]
+[gd_scene load_steps=12 format=4 uid="uid://bhwrna88yqap4"]
 
 [ext_resource type="Texture2D" uid="uid://cv01par4td4j" path="res://Sprites/Levels/Levels/Rainbow Heaven 1.png" id="1_2niem"]
-[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/scene_controller.gd" id="1_a78o3"]
-[ext_resource type="PackedScene" uid="uid://6qi5fr1qtsth" path="res://Scenes/rainbow_heaven_2.tscn" id="2_7rc5r"]
+[ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_ktnmg"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_crnkl"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_034b0"]
 [ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="5_a04kr"]
@@ -16,9 +15,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp2yt"]
 
 [node name="Rainbow Heaven 1" type="Node2D"]
-script = ExtResource("1_a78o3")
+
+[node name="SceneController" parent="." instance=ExtResource("1_ktnmg")]
 map_size = Rect2i(-7, -8, 5, 5)
-next_scene = ExtResource("2_7rc5r")
 
 [node name="RainbowHeaven1" type="Sprite2D" parent="."]
 position = Vector2(0, 8)

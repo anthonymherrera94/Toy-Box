@@ -1,0 +1,48 @@
+class_name GameStats extends Node
+
+var main: SceneController
+var spawning: SceneControllerSpawning
+var objects_holder: SceneControllerObjectsHolder
+
+var game_ui: GameUI
+
+var score := 0
+var lives := 3
+var bonus_time := 10000
+
+var current_balloon: Balloons.TYPE
+var current_treat: Treats.TYPE
+
+var toys_left := 0
+
+
+func initialize() -> void:
+	game_ui.show()
+	game_ui.set_score(score)
+	game_ui.set_lives(lives)
+
+
+func _on_lose_live() -> void:
+	if lives > 0:
+		lives -= 1
+		game_ui.set_lives(lives)
+		
+	else:
+		main.restart.emit()
+
+
+func add_score(points: int) -> void:
+	score += points
+	game_ui.set_score(score)
+
+func set_popped_balloon(type: Balloons.TYPE) -> void:
+	game_ui.pop_balloon(type)
+
+
+func _on_bonus_time_tick() -> void:
+	if bonus_time > 0:
+		bonus_time -= 10
+	else:
+		if objects_holder.xob == null: spawning.spawn_xob()
+	
+	game_ui.set_bonus_time(bonus_time)

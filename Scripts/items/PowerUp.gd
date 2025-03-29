@@ -32,14 +32,12 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Aoy:
 		match power_up_type:
 			TYPE.ToyHammer:
-				body.power_up_count = 3
+				body.pick_power_up(power_up_type, 3)
 			TYPE.BubbleGun:
-				body.power_up_count = 3
+				body.pick_power_up(power_up_type, 3)
 			TYPE.RollerSkate:
-				body.power_up_count = 1
+				body.pick_power_up(power_up_type, 1)
 			TYPE.JackInTheBox:
-				body.power_up_count = 1
-		
-		body.power_up_type = power_up_type
+				body.pick_power_up(power_up_type, 1)
 		
 		queue_free()

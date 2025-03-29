@@ -4,8 +4,8 @@ class_name GameUI extends CanvasLayer
 @export var life: PackedScene
 
 @export_category("Nodes")
-@export var up: Label
 @export var score: Label
+@export var high_score: Label
 @export var bonus: Label
 @export var lives: HBoxContainer
 
@@ -32,11 +32,11 @@ func _ready() -> void:
 		balloons[i].hide()
 
 
-func set_up(_up: int) -> void:
-	up.text = str(_up)
+func set_score(_up: int) -> void:
+	score.text = str(_up)
 
-func set_score(_score: int) -> void:
-	score.text = str(_score)
+func set_high_score(_score: int) -> void:
+	high_score.text = str(_score)
 
 func set_bonus_time(_time: int) -> void:
 	bonus.text = str(_time)
