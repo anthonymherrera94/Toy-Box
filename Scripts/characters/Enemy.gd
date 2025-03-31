@@ -12,6 +12,8 @@ var map_offset: Vector2
 
 @export var type: TYPE
 
+@export var respawn_delay: Timer
+
 @export_category("RayCasts")
 @export var down_raycast: RayCast2D
 @export var up_raycast: RayCast2D
@@ -23,12 +25,17 @@ var change_direction_delay := 0
 signal defeated
 
 
-func _process(delta):
-	animate()
-	
+func _process(delta) -> void:
+	if check_state():
+		animate()
 
-func _physics_process(delta):
-	if check_snapped(1.0):
+func check_state() -> bool:
+	if state != STATE.FLATTEN and state != STATE.SCARED and state != STATE.TRAPPED:
+		return true
+	return false
+
+func _physics_process(delta) -> void:
+	if check_snapped(1.0) and check_state():
 		var direction: Vector2
 		
 		if check_side_for_player(left_raycast):
@@ -81,12 +88,10 @@ func _physics_process(delta):
 					state = STATE.WALK_UP
 					move(direction)
 	
-	
 	if velocity == Vector2.ZERO:
 		snap_to_grid()
 	
 	move_and_slide()
-	
 
 
 func check_side_for_player(raycast: RayCast2D) -> bool:
@@ -97,7 +102,6 @@ func check_side_for_player(raycast: RayCast2D) -> bool:
 	
 	return false
 
-
 func check_collision(collision_area: Area2D) -> bool:
 	for i in collision_area.get_overlapping_bodies():
 		if i is Aoy:
@@ -107,7 +111,7 @@ func check_collision(collision_area: Area2D) -> bool:
 	else: return false
 
 
-func animate():
+func animate() -> void:
 	match state:
 		STATE.WALK_RIGHT:
 			player_anim.play("WalkRight")
@@ -117,8 +121,52 @@ func animate():
 			player_anim.play("WalkUp")
 		STATE.WALK_DOWN:
 			player_anim.play("WalkDown")
+		STATE.FLATTEN:
+			player_anim.play("Flatten")
+		STATE.SCARED:
+			player_anim.play("Scared")
+		STATE.TRAPPED:
+			player_anim.play("Trapped")
 
 
-func defeat():
+func flat() -> void:
+	if check_state():
+		snap_to_grid()
+
+		state = STATE.FLATTEN
+		animate()
+		disable_collision()
+
+		respawn_delay.start()
+
+func scared() -> void:
+	if check_state():
+		snap_to_grid()
+
+		state = STATE.SCARED
+		animate()
+		disable_collision()
+
+		respawn_delay.start()
+
+func trapped() -> void:
+	if check_state():
+		snap_to_grid()
+
+		state = STATE.TRAPPED
+		animate()
+		disable_collision()
+
+		respawn_delay.start()
+
+func disable_collision() -> void:
+	collision_layer = 0
+	collision_mask = 0
+
+
+func _on_respawn_delay_timeout() -> void:
+	defeat()
+
+func defeat() -> void:
 	defeated.emit(type, start_pos)
 	queue_free()

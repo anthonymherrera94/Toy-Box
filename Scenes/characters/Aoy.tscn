@@ -1,11 +1,15 @@
-[gd_scene load_steps=35 format=3 uid="uid://caeyw58brrar7"]
+[gd_scene load_steps=40 format=3 uid="uid://caeyw58brrar7"]
 
 [ext_resource type="Script" uid="uid://d1uolc1stkk7g" path="res://Scripts/characters/Aoy.gd" id="1_ilnme"]
 [ext_resource type="Texture2D" uid="uid://dfa3li851hjd4" path="res://Sprites/Characters/Aoy/Aoy Hit.png" id="2_33itf"]
 [ext_resource type="Texture2D" uid="uid://c1wi2caj7njo7" path="res://Sprites/Characters/Aoy/Aoy D1.png" id="2_qxx25"]
+[ext_resource type="Texture2D" uid="uid://dg75wogeffc6" path="res://Sprites/Characters/Aoy/Aoy Embarrass 1.png" id="2_slhmj"]
 [ext_resource type="Texture2D" uid="uid://mhmqhyah3lgr" path="res://Sprites/Characters/Aoy/Aoy Stand L.png" id="3_p8srk"]
+[ext_resource type="Texture2D" uid="uid://cxqvhj4k7c8df" path="res://Sprites/Characters/Aoy/Aoy Embarrass 2.png" id="3_udgtg"]
+[ext_resource type="Texture2D" uid="uid://c7axvid2h0aa" path="res://Sprites/Characters/Aoy/Aoy Embarrass 3.png" id="4_6gr5a"]
 [ext_resource type="Texture2D" uid="uid://bvunsqprailsj" path="res://Sprites/Characters/Aoy/Aoy Stand R.png" id="4_b45cx"]
 [ext_resource type="Texture2D" uid="uid://cpk6ahvqpgxl0" path="res://Sprites/Characters/Aoy/Aoy U1.png" id="5_4xumu"]
+[ext_resource type="Texture2D" uid="uid://cjrippsg2fn8w" path="res://Sprites/Characters/Aoy/Aoy Embarrass 4.png" id="5_xqbg3"]
 [ext_resource type="Texture2D" uid="uid://b5m2xyur5tyoq" path="res://Sprites/Characters/Aoy/Aoy KO.png" id="6_m6m0e"]
 [ext_resource type="Texture2D" uid="uid://dhxx0ryla64wx" path="res://Sprites/Characters/Aoy/Aoy D2.png" id="6_yrlur"]
 [ext_resource type="Texture2D" uid="uid://pkna8wlxtbt4" path="res://Sprites/Characters/Aoy/Aoy D3.png" id="7_etnj4"]
@@ -14,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://tvbmflq4oe4n" path="res://Sprites/Characters/Aoy/Aoy L3.png" id="10_lf8nl"]
 [ext_resource type="Texture2D" uid="uid://72ujfprt0s38" path="res://Sprites/Characters/Aoy/Aoy R1.png" id="11_h41tp"]
 [ext_resource type="Texture2D" uid="uid://bymhhjvxnk3od" path="res://Sprites/Characters/Aoy/Aoy R2.png" id="12_838qh"]
+[ext_resource type="Texture2D" uid="uid://3m52dy50oi6c" path="res://Sprites/Characters/Aoy/Aoy Victory.png" id="12_udgtg"]
 [ext_resource type="Texture2D" uid="uid://ddn6b3pnvv2q6" path="res://Sprites/Characters/Aoy/Aoy R3.png" id="13_uhx5d"]
 [ext_resource type="Texture2D" uid="uid://bdi2r2fl1j0wt" path="res://Sprites/Characters/Aoy/Aoy U2.png" id="14_yh4ob"]
 [ext_resource type="Texture2D" uid="uid://b03h1amx7xj8k" path="res://Sprites/Characters/Aoy/Aoy U3.png" id="15_njtc5"]
@@ -33,10 +38,27 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_slhmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_udgtg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6gr5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xqbg3")
+}],
+"loop": false,
+"name": &"Embarrass",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_33itf")
 }],
 "loop": false,
-"name": &"Hitted",
+"name": &"Hit",
 "speed": 1.0
 }, {
 "frames": [{
@@ -77,6 +99,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"KO",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_udgtg")
+}],
+"loop": true,
+"name": &"Victory",
 "speed": 5.0
 }, {
 "frames": [{
@@ -244,7 +274,7 @@ check_down = NodePath("CheckDown")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n6lcf")
-animation = &"Hitted"
+animation = &"IdleRight"
 autoplay = "IdleRight"
 
 [node name="Hammer" type="AnimatedSprite2D" parent="."]

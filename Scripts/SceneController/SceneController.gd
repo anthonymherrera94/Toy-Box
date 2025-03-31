@@ -54,8 +54,10 @@ func _ready() -> void:
 		if i is Aoy:
 			i.map_offset = map_offset
 			i.change_pos.connect(_on_aoy_change_pos)
-			i.lose_live.connect(game_stats._on_lose_live)
 			i.earn_score.connect(_on_earn_score)
+			i.open_toychest.connect(_on_open_toy_chest)
+			i.power_up_picked.connect(_on_power_up_picked)
+			i.lose_live.connect(game_stats._on_lose_live)
 			i.shoot_fire_bubble.connect(_on_shoot_fire_bubble)
 			i.put_jack_in_the_box.connect(_on_jack_in_the_box_putted)
 			objects_holder.aoy = i
@@ -97,6 +99,60 @@ func _on_aoy_change_pos(pos: Vector2) -> void:
 	if objects_holder.xob != null:
 		objects_holder.xob.set_targer_pos(pos)
 
+func _on_earn_score(_score: int) -> void:
+	game_stats.add_score(_score)
+
+func _on_open_toy_chest() -> void:
+	objects_holder.toy_chest.open()
+
+func _on_power_up_picked() -> void:
+	game_stats.power_up_score = 400
+
+
+func _on_shoot_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
+	spawning.spawn_fire_bubble(pos, direction)
+
+func _on_jack_in_the_box_putted(pos: Vector2) -> void:
+	spawning.spawn_jack_in_the_box(pos)
+
+
+func _on_enemy_defeated(type: Enemy.TYPE, spawn_pos: Vector2) -> void:
+	game_stats.earn_score_from_enemy()
+	spawning.respawn_enemy(type, spawn_pos)
+
+
+func _on_indoor() -> void:
+	objects_holder.aoy.victory(objects_holder.door.global_position)
+	next_level.emit(next_scene)
+
+
+func _on_treats_picked_time_end() -> void:
+	if objects_holder.treat != null: objects_holder.treat.queue_free()
+
+func _on_balloon_pop_time_end() -> void:
+	if objects_holder.balloon != null: objects_holder.balloon.pop_animation()
+
+func _on_bonus_round_time_end() -> void:
+	bonus_round = false
+	remove_gemstones()
+
+
+func remove_gemstones() -> void:
+	for i in objects_holder.gemstones:
+		if i != null: i.queue_free()
+	
+	objects_holder.gemstones.clear()
+
+
+func _on_balloon_popped(type: Balloons.TYPE) -> void:
+	bonus_round = true
+	game_stats.game_ui.pop_balloon(type)
+	balloon_popped.emit(type)
+	
+	if type >= Balloons.TYPE.size() - 1: spawning.spawn_gemstones()
+
+func _on_gemstone_picked() -> void:
+	game_stats.add_score(300)
 
 func _on_card_picked() -> void:
 	if not spawning.is_balloon_spawned:
@@ -125,53 +181,8 @@ func _on_key_picked() -> void:
 
 func _on_toy_dropped() -> void:
 	game_stats.add_score(100)
+	objects_holder.toy_chest.close()
 	if game_stats.toys_left > 1:
 		game_stats.toys_left -= 1
 	else:
 		spawning.spawn_key()
-
-
-func _on_earn_score(_score: int) -> void:
-	game_stats.add_score(_score)
-
-
-
-func _on_treats_picked_time_end() -> void:
-	if objects_holder.treat != null: objects_holder.treat.queue_free()
-
-
-func _on_balloon_pop_time_end() -> void:
-	if objects_holder.balloon != null: objects_holder.balloon.pop_animation()
-
-func _on_balloon_popped(type: Balloons.TYPE) -> void:
-	bonus_round = true
-	game_stats.game_ui.pop_balloon(type)
-	balloon_popped.emit(type)
-	
-	if type >= Balloons.TYPE.size() - 1: spawning.spawn_gemstones()
-
-func _on_gemstone_picked() -> void:
-	game_stats.add_score(300)
-
-func _on_bonus_round_time_end() -> void:
-	bonus_round = false
-	remove_gemstones()
-
-func _on_shoot_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
-	spawning.spawn_fire_bubble(pos, direction)
-
-func _on_jack_in_the_box_putted(pos: Vector2) -> void:
-	spawning.spawn_jack_in_the_box(pos)
-
-func _on_enemy_defeated(type: Enemy.TYPE, spawn_pos: Vector2) -> void:
-	spawning.respawn_enemy(type, spawn_pos)
-
-func _on_indoor() -> void:
-	next_level.emit(next_scene)
-
-
-func remove_gemstones() -> void:
-	for i in objects_holder.gemstones:
-		if i != null: i.queue_free()
-	
-	objects_holder.gemstones.clear()

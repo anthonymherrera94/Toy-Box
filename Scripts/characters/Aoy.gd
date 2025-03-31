@@ -24,10 +24,10 @@ var power_up_type: PowerUp.TYPE
 var previous_state: STATE
 var is_invincibility := false
 
-var power_up_score := 0
-
 signal change_pos
 signal earn_score
+signal open_toychest
+signal power_up_picked
 signal lose_live
 
 signal shoot_fire_bubble
@@ -39,100 +39,102 @@ func _ready() -> void:
 	
 	super()
 	
-
 func _process(delta):
 	if Input.is_action_just_pressed("action"): action_pressed()
 	
-	if state != STATE.KO and player_anim.animation != "Hitted":
+	if check_state():
 		animate()
-	
+
+func check_state() -> bool:
+	if state != STATE.KO and state != STATE.HIT and state != STATE.VICTORY:
+		return true
+	return false
 
 func _physics_process(delta):
-	if state != STATE.KO:
-		if check_snapped(1.0):
-			snap_to_grid()
-			change_pos.emit(global_position)
-			
-			hide_power_ups()
-			
-			if power_up_count > 0:
-				match power_up_type:
-					PowerUp.TYPE.ToyHammer:
-						hammer.show()
-					PowerUp.TYPE.BubbleGun:
-						bubble_gun.show()
-					PowerUp.TYPE.JackInTheBox:
-						jack_in_the_box.show()
-					PowerUp.TYPE.RollerSkate:
-						speed = increased_move_speed
-			else:
-				speed = ordinary_move_speed
-			
-			var input = get_input()
-			
-			if input != Vector2.ZERO:
-				if input.abs().x > input.abs().y:
-					if input.x > 0:
-						if not check_right.has_overlapping_bodies() or flatting_enemies(check_right):
-							move(Vector2.RIGHT)
-							
-							state = STATE.WALK_RIGHT
-					else:
-						if not check_left.has_overlapping_bodies() or flatting_enemies(check_left):
-							move(Vector2.LEFT)
-							
-							state = STATE.WALK_LEFT
-				else:
-					if input.y > 0:
-						if not check_down.has_overlapping_bodies() or flatting_enemies(check_down):
-							move(Vector2.DOWN)
-							
-							state = STATE.WALK_DOWN
-					else:
-						if not check_up.has_overlapping_bodies() or flatting_enemies(check_up):
-							move(Vector2.UP)
-							
-							state = STATE.WALK_UP
-			
-			else:
-				match state:
-					STATE.WALK_RIGHT:
-						state = STATE.IDLE_RIGHT
-					
-					STATE.IDLE_RIGHT:
-						if flatting_enemies(check_right):
-							move(Vector2.RIGHT)
-							
-							state = STATE.WALK_RIGHT
-					
-					STATE.WALK_LEFT:
-						state = STATE.IDLE_LEFT
-					
-					STATE.IDLE_LEFT:
-						if flatting_enemies(check_left):
-							move(Vector2.LEFT)
-							
-							state = STATE.WALK_LEFT
-					
-					STATE.WALK_UP:
-						state = STATE.IDLE_UP
-					
-					STATE.IDLE_UP:
-						if flatting_enemies(check_up):
-							move(Vector2.UP)
-							
-							state = STATE.WALK_UP
-					
-					STATE.WALK_DOWN:
-						state = STATE.IDLE_DOWN
-					
-					STATE.IDLE_DOWN:
-						if flatting_enemies(check_down):
-							move(Vector2.DOWN)
-							
-							state = STATE.WALK_DOWN
+	if check_snapped(1.0) and check_state():
+		snap_to_grid()
+		change_pos.emit(global_position)
 		
-		move_and_slide()
+		hide_power_ups()
+		
+		if power_up_count > 0:
+			match power_up_type:
+				PowerUp.TYPE.ToyHammer:
+					hammer.show()
+				PowerUp.TYPE.BubbleGun:
+					bubble_gun.show()
+				PowerUp.TYPE.JackInTheBox:
+					jack_in_the_box.show()
+				PowerUp.TYPE.RollerSkate:
+					speed = increased_move_speed
+		else:
+			speed = ordinary_move_speed
+		
+		var input = get_input()
+		
+		if input != Vector2.ZERO:
+			if input.abs().x > input.abs().y:
+				if input.x > 0:
+					if not check_right.has_overlapping_bodies() or flatting_enemies(check_right):
+						move(Vector2.RIGHT)
+						
+						state = STATE.WALK_RIGHT
+				else:
+					if not check_left.has_overlapping_bodies() or flatting_enemies(check_left):
+						move(Vector2.LEFT)
+						
+						state = STATE.WALK_LEFT
+			else:
+				if input.y > 0:
+					if not check_down.has_overlapping_bodies() or flatting_enemies(check_down):
+						move(Vector2.DOWN)
+						
+						state = STATE.WALK_DOWN
+				else:
+					if not check_up.has_overlapping_bodies() or flatting_enemies(check_up):
+						move(Vector2.UP)
+						
+						state = STATE.WALK_UP
+		
+		else:
+			match state:
+				STATE.WALK_RIGHT:
+					state = STATE.IDLE_RIGHT
+				
+				STATE.IDLE_RIGHT:
+					if flatting_enemies(check_right):
+						move(Vector2.RIGHT)
+						
+						state = STATE.WALK_RIGHT
+				
+				STATE.WALK_LEFT:
+					state = STATE.IDLE_LEFT
+				
+				STATE.IDLE_LEFT:
+					if flatting_enemies(check_left):
+						move(Vector2.LEFT)
+						
+						state = STATE.WALK_LEFT
+				
+				STATE.WALK_UP:
+					state = STATE.IDLE_UP
+				
+				STATE.IDLE_UP:
+					if flatting_enemies(check_up):
+						move(Vector2.UP)
+						
+						state = STATE.WALK_UP
+				
+				STATE.WALK_DOWN:
+					state = STATE.IDLE_DOWN
+				
+				STATE.IDLE_DOWN:
+					if flatting_enemies(check_down):
+						move(Vector2.DOWN)
+						
+						state = STATE.WALK_DOWN
+	
+	move_and_slide()
 
 
 func move(direction: Vector2) -> void:
@@ -146,11 +148,11 @@ func move(direction: Vector2) -> void:
 
 
 func flatting_enemies(area: Area2D) -> bool:
-	if power_up_type == PowerUp.TYPE.ToyHammer:
+	if power_up_type == PowerUp.TYPE.ToyHammer and power_up_count > 0:
 		for body in area.get_overlapping_bodies():
 			if body is Enemy:
 				power_up_count -= 1
-				body.defeat()
+				body.flat()
 				return true
 	
 	return false
@@ -216,8 +218,15 @@ func animate():
 			player_anim.play("WalkDown")
 			hammer.play("Down")
 			bubble_gun.play("Down")
-		STATE.HITTED:
-			player_anim.play("Hitted")
+		STATE.HIT:
+			player_anim.play("Hit")
+			hide_power_ups()
+		STATE.KO:
+			player_anim.play("KO")
+			hide_power_ups()
+		STATE.VICTORY:
+			player_anim.play("Victory")
+			hide_power_ups()
 
 
 func hide_power_ups():
@@ -231,7 +240,7 @@ func _on_colliding_body_entered(body: Node2D):
 		if power_up_count == 0:
 			if not is_invincibility:
 				body.snap_to_grid()
-				hitted()
+				hit()
 		
 		else:
 			match power_up_type:
@@ -239,41 +248,53 @@ func _on_colliding_body_entered(body: Node2D):
 					if not is_invincibility:
 						power_up_count = 0
 						body.snap_to_grid()
-						hitted()
+						hit()
+				
+				PowerUp.TYPE.ToyHammer:
+					if check_snapped(1.0):
+						body.snap_to_grid()
+						hit()
+				
 				_:
 					if not is_invincibility:
 						body.snap_to_grid()
-						hitted()
+						hit()
 
-func earn_score_from_enemy() -> void:
-	earn_score.emit(power_up_score)
-	match power_up_score:
-		400:
-			power_up_score = 800
-		800:
-			power_up_score = 1600
-		1600:
-			power_up_score = 0
-
-func hitted() -> void:
+func hit() -> void:
 	snap_to_grid()
-	collision_mask = 0
-	
+
 	previous_state = state
-	state = STATE.HITTED
+	state = STATE.HIT
+	animate()
+
+	apply_invincibiity()
+	lose_live.emit()
+
+func defeated() -> void:
+	snap_to_grid()
+
+	state = STATE.KO
+	animate()
+
+	apply_invincibiity()
+
+func apply_invincibiity() -> void:
 	is_invincibility = true
 	invincibility_timer.start()
-	lose_live.emit()
+
+func _on_invincibility_timeout() -> void:
+	is_invincibility = false
 
 
 func pick_power_up(_type: PowerUp.TYPE, _count: int) -> void:
 	power_up_type = _type
 	power_up_count = _count
-	power_up_score = 400
+	power_up_picked.emit()
 
 func pick_toy(texture: Texture2D) -> void:
 	toy.texture = texture
 	picked_toy = true
+	open_toychest.emit()
 
 func drop_toy() -> void:
 	toy.texture = null
@@ -281,11 +302,19 @@ func drop_toy() -> void:
 
 
 func _on_animation_finished() -> void:
-	if player_anim.animation == "Hitted":
-		state = previous_state
-		animate()
+	match state:
+		STATE.HIT:
+			snap_to_grid()
+			
+			state = previous_state
+			animate()
 
 
-func _on_invincibility_timeout() -> void:
-	is_invincibility = false
-	collision_mask = 1
+func victory(door_pos: Vector2) -> void:
+	global_position = door_pos
+	snap_to_grid()
+
+	state = STATE.VICTORY
+	animate()
+
+	apply_invincibiity()

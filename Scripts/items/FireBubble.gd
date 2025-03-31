@@ -27,13 +27,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		body.defeat()
+		body.trapped()
 		anim.play("popped")
 	
 	if body is Aoy:
 		return
-	
-	queue_free()
 
 
 func _on_animation_finished() -> void:

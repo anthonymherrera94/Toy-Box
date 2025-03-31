@@ -1,17 +1,65 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceouuyxbirjs5"]
+[gd_scene load_steps=18 format=3 uid="uid://ceouuyxbirjs5"]
 
 [ext_resource type="PackedScene" uid="uid://c42pjt7acga4v" path="res://Scenes/characters/EnemyBase.tscn" id="2_1mxve"]
 [ext_resource type="Texture2D" uid="uid://bt3107skn3ago" path="res://Sprites/Characters/TicTacToe/Toe D1.png" id="2_f241k"]
+[ext_resource type="Texture2D" uid="uid://308cgg516jr6" path="res://Sprites/Characters/TicTacToe/Toe Flatten.png" id="2_gqvdw"]
 [ext_resource type="Texture2D" uid="uid://hy5yrvk712cu" path="res://Sprites/Characters/TicTacToe/Toe D2.png" id="3_gpjo4"]
+[ext_resource type="Texture2D" uid="uid://7jxaojjirmxf" path="res://Sprites/Characters/TicTacToe/Toe Laugh 1.PNG" id="3_tftt5"]
+[ext_resource type="Texture2D" uid="uid://bfk8rt23n7wjj" path="res://Sprites/Characters/TicTacToe/Toe Laugh 2.PNG" id="4_835xc"]
 [ext_resource type="Texture2D" uid="uid://dseigp8yucf22" path="res://Sprites/Characters/TicTacToe/Toe L1.png" id="4_kod87"]
+[ext_resource type="Texture2D" uid="uid://diy4l40a61g4p" path="res://Sprites/Characters/TicTacToe/TTT scared 1.png" id="5_on5xo"]
 [ext_resource type="Texture2D" uid="uid://e4gk1bobejlh" path="res://Sprites/Characters/TicTacToe/Toe L2.png" id="5_skt8k"]
 [ext_resource type="Texture2D" uid="uid://bqh5vqlyx4ek5" path="res://Sprites/Characters/TicTacToe/Toe R1.png" id="6_dvb1d"]
+[ext_resource type="Texture2D" uid="uid://c5gsfsfvn427e" path="res://Sprites/Characters/TicTacToe/TTT Scared 2.png" id="6_pm6ki"]
 [ext_resource type="Texture2D" uid="uid://dqcpe58f3kr75" path="res://Sprites/Characters/TicTacToe/Toe R2.png" id="7_pr7dr"]
+[ext_resource type="Texture2D" uid="uid://da0vnpae2cqi8" path="res://Sprites/Characters/TicTacToe/TTT trapped 1.png" id="7_smi0u"]
+[ext_resource type="Texture2D" uid="uid://c0eb3p1h5jdud" path="res://Sprites/Characters/TicTacToe/TTT trapped 2.png" id="8_p3xmp"]
 [ext_resource type="Texture2D" uid="uid://b3wqcgpbyc1q5" path="res://Sprites/Characters/TicTacToe/Toe U1.png" id="8_pu5qr"]
 [ext_resource type="Texture2D" uid="uid://dr2fgac0ri4ge" path="res://Sprites/Characters/TicTacToe/Toe U2.png" id="9_sokki"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t5w0y"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gqvdw")
+}],
+"loop": true,
+"name": &"Flatten",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tftt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_835xc")
+}],
+"loop": true,
+"name": &"Laugh",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_on5xo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pm6ki")
+}],
+"loop": true,
+"name": &"Scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_smi0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p3xmp")
+}],
+"loop": true,
+"name": &"Trapped",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_f241k")
@@ -59,7 +107,6 @@ animations = [{
 
 [node name="Toe" type="Node2D"]
 process_mode = 1
-z_index = 1
 
 [node name="EnemyBase" parent="." node_paths=PackedStringArray("player_anim") instance=ExtResource("2_1mxve")]
 player_anim = NodePath("AnimatedSprite2D")
@@ -68,4 +115,5 @@ type = 2
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_t5w0y")
-animation = &"WalkUp"
+animation = &"WalkRight"
+autoplay = "WalkRight"

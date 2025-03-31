@@ -21,8 +21,12 @@ enum STATE{
 	WALK_UP,
 	WALK_LEFT,
 	WALK_RIGHT,
-	HITTED,
-	KO
+	HIT,
+	KO,
+	VICTORY,
+	FLATTEN,
+	SCARED,
+	TRAPPED
 }
 
 func _ready() -> void:

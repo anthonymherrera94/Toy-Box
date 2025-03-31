@@ -8,12 +8,12 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ssw"]
 size = Vector2(12, 12)
 
-[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "down_raycast", "up_raycast", "left_raycast", "right_raycast", "check_left", "check_right", "check_up", "check_down")]
+[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("respawn_delay", "down_raycast", "up_raycast", "left_raycast", "right_raycast", "check_left", "check_right", "check_up", "check_down")]
 process_mode = 1
 z_index = 1
 script = ExtResource("1_2e24u")
-navigation = NodePath("NavigationAgent2D")
 type = 1
+respawn_delay = NodePath("RespawnDelay")
 down_raycast = NodePath("DownRayCast")
 up_raycast = NodePath("UpRayCast")
 left_raycast = NodePath("LeftRayCast")
@@ -68,3 +68,9 @@ position = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown"]
 shape = SubResource("RectangleShape2D_v3ssw")
+
+[node name="RespawnDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="RespawnDelay" to="." method="_on_respawn_delay_timeout"]
