@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://b612rd8qw2lhg"]
+
+[ext_resource type="Script" uid="uid://b2a08272v7dlx" path="res://Scripts/hazards/worm.gd" id="1_o163s"]
+[ext_resource type="Texture2D" uid="uid://c8ocvm6cg6ap7" path="res://Sprites/Levels/Hazards/Worm 1.PNG" id="2_cnylq"]
+[ext_resource type="Texture2D" uid="uid://da5ieqct8j0j" path="res://Sprites/Levels/Hazards/Worm 2.PNG" id="3_lqwvx"]
+[ext_resource type="Texture2D" uid="uid://du6whikbap458" path="res://Sprites/Levels/Hazards/Worm 3.PNG" id="4_6ty22"]
+[ext_resource type="Texture2D" uid="uid://ddypyittdrbkv" path="res://Sprites/Levels/Hazards/Worm 4.PNG" id="5_72a58"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o163s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cnylq")
+}],
+"loop": true,
+"name": &"Hided",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lqwvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ty22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_72a58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_72a58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_72a58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_72a58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_72a58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_72a58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ty22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lqwvx")
+}],
+"loop": false,
+"name": &"Showed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqwvx"]
+size = Vector2(16, 16)
+
+[node name="Worm" type="StaticBody2D"]
+script = ExtResource("1_o163s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_o163s")
+animation = &"Hided"
+autoplay = "Hided"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lqwvx")
+
+[node name="ShowedDelay" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="ShowedDelay" to="." method="_on_showed_delay_timeout"]

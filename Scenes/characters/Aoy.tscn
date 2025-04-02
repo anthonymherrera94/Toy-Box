@@ -332,6 +332,11 @@ scale = Vector2(0.5, 0.5)
 wait_time = 3.0
 one_shot = true
 
+[node name="SlowDownEffect" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="body_entered" from="Colliding" to="." method="_on_colliding_body_entered"]
 [connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]
+[connection signal="timeout" from="SlowDownEffect" to="." method="_on_slow_down_effect_timeout"]

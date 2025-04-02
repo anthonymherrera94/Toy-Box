@@ -1,4 +1,4 @@
-class_name Enemy extends Character
+class_name Enemy extends RandomChangeDirectionCharacter
 
 enum TYPE {
 	Tic,
@@ -19,8 +19,6 @@ var map_offset: Vector2
 @export var up_raycast: RayCast2D
 @export var left_raycast: RayCast2D
 @export var right_raycast: RayCast2D
-
-var change_direction_delay := 0
 
 signal defeated
 
@@ -48,42 +46,33 @@ func _physics_process(delta) -> void:
 			direction = Vector2.DOWN
 		else:
 			if change_direction_delay <= 0:
-				direction = [
-					Vector2.RIGHT,
-					Vector2.LEFT,
-					Vector2.UP,
-					Vector2.DOWN
-				].pick_random()
+				direction = change_direction_to_random()
 				change_direction_delay = 3
 			else:
 				change_direction_delay -= 1
-
+		
 		match direction:
 			Vector2.RIGHT:
 				if check_collision(check_right):
-					snap_to_grid()
-					change_direction_delay = 0
+					change_direction()
 				else:
 					state = STATE.WALK_RIGHT
 					move(direction)
 			Vector2.LEFT:
 				if check_collision(check_left):
-					snap_to_grid()
-					change_direction_delay = 0
+					change_direction()
 				else:
 					state = STATE.WALK_LEFT
 					move(direction)
 			Vector2.DOWN:
 				if check_collision(check_down):
-					snap_to_grid()
-					change_direction_delay = 0
+					change_direction()
 				else:
 					state = STATE.WALK_DOWN
 					move(direction)
 			Vector2.UP:
 				if check_collision(check_up):
-					snap_to_grid()
-					change_direction_delay = 0
+					change_direction()
 				else:
 					state = STATE.WALK_UP
 					move(direction)

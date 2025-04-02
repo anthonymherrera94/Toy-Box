@@ -23,6 +23,7 @@ var toe: PackedScene
 var fire_bubble: PackedScene
 var jack_in_the_box: PackedScene
 var xob: PackedScene
+var syrup: PackedScene
 
 var is_balloon_spawned := false
 var is_treat_spawned := false
@@ -166,6 +167,12 @@ func spawn_xob() -> void:
 	main.get_parent().add_child.call_deferred(obj)
 	
 	objects_holder.xob = obj
+
+
+func spawn_syrup() -> void:
+	var obj: Syrup = syrup.instantiate()
+	obj.position = pick_random_pos()
+	main.get_parent().add_child.call_deferred(obj)
 
 
 func pick_random_pos() -> Vector2:

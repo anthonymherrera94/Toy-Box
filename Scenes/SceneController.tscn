@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/SceneController/SceneController.gd" id="1_bl78f"]
 [ext_resource type="Script" uid="uid://cp7jmo8ysfx23" path="res://Scripts/SceneController/Spawning.gd" id="2_dyqkd"]
 [ext_resource type="Script" uid="uid://bwfu4y4s2gxwr" path="res://Scripts/SceneController/ObjectsHolder.gd" id="3_ulxep"]
-[ext_resource type="Script" uid="uid://c8uaedkpjllrx" path="res://Scripts/SceneController/GameUIController.gd" id="4_cbh47"]
+[ext_resource type="Script" uid="uid://c8uaedkpjllrx" path="res://Scripts/SceneController/GameStats.gd" id="4_cbh47"]
 
 [node name="SceneController" type="Node" node_paths=PackedStringArray("spawning", "objects_holder", "game_stats")]
 script = ExtResource("1_bl78f")

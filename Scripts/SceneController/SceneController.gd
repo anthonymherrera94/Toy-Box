@@ -55,7 +55,6 @@ func _ready() -> void:
 			i.map_offset = map_offset
 			i.change_pos.connect(_on_aoy_change_pos)
 			i.earn_score.connect(_on_earn_score)
-			i.open_toychest.connect(_on_open_toy_chest)
 			i.power_up_picked.connect(_on_power_up_picked)
 			i.lose_live.connect(game_stats._on_lose_live)
 			i.shoot_fire_bubble.connect(_on_shoot_fire_bubble)
@@ -101,9 +100,6 @@ func _on_aoy_change_pos(pos: Vector2) -> void:
 
 func _on_earn_score(_score: int) -> void:
 	game_stats.add_score(_score)
-
-func _on_open_toy_chest() -> void:
-	objects_holder.toy_chest.open()
 
 func _on_power_up_picked() -> void:
 	game_stats.power_up_score = 400
@@ -181,8 +177,8 @@ func _on_key_picked() -> void:
 
 func _on_toy_dropped() -> void:
 	game_stats.add_score(100)
-	objects_holder.toy_chest.close()
 	if game_stats.toys_left > 1:
 		game_stats.toys_left -= 1
 	else:
+		objects_holder.toy_chest.close()
 		spawning.spawn_key()

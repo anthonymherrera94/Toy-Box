@@ -32,8 +32,8 @@ anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lievx")
-animation = &"Close"
-autoplay = "Close"
+animation = &"Open"
+autoplay = "Open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eq23h")

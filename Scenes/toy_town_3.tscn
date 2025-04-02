@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://61u0gpkf3fep"]
+[gd_scene load_steps=13 format=4 uid="uid://61u0gpkf3fep"]
 
 [ext_resource type="Texture2D" uid="uid://cyk1v8s66uyy7" path="res://Sprites/Levels/Levels/Toy Town 3.PNG" id="1_0g60s"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_rd7ld"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_7bv17"]
 [ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="6_jb0gf"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_n4vmy"]
+[ext_resource type="PackedScene" uid="uid://cesyymgoge144" path="res://Scenes/hazards/ball.tscn" id="9_x5q5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywx8b"]
 
@@ -193,5 +194,8 @@ position = Vector2(96, 128)
 
 [node name="ToyChest" parent="." instance=ExtResource("5_63t6c")]
 position = Vector2(0, 16)
+
+[node name="Ball" parent="." instance=ExtResource("9_x5q5l")]
+position = Vector2(0, -128)
 
 [node name="GameUI" parent="." instance=ExtResource("6_7bv17")]
