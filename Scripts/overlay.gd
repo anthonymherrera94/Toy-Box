@@ -20,6 +20,10 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export var jack_in_the_box: PackedScene
 @export var xob: PackedScene
 @export var syrup: PackedScene
+@export var bomb: PackedScene
+@export var explosion: PackedScene
+@export var demon: PackedScene
+@export var fireball: PackedScene
 @export var fade: PackedScene
 @export var menu: PackedScene
 @export var first_level: PackedScene
@@ -119,6 +123,11 @@ func start_scene(_scene: PackedScene) -> void:
 	scene_controller.spawning.jack_in_the_box = jack_in_the_box
 	scene_controller.spawning.xob = xob
 	scene_controller.spawning.syrup = syrup
+	scene_controller.spawning.bomb = bomb
+	scene_controller.spawning.explosion = explosion
+	scene_controller.spawning.demon = demon
+	scene_controller.spawning.fireball = fireball
+	
 	scene_controller.treats_picked_delay = treats_picked_delay
 	scene_controller.ballon_pop_delay = balloon_pop_delay
 	scene_controller.bonus_round_timer = bonus_round_timer

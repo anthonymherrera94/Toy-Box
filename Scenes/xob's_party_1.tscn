@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://cyyfcahagbk5d"]
+[gd_scene load_steps=15 format=4 uid="uid://cyyfcahagbk5d"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_48scg"]
 [ext_resource type="Texture2D" uid="uid://ds34ppuj7v2kt" path="res://Sprites/Levels/Levels/Xobs Party 1.PNG" id="1_bbdh6"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_e7h4n"]
+[ext_resource type="PackedScene" uid="uid://c5i5kmfru0umv" path="res://Scenes/xob's_party_2.tscn" id="2_tcxbn"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_lg6ob"]
+[ext_resource type="PackedScene" uid="uid://feur5nkwhamg" path="res://Scenes/SpawningControllers/SpawningDemonController.tscn" id="3_mhw4l"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_qqsj3"]
 [ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="6_l4dnu"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_yt66m"]
@@ -19,6 +21,9 @@
 
 [node name="SceneController" parent="." instance=ExtResource("1_48scg")]
 map_size = Rect2i(-7, -11, 5, 9)
+next_scene = ExtResource("2_tcxbn")
+
+[node name="SpawningDemonController" parent="SceneController" instance=ExtResource("3_mhw4l")]
 
 [node name="XobsParty1" type="Sprite2D" parent="."]
 texture = ExtResource("1_bbdh6")

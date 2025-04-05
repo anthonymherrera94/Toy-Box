@@ -22,5 +22,11 @@ func _ready() -> void:
 			anim.play("Line")
 
 
+func _on_body_entered(body: Node2D) -> void:
+	if body is Aoy:
+		if not body.is_invincibility:
+			body.hit()
+
+
 func _on_timer_timeout() -> void:
 	queue_free()

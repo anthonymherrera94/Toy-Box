@@ -16,7 +16,8 @@ func _physics_process(delta):
 func move():
 	input = global_position.direction_to(target_pos)
 	
-	translate(input * move_speed / 100)
+	if global_position.distance_to(target_pos) > 1.0:
+		translate(input * move_speed / 100)
 
 func set_targer_pos(pos: Vector2):
 	target_pos = pos
@@ -30,4 +31,5 @@ func animate():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Aoy:
-		body.lose()
+		if not body.is_invincibility:
+			body.hit()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://bhwrna88yqap4"]
+[gd_scene load_steps=13 format=4 uid="uid://bhwrna88yqap4"]
 
 [ext_resource type="Texture2D" uid="uid://cv01par4td4j" path="res://Sprites/Levels/Levels/Rainbow Heaven 1.png" id="1_2niem"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_ktnmg"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_crnkl"]
+[ext_resource type="PackedScene" uid="uid://6qi5fr1qtsth" path="res://Scenes/rainbow_heaven_2.tscn" id="2_d48fq"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_034b0"]
 [ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="5_a04kr"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="5_o2vd5"]
@@ -18,6 +19,7 @@
 
 [node name="SceneController" parent="." instance=ExtResource("1_ktnmg")]
 map_size = Rect2i(-7, -8, 5, 5)
+next_scene = ExtResource("2_d48fq")
 
 [node name="RainbowHeaven1" type="Sprite2D" parent="."]
 position = Vector2(0, 8)

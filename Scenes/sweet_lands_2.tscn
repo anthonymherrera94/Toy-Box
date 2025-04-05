@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://dmv1m23maf3ou"]
+[gd_scene load_steps=15 format=4 uid="uid://dmv1m23maf3ou"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_3cjd0"]
 [ext_resource type="Texture2D" uid="uid://c5p6hfb5gatys" path="res://Sprites/Levels/Levels/Sweet Land 2.PNG" id="1_oxmmv"]
-[ext_resource type="PackedScene" uid="uid://cuioyxnvj0tlw" path="res://Scenes/SpawningSyrupController.tscn" id="2_6v5pj"]
+[ext_resource type="PackedScene" uid="uid://cuioyxnvj0tlw" path="res://Scenes/SpawningControllers/SpawningSyrupController.tscn" id="2_6v5pj"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_fe41t"]
+[ext_resource type="PackedScene" uid="uid://baemtipd8xqff" path="res://Scenes/sweet_lands_3.tscn" id="2_ykrcn"]
 [ext_resource type="PackedScene" uid="uid://cesyymgoge144" path="res://Scenes/hazards/ball.tscn" id="3_6g2nf"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_s5eb7"]
 [ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="5_1r6g5"]
@@ -20,6 +21,7 @@
 
 [node name="SceneController" parent="." instance=ExtResource("1_3cjd0")]
 map_size = Rect2i(-7, -8, 5, 5)
+next_scene = ExtResource("2_ykrcn")
 
 [node name="SpawningSyrupController" parent="SceneController" instance=ExtResource("2_6v5pj")]
 

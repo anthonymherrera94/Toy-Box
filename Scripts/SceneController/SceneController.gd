@@ -150,12 +150,20 @@ func _on_balloon_popped(type: Balloons.TYPE) -> void:
 func _on_gemstone_picked() -> void:
 	game_stats.add_score(300)
 
-func _on_card_picked() -> void:
-	if not spawning.is_balloon_spawned:
-		spawning.spawn_balloon()
-		spawning.is_balloon_spawned = true
-	else:
-		spawning.spawn_power_up()
+func _on_card_picked(object_into: Cards.ObjectsInto, pos: Vector2) -> void:
+	match object_into:
+		Cards.ObjectsInto.Ballooon:
+			spawning.spawn_balloon()
+		Cards.ObjectsInto.BubbleGun:
+			spawning.spawn_power_up(PowerUp.TYPE.BubbleGun)
+		Cards.ObjectsInto.JackInTheBox:
+			spawning.spawn_power_up(PowerUp.TYPE.JackInTheBox)
+		Cards.ObjectsInto.RollerSkate:
+			spawning.spawn_power_up(PowerUp.TYPE.RollerSkate)
+		Cards.ObjectsInto.ToyHammer:
+			spawning.spawn_power_up(PowerUp.TYPE.ToyHammer)
+		Cards.ObjectsInto.Bomb:
+			spawning.spawn_bomb(pos)
 
 func _on_treat_picked() -> void:
 	match game_stats.current_treat:
@@ -182,3 +190,11 @@ func _on_toy_dropped() -> void:
 	else:
 		objects_holder.toy_chest.close()
 		spawning.spawn_key()
+
+
+func _on_bomb_explode(pos: Vector2) -> void:
+	spawning.spawn_explosion(pos)
+
+
+func _on_demon_split_fireball(pos: Vector2) -> void:
+	spawning.spawn_fireball(pos)

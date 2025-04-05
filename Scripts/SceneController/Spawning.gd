@@ -24,6 +24,10 @@ var fire_bubble: PackedScene
 var jack_in_the_box: PackedScene
 var xob: PackedScene
 var syrup: PackedScene
+var bomb: PackedScene
+var explosion: PackedScene
+var demon: PackedScene
+var fireball: PackedScene
 
 var is_balloon_spawned := false
 var is_treat_spawned := false
@@ -38,6 +42,17 @@ func spawn_toy(texture: Texture2D) -> void:
 
 func spawn_card() -> void:
 	var obj: Cards = card.instantiate()
+	
+	var object_into: Cards.ObjectsInto
+	if is_balloon_spawned == false:
+		object_into = Cards.ObjectsInto.Ballooon
+		is_balloon_spawned = true
+	else:
+		object_into = randi() % Cards.ObjectsInto.size()
+		while object_into == Cards.ObjectsInto.Ballooon:
+			object_into = randi() % Cards.ObjectsInto.size()
+	
+	obj.object_into = object_into
 	obj.picked.connect(main._on_card_picked)
 	obj.position = pick_random_pos()
 	main.get_parent().add_child.call_deferred.call_deferred(obj)
@@ -74,9 +89,9 @@ func spawn_key() -> void:
 	obj.position = pick_random_pos()
 	main.get_parent().add_child.call_deferred(obj)
 
-func spawn_power_up() -> void:
+func spawn_power_up(type: PowerUp.TYPE) -> void:
 	var obj: PowerUp = power_up.instantiate()
-	obj.power_up_type = randi() % PowerUp.TYPE.size()
+	obj.power_up_type = type
 	obj.position = pick_random_pos()
 	main.get_parent().add_child.call_deferred(obj)
 
@@ -172,6 +187,47 @@ func spawn_xob() -> void:
 func spawn_syrup() -> void:
 	var obj: Syrup = syrup.instantiate()
 	obj.position = pick_random_pos()
+	main.get_parent().add_child.call_deferred(obj)
+
+
+func spawn_bomb(pos: Vector2) -> void:
+	var obj: Bomb = bomb.instantiate()
+	obj.position = pos
+	obj.explode.connect(main._on_bomb_explode)
+	main.get_parent().add_child.call_deferred(obj)
+
+
+func spawn_explosion(pos: Vector2) -> void:
+	var obj: Explosion = explosion.instantiate()
+	obj.type = Explosion.TYPE.Cross
+	obj.position = pos
+	main.get_parent().add_child.call_deferred(obj)
+	
+	spawn_explosion_by_side(pos, Vector2i.LEFT, Explosion.TYPE.Horizontal)
+	spawn_explosion_by_side(pos, Vector2i.RIGHT, Explosion.TYPE.Horizontal)
+	spawn_explosion_by_side(pos, Vector2i.UP, Explosion.TYPE.Vertical)
+	spawn_explosion_by_side(pos, Vector2i.DOWN, Explosion.TYPE.Vertical)
+
+func spawn_explosion_by_side(start_pos: Vector2i, side: Vector2i, type: Explosion.TYPE) -> void:
+	var side_ := start_pos / 16 + side
+	while main.tiles.get_cell_atlas_coords(side_ - Vector2i.ONE) == Vector2i(1, 0):
+		var obj_: Explosion = explosion.instantiate()
+		obj_.type = type
+		obj_.position = side_ * 16
+		main.get_parent().add_child.call_deferred(obj_)
+		
+		side_ += side
+
+
+func spawn_demon() -> void:
+	var obj: Demon = demon.instantiate()
+	obj.position = pick_random_pos()
+	obj.split_fireball.connect(main._on_demon_split_fireball)
+	main.get_parent().add_child.call_deferred(obj)
+
+func spawn_fireball(pos: Vector2) -> void:
+	var obj: Fireball = fireball.instantiate()
+	obj.position = pos
 	main.get_parent().add_child.call_deferred(obj)
 
 

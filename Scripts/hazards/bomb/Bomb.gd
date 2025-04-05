@@ -7,7 +7,7 @@ signal explode
 
 func _on_animation_finished() -> void:
 	if anim.animation == "prepare":
-		explode.emit()
+		explode.emit(global_position)
 		queue_free()
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://bte1wsjuwyj0t"]
+[gd_scene load_steps=14 format=4 uid="uid://bte1wsjuwyj0t"]
 
 [ext_resource type="Texture2D" uid="uid://bqx06whct2ovy" path="res://Sprites/Levels/Levels/Arcade Zone 3.png" id="1_iptgk"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_rria7"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_bhvgc"]
+[ext_resource type="PackedScene" uid="uid://cyyfcahagbk5d" path="res://Scenes/xob's_party_1.tscn" id="2_f0g08"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_kxv0l"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_xbht0"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_5canq"]
@@ -19,6 +20,7 @@
 
 [node name="SceneController" parent="." instance=ExtResource("1_rria7")]
 map_size = Rect2i(-11, -11, 9, 7)
+next_scene = ExtResource("2_f0g08")
 
 [node name="ArcadeZone3" type="Sprite2D" parent="."]
 texture = ExtResource("1_iptgk")
