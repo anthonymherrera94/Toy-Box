@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dpqtsjc5umcq2"]
+[gd_scene load_steps=25 format=3 uid="uid://dpqtsjc5umcq2"]
 
 [ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
 [ext_resource type="Script" uid="uid://cd8nxalfxkcr" path="res://Scripts/overlay.gd" id="1_btq4h"]
@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://bxwayuqkf5rsc" path="res://Scenes/hazards/syrup.tscn" id="16_td2b5"]
 [ext_resource type="PackedScene" uid="uid://crw14xyu2l4se" path="res://Scenes/hazards/bomb/bomb.tscn" id="17_atlcp"]
 [ext_resource type="PackedScene" uid="uid://b4l6nu4xrhij7" path="res://Scenes/hazards/bomb/explosion.tscn" id="18_u8l87"]
+[ext_resource type="PackedScene" uid="uid://hv6m32onw6s5" path="res://Scenes/hazards/demon/demon.tscn" id="19_u8l87"]
+[ext_resource type="PackedScene" uid="uid://ccj8ln6lfi8x" path="res://Scenes/hazards/demon/fireball.tscn" id="20_o3wyo"]
 
 [node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "treats_spawn_timer", "treats_picked_delay", "balloon_pop_delay", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick")]
 process_mode = 3
@@ -49,6 +51,8 @@ xob = ExtResource("8_35kfe")
 syrup = ExtResource("16_td2b5")
 bomb = ExtResource("17_atlcp")
 explosion = ExtResource("18_u8l87")
+demon = ExtResource("19_u8l87")
+fireball = ExtResource("20_o3wyo")
 fade = ExtResource("4_5g481")
 menu = ExtResource("1_47hrg")
 first_level = ExtResource("5_nm1dm")
