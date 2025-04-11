@@ -1,6 +1,4 @@
-extends Resource
-
-class_name PowerUp
-var power_up_name:String
-var icon:Sprite2D
-
+#class_name PowerUp extends Resource
+#
+#var power_up_name:String
+#var icon:Sprite2D

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://crw14xyu2l4se"]
+
+[ext_resource type="Script" uid="uid://067pgfsef5ov" path="res://Scripts/hazards/bomb/Bomb.gd" id="1_v80ha"]
+[ext_resource type="Texture2D" uid="uid://cweh117jlhais" path="res://Sprites/Levels/Hazards/Bomb 1.PNG" id="2_nng57"]
+[ext_resource type="Texture2D" uid="uid://6xvdl1yrqdkv" path="res://Sprites/Levels/Hazards/Bomb 2.PNG" id="3_bueg0"]
+[ext_resource type="Texture2D" uid="uid://b5kkhy0drrhas" path="res://Sprites/Levels/Hazards/Bomb 3.PNG" id="4_pj2t6"]
+[ext_resource type="Texture2D" uid="uid://dulq2ufkew16t" path="res://Sprites/Levels/Hazards/Bomb 4.PNG" id="5_87rss"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18hro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nng57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bueg0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nng57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bueg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pj2t6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_87rss")
+}],
+"loop": false,
+"name": &"prepare",
+"speed": 5.0
+}]
+
+[node name="Bomb" type="Node2D" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_v80ha")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_18hro")
+animation = &"prepare"
+autoplay = "idle"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

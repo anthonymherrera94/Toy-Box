@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://mf8qe4kptclh"]
+[gd_scene load_steps=6 format=3 uid="uid://mf8qe4kptclh"]
 
+[ext_resource type="Script" uid="uid://b8nvgriyeff4n" path="res://Scripts/items/ToyChest.gd" id="1_b3bin"]
 [ext_resource type="Texture2D" uid="uid://c2ubr81snqqku" path="res://Sprites/Items/Important items/Toy Chest Closed.png" id="1_ek20b"]
 [ext_resource type="Texture2D" uid="uid://45govg3ppyck" path="res://Sprites/Items/Important items/Toy Chest.png" id="2_t5mje"]
 
@@ -25,11 +26,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq23h"]
 size = Vector2(46, 14)
 
-[node name="ToyChest" type="Area2D"]
+[node name="ToyChest" type="StaticBody2D" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_b3bin")
+anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lievx")
 animation = &"Open"
+autoplay = "Open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eq23h")
+
+[node name="DropArea" type="Area2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropArea"]
+shape = SubResource("RectangleShape2D_eq23h")
+
+[connection signal="body_entered" from="DropArea" to="." method="_on_drop_area_entered"]

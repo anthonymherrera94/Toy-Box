@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://rvet8gef5xre"]
+
+[ext_resource type="Texture2D" uid="uid://dvyuj1j0t0rq2" path="res://Sprites/Characters/TicTacToe/Enemy Respawn 1.png" id="1_bwp01"]
+[ext_resource type="Texture2D" uid="uid://tlabkasanbep" path="res://Sprites/Characters/TicTacToe/Enemy Respawn 2.png" id="2_w61tw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tenai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bwp01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w61tw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyRespawn" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_tenai")
+autoplay = "default"

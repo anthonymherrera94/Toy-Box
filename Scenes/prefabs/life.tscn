@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://83j1bck4eopc"]
+
+[ext_resource type="Texture2D" uid="uid://sxlqj6g6br7b" path="res://Sprites/Characters/Aoy/Aoy.png" id="1_n6due"]
+
+[node name="YOLO" type="TextureRect"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_n6due")
+expand_mode = 1
+stretch_mode = 4

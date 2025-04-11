@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://nht053k5uafh"]
+
+[ext_resource type="Script" uid="uid://dbwwmoy62kkx" path="res://Scripts/items/JackInTheBox.gd" id="1_2je2i"]
+[ext_resource type="Texture2D" uid="uid://coe754ae22sgw" path="res://Sprites/Items/Power Ups/Jack-in-the-box 1.png" id="2_y131o"]
+[ext_resource type="Texture2D" uid="uid://ctj6743ihq58o" path="res://Sprites/Items/Power Ups/Jack-in-the-box 2.png" id="3_d5st4"]
+[ext_resource type="Texture2D" uid="uid://ljgh5bqeei8f" path="res://Sprites/Items/Power Ups/Jack-in-the-box 3.png" id="4_6n6yn"]
+[ext_resource type="Texture2D" uid="uid://dbt1v6horqa6m" path="res://Sprites/Items/Power Ups/Jack-in-the-box 4.png" id="5_816c4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7vjk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y131o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d5st4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6n6yn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_816c4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ve852"]
+radius = 4.0
+
+[node name="JackInTheBox" type="Area2D"]
+script = ExtResource("1_2je2i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m7vjk")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ve852")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

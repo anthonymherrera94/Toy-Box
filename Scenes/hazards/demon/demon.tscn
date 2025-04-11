@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://hv6m32onw6s5"]
+
+[ext_resource type="Script" uid="uid://pywct4iwpg3w" path="res://Scripts/hazards/demon/demon.gd" id="1_eyvtl"]
+[ext_resource type="Texture2D" uid="uid://ddf13axjapske" path="res://Sprites/Levels/Hazards/Demon Head.PNG" id="2_se3pq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrsto"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_se3pq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fngun"]
+radius = 8.0
+
+[node name="Demon" type="Area2D"]
+script = ExtResource("1_eyvtl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xrsto")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fngun")
+
+[node name="SplitFireball" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="SelfDestruction" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SplitFireball" to="." method="_on_split_fireball_timeout"]
+[connection signal="timeout" from="SelfDestruction" to="." method="_on_self_destruction_timeout"]

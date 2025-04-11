@@ -1,0 +1,114 @@
+[gd_scene load_steps=25 format=3 uid="uid://dpqtsjc5umcq2"]
+
+[ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
+[ext_resource type="Script" uid="uid://cd8nxalfxkcr" path="res://Scripts/overlay.gd" id="1_btq4h"]
+[ext_resource type="Texture2D" uid="uid://bk6b1qfg0d71a" path="res://Overlay.png" id="1_vdnv0"]
+[ext_resource type="PackedScene" uid="uid://bynji6lrovmbq" path="res://Scenes/items/balloons.tscn" id="2_vcrxe"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="3_bb1nd"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="4_4sp8s"]
+[ext_resource type="PackedScene" uid="uid://k0j7ujbqyukg" path="res://Scenes/fade.tscn" id="4_5g481"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="4_30y6x"]
+[ext_resource type="PackedScene" uid="uid://bi41guy5y3fyx" path="res://Scenes/items/key.tscn" id="5_6qwki"]
+[ext_resource type="PackedScene" uid="uid://cua72rre142t6" path="res://Scenes/toy_town_1.tscn" id="5_nm1dm"]
+[ext_resource type="PackedScene" uid="uid://310dq2pscnnp" path="res://Scenes/items/power_up.tscn" id="7_oj44a"]
+[ext_resource type="PackedScene" uid="uid://bckmmpq6uqfdm" path="res://Scenes/items/gemstone.tscn" id="8_7unab"]
+[ext_resource type="PackedScene" uid="uid://quligbsidjgx" path="res://Scenes/characters/Xob.tscn" id="8_35kfe"]
+[ext_resource type="PackedScene" uid="uid://rvet8gef5xre" path="res://Scenes/animations/enemy_respawn.tscn" id="9_5j2rb"]
+[ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="9_uh11q"]
+[ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="10_4unoi"]
+[ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="11_rl0wf"]
+[ext_resource type="PackedScene" uid="uid://djx8jf6sxq80q" path="res://Scenes/items/fire_bubble.tscn" id="13_4hnf8"]
+[ext_resource type="PackedScene" uid="uid://nht053k5uafh" path="res://Scenes/items/jack_in_the_box.tscn" id="14_qtn6b"]
+[ext_resource type="PackedScene" uid="uid://bxwayuqkf5rsc" path="res://Scenes/hazards/syrup.tscn" id="16_td2b5"]
+[ext_resource type="PackedScene" uid="uid://crw14xyu2l4se" path="res://Scenes/hazards/bomb/bomb.tscn" id="17_atlcp"]
+[ext_resource type="PackedScene" uid="uid://b4l6nu4xrhij7" path="res://Scenes/hazards/bomb/explosion.tscn" id="18_u8l87"]
+[ext_resource type="PackedScene" uid="uid://hv6m32onw6s5" path="res://Scenes/hazards/demon/demon.tscn" id="19_u8l87"]
+[ext_resource type="PackedScene" uid="uid://ccj8ln6lfi8x" path="res://Scenes/hazards/demon/fireball.tscn" id="20_o3wyo"]
+
+[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "treats_spawn_timer", "treats_picked_delay", "balloon_pop_delay", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_btq4h")
+balloon = ExtResource("2_vcrxe")
+treat = ExtResource("3_bb1nd")
+card = ExtResource("4_30y6x")
+toy = ExtResource("4_4sp8s")
+key = ExtResource("5_6qwki")
+power_up = ExtResource("7_oj44a")
+gemstone = ExtResource("8_7unab")
+enemy_respawn_anim = ExtResource("9_5j2rb")
+tic = ExtResource("9_uh11q")
+tac = ExtResource("10_4unoi")
+toe = ExtResource("11_rl0wf")
+fire_bubble = ExtResource("13_4hnf8")
+jack_in_the_box = ExtResource("14_qtn6b")
+xob = ExtResource("8_35kfe")
+syrup = ExtResource("16_td2b5")
+bomb = ExtResource("17_atlcp")
+explosion = ExtResource("18_u8l87")
+demon = ExtResource("19_u8l87")
+fireball = ExtResource("20_o3wyo")
+fade = ExtResource("4_5g481")
+menu = ExtResource("1_47hrg")
+first_level = ExtResource("5_nm1dm")
+viewport = NodePath("SubViewportContainer/SubViewport")
+treats_spawn_timer = NodePath("TreatsSpawnDelay")
+treats_picked_delay = NodePath("TreatsPickedDelay")
+balloon_pop_delay = NodePath("BalloonPopDelay")
+bonus_round_timer = NodePath("BonusRound")
+respawn_delay_timer = NodePath("RespawnDelay")
+bonus_time_tick = NodePath("BonusTimeTick")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 48.0
+offset_right = 1344.0
+offset_bottom = 1024.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(768, 976)
+size_2d_override = Vector2i(224, 288)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vdnv0")
+
+[node name="TreatsSpawnDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="TreatsPickedDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="BalloonPopDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="BonusRound" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="RespawnDelay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="BonusTimeTick" type="Timer" parent="."]
+wait_time = 0.1

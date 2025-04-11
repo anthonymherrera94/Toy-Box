@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxwayuqkf5rsc"]
+
+[ext_resource type="Script" uid="uid://dmgycvl52jrmt" path="res://Scripts/hazards/syrup.gd" id="1_62jgy"]
+[ext_resource type="Texture2D" uid="uid://cprqjkfx21dfi" path="res://Sprites/Levels/Hazards/Syrup 1.PNG" id="1_pa83c"]
+[ext_resource type="Texture2D" uid="uid://dqgumu3iggdum" path="res://Sprites/Levels/Hazards/Syrup 2.PNG" id="2_rug28"]
+[ext_resource type="Texture2D" uid="uid://cddj1dbn8ygc1" path="res://Sprites/Levels/Hazards/Syrup 3.PNG" id="3_ljaqj"]
+[ext_resource type="Texture2D" uid="uid://bkestn8tfj48l" path="res://Sprites/Levels/Hazards/Syrup Puddle 1.PNG" id="4_lv4sn"]
+[ext_resource type="Texture2D" uid="uid://boo6wro5lv8n8" path="res://Sprites/Levels/Hazards/Syrup Puddle 2.PNG" id="5_62jgy"]
+[ext_resource type="Texture2D" uid="uid://br7g03ht8tacs" path="res://Sprites/Levels/Hazards/Syrup Puddle 3.PNG" id="6_3ffev"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1tykk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_lv4sn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_62jgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3ffev")
+}],
+"loop": false,
+"name": &"Puddle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k3yeh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pa83c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rug28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ljaqj")
+}],
+"loop": false,
+"name": &"Fall",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lv4sn"]
+radius = 8.0
+
+[node name="Syrup" type="Area2D" node_paths=PackedStringArray("fall_anim", "puddle_anim")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_62jgy")
+fall_anim = NodePath("Fall")
+puddle_anim = NodePath("Puddle")
+
+[node name="Puddle" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_1tykk")
+animation = &"Puddle"
+frame = 2
+frame_progress = 1.0
+
+[node name="Fall" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k3yeh")
+animation = &"Fall"
+autoplay = "Fall"
+frame = 2
+frame_progress = 1.0
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lv4sn")
+
+[node name="SelfDestruction" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Fall" to="." method="_on_fall_animation_finished"]
+[connection signal="timeout" from="SelfDestruction" to="." method="_on_self_destruction_timeout"]
