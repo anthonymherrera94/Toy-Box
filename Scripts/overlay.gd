@@ -54,7 +54,7 @@ func _ready() -> void:
 	randomize()
 	return_to_menu()
 	
-	treats_spawn_timer.timeout.connect(func(): level.get_child(0).spawning.spawn_treat())
+	
 	bonus_round_timer.timeout.connect(_on_bonus_round_time_end)
 	bonus_time_tick.timeout.connect(_on_bonus_time_tick)
 
@@ -145,7 +145,7 @@ func start_scene(_scene: PackedScene) -> void:
 	
 	for i in popped_balloons:
 		scene_controller.game_stats.set_popped_balloon(i)
-	
+	treats_spawn_timer.timeout.connect(func(): level.get_child(0).spawning.spawn_treat())
 	treats_spawn_timer.start()
 	bonus_time_tick.start()
 

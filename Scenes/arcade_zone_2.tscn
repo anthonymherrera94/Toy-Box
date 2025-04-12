@@ -1,16 +1,25 @@
-[gd_scene load_steps=14 format=4 uid="uid://ixjpv3ga5bky"]
+[gd_scene load_steps=23 format=4 uid="uid://ixjpv3ga5bky"]
 
 [ext_resource type="Texture2D" uid="uid://bro1xfobtfj85" path="res://Sprites/Levels/Levels/Arcade Zone 2.png" id="1_6t5rs"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_p4or5"]
+[ext_resource type="Texture2D" uid="uid://xf2lwkyef6ar" path="res://Sprites/Items/Toys/Teddy Bear.png" id="2_g4kmr"]
 [ext_resource type="PackedScene" uid="uid://bte1wsjuwyj0t" path="res://Scenes/arcade_zone_3.tscn" id="2_tj34c"]
+[ext_resource type="Texture2D" uid="uid://c1qmw4rrqxsmt" path="res://Sprites/Items/Toys/Sports Ball.png" id="3_4h7lq"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="3_jwhbg"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_x7nvk"]
+[ext_resource type="Texture2D" uid="uid://2uy36thrqnut" path="res://Sprites/Items/Toys/Rubber Duck.png" id="4_wvpsk"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_sp1qw"]
+[ext_resource type="Texture2D" uid="uid://xc4mwt32umjv" path="res://Sprites/Items/Toys/Ring Stack.png" id="5_yxbdy"]
+[ext_resource type="Texture2D" uid="uid://dhtm8w6pnoc35" path="res://Sprites/Items/Toys/Roly Poly Clown.png" id="6_73usr"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_rto64"]
 [ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="6_xxcai"]
+[ext_resource type="Texture2D" uid="uid://cr55q6xbdrvv1" path="res://Sprites/Items/Toys/Doll.png" id="7_c5uhy"]
 [ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="7_megr8"]
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="7_tc6i4"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="8_1d3q5"]
+[ext_resource type="Texture2D" uid="uid://durdochdwpoe1" path="res://Sprites/Items/Toys/Yo-Yo.png" id="8_2iby6"]
+[ext_resource type="Texture2D" uid="uid://bcsvm1ce5p3mg" path="res://Sprites/Items/Toys/Toy Boat.png" id="9_tugkg"]
+[ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="12_lil0g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twft1"]
 
@@ -20,6 +29,8 @@
 
 [node name="SceneController" parent="." instance=ExtResource("1_p4or5")]
 map_size = Rect2i(-7, -14, 5, 9)
+toys_textures = Array[Texture2D]([ExtResource("2_g4kmr"), ExtResource("3_4h7lq"), ExtResource("4_wvpsk"), ExtResource("5_yxbdy"), ExtResource("6_73usr"), ExtResource("7_c5uhy"), ExtResource("8_2iby6"), ExtResource("9_tugkg")])
+cards_amount = 6
 next_scene = ExtResource("2_tj34c")
 
 [node name="ArcadeZone2" type="Sprite2D" parent="."]
@@ -315,3 +326,6 @@ position = Vector2(96, -176)
 [node name="ToyChest" parent="." instance=ExtResource("6_xxcai")]
 
 [node name="GameUI" parent="." instance=ExtResource("7_tc6i4")]
+
+[node name="Door" parent="." instance=ExtResource("12_lil0g")]
+position = Vector2(0, 48)
