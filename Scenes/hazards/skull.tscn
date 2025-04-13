@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://dknlan704yn2o"]
+
+[ext_resource type="Texture2D" uid="uid://bqxv0vvk1xwmk" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 3.PNG" id="1_kqfcp"]
+[ext_resource type="Texture2D" uid="uid://0psoqutqwoj0" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 6.PNG" id="2_f81xi"]
+[ext_resource type="Texture2D" uid="uid://ibsfonkopjy1" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 1.PNG" id="3_22mnp"]
+[ext_resource type="Texture2D" uid="uid://djyh1pska0cpa" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 7.PNG" id="3_ntxrk"]
+[ext_resource type="Texture2D" uid="uid://5d26c3m60bwf" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 2.PNG" id="4_ntxrk"]
+[ext_resource type="Texture2D" uid="uid://bdbd3m7w3nrrk" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 8.PNG" id="4_tm0xr"]
+[ext_resource type="Texture2D" uid="uid://cck7x7pfgaye7" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 4.PNG" id="5_tm0xr"]
+[ext_resource type="Texture2D" uid="uid://bocuca1je2fm3" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 5.PNG" id="6_fdtl6"]
+[ext_resource type="Script" uid="uid://bxre8v22kuenk" path="res://Scripts/hazards/skull.gd" id="9_ntxrk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82hf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kqfcp")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f81xi")
+}],
+"loop": true,
+"name": &"135",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ntxrk")
+}],
+"loop": true,
+"name": &"180",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tm0xr")
+}],
+"loop": true,
+"name": &"225",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_22mnp")
+}],
+"loop": true,
+"name": &"270",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ntxrk")
+}],
+"loop": true,
+"name": &"315",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tm0xr")
+}],
+"loop": true,
+"name": &"45",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_fdtl6")
+}],
+"loop": true,
+"name": &"90",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntxrk"]
+size = Vector2(12, 12)
+
+[node name="Skull" type="StaticBody2D" node_paths=PackedStringArray("anim")]
+script = ExtResource("9_ntxrk")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_82hf4")
+animation = &"270"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ntxrk")

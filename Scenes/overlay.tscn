@@ -1,31 +1,47 @@
-[gd_scene load_steps=25 format=3 uid="uid://dpqtsjc5umcq2"]
+[gd_scene load_steps=41 format=3 uid="uid://dpqtsjc5umcq2"]
 
 [ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
 [ext_resource type="Script" uid="uid://cd8nxalfxkcr" path="res://Scripts/overlay.gd" id="1_btq4h"]
 [ext_resource type="Texture2D" uid="uid://bk6b1qfg0d71a" path="res://Overlay.png" id="1_vdnv0"]
 [ext_resource type="PackedScene" uid="uid://bynji6lrovmbq" path="res://Scenes/items/balloons.tscn" id="2_vcrxe"]
 [ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="3_bb1nd"]
+[ext_resource type="PackedScene" uid="uid://cr6hvixe2en31" path="res://Scenes/toy_town_2.tscn" id="3_gd3qc"]
 [ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="4_4sp8s"]
 [ext_resource type="PackedScene" uid="uid://k0j7ujbqyukg" path="res://Scenes/fade.tscn" id="4_5g481"]
 [ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="4_30y6x"]
+[ext_resource type="PackedScene" uid="uid://61u0gpkf3fep" path="res://Scenes/toy_town_3.tscn" id="4_nj4x6"]
+[ext_resource type="PackedScene" uid="uid://di6p0kpcaq675" path="res://Scenes/sweet_lands_1.tscn" id="5_0pcue"]
 [ext_resource type="PackedScene" uid="uid://bi41guy5y3fyx" path="res://Scenes/items/key.tscn" id="5_6qwki"]
 [ext_resource type="PackedScene" uid="uid://cua72rre142t6" path="res://Scenes/toy_town_1.tscn" id="5_nm1dm"]
+[ext_resource type="PackedScene" uid="uid://dmv1m23maf3ou" path="res://Scenes/sweet_lands_2.tscn" id="6_aw5go"]
 [ext_resource type="PackedScene" uid="uid://310dq2pscnnp" path="res://Scenes/items/power_up.tscn" id="7_oj44a"]
+[ext_resource type="PackedScene" uid="uid://baemtipd8xqff" path="res://Scenes/sweet_lands_3.tscn" id="7_s1mk2"]
 [ext_resource type="PackedScene" uid="uid://bckmmpq6uqfdm" path="res://Scenes/items/gemstone.tscn" id="8_7unab"]
 [ext_resource type="PackedScene" uid="uid://quligbsidjgx" path="res://Scenes/characters/Xob.tscn" id="8_35kfe"]
+[ext_resource type="PackedScene" uid="uid://bhwrna88yqap4" path="res://Scenes/rainbow_heaven_1.tscn" id="8_sjjwx"]
 [ext_resource type="PackedScene" uid="uid://rvet8gef5xre" path="res://Scenes/animations/enemy_respawn.tscn" id="9_5j2rb"]
+[ext_resource type="PackedScene" uid="uid://6qi5fr1qtsth" path="res://Scenes/rainbow_heaven_2.tscn" id="9_sfgtk"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="9_uh11q"]
 [ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="10_4unoi"]
+[ext_resource type="PackedScene" uid="uid://chlrt0kqt316h" path="res://Scenes/rainbow_heaven_3.tscn" id="10_t4le0"]
+[ext_resource type="PackedScene" uid="uid://5ps8mcd747s7" path="res://Scenes/arcade_zone_1.tscn" id="11_dqph6"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="11_rl0wf"]
+[ext_resource type="PackedScene" uid="uid://ixjpv3ga5bky" path="res://Scenes/arcade_zone_2.tscn" id="12_0qvvr"]
 [ext_resource type="PackedScene" uid="uid://djx8jf6sxq80q" path="res://Scenes/items/fire_bubble.tscn" id="13_4hnf8"]
+[ext_resource type="PackedScene" uid="uid://bte1wsjuwyj0t" path="res://Scenes/arcade_zone_3.tscn" id="13_8bj1s"]
+[ext_resource type="PackedScene" uid="uid://cyyfcahagbk5d" path="res://Scenes/xob's_party_1.tscn" id="14_av6hf"]
 [ext_resource type="PackedScene" uid="uid://nht053k5uafh" path="res://Scenes/items/jack_in_the_box.tscn" id="14_qtn6b"]
+[ext_resource type="PackedScene" uid="uid://c5i5kmfru0umv" path="res://Scenes/xob's_party_2.tscn" id="15_4tdmp"]
+[ext_resource type="PackedScene" uid="uid://dng84j1cl75d3" path="res://Scenes/xob's_party_3.tscn" id="16_rye8v"]
 [ext_resource type="PackedScene" uid="uid://bxwayuqkf5rsc" path="res://Scenes/hazards/syrup.tscn" id="16_td2b5"]
 [ext_resource type="PackedScene" uid="uid://crw14xyu2l4se" path="res://Scenes/hazards/bomb/bomb.tscn" id="17_atlcp"]
+[ext_resource type="PackedScene" uid="uid://bpjn0c6nhdfyi" path="res://Scenes/final_battle.tscn" id="17_snf4k"]
 [ext_resource type="PackedScene" uid="uid://b4l6nu4xrhij7" path="res://Scenes/hazards/bomb/explosion.tscn" id="18_u8l87"]
 [ext_resource type="PackedScene" uid="uid://hv6m32onw6s5" path="res://Scenes/hazards/demon/demon.tscn" id="19_u8l87"]
 [ext_resource type="PackedScene" uid="uid://ccj8ln6lfi8x" path="res://Scenes/hazards/demon/fireball.tscn" id="20_o3wyo"]
+[ext_resource type="PackedScene" uid="uid://d3aovfe8yhhyv" path="res://Scenes/cheat_console.tscn" id="25_o3wyo"]
 
-[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "treats_spawn_timer", "treats_picked_delay", "balloon_pop_delay", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick")]
+[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "cheat_console", "treats_spawn_timer", "treats_picked_delay", "balloon_pop_delay", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -34,6 +50,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_btq4h")
+levels_list = Array[PackedScene]([ExtResource("5_nm1dm"), ExtResource("3_gd3qc"), ExtResource("4_nj4x6"), ExtResource("5_0pcue"), ExtResource("6_aw5go"), ExtResource("7_s1mk2"), ExtResource("8_sjjwx"), ExtResource("9_sfgtk"), ExtResource("10_t4le0"), ExtResource("11_dqph6"), ExtResource("12_0qvvr"), ExtResource("13_8bj1s"), ExtResource("14_av6hf"), ExtResource("15_4tdmp"), ExtResource("16_rye8v"), ExtResource("17_snf4k")])
 balloon = ExtResource("2_vcrxe")
 treat = ExtResource("3_bb1nd")
 card = ExtResource("4_30y6x")
@@ -55,8 +72,8 @@ demon = ExtResource("19_u8l87")
 fireball = ExtResource("20_o3wyo")
 fade = ExtResource("4_5g481")
 menu = ExtResource("1_47hrg")
-first_level = ExtResource("5_nm1dm")
 viewport = NodePath("SubViewportContainer/SubViewport")
+cheat_console = NodePath("CheatConsole")
 treats_spawn_timer = NodePath("TreatsSpawnDelay")
 treats_picked_delay = NodePath("TreatsPickedDelay")
 balloon_pop_delay = NodePath("BalloonPopDelay")
@@ -112,3 +129,9 @@ one_shot = true
 
 [node name="BonusTimeTick" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="CheatConsole" parent="." instance=ExtResource("25_o3wyo")]
+visible = false
+layout_mode = 1
+
+[connection signal="change_level" from="CheatConsole" to="." method="_on_cheat_console_change_level"]

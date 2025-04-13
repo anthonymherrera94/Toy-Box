@@ -1,17 +1,24 @@
-[gd_scene load_steps=15 format=4 uid="uid://dmv1m23maf3ou"]
+[gd_scene load_steps=22 format=4 uid="uid://dmv1m23maf3ou"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_3cjd0"]
 [ext_resource type="Texture2D" uid="uid://c5p6hfb5gatys" path="res://Sprites/Levels/Levels/Sweet Land 2.PNG" id="1_oxmmv"]
 [ext_resource type="PackedScene" uid="uid://cuioyxnvj0tlw" path="res://Scenes/SpawningControllers/SpawningSyrupController.tscn" id="2_6v5pj"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_fe41t"]
+[ext_resource type="Texture2D" uid="uid://cr55q6xbdrvv1" path="res://Sprites/Items/Toys/Doll.png" id="2_yihod"]
 [ext_resource type="PackedScene" uid="uid://baemtipd8xqff" path="res://Scenes/sweet_lands_3.tscn" id="2_ykrcn"]
 [ext_resource type="PackedScene" uid="uid://cesyymgoge144" path="res://Scenes/hazards/ball.tscn" id="3_6g2nf"]
+[ext_resource type="Texture2D" uid="uid://dhtm8w6pnoc35" path="res://Sprites/Items/Toys/Roly Poly Clown.png" id="3_qh04r"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_s5eb7"]
+[ext_resource type="Texture2D" uid="uid://xf2lwkyef6ar" path="res://Sprites/Items/Toys/Teddy Bear.png" id="4_3iyt7"]
+[ext_resource type="Texture2D" uid="uid://b4lis51om3hln" path="res://Sprites/Items/Toys/Toy Dino.png" id="5_1jd6g"]
 [ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="5_1r6g5"]
 [ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="5_nq2m6"]
+[ext_resource type="Texture2D" uid="uid://yjfpg4drh07m" path="res://Sprites/Items/Toys/Toy Robot.png" id="6_5lyov"]
 [ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="6_cfgka"]
 [ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_fao7a"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_7g0uk"]
+[ext_resource type="Texture2D" uid="uid://2uy36thrqnut" path="res://Sprites/Items/Toys/Rubber Duck.png" id="7_nfs2l"]
+[ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="13_q7ybv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ee0j"]
 
@@ -21,12 +28,14 @@
 
 [node name="SceneController" parent="." instance=ExtResource("1_3cjd0")]
 map_size = Rect2i(-7, -8, 5, 5)
+toys_textures = Array[Texture2D]([ExtResource("2_yihod"), ExtResource("3_qh04r"), ExtResource("4_3iyt7"), ExtResource("5_1jd6g"), ExtResource("6_5lyov"), ExtResource("7_nfs2l")])
+cards_amount = 5
 next_scene = ExtResource("2_ykrcn")
 
 [node name="SpawningSyrupController" parent="SceneController" instance=ExtResource("2_6v5pj")]
 
 [node name="SweetLand2" type="Sprite2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, -8)
 texture = ExtResource("1_oxmmv")
 
 [node name="StaticBody2D" type="Node2D" parent="."]
@@ -147,28 +156,31 @@ scale = Vector2(0.4, 10.4)
 shape = SubResource("RectangleShape2D_tnyuf")
 
 [node name="Walls" type="TileMapLayer" parent="."]
-position = Vector2(8, 24)
+position = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAD4//f/AgAAAAAAAAD4//j/AgAAAAAAAAD4//n/AgAAAAAAAAD4//r/AgAAAAAAAAD4//v/AgAAAAAAAAD4//z/AgAAAAAAAAD4//3/AgAAAAAAAAD4//7/AgAAAAAAAAD4////AgAAAAAAAAD4/wAAAgAAAAAAAAD4/wEAAgAAAAAAAAD4/wIAAgAAAAAAAAD4/wMAAgAAAAAAAAD4/wQAAgAAAAAAAAD4/wUAAgAAAAAAAAD4/wYAAgAAAAAAAAD5/wYAAgAAAAAAAAD6/wYAAgAAAAAAAAD7/wYAAgAAAAAAAAD8/wYAAgAAAAAAAAD9/wYAAgAAAAAAAAD+/wYAAgAAAAAAAAD//wYAAgAAAAAAAAAAAAYAAgAAAAAAAAABAAYAAgAAAAAAAAACAAYAAgAAAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAFAAYAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAP//AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAPz/AgAAAAAAAAAGAPv/AgAAAAAAAAAGAPr/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAEAPf/AgAAAAAAAAADAPf/AgAAAAAAAAACAPf/AgAAAAAAAAABAPf/AgAAAAAAAAAAAPf/AgAAAAAAAAD///f/AgAAAAAAAAD+//f/AgAAAAAAAAD9//f/AgAAAAAAAAD8//f/AgAAAAAAAAD7//f/AgAAAAAAAAD6//f/AgAAAAAAAAD5//f/AgAAAAAAAAD6//n/AgAAAAAAAAD6//r/AgAAAAAAAAD6//v/AgAAAAAAAAD7//v/AgAAAAAAAAD7//r/AgAAAAAAAAD7//n/AgAAAAAAAAD9//n/AgAAAAAAAAD+//n/AgAAAAAAAAD///n/AgAAAAAAAAAAAPn/AgAAAAAAAAABAPn/AgAAAAAAAAADAPn/AgAAAAAAAAADAPr/AgAAAAAAAAADAPv/AgAAAAAAAAAEAPv/AgAAAAAAAAAEAPr/AgAAAAAAAAAEAPn/AgAAAAAAAAABAPv/AgAAAAAAAAAAAPv/AgAAAAAAAAD///v/AgAAAAAAAAD+//v/AgAAAAAAAAD9//v/AgAAAAAAAAD9//3/AgAAAAAAAAD+//3/AgAAAAAAAAAAAP3/AgAAAAAAAAABAP3/AgAAAAAAAAACAP3/AgAAAAAAAAAEAP3/AgAAAAAAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAADAAEAAgAAAAAAAAD7//3/AgAAAAAAAAD6//3/AgAAAAAAAAD6//7/AgAAAAAAAAD6////AgAAAAAAAAD6/wAAAgAAAAAAAAD6/wEAAgAAAAAAAAD8/wEAAgAAAAAAAAD9/wEAAgAAAAAAAAD+/wEAAgAAAAAAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAACAP//AgAAAAAAAAD8////AgAAAAAAAAD9/wMAAgAAAAAAAAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD+/wMAAgAAAAAAAAD6/wMAAgAAAAAAAAD6/wQAAgAAAAAAAAD7/wQAAgAAAAAAAAD7/wMAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAABAAMAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAMAAgAAAAAAAAAAAP7/AgABAAAAAAD///7/AgABAAAAAAD///3/AgABAAAAAAD///z/AgABAAAAAAD+//z/AgABAAAAAAD9//z/AgABAAAAAAD8//z/AgABAAAAAAD8//v/AgABAAAAAAD8//r/AgABAAAAAAD8//n/AgABAAAAAAD8//j/AgABAAAAAAD7//j/AgABAAAAAAD6//j/AgABAAAAAAD5//j/AgABAAAAAAD5//n/AgABAAAAAAD5//r/AgABAAAAAAD5//v/AgABAAAAAAD5//z/AgABAAAAAAD5//3/AgABAAAAAAD5//7/AgABAAAAAAD5////AgABAAAAAAD5/wAAAgABAAAAAAD5/wEAAgABAAAAAAD5/wIAAgABAAAAAAD5/wMAAgABAAAAAAD5/wQAAgABAAAAAAD5/wUAAgABAAAAAAD6/wUAAgABAAAAAAD7/wUAAgABAAAAAAD8/wUAAgABAAAAAAD8/wQAAgABAAAAAAD8/wMAAgABAAAAAAD8/wIAAgABAAAAAAD7/wIAAgABAAAAAAD7/wEAAgABAAAAAAD7/wAAAgABAAAAAAD7////AgABAAAAAAD7//7/AgABAAAAAAD8//7/AgABAAAAAAD8//3/AgABAAAAAAD9//7/AgABAAAAAAD9////AgABAAAAAAD9/wAAAgABAAAAAAD8/wAAAgABAAAAAAD+/wAAAgABAAAAAAD+////AgABAAAAAAD+//7/AgABAAAAAAD/////AgABAAAAAAD//wAAAgABAAAAAAD//wEAAgABAAAAAAD//wIAAgABAAAAAAD+/wIAAgABAAAAAAD9/wIAAgABAAAAAAD//wMAAgABAAAAAAD//wQAAgABAAAAAAD//wUAAgABAAAAAAD+/wUAAgABAAAAAAD9/wUAAgABAAAAAAAAAAUAAgABAAAAAAABAAUAAgABAAAAAAACAAUAAgABAAAAAAACAAQAAgABAAAAAAACAAMAAgABAAAAAAACAAIAAgABAAAAAAACAAEAAgABAAAAAAACAAAAAgABAAAAAAABAAAAAgABAAAAAAABAP//AgABAAAAAAABAP7/AgABAAAAAAACAP7/AgABAAAAAAADAP7/AgABAAAAAAADAP3/AgABAAAAAAADAPz/AgABAAAAAAACAPz/AgABAAAAAAACAPv/AgABAAAAAAACAPr/AgABAAAAAAACAPn/AgABAAAAAAACAPj/AgABAAAAAAABAPj/AgABAAAAAAAAAPj/AgABAAAAAAD///j/AgABAAAAAAD+//j/AgABAAAAAAD9//j/AgABAAAAAAADAPj/AgABAAAAAAAEAPj/AgABAAAAAAAFAPj/AgABAAAAAAAFAPn/AgABAAAAAAAFAPr/AgABAAAAAAAFAPv/AgABAAAAAAAFAPz/AgABAAAAAAAEAPz/AgABAAAAAAAFAP3/AgABAAAAAAAFAP7/AgABAAAAAAAFAP//AgABAAAAAAAFAAAAAgABAAAAAAAFAAEAAgABAAAAAAAFAAIAAgABAAAAAAAEAAIAAgABAAAAAAADAAIAAgABAAAAAAAFAAMAAgABAAAAAAAFAAQAAgABAAAAAAAFAAUAAgABAAAAAAAEAAUAAgABAAAAAAADAAUAAgABAAAAAAABAPr/AgABAAAAAAAAAPr/AgABAAAAAAD///r/AgABAAAAAAD+//r/AgABAAAAAAD9//r/AgABAAAAAAABAPz/AgABAAAAAAAAAPz/AgABAAAAAAADAP//AgABAAAAAAADAAAAAgABAAAAAAAAAP//AgABAAAAAAAAAAAAAgABAAAAAAABAAIAAgABAAAAAAAAAAIAAgABAAAAAAD6/wIAAgABAAAAAAD6//z/AgABAAAAAAD7//z/AgABAAAAAAA=")
 tile_set = ExtResource("2_fe41t")
 
 [node name="Aoy" parent="." instance=ExtResource("3_s5eb7")]
-position = Vector2(0, 32)
+position = Vector2(0, 16)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -16)
 
 [node name="Tic" parent="." instance=ExtResource("5_nq2m6")]
-position = Vector2(-96, -96)
+position = Vector2(-96, -112)
 
 [node name="Tac" parent="." instance=ExtResource("6_cfgka")]
-position = Vector2(-96, 112)
+position = Vector2(-96, 96)
 
 [node name="Toe" parent="." instance=ExtResource("7_7g0uk")]
-position = Vector2(96, -96)
+position = Vector2(96, -112)
 
 [node name="Ball" parent="." instance=ExtResource("3_6g2nf")]
-position = Vector2(0, -96)
+position = Vector2(0, -112)
 
 [node name="ToyChest" parent="." instance=ExtResource("5_1r6g5")]
-position = Vector2(0, 16)
+
+[node name="Door" parent="." instance=ExtResource("13_q7ybv")]
+position = Vector2(0, 80)
 
 [node name="GameUI" parent="." instance=ExtResource("6_fao7a")]

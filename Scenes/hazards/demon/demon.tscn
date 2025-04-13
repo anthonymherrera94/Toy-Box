@@ -17,8 +17,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fngun"]
 radius = 8.0
 
-[node name="Demon" type="Area2D"]
+[node name="Demon" type="Area2D" node_paths=PackedStringArray("self_destruction_timer")]
 script = ExtResource("1_eyvtl")
+self_destruction_timer = NodePath("SelfDestruction")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xrsto")

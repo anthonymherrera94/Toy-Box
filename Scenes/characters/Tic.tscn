@@ -99,9 +99,10 @@ animations = [{
 [node name="Tic" type="Node2D"]
 process_mode = 1
 
-[node name="EnemyBase" parent="." node_paths=PackedStringArray("player_anim") instance=ExtResource("9_n2a04")]
-player_anim = NodePath("AnimatedSprite2D")
+[node name="EnemyBase" parent="." node_paths=PackedStringArray("enemy_anim") instance=ExtResource("9_n2a04")]
+enemy_anim = NodePath("AnimatedSprite2D")
 type = 0
+speed = 80
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
 sprite_frames = SubResource("SpriteFrames_qavws")

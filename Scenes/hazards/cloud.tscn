@@ -66,10 +66,16 @@ size = Vector2(12, 12)
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ob4d"]
 radius = 8.0
 
-[node name="Cloud" type="CharacterBody2D"]
+[node name="Cloud" type="CharacterBody2D" node_paths=PackedStringArray("anim", "storm_area", "check_left", "check_right", "check_up", "check_down")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_0edt0")
+anim = NodePath("AnimatedSprite2D")
+storm_area = NodePath("StormArea")
+check_left = NodePath("CheckLeft")
+check_right = NodePath("CheckRight")
+check_up = NodePath("CheckUp")
+check_down = NodePath("CheckDown")
 metadata/_custom_type_script = "uid://b2dvc5a5mmaev"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

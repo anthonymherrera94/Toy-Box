@@ -108,7 +108,7 @@ func spawn_gemstones() -> void:
 				var obj: Gemstone = gemstone.instantiate()
 				obj.picked.connect(main._on_gemstone_picked)
 				
-				obj.position = obj_pos * 16
+				obj.position = main.tiles.map_to_local(obj_pos) - Vector2.ONE * 8
 				
 				main.get_parent().add_child.call_deferred(obj)
 				objects_holder.gemstones.append(obj)
@@ -213,7 +213,9 @@ func spawn_explosion_by_side(start_pos: Vector2i, side: Vector2i, type: Explosio
 	while main.tiles.get_cell_atlas_coords(side_ - Vector2i.ONE) == Vector2i(1, 0):
 		var obj_: Explosion = explosion.instantiate()
 		obj_.type = type
-		obj_.position = side_ * 16
+		
+		obj_.position = main.tiles.map_to_local(side_) - Vector2.ONE * 8
+		
 		main.get_parent().add_child.call_deferred(obj_)
 		
 		side_ += side
@@ -243,6 +245,6 @@ func pick_random_pos() -> Vector2:
 		and obj_pos.distance_to(objects_holder.toy_chest.global_position / 16) > 2.0:
 			break
 	
-	obj_pos *= 16
+	obj_pos = main.tiles.map_to_local(obj_pos) - Vector2.ONE * 8
 	
 	return obj_pos

@@ -14,6 +14,8 @@ var treat: Treats
 
 var gemstones: Array[Gemstone]
 
+var skulls: Array[Skull]
+
 var door: Door
 
 var xob: Xob

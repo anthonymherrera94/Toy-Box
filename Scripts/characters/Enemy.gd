@@ -6,9 +6,7 @@ enum TYPE {
 	Toe
 }
 
-var map_offset: Vector2
-
-@export var player_anim: AnimatedSprite2D
+@export var enemy_anim: AnimatedSprite2D
 
 @export var type: TYPE
 
@@ -103,19 +101,19 @@ func check_collision(collision_area: Area2D) -> bool:
 func animate() -> void:
 	match state:
 		STATE.WALK_RIGHT:
-			player_anim.play("WalkRight")
+			enemy_anim.play("WalkRight")
 		STATE.WALK_LEFT:
-			player_anim.play("WalkLeft")
+			enemy_anim.play("WalkLeft")
 		STATE.WALK_UP:
-			player_anim.play("WalkUp")
+			enemy_anim.play("WalkUp")
 		STATE.WALK_DOWN:
-			player_anim.play("WalkDown")
+			enemy_anim.play("WalkDown")
 		STATE.FLATTEN:
-			player_anim.play("Flatten")
+			enemy_anim.play("Flatten")
 		STATE.SCARED:
-			player_anim.play("Scared")
+			enemy_anim.play("Scared")
 		STATE.TRAPPED:
-			player_anim.play("Trapped")
+			enemy_anim.play("Trapped")
 
 
 func flat() -> void:
@@ -159,3 +157,8 @@ func _on_respawn_delay_timeout() -> void:
 func defeat() -> void:
 	defeated.emit(type, start_pos)
 	queue_free()
+
+
+func _on_colliding_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		change_direction()

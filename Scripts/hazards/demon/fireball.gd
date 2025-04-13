@@ -16,7 +16,7 @@ var directions := {
 
 var direction: Direction
 
-var anim: AnimatedSprite2D
+@export var anim: AnimatedSprite2D
 
 
 func _ready() -> void:

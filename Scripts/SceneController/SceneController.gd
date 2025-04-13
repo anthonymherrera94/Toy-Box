@@ -1,7 +1,5 @@
 class_name SceneController extends Node
 
-var map_offset: Vector2
-
 @export_category("Scene Controllers")
 @export var spawning: SceneControllerSpawning
 @export var objects_holder: SceneControllerObjectsHolder
@@ -45,14 +43,12 @@ func _ready() -> void:
 			tiles = i
 	
 	if tiles != null:
-		map_offset = tiles.position
 		tiles.hide()
 	
 	_initialize()
 	
 	for i in get_parent().get_children():
 		if i is Aoy:
-			i.map_offset = map_offset
 			i.change_pos.connect(_on_aoy_change_pos)
 			i.earn_score.connect(_on_earn_score)
 			i.power_up_picked.connect(_on_power_up_picked)
@@ -61,7 +57,6 @@ func _ready() -> void:
 			i.put_jack_in_the_box.connect(_on_jack_in_the_box_putted)
 			objects_holder.aoy = i
 		if i.get_child(0) is Enemy:
-			i.get_child(0).map_offset = map_offset
 			i.get_child(0).defeated.connect(_on_enemy_defeated)
 			objects_holder.enemies.append(i)
 		if i is ToyChest:
@@ -70,6 +65,8 @@ func _ready() -> void:
 		if i is Door:
 			i.indoor.connect(_on_indoor)
 			objects_holder.door = i
+		if i is Skull:
+			objects_holder.skulls.append(i)
 	
 	for i in range(cards_amount):
 		spawning.spawn_card()
@@ -84,7 +81,6 @@ func _initialize() -> void:
 	spawning.main = self
 	spawning.objects_holder = objects_holder
 	spawning.game_stats = game_stats
-	spawning.map_offset = map_offset
 	spawning.map_size = map_size
 	
 	objects_holder.main = self
@@ -97,6 +93,9 @@ func _initialize() -> void:
 func _on_aoy_change_pos(pos: Vector2) -> void:
 	if objects_holder.xob != null:
 		objects_holder.xob.set_targer_pos(pos)
+	
+	for i in objects_holder.skulls:
+		i.set_look_at_pos(pos)
 
 func _on_earn_score(_score: int) -> void:
 	game_stats.add_score(_score)

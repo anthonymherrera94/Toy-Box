@@ -4,6 +4,8 @@ enum Event { StartGame, ChangeLevel, RestartGame }
 
 enum XobSpawnSide { Top, Bottom, Left, Right }
 
+@export var levels_list: Array[PackedScene]
+
 @export_category("Scenes")
 @export var balloon: PackedScene
 @export var treat: PackedScene
@@ -26,10 +28,10 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export var fireball: PackedScene
 @export var fade: PackedScene
 @export var menu: PackedScene
-@export var first_level: PackedScene
 
 @export_category("Nodes")
 @export var viewport: SubViewport
+@export var cheat_console: CheatConsole
 
 @export_category("Timers")
 @export var treats_spawn_timer: Timer
@@ -49,19 +51,31 @@ var current_treat: Treats.TYPE = 0
 var popped_balloons: Array[Balloons.TYPE]
 var current_balloon: Balloons.TYPE = 0
 
+var lock_input := false
+
 
 func _ready() -> void:
 	randomize()
 	return_to_menu()
 	
-	treats_spawn_timer.timeout.connect(func(): level.get_child(0).spawning.spawn_treat())
 	bonus_round_timer.timeout.connect(_on_bonus_round_time_end)
 	bonus_time_tick.timeout.connect(_on_bonus_time_tick)
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("cheat_console"):
+		if cheat_console.visible:
+			cheat_console.hide()
+			cheat_console.release_focus()
+			cheat_console._input.clear()
+		else:
+			cheat_console.show()
+			cheat_console._input.grab_focus()
+
 
 func _on_start_game() -> void:
-	event = Event.StartGame
-	fade_in()
+	if not cheat_console.visible and not lock_input:
+		event = Event.StartGame
+		fade_in()
 
 func _on_restart() -> void:
 	event = Event.ChangeLevel
@@ -87,19 +101,29 @@ func fade_in() -> void:
 	obj.fade_in_over.connect(_on_fade_in_over)
 	viewport.add_child(obj)
 	obj.start_fade_in()
+	lock_input = true
 
 func _on_fade_in_over() -> void:
+	fade_out()
+	lock_input = false
+	
 	match event:
 		Event.StartGame:
-			_menu.queue_free()
-			start_scene(first_level)
-			change_on_level = first_level
+			if _menu != null: _menu.queue_free()
+			start_scene(levels_list[0])
+			change_on_level = levels_list[0]
 		Event.ChangeLevel:
-			level.queue_free()
+			if _menu != null: _menu.queue_free()
+			if level != null: level.queue_free()
 			start_scene(change_on_level)
 		Event.RestartGame:
-			level.queue_free()
+			if level != null:level.queue_free()
 			return_to_menu()
+
+func fade_out() -> void:
+	var obj: Fade = fade.instantiate()
+	viewport.add_child(obj)
+	obj.start_fade_out()
 
 
 func start_scene(_scene: PackedScene) -> void:
@@ -145,7 +169,7 @@ func start_scene(_scene: PackedScene) -> void:
 	
 	for i in popped_balloons:
 		scene_controller.game_stats.set_popped_balloon(i)
-	
+	treats_spawn_timer.timeout.connect(func(): level.get_child(0).spawning.spawn_treat())
 	treats_spawn_timer.start()
 	bonus_time_tick.start()
 
@@ -176,3 +200,10 @@ func _on_bonus_time_tick() -> void:
 
 func _on_bonus_round_time_end() -> void:
 	if level != null: level.get_child(0)._on_bonus_round_time_end()
+
+
+func _on_cheat_console_change_level(number: int) -> void:
+	event = Event.ChangeLevel
+	change_on_level = levels_list[number]
+	
+	fade_in()

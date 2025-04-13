@@ -1,6 +1,6 @@
 class_name Demon extends Area2D
 
-var self_destruction_timer: Timer
+@export var self_destruction_timer: Timer
 
 signal split_fireball
 

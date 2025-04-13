@@ -1,6 +1,6 @@
 class_name Spikes extends Area2D
 
-var anim: AnimatedSprite2D
+@export var anim: AnimatedSprite2D
 
 
 func _on_animation_finished() -> void:

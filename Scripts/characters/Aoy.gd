@@ -1,7 +1,5 @@
 class_name Aoy extends Character
 
-var map_offset: Vector2
-
 @export var slowing_move_speed := 60.0
 @export var ordinary_move_speed := 80.0
 @export var increased_move_speed := 120.0

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c42pjt7acga4v"]
+[gd_scene load_steps=5 format=3 uid="uid://c42pjt7acga4v"]
 
 [ext_resource type="Script" uid="uid://xc2v0i2ctg4c" path="res://Scripts/characters/Enemy.gd" id="1_2e24u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77kub"]
 radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ssw"]
@@ -18,7 +21,6 @@ down_raycast = NodePath("DownRayCast")
 up_raycast = NodePath("UpRayCast")
 left_raycast = NodePath("LeftRayCast")
 right_raycast = NodePath("RightRayCast")
-speed = null
 check_left = NodePath("CheckLeft")
 check_right = NodePath("CheckRight")
 check_up = NodePath("CheckUp")
@@ -45,6 +47,11 @@ target_position = Vector2(-128, 0)
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(128, 0)
+
+[node name="Colliding" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
+shape = SubResource("CircleShape2D_77kub")
 
 [node name="CheckLeft" type="Area2D" parent="."]
 position = Vector2(-16, 0)
@@ -74,4 +81,5 @@ shape = SubResource("RectangleShape2D_v3ssw")
 wait_time = 3.0
 one_shot = true
 
+[connection signal="body_entered" from="Colliding" to="." method="_on_colliding_body_entered"]
 [connection signal="timeout" from="RespawnDelay" to="." method="_on_respawn_delay_timeout"]

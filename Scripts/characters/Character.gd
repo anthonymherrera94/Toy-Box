@@ -1,5 +1,7 @@
 class_name Character extends CharacterBody2D
 
+var map_offset := Vector2(8, 8)
+
 @export var speed := 80
 
 @export_category("Checkers")
@@ -59,7 +61,7 @@ func handle_state():
 	
 
 func check_snapped(delimeter: float) -> bool:
-	var snapped_pos = global_position.snapped(Vector2(16, 16))
+	var snapped_pos = global_position.snappedf(16)
 	if global_position.distance_to(snapped_pos) < delimeter:
 		return true
 	else:
@@ -70,7 +72,7 @@ func move(direction: Vector2) -> void:
 	velocity = direction * speed
 
 func snap_to_grid() -> void:
-	var snapped_pos = global_position.snapped(Vector2(16, 16))
+	var snapped_pos = global_position.snappedf(16)
 	global_position = snapped_pos
 	velocity = Vector2.ZERO
 
