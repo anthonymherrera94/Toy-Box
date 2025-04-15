@@ -69,6 +69,8 @@ func _ready() -> void:
 			objects_holder.door = i
 		if i is Skull:
 			objects_holder.skulls.append(i)
+		if i is Toy:
+			game_stats.toys_left += 1
 		if i is Card:
 			objects_holder.cards.append(i)
 	
