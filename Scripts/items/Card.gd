@@ -1,7 +1,7 @@
-class_name Cards extends Area2D
+class_name Card extends Area2D
 
 enum ObjectsInto {
-	Ballooon,
+	Balloon,
 	BubbleGun,
 	JackInTheBox,
 	RollerSkate,

@@ -2,13 +2,11 @@ class_name Toy extends Area2D
 
 @export var sprite: Sprite2D
 
-var texture: Texture2D
+@export var texture: Texture2D
 
 
-func set_sprite(_texture: Texture2D) -> void:
-	texture = _texture
+func _ready() -> void:
 	sprite.texture = texture
-
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Aoy:

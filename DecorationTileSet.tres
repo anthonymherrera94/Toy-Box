@@ -1,0 +1,14 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cdogj6tjronkw"]
+
+[ext_resource type="Texture2D" uid="uid://vkm1mh2a6ole" path="res://Sprites/Tiles/Decorations.png" id="1_xkb4m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bvigg"]
+texture = ExtResource("1_xkb4m")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+
+[resource]
+sources/4 = SubResource("TileSetAtlasSource_bvigg")
+tile_proxies/coords_level = [[2, Vector2i(0, 0)], [4, Vector2i(0, 0)], [3, Vector2i(0, 0)], [4, Vector2i(1, 0)]]

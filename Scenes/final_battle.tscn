@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://bpjn0c6nhdfyi"]
 
-[ext_resource type="Script" uid="uid://bks05v8etrxx3" path="res://Scripts/SceneController/SceneController.gd" id="1_aavbu"]
+[ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_5x1bi"]
 [ext_resource type="Texture2D" uid="uid://dhfgne77jww4t" path="res://Sprites/Levels/Levels/Final Battle.png" id="1_p1w0h"]
 [ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_buqmo"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_lle1b"]
@@ -17,7 +17,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5b1e"]
 
 [node name="Final Battle" type="Node2D"]
-script = ExtResource("1_aavbu")
+
+[node name="SceneController" parent="." instance=ExtResource("1_5x1bi")]
 
 [node name="FinalBattle" type="Sprite2D" parent="."]
 position = Vector2(0, 16)

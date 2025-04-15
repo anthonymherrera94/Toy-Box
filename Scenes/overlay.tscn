@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dpqtsjc5umcq2"]
+[gd_scene load_steps=39 format=3 uid="uid://dpqtsjc5umcq2"]
 
 [ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
 [ext_resource type="Script" uid="uid://cd8nxalfxkcr" path="res://Scripts/overlay.gd" id="1_btq4h"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bynji6lrovmbq" path="res://Scenes/items/balloons.tscn" id="2_vcrxe"]
 [ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="3_bb1nd"]
 [ext_resource type="PackedScene" uid="uid://cr6hvixe2en31" path="res://Scenes/toy_town_2.tscn" id="3_gd3qc"]
-[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="4_4sp8s"]
 [ext_resource type="PackedScene" uid="uid://k0j7ujbqyukg" path="res://Scenes/fade.tscn" id="4_5g481"]
-[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="4_30y6x"]
 [ext_resource type="PackedScene" uid="uid://61u0gpkf3fep" path="res://Scenes/toy_town_3.tscn" id="4_nj4x6"]
 [ext_resource type="PackedScene" uid="uid://di6p0kpcaq675" path="res://Scenes/sweet_lands_1.tscn" id="5_0pcue"]
 [ext_resource type="PackedScene" uid="uid://bi41guy5y3fyx" path="res://Scenes/items/key.tscn" id="5_6qwki"]
@@ -53,8 +51,6 @@ script = ExtResource("1_btq4h")
 levels_list = Array[PackedScene]([ExtResource("5_nm1dm"), ExtResource("3_gd3qc"), ExtResource("4_nj4x6"), ExtResource("5_0pcue"), ExtResource("6_aw5go"), ExtResource("7_s1mk2"), ExtResource("8_sjjwx"), ExtResource("9_sfgtk"), ExtResource("10_t4le0"), ExtResource("11_dqph6"), ExtResource("12_0qvvr"), ExtResource("13_8bj1s"), ExtResource("14_av6hf"), ExtResource("15_4tdmp"), ExtResource("16_rye8v"), ExtResource("17_snf4k")])
 balloon = ExtResource("2_vcrxe")
 treat = ExtResource("3_bb1nd")
-card = ExtResource("4_30y6x")
-toy = ExtResource("4_4sp8s")
 key = ExtResource("5_6qwki")
 power_up = ExtResource("7_oj44a")
 gemstone = ExtResource("8_7unab")

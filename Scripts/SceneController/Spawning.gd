@@ -11,8 +11,6 @@ var map_size: Rect2i
 
 var balloon: PackedScene
 var treat: PackedScene
-var card: PackedScene
-var toy: PackedScene
 var key: PackedScene
 var power_up: PackedScene
 var gemstone: PackedScene
@@ -33,29 +31,29 @@ var is_balloon_spawned := false
 var is_treat_spawned := false
 
 
-func spawn_toy(texture: Texture2D) -> void:
-	var obj: Toy = toy.instantiate()
-	obj.position = pick_random_pos()
-	main.get_parent().add_child.call_deferred(obj)
-	obj.set_sprite(texture)
-	game_stats.toys_left += 1
+#func spawn_toy(texture: Texture2D) -> void:
+	#var obj: Toy = toy.instantiate()
+	#obj.position = pick_random_pos()
+	#main.get_parent().add_child.call_deferred(obj)
+	#obj.set_sprite(texture)
+	#game_stats.toys_left += 1
 
-func spawn_card() -> void:
-	var obj: Cards = card.instantiate()
-	
-	var object_into: Cards.ObjectsInto
-	if is_balloon_spawned == false:
-		object_into = Cards.ObjectsInto.Ballooon
-		is_balloon_spawned = true
-	else:
-		object_into = randi() % Cards.ObjectsInto.size()
-		while object_into == Cards.ObjectsInto.Ballooon:
-			object_into = randi() % Cards.ObjectsInto.size()
-	
-	obj.object_into = object_into
-	obj.picked.connect(main._on_card_picked)
-	obj.position = pick_random_pos()
-	main.get_parent().add_child.call_deferred.call_deferred(obj)
+#func spawn_card() -> void:
+	#var obj: Cards = card.instantiate()
+	#
+	#var object_into: Cards.ObjectsInto
+	#if is_balloon_spawned == false:
+		#object_into = Cards.ObjectsInto.Ballooon
+		#is_balloon_spawned = true
+	#else:
+		#object_into = randi() % Cards.ObjectsInto.size()
+		#while object_into == Cards.ObjectsInto.Ballooon:
+			#object_into = randi() % Cards.ObjectsInto.size()
+	#
+	#obj.object_into = object_into
+	#obj.picked.connect(main._on_card_picked)
+	#obj.position = pick_random_pos()
+	#main.get_parent().add_child.call_deferred.call_deferred(obj)
 
 func spawn_balloon() -> void:
 	if game_stats.current_balloon != Balloons.TYPE.Nothing:

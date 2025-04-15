@@ -5,6 +5,8 @@ var main: SceneController
 
 var aoy: Aoy
 
+var cards: Array[Card]
+
 var enemies: Array[Enemy]
 
 var toy_chest: ToyChest

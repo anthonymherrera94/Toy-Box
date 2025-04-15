@@ -9,8 +9,6 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export_category("Scenes")
 @export var balloon: PackedScene
 @export var treat: PackedScene
-@export var card: PackedScene
-@export var toy: PackedScene
 @export var key: PackedScene
 @export var power_up: PackedScene
 @export var gemstone: PackedScene
@@ -134,8 +132,6 @@ func start_scene(_scene: PackedScene) -> void:
 	
 	scene_controller.spawning.balloon = balloon
 	scene_controller.spawning.treat = treat
-	scene_controller.spawning.card = card
-	scene_controller.spawning.toy = toy
 	scene_controller.spawning.key = key
 	scene_controller.spawning.power_up = power_up
 	scene_controller.spawning.gemstone = gemstone

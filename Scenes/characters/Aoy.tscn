@@ -248,11 +248,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udgtg"]
+size = Vector2(12, 12)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kne6l"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gr5a"]
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw5bp"]
 size = Vector2(12, 12)
@@ -294,12 +294,12 @@ texture = ExtResource("27_e5ol3")
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2v3qo")
+shape = SubResource("RectangleShape2D_udgtg")
 
 [node name="Colliding" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
-shape = SubResource("CircleShape2D_kne6l")
+shape = SubResource("RectangleShape2D_6gr5a")
 
 [node name="CheckLeft" type="Area2D" parent="."]
 position = Vector2(-16, 0)

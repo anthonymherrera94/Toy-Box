@@ -12,11 +12,13 @@ class_name SceneController extends Node
 @export var map_size: Rect2i
 
 @export_category("Game Options")
-@export var toys_textures: Array[Texture2D]
-@export var cards_amount: int
 
 @export_category("Scenes")
 @export var next_scene: PackedScene
+
+@export_category("Deprecated!!! Don't works!")
+@export var toys_textures: Array[Texture2D]
+@export var cards_amount: int
 
 var tiles: TileMapLayer
 
@@ -67,12 +69,20 @@ func _ready() -> void:
 			objects_holder.door = i
 		if i is Skull:
 			objects_holder.skulls.append(i)
+		if i is Card:
+			objects_holder.cards.append(i)
 	
-	for i in range(cards_amount):
-		spawning.spawn_card()
+	for card in objects_holder.cards:
+		card.object_into = randi() % Card.ObjectsInto.size()
 	
-	for i in toys_textures:
-		spawning.spawn_toy(i)
+	if objects_holder.cards.size() > 0:
+		objects_holder.cards[randi() % objects_holder.cards.size()].object_into = Card.ObjectsInto.Balloon
+	
+	#for i in range(cards_amount):
+		#spawning.spawn_card()
+	#
+	#for i in toys_textures:
+		#spawning.spawn_toy(i)
 	
 	ballon_pop_delay.timeout.connect(_on_balloon_pop_time_end)
 	treats_picked_delay.timeout.connect(_on_treats_picked_time_end)
@@ -149,19 +159,19 @@ func _on_balloon_popped(type: Balloons.TYPE) -> void:
 func _on_gemstone_picked() -> void:
 	game_stats.add_score(300)
 
-func _on_card_picked(object_into: Cards.ObjectsInto, pos: Vector2) -> void:
+func _on_card_picked(object_into: Card.ObjectsInto, pos: Vector2) -> void:
 	match object_into:
-		Cards.ObjectsInto.Ballooon:
+		Card.ObjectsInto.Balloon:
 			spawning.spawn_balloon()
-		Cards.ObjectsInto.BubbleGun:
+		Card.ObjectsInto.BubbleGun:
 			spawning.spawn_power_up(PowerUp.TYPE.BubbleGun)
-		Cards.ObjectsInto.JackInTheBox:
+		Card.ObjectsInto.JackInTheBox:
 			spawning.spawn_power_up(PowerUp.TYPE.JackInTheBox)
-		Cards.ObjectsInto.RollerSkate:
+		Card.ObjectsInto.RollerSkate:
 			spawning.spawn_power_up(PowerUp.TYPE.RollerSkate)
-		Cards.ObjectsInto.ToyHammer:
+		Card.ObjectsInto.ToyHammer:
 			spawning.spawn_power_up(PowerUp.TYPE.ToyHammer)
-		Cards.ObjectsInto.Bomb:
+		Card.ObjectsInto.Bomb:
 			spawning.spawn_bomb(pos)
 
 func _on_treat_picked() -> void:

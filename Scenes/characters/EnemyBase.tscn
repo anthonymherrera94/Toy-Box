@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://xc2v0i2ctg4c" path="res://Scripts/characters/Enemy.gd" id="1_2e24u"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2v3qo"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77kub"]
+size = Vector2(12, 12)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_77kub"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3kfh"]
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ssw"]
 size = Vector2(12, 12)
@@ -27,7 +27,7 @@ check_up = NodePath("CheckUp")
 check_down = NodePath("CheckDown")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2v3qo")
+shape = SubResource("RectangleShape2D_77kub")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
@@ -51,7 +51,7 @@ target_position = Vector2(128, 0)
 [node name="Colliding" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
-shape = SubResource("CircleShape2D_77kub")
+shape = SubResource("RectangleShape2D_b3kfh")
 
 [node name="CheckLeft" type="Area2D" parent="."]
 position = Vector2(-16, 0)
