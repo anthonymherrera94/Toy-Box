@@ -102,9 +102,9 @@ process_mode = 1
 [node name="EnemyBase" parent="." node_paths=PackedStringArray("enemy_anim") instance=ExtResource("9_n2a04")]
 enemy_anim = NodePath("AnimatedSprite2D")
 type = 0
-speed = 80
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_qavws")
 animation = &"WalkRight"
 autoplay = "WalkRight"

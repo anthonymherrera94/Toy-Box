@@ -19,13 +19,9 @@ var direction: Direction
 @export var anim: AnimatedSprite2D
 
 
-func _ready() -> void:
-	direction = randi() % Direction.size()
-
-
 func _physics_process(delta: float) -> void:
 	var dir = directions[direction]
-	anim.rotation_degrees = -90 - dir
+	anim.rotation_degrees = -90 + dir
 	translate(Vector2.from_angle(deg_to_rad(dir)))
 
 

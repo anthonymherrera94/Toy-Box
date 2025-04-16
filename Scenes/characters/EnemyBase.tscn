@@ -14,6 +14,7 @@ size = Vector2(12, 12)
 [node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("respawn_delay", "down_raycast", "up_raycast", "left_raycast", "right_raycast", "check_left", "check_right", "check_up", "check_down")]
 process_mode = 1
 z_index = 1
+floor_constant_speed = true
 script = ExtResource("1_2e24u")
 type = 1
 respawn_delay = NodePath("RespawnDelay")
@@ -48,7 +49,7 @@ target_position = Vector2(-128, 0)
 [node name="RightRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(128, 0)
 
-[node name="Colliding" type="Area2D" parent="."]
+[node name="Colliding" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
 shape = SubResource("RectangleShape2D_b3kfh")
@@ -81,5 +82,5 @@ shape = SubResource("RectangleShape2D_v3ssw")
 wait_time = 3.0
 one_shot = true
 
-[connection signal="body_entered" from="Colliding" to="." method="_on_colliding_body_entered"]
+[connection signal="area_entered" from="Colliding" to="." method="_on_area_entered"]
 [connection signal="timeout" from="RespawnDelay" to="." method="_on_respawn_delay_timeout"]

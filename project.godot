@@ -33,6 +33,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Toy Box"
 
+[global_group]
+
+enemy=""
+
 [gui]
 
 theme/custom="res://Theme.tres"

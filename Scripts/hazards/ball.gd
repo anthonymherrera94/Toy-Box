@@ -9,9 +9,9 @@ enum Directions {
 
 var directions := {
 	Directions.Right: 0,
-	Directions.Down: 270,
+	Directions.Down: 90,
 	Directions.Left: 180,
-	Directions.Up: 90
+	Directions.Up: 270
 }
 
 var direction: Directions = 0
@@ -31,6 +31,13 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	if direction < Directions.size() - 1:
+		snap_to_grid()
 		direction += 1
 	else:
+		snap_to_grid()
 		direction = 0
+
+
+func snap_to_grid() -> void:
+	var snapped_pos = global_position.snappedf(16)
+	global_position = snapped_pos

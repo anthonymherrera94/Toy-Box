@@ -54,12 +54,14 @@ puddle_anim = NodePath("Puddle")
 
 [node name="Puddle" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_1tykk")
 animation = &"Puddle"
 frame = 2
 frame_progress = 1.0
 
 [node name="Fall" type="AnimatedSprite2D" parent="."]
+z_index = 5
 sprite_frames = SubResource("SpriteFrames_k3yeh")
 animation = &"Fall"
 autoplay = "Fall"

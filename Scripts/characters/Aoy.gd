@@ -244,9 +244,10 @@ func hide_power_ups():
 
 func _on_colliding_body_entered(body: Node2D):
 	if body is Enemy:
+		body.turn_around()
+		
 		if power_up_count == 0:
 			if not is_invincibility:
-				body.change_direction()
 				hit()
 		
 		else:
@@ -255,17 +256,14 @@ func _on_colliding_body_entered(body: Node2D):
 					if not is_invincibility:
 						power_up_count = 0
 						speed = ordinary_move_speed
-						body.change_direction()
 						hit()
 				
 				PowerUp.TYPE.ToyHammer:
 					if check_snapped(1.0):
-						body.change_direction()
 						hit()
 				
 				_:
 					if not is_invincibility:
-						body.change_direction()
 						hit()
 
 func hit() -> void:

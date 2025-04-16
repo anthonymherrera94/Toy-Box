@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://61u0gpkf3fep"]
+[gd_scene load_steps=22 format=4 uid="uid://61u0gpkf3fep"]
 
 [ext_resource type="Texture2D" uid="uid://cyk1v8s66uyy7" path="res://Sprites/Levels/Levels/Toy Town 3.PNG" id="1_0g60s"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_rd7ld"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b4lis51om3hln" path="res://Sprites/Items/Toys/Toy Dino.png" id="7_b4dj0"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_n4vmy"]
 [ext_resource type="PackedScene" uid="uid://cesyymgoge144" path="res://Scenes/hazards/ball.tscn" id="9_x5q5l"]
+[ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="12_nmo00"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="13_17kes"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywx8b"]
@@ -191,6 +192,8 @@ tile_set = ExtResource("2_v15gm")
 
 [node name="Aoy" parent="." instance=ExtResource("3_tim6o")]
 position = Vector2(0, 32)
+
+[node name="Camera2D" parent="Aoy" instance=ExtResource("12_nmo00")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -8)

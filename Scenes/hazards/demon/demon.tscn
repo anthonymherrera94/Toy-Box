@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://hv6m32onw6s5"]
+[gd_scene load_steps=6 format=3 uid="uid://hv6m32onw6s5"]
 
 [ext_resource type="Script" uid="uid://pywct4iwpg3w" path="res://Scripts/hazards/demon/demon.gd" id="1_eyvtl"]
 [ext_resource type="Texture2D" uid="uid://ddf13axjapske" path="res://Sprites/Levels/Hazards/Demon Head.PNG" id="2_se3pq"]
@@ -17,9 +17,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fngun"]
 radius = 8.0
 
-[node name="Demon" type="Area2D" node_paths=PackedStringArray("self_destruction_timer")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyvtl"]
+size = Vector2(12, 12)
+
+[node name="Demon" type="Area2D" node_paths=PackedStringArray("self_destruction_timer", "check_left", "check_right", "check_up", "check_down")]
 script = ExtResource("1_eyvtl")
 self_destruction_timer = NodePath("SelfDestruction")
+check_left = NodePath("CheckLeft")
+check_right = NodePath("CheckRight")
+check_up = NodePath("CheckUp")
+check_down = NodePath("CheckDown")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xrsto")
@@ -27,6 +34,30 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fngun")
+
+[node name="CheckLeft" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckLeft"]
+shape = SubResource("RectangleShape2D_eyvtl")
+
+[node name="CheckRight" type="Area2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRight"]
+shape = SubResource("RectangleShape2D_eyvtl")
+
+[node name="CheckUp" type="Area2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckUp"]
+shape = SubResource("RectangleShape2D_eyvtl")
+
+[node name="CheckDown" type="Area2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown"]
+shape = SubResource("RectangleShape2D_eyvtl")
 
 [node name="SplitFireball" type="Timer" parent="."]
 one_shot = true

@@ -118,6 +118,7 @@ enemy_anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
 process_mode = 3
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_6h3k5")
 animation = &"WalkRight"
 autoplay = "WalkRight"

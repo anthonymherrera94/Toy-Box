@@ -159,6 +159,24 @@ func defeat() -> void:
 	queue_free()
 
 
-func _on_colliding_body_entered(body: Node2D) -> void:
-	if body is Enemy:
-		change_direction()
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		turn_around()
+
+func turn_around() -> void:
+	match state:
+		STATE.WALK_RIGHT:
+			state = STATE.WALK_LEFT
+			move(Vector2.LEFT)
+		
+		STATE.WALK_LEFT:
+			state = STATE.WALK_RIGHT
+			move(Vector2.RIGHT)
+		
+		STATE.WALK_UP:
+			state = STATE.WALK_DOWN
+			move(Vector2.DOWN)
+		
+		STATE.WALK_DOWN:
+			state = STATE.WALK_UP
+			move(Vector2.UP)

@@ -260,6 +260,7 @@ size = Vector2(12, 12)
 [node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "hammer", "bubble_gun", "jack_in_the_box", "toy", "invincibility_timer", "slow_down_effect_timer", "check_left", "check_right", "check_up", "check_down")]
 process_mode = 1
 z_index = 2
+floor_constant_speed = true
 script = ExtResource("1_ilnme")
 player_anim = NodePath("AnimatedSprite2D")
 hammer = NodePath("Hammer")
@@ -274,22 +275,26 @@ check_up = NodePath("CheckUp")
 check_down = NodePath("CheckDown")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
 sprite_frames = SubResource("SpriteFrames_n6lcf")
 animation = &"IdleRight"
 autoplay = "IdleRight"
 
 [node name="Hammer" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 4
 sprite_frames = SubResource("SpriteFrames_ap180")
 animation = &"Down"
 
 [node name="BubbleGun" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 4
 sprite_frames = SubResource("SpriteFrames_m5vur")
 animation = &"Down"
 
 [node name="JackInTheBox" type="Sprite2D" parent="."]
 visible = false
+z_index = 4
 texture = ExtResource("27_e5ol3")
 offset = Vector2(0, -8)
 
@@ -326,6 +331,7 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_uw5bp")
 
 [node name="Toy" type="Sprite2D" parent="."]
+z_index = 4
 position = Vector2(0, 2)
 scale = Vector2(0.5, 0.5)
 

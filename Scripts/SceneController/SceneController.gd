@@ -41,7 +41,7 @@ func _ready() -> void:
 		if i is GameUI:
 			game_stats.game_ui = i
 			game_stats.initialize()
-		if i is TileMapLayer:
+		if i is TileMapLayer and tiles == null:
 			tiles = i
 	
 	if tiles != null:
@@ -207,5 +207,5 @@ func _on_bomb_explode(pos: Vector2) -> void:
 	spawning.spawn_explosion(pos)
 
 
-func _on_demon_split_fireball(pos: Vector2) -> void:
-	spawning.spawn_fireball(pos)
+func _on_demon_split_fireball(pos: Vector2, direction: Fireball.Direction) -> void:
+	spawning.spawn_fireball(pos, direction)
