@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://chlrt0kqt316h"]
+[gd_scene load_steps=28 format=4 uid="uid://chlrt0kqt316h"]
 
 [ext_resource type="Texture2D" uid="uid://bkhh0atvepf2l" path="res://Sprites/Levels/Levels/Rainbow Heaven 3.png" id="1_bxh48"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_fxear"]
@@ -22,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://c3shr54dayhxu" path="res://Sprites/Items/Toys/Toy Car.png" id="10_mnsl8"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="12_s08q6"]
 [ext_resource type="TileSet" uid="uid://cdogj6tjronkw" path="res://DecorationTileSet.tres" id="14_44omj"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="23_jmkwm"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="24_5qrd1"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="25_ge4r8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybxb8"]
 
@@ -413,3 +416,60 @@ position = Vector2(0, 32)
 position = Vector2(0, -80)
 
 [node name="GameUI" parent="." instance=ExtResource("7_52c3l")]
+
+[node name="Toy" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-144, -16)
+texture = ExtResource("7_5y1ig")
+
+[node name="Toy2" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-160, 96)
+texture = ExtResource("8_krykf")
+
+[node name="Toy3" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(160, 32)
+texture = ExtResource("3_44omj")
+
+[node name="Toy4" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(128, -80)
+texture = ExtResource("9_36y85")
+
+[node name="Toy5" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(32, -96)
+texture = ExtResource("2_x1i5y")
+
+[node name="Toy6" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-64, -112)
+texture = ExtResource("4_jmkwm")
+
+[node name="Toy7" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(64, 32)
+texture = ExtResource("10_mnsl8")
+
+[node name="Toy8" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-64, 80)
+texture = ExtResource("6_ge4r8")
+
+[node name="Toy9" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-16, -48)
+texture = ExtResource("5_5qrd1")
+
+[node name="Card" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(-144, 32)
+
+[node name="Card2" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(144, -16)
+
+[node name="Card3" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(-48, -80)
+
+[node name="Card4" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(64, -48)
+
+[node name="Card5" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(144, 96)
+
+[node name="Card6" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(-32, 80)
+
+[node name="Treats" parent="." instance=ExtResource("25_ge4r8")]
+position = Vector2(0, 16)

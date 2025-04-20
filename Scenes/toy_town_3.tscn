@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://61u0gpkf3fep"]
+[gd_scene load_steps=25 format=4 uid="uid://61u0gpkf3fep"]
 
 [ext_resource type="Texture2D" uid="uid://cyk1v8s66uyy7" path="res://Sprites/Levels/Levels/Toy Town 3.PNG" id="1_0g60s"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_rd7ld"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://cesyymgoge144" path="res://Scenes/hazards/ball.tscn" id="9_x5q5l"]
 [ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="12_nmo00"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="13_17kes"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="20_3dh61"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="21_b4dj0"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="22_67hc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywx8b"]
 
@@ -217,3 +220,42 @@ position = Vector2(0, -128)
 position = Vector2(0, 64)
 
 [node name="GameUI" parent="." instance=ExtResource("6_7bv17")]
+
+[node name="Toy" parent="." instance=ExtResource("20_3dh61")]
+position = Vector2(-64, -32)
+texture = ExtResource("3_r8ik7")
+
+[node name="Toy2" parent="." instance=ExtResource("20_3dh61")]
+position = Vector2(48, -96)
+texture = ExtResource("4_nmo00")
+
+[node name="Toy3" parent="." instance=ExtResource("20_3dh61")]
+position = Vector2(64, 96)
+texture = ExtResource("6_vie15")
+
+[node name="Toy4" parent="." instance=ExtResource("20_3dh61")]
+position = Vector2(-80, 16)
+texture = ExtResource("2_ga1pc")
+
+[node name="Toy5" parent="." instance=ExtResource("20_3dh61")]
+position = Vector2(-64, 128)
+texture = ExtResource("5_3dh61")
+
+[node name="Toy6" parent="." instance=ExtResource("20_3dh61")]
+position = Vector2(0, -96)
+texture = ExtResource("7_b4dj0")
+
+[node name="Card" parent="." instance=ExtResource("21_b4dj0")]
+position = Vector2(-32, 0)
+
+[node name="Card2" parent="." instance=ExtResource("21_b4dj0")]
+position = Vector2(80, 16)
+
+[node name="Card3" parent="." instance=ExtResource("21_b4dj0")]
+position = Vector2(-48, -96)
+
+[node name="Card4" parent="." instance=ExtResource("21_b4dj0")]
+position = Vector2(0, 96)
+
+[node name="Treats" parent="." instance=ExtResource("22_67hc8")]
+position = Vector2(0, -32)

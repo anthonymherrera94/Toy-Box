@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://c5i5kmfru0umv"]
+[gd_scene load_steps=33 format=4 uid="uid://c5i5kmfru0umv"]
 
 [ext_resource type="Texture2D" uid="uid://dck1xdboey6nm" path="res://Sprites/Levels/Levels/Xobs Party 2.PNG" id="1_2luxc"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_l5opo"]
@@ -26,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://c3shr54dayhxu" path="res://Sprites/Items/Toys/Toy Car.png" id="12_mr4h8"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="14_d86ao"]
 [ext_resource type="PackedScene" uid="uid://dknlan704yn2o" path="res://Scenes/hazards/skull.tscn" id="24_0o07u"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="27_01cp5"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="28_xhw0e"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="29_8688m"]
+[ext_resource type="PackedScene" uid="uid://dn0m26vh4nil4" path="res://Scenes/hazards/spikes.tscn" id="30_qv88p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mg4d"]
 
@@ -338,6 +342,15 @@ position = Vector2(0, 16)
 [node name="Ball" parent="." instance=ExtResource("11_a6xj3")]
 position = Vector2(0, -128)
 
+[node name="Ball2" parent="." instance=ExtResource("11_a6xj3")]
+position = Vector2(0, 144)
+
+[node name="Ball3" parent="." instance=ExtResource("11_a6xj3")]
+position = Vector2(-128, 0)
+
+[node name="Ball4" parent="." instance=ExtResource("11_a6xj3")]
+position = Vector2(128, 16)
+
 [node name="Skull" parent="." instance=ExtResource("24_0o07u")]
 position = Vector2(80, 80)
 
@@ -348,3 +361,101 @@ position = Vector2(-80, 80)
 position = Vector2(0, 80)
 
 [node name="GameUI" parent="." instance=ExtResource("7_eeohi")]
+
+[node name="Toy" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(-96, -96)
+texture = ExtResource("8_2rn0m")
+
+[node name="Toy2" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(64, -64)
+texture = ExtResource("7_qv88p")
+
+[node name="Toy3" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(-96, -16)
+texture = ExtResource("9_g4tq5")
+
+[node name="Toy4" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(128, 48)
+texture = ExtResource("6_8688m")
+
+[node name="Toy5" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(-80, 32)
+texture = ExtResource("10_wm4c1")
+
+[node name="Toy6" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(-64, 128)
+texture = ExtResource("5_xhw0e")
+
+[node name="Toy7" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(112, 144)
+texture = ExtResource("11_p0vqe")
+
+[node name="Toy8" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(64, 64)
+texture = ExtResource("4_01cp5")
+
+[node name="Toy9" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(-16, -32)
+texture = ExtResource("12_mr4h8")
+
+[node name="Toy10" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(32, -112)
+texture = ExtResource("3_0o07u")
+
+[node name="Toy11" parent="." instance=ExtResource("27_01cp5")]
+position = Vector2(128, -80)
+texture = ExtResource("2_s5k3a")
+
+[node name="Card" parent="." instance=ExtResource("28_xhw0e")]
+position = Vector2(48, 96)
+
+[node name="Card2" parent="." instance=ExtResource("28_xhw0e")]
+position = Vector2(96, 32)
+
+[node name="Card3" parent="." instance=ExtResource("28_xhw0e")]
+position = Vector2(-48, -80)
+
+[node name="Card4" parent="." instance=ExtResource("28_xhw0e")]
+position = Vector2(96, -96)
+
+[node name="Card5" parent="." instance=ExtResource("28_xhw0e")]
+position = Vector2(-112, 0)
+
+[node name="Card6" parent="." instance=ExtResource("28_xhw0e")]
+position = Vector2(-96, 112)
+
+[node name="Treats" parent="." instance=ExtResource("29_8688m")]
+position = Vector2(0, -16)
+
+[node name="Spikes" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(-96, 48)
+
+[node name="Spikes2" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(96, 48)
+
+[node name="Spikes3" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(64, -48)
+
+[node name="Spikes4" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(32, -48)
+
+[node name="Spikes5" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(0, -48)
+
+[node name="Spikes6" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(-32, -48)
+
+[node name="Spikes7" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(-64, -48)
+
+[node name="Spikes8" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(-112, -64)
+
+[node name="Spikes9" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(112, -64)
+
+[node name="Spikes10" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(112, 80)
+
+[node name="Spikes11" parent="." instance=ExtResource("30_qv88p")]
+position = Vector2(-112, 80)

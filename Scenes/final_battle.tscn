@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bpjn0c6nhdfyi"]
+[gd_scene load_steps=30 format=4 uid="uid://bpjn0c6nhdfyi"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_5x1bi"]
 [ext_resource type="Texture2D" uid="uid://dhfgne77jww4t" path="res://Sprites/Levels/Levels/Final Battle.png" id="1_p1w0h"]
@@ -11,6 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://cesyymgoge144" path="res://Scenes/hazards/ball.tscn" id="8_3s5ts"]
 [ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="8_yv70a"]
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="9_vijtp"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="12_yv70a"]
+[ext_resource type="Texture2D" uid="uid://cr55q6xbdrvv1" path="res://Sprites/Items/Toys/Doll.png" id="13_2gyxr"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="13_vijtp"]
+[ext_resource type="Texture2D" uid="uid://xc4mwt32umjv" path="res://Sprites/Items/Toys/Ring Stack.png" id="14_6ienb"]
+[ext_resource type="Texture2D" uid="uid://dhtm8w6pnoc35" path="res://Sprites/Items/Toys/Roly Poly Clown.png" id="15_miyqa"]
+[ext_resource type="Texture2D" uid="uid://2uy36thrqnut" path="res://Sprites/Items/Toys/Rubber Duck.png" id="16_c51nv"]
+[ext_resource type="Texture2D" uid="uid://cuva8a8mpoqqv" path="res://Sprites/Items/Toys/Spinning Top.png" id="17_bfotn"]
+[ext_resource type="Texture2D" uid="uid://c1qmw4rrqxsmt" path="res://Sprites/Items/Toys/Sports Ball.png" id="18_ajl0n"]
+[ext_resource type="Texture2D" uid="uid://xf2lwkyef6ar" path="res://Sprites/Items/Toys/Teddy Bear.png" id="19_3yacv"]
+[ext_resource type="Texture2D" uid="uid://bcsvm1ce5p3mg" path="res://Sprites/Items/Toys/Toy Boat.png" id="20_3ma08"]
+[ext_resource type="Texture2D" uid="uid://c3shr54dayhxu" path="res://Sprites/Items/Toys/Toy Car.png" id="21_3jbvb"]
+[ext_resource type="Texture2D" uid="uid://b4lis51om3hln" path="res://Sprites/Items/Toys/Toy Dino.png" id="22_58wvk"]
+[ext_resource type="Texture2D" uid="uid://yjfpg4drh07m" path="res://Sprites/Items/Toys/Toy Robot.png" id="23_3qypu"]
+[ext_resource type="Texture2D" uid="uid://durdochdwpoe1" path="res://Sprites/Items/Toys/Yo-Yo.png" id="24_nar3j"]
+[ext_resource type="PackedScene" uid="uid://dn0m26vh4nil4" path="res://Scenes/hazards/spikes.tscn" id="26_61bq7"]
+[ext_resource type="PackedScene" uid="uid://b612rd8qw2lhg" path="res://Scenes/hazards/worm.tscn" id="27_0ogx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0k2j2"]
 
@@ -347,4 +363,97 @@ position = Vector2(-160, 160)
 [node name="Ball" parent="." instance=ExtResource("8_3s5ts")]
 position = Vector2(0, -128)
 
+[node name="Ball2" parent="." instance=ExtResource("8_3s5ts")]
+position = Vector2(0, 160)
+
+[node name="Ball3" parent="." instance=ExtResource("8_3s5ts")]
+position = Vector2(-160, 0)
+
+[node name="Ball4" parent="." instance=ExtResource("8_3s5ts")]
+position = Vector2(160, 0)
+
 [node name="GameUI" parent="." instance=ExtResource("6_lldh7")]
+
+[node name="Toy" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(-144, -80)
+texture = ExtResource("13_2gyxr")
+
+[node name="Toy2" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(-48, -128)
+texture = ExtResource("14_6ienb")
+
+[node name="Toy3" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(-16, -48)
+texture = ExtResource("15_miyqa")
+
+[node name="Toy4" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(128, -64)
+texture = ExtResource("16_c51nv")
+
+[node name="Toy5" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(96, -32)
+texture = ExtResource("17_bfotn")
+
+[node name="Toy6" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(64, -112)
+texture = ExtResource("18_ajl0n")
+
+[node name="Toy7" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(128, 128)
+texture = ExtResource("19_3yacv")
+
+[node name="Toy8" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(32, 96)
+texture = ExtResource("20_3ma08")
+
+[node name="Toy9" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(96, 48)
+texture = ExtResource("21_3jbvb")
+
+[node name="Toy10" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(-96, 80)
+texture = ExtResource("22_58wvk")
+
+[node name="Toy11" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(-96, 144)
+texture = ExtResource("23_3qypu")
+
+[node name="Toy12" parent="." instance=ExtResource("12_yv70a")]
+position = Vector2(-32, 112)
+texture = ExtResource("24_nar3j")
+
+[node name="Card" parent="." instance=ExtResource("13_vijtp")]
+position = Vector2(-128, 128)
+
+[node name="Card2" parent="." instance=ExtResource("13_vijtp")]
+position = Vector2(-80, -48)
+
+[node name="Card3" parent="." instance=ExtResource("13_vijtp")]
+position = Vector2(80, -64)
+
+[node name="Card4" parent="." instance=ExtResource("13_vijtp")]
+position = Vector2(96, 80)
+
+[node name="Card5" parent="." instance=ExtResource("13_vijtp")]
+position = Vector2(32, 128)
+
+[node name="Card6" parent="." instance=ExtResource("13_vijtp")]
+position = Vector2(-112, -112)
+
+[node name="Spikes" parent="." instance=ExtResource("26_61bq7")]
+position = Vector2(-32, 48)
+
+[node name="Spikes2" parent="." instance=ExtResource("26_61bq7")]
+position = Vector2(-32, -16)
+
+[node name="Spikes3" parent="." instance=ExtResource("26_61bq7")]
+position = Vector2(32, -16)
+
+[node name="Spikes4" parent="." instance=ExtResource("26_61bq7")]
+position = Vector2(32, 48)
+
+[node name="Worm" parent="." instance=ExtResource("27_0ogx5")]
+position = Vector2(0, -16)
+
+[node name="Worm2" parent="." instance=ExtResource("27_0ogx5")]
+position = Vector2(0, 48)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bte1wsjuwyj0t"]
+[gd_scene load_steps=30 format=4 uid="uid://bte1wsjuwyj0t"]
 
 [ext_resource type="Texture2D" uid="uid://bqx06whct2ovy" path="res://Sprites/Levels/Levels/Arcade Zone 3.png" id="1_iptgk"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_rria7"]
@@ -23,6 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://yjfpg4drh07m" path="res://Sprites/Items/Toys/Toy Robot.png" id="11_eqbgv"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="12_1ebyx"]
 [ext_resource type="PackedScene" uid="uid://bbdrjh5xph45e" path="res://Scenes/hazards/oil_drum.tscn" id="23_or82r"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="24_f4gyv"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="25_qk1qv"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="26_xd5ck"]
+[ext_resource type="PackedScene" uid="uid://b612rd8qw2lhg" path="res://Scenes/hazards/worm.tscn" id="27_xd5ck"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccbrw"]
 
@@ -419,3 +423,91 @@ position = Vector2(-144, -144)
 position = Vector2(0, -64)
 
 [node name="GameUI" parent="." instance=ExtResource("7_b0dxg")]
+
+[node name="Toy" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(0, -144)
+texture = ExtResource("2_7dpbf")
+
+[node name="Toy2" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(128, -64)
+texture = ExtResource("3_or82r")
+
+[node name="Toy3" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(-96, -160)
+texture = ExtResource("4_f4gyv")
+
+[node name="Toy4" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(-160, -32)
+texture = ExtResource("7_xd5ck")
+
+[node name="Toy5" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(160, 64)
+texture = ExtResource("6_qk1qv")
+
+[node name="Toy6" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(-96, 32)
+texture = ExtResource("5_jd8vo")
+
+[node name="Toy7" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(-128, 128)
+texture = ExtResource("8_kd5g5")
+
+[node name="Toy8" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(0, 112)
+texture = ExtResource("9_oq6ov")
+
+[node name="Toy9" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(64, 48)
+texture = ExtResource("10_34xwo")
+
+[node name="Toy10" parent="." instance=ExtResource("24_f4gyv")]
+position = Vector2(160, -128)
+texture = ExtResource("11_eqbgv")
+
+[node name="Card" parent="." instance=ExtResource("25_qk1qv")]
+position = Vector2(-128, -64)
+
+[node name="Card2" parent="." instance=ExtResource("25_qk1qv")]
+position = Vector2(80, -128)
+
+[node name="Card3" parent="." instance=ExtResource("25_qk1qv")]
+position = Vector2(128, 32)
+
+[node name="Card4" parent="." instance=ExtResource("25_qk1qv")]
+position = Vector2(-32, 96)
+
+[node name="Card5" parent="." instance=ExtResource("25_qk1qv")]
+position = Vector2(-32, -160)
+
+[node name="Card6" parent="." instance=ExtResource("25_qk1qv")]
+position = Vector2(160, -16)
+
+[node name="Treats" parent="." instance=ExtResource("26_xd5ck")]
+position = Vector2(0, 32)
+
+[node name="Worm" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(-80, -80)
+
+[node name="Worm2" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(80, -80)
+
+[node name="Worm3" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(80, 0)
+
+[node name="Worm4" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(-80, 0)
+
+[node name="Worm5" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(-128, 80)
+
+[node name="Worm6" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(128, 80)
+
+[node name="Worm7" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(112, -112)
+
+[node name="Worm8" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(-112, -112)
+
+[node name="Worm9" parent="." instance=ExtResource("27_xd5ck")]
+position = Vector2(0, 80)

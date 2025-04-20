@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dmv1m23maf3ou"]
+[gd_scene load_steps=25 format=4 uid="uid://dmv1m23maf3ou"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_3cjd0"]
 [ext_resource type="Texture2D" uid="uid://c5p6hfb5gatys" path="res://Sprites/Levels/Levels/Sweet Land 2.PNG" id="1_oxmmv"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_7g0uk"]
 [ext_resource type="Texture2D" uid="uid://2uy36thrqnut" path="res://Sprites/Items/Toys/Rubber Duck.png" id="7_nfs2l"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="13_q7ybv"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="20_qh04r"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="21_1jd6g"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="22_5lyov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ee0j"]
 
@@ -185,3 +188,45 @@ position = Vector2(0, -112)
 position = Vector2(0, 80)
 
 [node name="GameUI" parent="." instance=ExtResource("6_fao7a")]
+
+[node name="Toy" parent="." instance=ExtResource("20_qh04r")]
+position = Vector2(-48, 80)
+texture = ExtResource("2_yihod")
+
+[node name="Toy2" parent="." instance=ExtResource("20_qh04r")]
+position = Vector2(0, -80)
+texture = ExtResource("3_qh04r")
+
+[node name="Toy3" parent="." instance=ExtResource("20_qh04r")]
+position = Vector2(64, -16)
+texture = ExtResource("7_nfs2l")
+
+[node name="Toy4" parent="." instance=ExtResource("20_qh04r")]
+position = Vector2(-96, 0)
+texture = ExtResource("4_3iyt7")
+
+[node name="Toy5" parent="." instance=ExtResource("20_qh04r")]
+position = Vector2(96, 96)
+texture = ExtResource("5_1jd6g")
+
+[node name="Toy6" parent="." instance=ExtResource("20_qh04r")]
+position = Vector2(-64, -48)
+texture = ExtResource("6_5lyov")
+
+[node name="Card" parent="." instance=ExtResource("21_1jd6g")]
+position = Vector2(-64, 0)
+
+[node name="Card2" parent="." instance=ExtResource("21_1jd6g")]
+position = Vector2(96, -16)
+
+[node name="Card3" parent="." instance=ExtResource("21_1jd6g")]
+position = Vector2(48, 64)
+
+[node name="Card4" parent="." instance=ExtResource("21_1jd6g")]
+position = Vector2(48, -64)
+
+[node name="Card5" parent="." instance=ExtResource("21_1jd6g")]
+position = Vector2(-48, -112)
+
+[node name="Treats" parent="." instance=ExtResource("22_5lyov")]
+position = Vector2(0, -48)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cyyfcahagbk5d"]
+[gd_scene load_steps=29 format=4 uid="uid://cyyfcahagbk5d"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_48scg"]
 [ext_resource type="Texture2D" uid="uid://ds34ppuj7v2kt" path="res://Sprites/Levels/Levels/Xobs Party 1.PNG" id="1_bbdh6"]
@@ -21,6 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://durdochdwpoe1" path="res://Sprites/Items/Toys/Yo-Yo.png" id="8_nh7r2"]
 [ext_resource type="Texture2D" uid="uid://xc4mwt32umjv" path="res://Sprites/Items/Toys/Ring Stack.png" id="9_b582y"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="13_vr4fy"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="22_jcbub"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="23_p3d0p"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="24_pgm3x"]
+[ext_resource type="PackedScene" uid="uid://dn0m26vh4nil4" path="res://Scenes/hazards/spikes.tscn" id="25_t63ak"]
+[ext_resource type="PackedScene" uid="uid://cesyymgoge144" path="res://Scenes/hazards/ball.tscn" id="26_nh7r2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rl8db"]
 
@@ -304,3 +309,77 @@ position = Vector2(-96, 160)
 position = Vector2(0, -48)
 
 [node name="GameUI" parent="." instance=ExtResource("7_jx77o")]
+
+[node name="Toy" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(-16, -144)
+texture = ExtResource("2_b0b8o")
+
+[node name="Toy2" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(64, -128)
+texture = ExtResource("3_jcbub")
+
+[node name="Toy3" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(-64, -48)
+texture = ExtResource("4_q3uxe")
+
+[node name="Toy4" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(64, -32)
+texture = ExtResource("5_p3d0p")
+
+[node name="Toy5" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(-64, 48)
+texture = ExtResource("6_pgm3x")
+
+[node name="Toy6" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(48, 80)
+texture = ExtResource("7_t63ak")
+
+[node name="Toy7" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(-80, 112)
+texture = ExtResource("8_nh7r2")
+
+[node name="Toy8" parent="." instance=ExtResource("22_jcbub")]
+position = Vector2(96, 128)
+texture = ExtResource("9_b582y")
+
+[node name="Card" parent="." instance=ExtResource("23_p3d0p")]
+position = Vector2(-32, 48)
+
+[node name="Card2" parent="." instance=ExtResource("23_p3d0p")]
+position = Vector2(64, 48)
+
+[node name="Card3" parent="." instance=ExtResource("23_p3d0p")]
+position = Vector2(-32, -48)
+
+[node name="Card4" parent="." instance=ExtResource("23_p3d0p")]
+position = Vector2(-16, -112)
+
+[node name="Card5" parent="." instance=ExtResource("23_p3d0p")]
+position = Vector2(16, 144)
+
+[node name="Card6" parent="." instance=ExtResource("23_p3d0p")]
+position = Vector2(80, -112)
+
+[node name="Treats" parent="." instance=ExtResource("24_pgm3x")]
+position = Vector2(0, -32)
+
+[node name="Spikes" parent="." instance=ExtResource("25_t63ak")]
+position = Vector2(-16, 144)
+
+[node name="Spikes2" parent="." instance=ExtResource("25_t63ak")]
+position = Vector2(48, 144)
+
+[node name="Spikes3" parent="." instance=ExtResource("25_t63ak")]
+position = Vector2(0, 48)
+
+[node name="Spikes4" parent="." instance=ExtResource("25_t63ak")]
+position = Vector2(32, -64)
+
+[node name="Spikes5" parent="." instance=ExtResource("25_t63ak")]
+position = Vector2(-80, -80)
+
+[node name="Ball" parent="." instance=ExtResource("26_nh7r2")]
+position = Vector2(0, 160)
+
+[node name="Ball2" parent="." instance=ExtResource("26_nh7r2")]
+position = Vector2(0, -160)

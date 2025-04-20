@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dng84j1cl75d3"]
+[gd_scene load_steps=33 format=4 uid="uid://dng84j1cl75d3"]
 
 [ext_resource type="Texture2D" uid="uid://dq56555ghieby" path="res://Sprites/Levels/Levels/Xobs Party 3.PNG" id="1_1npnm"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_fddrt"]
@@ -26,6 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="13_6d24w"]
 [ext_resource type="Texture2D" uid="uid://durdochdwpoe1" path="res://Sprites/Items/Toys/Yo-Yo.png" id="13_xxpuk"]
 [ext_resource type="PackedScene" uid="uid://dknlan704yn2o" path="res://Scenes/hazards/skull.tscn" id="26_oygcp"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="27_txt3i"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="28_0e2ws"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="29_xx7vc"]
+[ext_resource type="PackedScene" uid="uid://dn0m26vh4nil4" path="res://Scenes/hazards/spikes.tscn" id="30_xx7vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vglf5"]
 
@@ -422,3 +426,120 @@ position = Vector2(48, 112)
 position = Vector2(0, -128)
 
 [node name="GameUI" parent="." instance=ExtResource("7_sk21l")]
+
+[node name="Toy" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(-64, 176)
+texture = ExtResource("2_ow2s7")
+
+[node name="Toy2" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(-64, -112)
+texture = ExtResource("3_oygcp")
+
+[node name="Toy12" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(-160, 48)
+texture = ExtResource("4_txt3i")
+
+[node name="Toy3" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(96, 32)
+texture = ExtResource("5_3d336")
+
+[node name="Toy4" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(-112, 0)
+texture = ExtResource("6_0e2ws")
+
+[node name="Toy6" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(0, -80)
+texture = ExtResource("7_xx7vc")
+
+[node name="Toy5" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(-128, -96)
+texture = ExtResource("8_oxxw4")
+
+[node name="Toy7" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(112, -64)
+texture = ExtResource("9_rr6o1")
+
+[node name="Toy8" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(48, -144)
+texture = ExtResource("10_o0tm1")
+
+[node name="Toy9" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(-96, 112)
+texture = ExtResource("11_nn832")
+
+[node name="Toy10" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(128, 96)
+texture = ExtResource("12_ef8yn")
+
+[node name="Toy11" parent="." instance=ExtResource("27_txt3i")]
+position = Vector2(128, 96)
+texture = ExtResource("13_xxpuk")
+
+[node name="Card" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(96, -112)
+
+[node name="Card2" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(-144, 128)
+
+[node name="Card3" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(96, 96)
+
+[node name="Card4" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(128, 0)
+
+[node name="Card5" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(-96, -112)
+
+[node name="Card6" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(112, 176)
+
+[node name="Card7" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(-32, 96)
+
+[node name="Card8" parent="." instance=ExtResource("28_0e2ws")]
+position = Vector2(-48, -32)
+
+[node name="Treats" parent="." instance=ExtResource("29_xx7vc")]
+position = Vector2(0, -16)
+
+[node name="Spikes" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-112, -48)
+
+[node name="Spikes2" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-112, -128)
+
+[node name="Spikes3" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-80, -80)
+
+[node name="Spikes4" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(0, -48)
+
+[node name="Spikes5" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-80, 16)
+
+[node name="Spikes6" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-144, 16)
+
+[node name="Spikes7" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-112, -16)
+
+[node name="Spikes8" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-112, 48)
+
+[node name="Spikes9" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-48, 96)
+
+[node name="Spikes10" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(48, 96)
+
+[node name="Spikes11" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(-144, 96)
+
+[node name="Spikes12" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(96, 0)
+
+[node name="Spikes13" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(128, 32)
+
+[node name="Spikes14" parent="." instance=ExtResource("30_xx7vc")]
+position = Vector2(160, 80)

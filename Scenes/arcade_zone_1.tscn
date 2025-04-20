@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://5ps8mcd747s7"]
+[gd_scene load_steps=25 format=4 uid="uid://5ps8mcd747s7"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_bln5a"]
 [ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="1_t8ybu"]
@@ -18,6 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_ust18"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="11_nslld"]
 [ext_resource type="PackedScene" uid="uid://bbdrjh5xph45e" path="res://Scenes/hazards/oil_drum.tscn" id="18_54l0g"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="19_7qgla"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="20_n0mci"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="21_lhasm"]
+[ext_resource type="PackedScene" uid="uid://b612rd8qw2lhg" path="res://Scenes/hazards/worm.tscn" id="22_hv668"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h36y8"]
 
@@ -232,3 +236,54 @@ position = Vector2(192, 160)
 position = Vector2(112, 128)
 
 [node name="GameUI" parent="." instance=ExtResource("6_uetb7")]
+
+[node name="Toy" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(48, 48)
+texture = ExtResource("2_oh1b2")
+
+[node name="Toy2" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(112, 176)
+texture = ExtResource("3_54l0g")
+
+[node name="Toy3" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(160, 224)
+texture = ExtResource("4_7qgla")
+
+[node name="Toy4" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(160, 80)
+texture = ExtResource("6_lhasm")
+
+[node name="Toy5" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(16, 192)
+texture = ExtResource("5_n0mci")
+
+[node name="Toy6" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(208, 112)
+texture = ExtResource("7_hv668")
+
+[node name="Card" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(48, 16)
+
+[node name="Card2" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(176, 112)
+
+[node name="Card3" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(48, 192)
+
+[node name="Card4" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(96, 80)
+
+[node name="Treats" parent="." instance=ExtResource("21_lhasm")]
+position = Vector2(112, 208)
+
+[node name="Worm" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(80, 64)
+
+[node name="Worm2" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(144, 64)
+
+[node name="Worm3" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(160, 160)
+
+[node name="Worm4" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(64, 160)

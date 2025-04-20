@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://baemtipd8xqff"]
+[gd_scene load_steps=27 format=4 uid="uid://baemtipd8xqff"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_5i2ix"]
 [ext_resource type="Texture2D" uid="uid://3tfpw2v16j6f" path="res://Sprites/Levels/Levels/Sweet Lands 3.PNG" id="1_mb4vx"]
@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="8_o30ow"]
 [ext_resource type="Texture2D" uid="uid://xf2lwkyef6ar" path="res://Sprites/Items/Toys/Teddy Bear.png" id="9_t6fs7"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="13_os4jl"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="22_b04cl"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="23_jbfx6"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="24_201ak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0v65n"]
 
@@ -295,3 +298,56 @@ position = Vector2(0, -16)
 position = Vector2(0, -80)
 
 [node name="GameUI" parent="." instance=ExtResource("7_mdbph")]
+
+[node name="Toy" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(-144, -64)
+texture = ExtResource("2_k3dhu")
+
+[node name="Toy2" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(176, -80)
+texture = ExtResource("3_b04cl")
+
+[node name="Toy8" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(176, 32)
+texture = ExtResource("4_pdb48")
+
+[node name="Toy3" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(-144, 16)
+texture = ExtResource("5_jbfx6")
+
+[node name="Toy4" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(96, 96)
+texture = ExtResource("7_4hbsw")
+
+[node name="Toy5" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(-32, -112)
+texture = ExtResource("6_201ak")
+
+[node name="Toy6" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(-96, 64)
+texture = ExtResource("9_t6fs7")
+
+[node name="Toy7" parent="." instance=ExtResource("22_b04cl")]
+position = Vector2(64, -80)
+texture = ExtResource("8_o28rr")
+
+[node name="Card" parent="." instance=ExtResource("23_jbfx6")]
+position = Vector2(-64, -32)
+
+[node name="Card2" parent="." instance=ExtResource("23_jbfx6")]
+position = Vector2(96, -80)
+
+[node name="Card3" parent="." instance=ExtResource("23_jbfx6")]
+position = Vector2(144, 16)
+
+[node name="Card4" parent="." instance=ExtResource("23_jbfx6")]
+position = Vector2(-128, 64)
+
+[node name="Card5" parent="." instance=ExtResource("23_jbfx6")]
+position = Vector2(-112, -112)
+
+[node name="Card6" parent="." instance=ExtResource("23_jbfx6")]
+position = Vector2(0, 96)
+
+[node name="Treats" parent="." instance=ExtResource("24_201ak")]
+position = Vector2(0, 48)
