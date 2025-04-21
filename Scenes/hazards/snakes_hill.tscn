@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3ghyxix3sgbq"]
+
+[ext_resource type="Script" uid="uid://vm183mg3c53d" path="res://Scripts/hazards/snakes_hill.gd" id="1_jvvds"]
+[ext_resource type="PackedScene" uid="uid://d1m6axmvsemln" path="res://Scenes/hazards/snake.tscn" id="2_5x584"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvvds"]
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x584"]
+size = Vector2(12, 12)
+
+[node name="SnakesHill" type="StaticBody2D" node_paths=PackedStringArray("snakes", "bite_delay_timer")]
+script = ExtResource("1_jvvds")
+snakes = [NodePath("Left1"), NodePath("Left2"), NodePath("Right1"), NodePath("Right2"), NodePath("Bottom1"), NodePath("Bottom2"), NodePath("Bottom3")]
+bite_delay_timer = NodePath("BiteDelay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_jvvds")
+
+[node name="Left1" parent="." instance=ExtResource("2_5x584")]
+position = Vector2(-16, 0)
+direction = 2
+
+[node name="Check" type="Area2D" parent="Left1"]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left1/Check"]
+shape = SubResource("RectangleShape2D_5x584")
+
+[node name="Left2" parent="." instance=ExtResource("2_5x584")]
+position = Vector2(-16, 16)
+direction = 2
+
+[node name="Check" type="Area2D" parent="Left2"]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left2/Check"]
+shape = SubResource("RectangleShape2D_5x584")
+
+[node name="Right1" parent="." instance=ExtResource("2_5x584")]
+position = Vector2(16, 0)
+direction = 1
+
+[node name="Check" type="Area2D" parent="Right1"]
+position = Vector2(16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right1/Check"]
+shape = SubResource("RectangleShape2D_5x584")
+
+[node name="Right2" parent="." instance=ExtResource("2_5x584")]
+position = Vector2(16, 16)
+direction = 1
+
+[node name="Check" type="Area2D" parent="Right2"]
+position = Vector2(16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right2/Check"]
+shape = SubResource("RectangleShape2D_5x584")
+
+[node name="Bottom1" parent="." instance=ExtResource("2_5x584")]
+position = Vector2(-16, 16)
+
+[node name="Check" type="Area2D" parent="Bottom1"]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom1/Check"]
+shape = SubResource("RectangleShape2D_5x584")
+
+[node name="Bottom2" parent="." instance=ExtResource("2_5x584")]
+position = Vector2(0, 16)
+
+[node name="Check" type="Area2D" parent="Bottom2"]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom2/Check"]
+shape = SubResource("RectangleShape2D_5x584")
+
+[node name="Bottom3" parent="." instance=ExtResource("2_5x584")]
+position = Vector2(16, 16)
+
+[node name="Check" type="Area2D" parent="Bottom3"]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom3/Check"]
+shape = SubResource("RectangleShape2D_5x584")
+
+[node name="BiteDelay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="BiteDelay" to="." method="_on_bite_delay_timeout"]

@@ -13,30 +13,28 @@ enum Direction {
 func _ready() -> void:
 	match direction:
 		Direction.Bottom:
-			anim.offset = Vector2.UP * 8
+			anim.play("Hole")
 		Direction.Right:
 			position += Vector2.RIGHT * 16
+			anim.offset = Vector2.ZERO
 			anim.hide()
 		Direction.Left:
 			position += Vector2.LEFT * 16
+			anim.offset = Vector2.ZERO
 			anim.scale.x = -1
 			anim.hide()
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body is Aoy:
-		match direction:
-			Direction.Bottom:
-				anim.play("Down")
-			Direction.Right:
-				anim.play("Side")
-				anim.show()
-			Direction.Left:
-				anim.play("Side")
-				anim.show()
-		
-		if not body.is_invincibility:
-			body.hit()
+func push_snake() -> void:
+	match direction:
+		Direction.Bottom:
+			anim.play("Bottom")
+		Direction.Right:
+			anim.play("Side")
+			anim.show()
+		Direction.Left:
+			anim.play("Side")
+			anim.show()
 
 
 func _on_animation_finished() -> void:
