@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://chlrt0kqt316h"]
+[gd_scene load_steps=29 format=4 uid="uid://chlrt0kqt316h"]
 
 [ext_resource type="Texture2D" uid="uid://bkhh0atvepf2l" path="res://Sprites/Levels/Levels/Rainbow Heaven 3.png" id="1_bxh48"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_fxear"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="23_jmkwm"]
 [ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="24_5qrd1"]
 [ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="25_ge4r8"]
+[ext_resource type="PackedScene" uid="uid://bg6n4loc1p5kl" path="res://Scenes/hazards/rainbow_bridge.tscn" id="26_5y1ig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybxb8"]
 
@@ -392,7 +393,8 @@ tile_set = ExtResource("2_l8rjk")
 
 [node name="Decoration" type="TileMapLayer" parent="."]
 z_index = 1
-tile_map_data = PackedByteArray("AAD2//r/BAAAAAAAAAAJAPr/BAAAAAAAAAA=")
+position = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD2//r/DAAAAAAAAAAJAPr/DAAAAAAAAAD5//j/CAAAAAAAAAD5//n/CAAAAAAAAAD5//r/CAAAAAAAAAD5//v/CAAAAAAAAAD5//z/CAAAAAAAAAD5//3/CAAAAAAAAAD5//7/CAAAAAAAAAD5////CAAAAAAAAAD5/wAACAAAAAAAAAD5/wEACAAAAAAAAAD5/wIACAAAAAAAAAD5/wMACAAAAAAAAAD5/wQACAAAAAAAAAD5/wUACAAAAAAAAAD5/wYACAAAAAAAAAAFAPj/CAAAAAAAAAAFAPn/CAAAAAAAAAAFAPr/CAAAAAAAAAAFAPv/CAAAAAAAAAAFAPz/CAAAAAAAAAAFAP3/CAAAAAAAAAAFAP7/CAAAAAAAAAAFAP//CAAAAAAAAAAFAAAACAAAAAAAAAAFAAEACAAAAAAAAAAFAAIACAAAAAAAAAAFAAMACAAAAAAAAAAFAAQACAAAAAAAAAAFAAUACAAAAAAAAAAFAAYACAAAAAAAAAD5//f/CAACAAAAAAAFAPf/CAACAAAAAAA=")
 tile_set = ExtResource("14_44omj")
 
 [node name="Aoy" parent="." instance=ExtResource("2_to3er")]
@@ -470,6 +472,24 @@ position = Vector2(144, 96)
 
 [node name="Card6" parent="." instance=ExtResource("24_5qrd1")]
 position = Vector2(-32, 80)
+
+[node name="RainbowBridge" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(-96, -96)
+
+[node name="RainbowBridge2" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(96, -96)
+
+[node name="RainbowBridge3" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(-96, 48)
+
+[node name="RainbowBridge4" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(96, 48)
+
+[node name="RainbowBridge5" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(-96, 80)
+
+[node name="RainbowBridge6" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(96, 80)
 
 [node name="Treats" parent="." instance=ExtResource("25_ge4r8")]
 position = Vector2(0, 16)

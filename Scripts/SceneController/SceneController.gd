@@ -72,7 +72,12 @@ func _ready() -> void:
 		if i is Toy:
 			game_stats.toys_left += 1
 		if i is Card:
+			i.picked.connect(_on_card_picked)
 			objects_holder.cards.append(i)
+		if i is Treat:
+			i.set_type(game_stats.current_treat)
+			i.picked.connect(_on_treat_picked)
+			objects_holder.treat = i
 	
 	for card in objects_holder.cards:
 		card.object_into = randi() % Card.ObjectsInto.size()
@@ -178,15 +183,15 @@ func _on_card_picked(object_into: Card.ObjectsInto, pos: Vector2) -> void:
 
 func _on_treat_picked() -> void:
 	match game_stats.current_treat:
-		Treats.TYPE.Candy:
+		Treat.TYPE.Candy:
 			game_stats.add_score(500)
-		Treats.TYPE.CandyCane:
+		Treat.TYPE.CandyCane:
 			game_stats.add_score(1000)
-		Treats.TYPE.ChocolateBar:
+		Treat.TYPE.ChocolateBar:
 			game_stats.add_score(2000)
-		Treats.TYPE.IceCream:
+		Treat.TYPE.IceCream:
 			game_stats.add_score(3000)
-		Treats.TYPE.Cake:
+		Treat.TYPE.Cake:
 			game_stats.add_score(5000)
 	
 	treat_picked.emit()
@@ -209,3 +214,8 @@ func _on_bomb_explode(pos: Vector2) -> void:
 
 func _on_demon_split_fireball(pos: Vector2, direction: Fireball.Direction) -> void:
 	spawning.spawn_fireball(pos, direction)
+
+
+func show_treat() -> void:
+	if objects_holder.treat != null: objects_holder.treat.show()
+	treats_picked_delay.start()

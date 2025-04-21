@@ -13,7 +13,7 @@ var bonus_time := 10000
 var power_up_score := 0
 
 var current_balloon: Balloons.TYPE
-var current_treat: Treats.TYPE
+var current_treat: Treat.TYPE
 
 var toys_left := 0
 

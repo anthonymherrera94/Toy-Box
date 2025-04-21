@@ -67,19 +67,19 @@ func spawn_balloon() -> void:
 		
 		main.ballon_pop_delay.start()
 
-func spawn_treat() -> void:
-	if not is_treat_spawned:
-		var obj: Treats = treat.instantiate()
-		obj.treat_type = game_stats.current_treat
-		obj.position = pick_random_pos()
-		obj.picked.connect(main._on_treat_picked)
-		main.get_parent().add_child.call_deferred(obj)
-		
-		objects_holder.treat = obj
-		
-		main.treats_picked_delay.start()
-		
-		is_treat_spawned = true
+#func spawn_treat() -> void:
+	#if not is_treat_spawned:
+		#var obj: Treats = treat.instantiate()
+		#obj.treat_type = game_stats.current_treat
+		#obj.position = pick_random_pos()
+		#obj.picked.connect(main._on_treat_picked)
+		#main.get_parent().add_child.call_deferred(obj)
+		#
+		#objects_holder.treat = obj
+		#
+		#main.treats_picked_delay.start()
+		#
+		#is_treat_spawned = true
 
 func spawn_key() -> void:
 	var obj: Key = key.instantiate()

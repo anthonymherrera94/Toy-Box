@@ -1,0 +1,110 @@
+[gd_scene load_steps=18 format=3 uid="uid://bg6n4loc1p5kl"]
+
+[ext_resource type="Script" uid="uid://dhf72eo2c6chr" path="res://Scripts/hazards/rainbow_bridge.gd" id="1_o36f8"]
+[ext_resource type="Texture2D" uid="uid://x8d8l4pyikv2" path="res://Sprites/Levels/Hazards/Rainbow Cloud.PNG" id="2_754qt"]
+[ext_resource type="Texture2D" uid="uid://bttslndyd47lx" path="res://Sprites/Levels/Hazards/Rainbow Bridge 8.PNG" id="3_1dxk2"]
+[ext_resource type="Texture2D" uid="uid://bfrmd0s632fvu" path="res://Sprites/Levels/Hazards/Rainbow Bridge 9.PNG" id="4_ybf5q"]
+[ext_resource type="Texture2D" uid="uid://bfc2a44twvktc" path="res://Sprites/Levels/Hazards/Rainbow Bridge 10.PNG" id="5_qfmyb"]
+[ext_resource type="Texture2D" uid="uid://bb46onthcth8i" path="res://Sprites/Levels/Hazards/Rainbow Bridge 11.PNG" id="6_56c2w"]
+[ext_resource type="Texture2D" uid="uid://cphptxwv6f4kv" path="res://Sprites/Levels/Hazards/Rainbow Bridge 12.PNG" id="7_ocfw8"]
+[ext_resource type="Texture2D" uid="uid://d4emhdr4kntxl" path="res://Sprites/Levels/Hazards/Rainbow Bridge 13.PNG" id="8_c10nc"]
+[ext_resource type="Texture2D" uid="uid://db25k8abfg3mj" path="res://Sprites/Levels/Hazards/Rainbow Bridge 7.PNG" id="9_fjpj6"]
+[ext_resource type="Texture2D" uid="uid://wxdjsyvxkjv8" path="res://Sprites/Levels/Hazards/Rainbow Bridge 1.PNG" id="10_0lt1p"]
+[ext_resource type="Texture2D" uid="uid://dluh3f6m18mod" path="res://Sprites/Levels/Hazards/Rainbow Bridge 2.PNG" id="11_hds53"]
+[ext_resource type="Texture2D" uid="uid://c75auomiyj1y8" path="res://Sprites/Levels/Hazards/Rainbow Bridge 3.PNG" id="12_0ieir"]
+[ext_resource type="Texture2D" uid="uid://3n2rtdwmmv7p" path="res://Sprites/Levels/Hazards/Rainbow Bridge 4.PNG" id="13_6u7ra"]
+[ext_resource type="Texture2D" uid="uid://weoe1itmtoa6" path="res://Sprites/Levels/Hazards/Rainbow Bridge 5.PNG" id="14_sxi7g"]
+[ext_resource type="Texture2D" uid="uid://dmvsebqj7qfg0" path="res://Sprites/Levels/Hazards/Rainbow Bridge 6.PNG" id="15_8jgnj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_754qt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1dxk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ybf5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qfmyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_56c2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ocfw8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_c10nc")
+}],
+"loop": true,
+"name": &"Hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_fjpj6")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_0lt1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hds53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0ieir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_6u7ra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sxi7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8jgnj")
+}],
+"loop": true,
+"name": &"Show",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1dxk2"]
+size = Vector2(16, 16)
+
+[node name="RainbowBridge" type="StaticBody2D" node_paths=PackedStringArray("anim", "spawn_timer", "hide_timer")]
+z_index = 1
+script = ExtResource("1_o36f8")
+anim = NodePath("AnimatedSprite2D")
+spawn_timer = NodePath("SpawnTimer")
+hide_timer = NodePath("HideTimer")
+
+[node name="Cloud" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+texture = ExtResource("2_754qt")
+
+[node name="Cloud2" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+texture = ExtResource("2_754qt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_754qt")
+animation = &"Show"
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="HideTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1dxk2")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timeout"]
+[connection signal="timeout" from="HideTimer" to="." method="_on_hide_timeout"]

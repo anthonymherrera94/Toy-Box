@@ -37,7 +37,8 @@ func _ready() -> void:
 	speed = ordinary_move_speed
 	
 	super()
-	
+
+
 func _process(delta):
 	if Input.is_action_just_pressed("action"): action_pressed()
 	

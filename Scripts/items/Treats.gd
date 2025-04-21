@@ -1,4 +1,4 @@
-class_name Treats extends Area2D
+class_name Treat extends Area2D
 
 @export var treat_anim: AnimatedSprite2D
 
@@ -10,16 +10,19 @@ enum TYPE {
 	Cake
 }
 
-@export var treat_type: TYPE
+@export var type: TYPE
 
 signal picked
 
 
 func _ready():
-	set_type()
+	hide()
 	
-func set_type():
-	match treat_type:
+
+func set_type(type_: Treat.TYPE):
+	type = type_
+	
+	match type:
 		TYPE.Candy:
 			treat_anim.play("Candy")
 		TYPE.CandyCane:

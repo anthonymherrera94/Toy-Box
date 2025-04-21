@@ -44,7 +44,7 @@ var _menu: Menu
 var level: Node2D
 var change_on_level: PackedScene
 
-var current_treat: Treats.TYPE = 0
+var current_treat: Treat.TYPE = 0
 
 var popped_balloons: Array[Balloons.TYPE]
 var current_balloon: Balloons.TYPE = 0
@@ -165,7 +165,7 @@ func start_scene(_scene: PackedScene) -> void:
 	
 	for i in popped_balloons:
 		scene_controller.game_stats.set_popped_balloon(i)
-	treats_spawn_timer.timeout.connect(func(): level.get_child(0).spawning.spawn_treat())
+	treats_spawn_timer.timeout.connect( func(): level.get_child(0).show_treat() )
 	treats_spawn_timer.start()
 	bonus_time_tick.start()
 
@@ -185,7 +185,7 @@ func _on_balloon_popped(type: Balloons.TYPE) -> void:
 		popped_balloons.append(type)
 
 func _on_treat_picked() -> void:
-	if current_treat < Treats.TYPE.size() - 1:
+	if current_treat < Treat.TYPE.size() - 1:
 		current_treat += 1
 	else:
 		current_treat = 0

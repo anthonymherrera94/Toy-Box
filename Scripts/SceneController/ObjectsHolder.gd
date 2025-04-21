@@ -12,7 +12,7 @@ var enemies: Array[Enemy]
 var toy_chest: ToyChest
 
 var balloon: Balloons
-var treat: Treats
+var treat: Treat
 
 var gemstones: Array[Gemstone]
 
