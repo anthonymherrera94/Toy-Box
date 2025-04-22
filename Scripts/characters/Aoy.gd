@@ -52,7 +52,7 @@ func check_state() -> bool:
 
 func _physics_process(delta):
 	if check_state():
-		if check_snapped(1.0):
+		if check_snapped(2.0) and snap_delay.is_stopped():
 			snap_to_grid()
 			change_pos.emit(global_position)
 			
@@ -142,7 +142,7 @@ func _physics_process(delta):
 				STATE.WALK_DOWN:
 					flatting_enemies(check_down)
 	
-	move_and_slide()
+	super(delta)
 
 
 func move(direction: Vector2) -> void:
@@ -190,7 +190,7 @@ func action_pressed() -> void:
 				put_jack_in_the_box.emit(global_position)
 				
 				power_up_count -= 1
-
+	
 
 func animate():
 	match state:
@@ -269,6 +269,7 @@ func _on_colliding_body_entered(body: Node2D):
 
 func hit() -> void:
 	snap_to_grid()
+	make_unsolid()
 
 	previous_state = state
 	state = STATE.HIT
@@ -279,6 +280,7 @@ func hit() -> void:
 
 func defeated() -> void:
 	snap_to_grid()
+	make_unsolid()
 
 	state = STATE.KO
 	animate()
@@ -291,6 +293,16 @@ func apply_invincibiity() -> void:
 
 func _on_invincibility_timeout() -> void:
 	is_invincibility = false
+	
+
+
+func make_solid() -> void:
+	collision_layer = 1
+	collision_mask = 1
+
+func make_unsolid() -> void:
+	collision_layer = 0
+	collision_mask = 0
 
 
 func pick_power_up(_type: PowerUp.TYPE, _count: int) -> void:
@@ -317,7 +329,7 @@ func _on_animation_finished() -> void:
 	match state:
 		STATE.HIT:
 			snap_to_grid()
-			
+			make_solid()
 			state = previous_state
 			animate()
 
@@ -333,6 +345,7 @@ func _on_slow_down_effect_timeout() -> void:
 func victory(door_pos: Vector2) -> void:
 	global_position = door_pos
 	snap_to_grid()
+	make_unsolid()
 
 	state = STATE.VICTORY
 	animate()

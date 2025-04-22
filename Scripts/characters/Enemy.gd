@@ -20,6 +20,8 @@ enum TYPE {
 
 signal defeated
 
+var direction := Vector2.ZERO
+
 
 func _process(delta) -> void:
 	if check_state():
@@ -31,9 +33,9 @@ func check_state() -> bool:
 	return false
 
 func _physics_process(delta) -> void:
-	if check_snapped(1.0) and check_state():
-		var direction: Vector2
-		
+	if check_snapped(2.0) and check_state() and snap_delay.is_stopped():
+		snap_to_grid()
+
 		if check_side_for_player(left_raycast):
 			direction = Vector2.LEFT
 		elif check_side_for_player(right_raycast):
@@ -48,7 +50,7 @@ func _physics_process(delta) -> void:
 				change_direction_delay = 3
 			else:
 				change_direction_delay -= 1
-		
+
 		match direction:
 			Vector2.RIGHT:
 				if check_collision(check_right):
@@ -56,29 +58,32 @@ func _physics_process(delta) -> void:
 				else:
 					state = STATE.WALK_RIGHT
 					move(direction)
+			
 			Vector2.LEFT:
 				if check_collision(check_left):
 					change_direction()
 				else:
 					state = STATE.WALK_LEFT
 					move(direction)
+			
 			Vector2.DOWN:
 				if check_collision(check_down):
 					change_direction()
 				else:
 					state = STATE.WALK_DOWN
 					move(direction)
+			
 			Vector2.UP:
 				if check_collision(check_up):
 					change_direction()
 				else:
 					state = STATE.WALK_UP
 					move(direction)
+			
+			_:
+				pass
 	
-	if velocity == Vector2.ZERO:
-		snap_to_grid()
-	
-	move_and_slide()
+	super(delta)
 
 
 func check_side_for_player(raycast: RayCast2D) -> bool:
@@ -94,8 +99,7 @@ func check_collision(collision_area: Area2D) -> bool:
 		if i is Aoy:
 			return false
 	
-	if collision_area.has_overlapping_bodies(): return true
-	else: return false
+	return collision_area.has_overlapping_bodies()
 
 
 func animate() -> void:
