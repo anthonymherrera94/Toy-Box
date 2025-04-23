@@ -174,25 +174,29 @@ func turn_around() -> void:
 				change_direction()
 			else:
 				state = STATE.WALK_LEFT
-				move(Vector2.LEFT)
+				direction = Vector2.LEFT
+				move(direction)
 		
 		STATE.WALK_LEFT:
 			if check_collision(check_right):
 				change_direction()
 			else:
 				state = STATE.WALK_RIGHT
-				move(Vector2.RIGHT)
+				direction = Vector2.RIGHT
+				move(direction)
 		
 		STATE.WALK_UP:
 			if check_collision(check_down):
 				change_direction()
 			else:
 				state = STATE.WALK_DOWN
-				move(Vector2.DOWN)
+				direction = Vector2.DOWN
+				move(direction)
 		
 		STATE.WALK_DOWN:
 			if check_collision(check_up):
 				change_direction()
 			else:
 				state = STATE.WALK_UP
-				move(Vector2.UP)
+				direction = Vector2.UP
+				move(direction)
