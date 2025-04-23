@@ -35,7 +35,7 @@ func score_counting() -> void:
 		score += 100
 		bonus_time -= 100
 	else:
-		score = bonus_time
+		score += bonus_time
 		bonus_time = 0
 
 	game_ui.set_score(score)
