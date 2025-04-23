@@ -27,6 +27,9 @@ func _on_body_entered(body: Node2D) -> void:
 		if not body.is_invincibility:
 			body.hit()
 
+	if body is Enemy:
+		body.defeat()
+
 
 func _on_timer_timeout() -> void:
 	queue_free()

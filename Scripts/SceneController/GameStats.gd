@@ -17,6 +17,8 @@ var current_treat: Treat.TYPE
 
 var toys_left := 0
 
+var restart_level_delay: Timer
+
 
 func initialize() -> void:
 	game_ui.show()
@@ -27,6 +29,19 @@ func initialize() -> void:
 func add_score(points: int) -> void:
 	score += points
 	game_ui.set_score(score)
+
+func score_counting() -> void:
+	if bonus_time >= 100:
+		score += 100
+		bonus_time -= 100
+	else:
+		score = bonus_time
+		bonus_time = 0
+
+	game_ui.set_score(score)
+	game_ui.set_bonus_time(bonus_time)
+	
+
 
 func earn_score_from_enemy() -> void:
 	add_score(power_up_score)
@@ -52,7 +67,12 @@ func _on_lose_live() -> void:
 	if lives > 0:
 		lives -= 1
 		game_ui.set_lives(lives)
-		
+
 	else:
 		objects_holder.aoy.defeated()
+		
+		restart_level_delay.start()
+		await get_tree().process_frame
+		await restart_level_delay.timeout
+		
 		main.restart.emit()

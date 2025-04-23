@@ -4,7 +4,7 @@ class_name Aoy extends Character
 @export var ordinary_move_speed := 80.0
 @export var increased_move_speed := 120.0
 
-@export var player_anim: AnimatedSprite2D
+@export var anim: AnimatedSprite2D
 
 @export var hammer: AnimatedSprite2D
 @export var bubble_gun: AnimatedSprite2D
@@ -55,9 +55,8 @@ func _physics_process(delta):
 		if check_snapped(2.0) and snap_delay.is_stopped():
 			snap_to_grid()
 			change_pos.emit(global_position)
-			
+
 			hide_power_ups()
-			
 			if power_up_count > 0:
 				match power_up_type:
 					PowerUp.TYPE.ToyHammer:
@@ -66,34 +65,34 @@ func _physics_process(delta):
 						bubble_gun.show()
 					PowerUp.TYPE.JackInTheBox:
 						jack_in_the_box.show()
-			
+
 			var input = get_input()
 			
-			if input != Vector2.ZERO:
-				if input.abs().x > input.abs().y:
-					if input.x > 0:
-						if not check_right.has_overlapping_bodies() or flatting_enemies(check_right):
-							move(Vector2.RIGHT)
-							
-							state = STATE.WALK_RIGHT
-					else:
-						if not check_left.has_overlapping_bodies() or flatting_enemies(check_left):
-							move(Vector2.LEFT)
-							
-							state = STATE.WALK_LEFT
-				else:
-					if input.y > 0:
-						if not check_down.has_overlapping_bodies() or flatting_enemies(check_down):
-							move(Vector2.DOWN)
-							
-							state = STATE.WALK_DOWN
-					else:
-						if not check_up.has_overlapping_bodies() or flatting_enemies(check_up):
-							move(Vector2.UP)
-							
-							state = STATE.WALK_UP
+			if input.x > 0:
+				if not check_right.has_overlapping_bodies() or flatting_enemies(check_right):
+					move(Vector2.RIGHT)
+					
+					state = STATE.WALK_RIGHT
 			
-			else:
+			elif input.x < 0:
+				if not check_left.has_overlapping_bodies() or flatting_enemies(check_left):
+					move(Vector2.LEFT)
+					
+					state = STATE.WALK_LEFT
+			
+			if input.y > 0:
+				if not check_down.has_overlapping_bodies() or flatting_enemies(check_down):
+					move(Vector2.DOWN)
+					
+					state = STATE.WALK_DOWN
+			
+			elif input.y < 0:
+				if not check_up.has_overlapping_bodies() or flatting_enemies(check_up):
+					move(Vector2.UP)
+					
+					state = STATE.WALK_UP
+
+			if input == Vector2.ZERO:
 				match state:
 					STATE.WALK_RIGHT:
 						state = STATE.IDLE_RIGHT
@@ -195,45 +194,45 @@ func action_pressed() -> void:
 func animate():
 	match state:
 		STATE.IDLE_LEFT:
-			player_anim.play("IdleLeft")
+			anim.play("IdleLeft")
 			hammer.stop()
 			bubble_gun.stop()
 		STATE.IDLE_RIGHT:
-			player_anim.play("IdleRight")
+			anim.play("IdleRight")
 			hammer.stop()
 			bubble_gun.stop()
 		STATE.IDLE_UP:
-			player_anim.play("IdleUp")
+			anim.play("IdleUp")
 			hammer.stop()
 			bubble_gun.stop()
 		STATE.IDLE_DOWN:
-			player_anim.play("IdleDown")
+			anim.play("IdleDown")
 			hammer.stop()
 			bubble_gun.stop()
 		STATE.WALK_LEFT:
-			player_anim.play("WalkLeft")
+			anim.play("WalkLeft")
 			hammer.play("Left")
 			bubble_gun.play("Left")
 		STATE.WALK_RIGHT:
-			player_anim.play("WalkRight")
+			anim.play("WalkRight")
 			hammer.play("Right")
 			bubble_gun.play("Right")
 		STATE.WALK_UP:
-			player_anim.play("WalkUp")
+			anim.play("WalkUp")
 			hammer.play("Up")
 			bubble_gun.play("Up")
 		STATE.WALK_DOWN:
-			player_anim.play("WalkDown")
+			anim.play("WalkDown")
 			hammer.play("Down")
 			bubble_gun.play("Down")
 		STATE.HIT:
-			player_anim.play("Hit")
+			anim.play("Hit")
 			hide_power_ups()
 		STATE.KO:
-			player_anim.play("KO")
+			anim.play("KO")
 			hide_power_ups()
 		STATE.VICTORY:
-			player_anim.play("Victory")
+			anim.play("Victory")
 			hide_power_ups()
 
 
@@ -282,10 +281,20 @@ func defeated() -> void:
 	snap_to_grid()
 	make_unsolid()
 
+	defeated_animation()
+
+	apply_invincibiity()
+
+func defeated_animation() -> void:
 	state = STATE.KO
 	animate()
 
-	apply_invincibiity()
+	while (anim.rotation_degrees > -360):
+		anim.rotation_degrees -= 45
+		
+		await get_tree().create_timer(0.2).timeout
+	
+
 
 func apply_invincibiity() -> void:
 	is_invincibility = true
@@ -333,6 +342,21 @@ func _on_animation_finished() -> void:
 			state = previous_state
 			animate()
 
+			invincibility_animation()
+	
+
+func invincibility_animation() -> void:
+	while (is_invincibility):
+		if anim.visible:
+			anim.hide()
+		else:
+			anim.show()
+		
+		await get_tree().create_timer(0.1).timeout
+	
+	anim.show()
+	
+
 
 func slow_down() -> void:
 	speed = slowing_move_speed
@@ -351,3 +375,4 @@ func victory(door_pos: Vector2) -> void:
 	animate()
 
 	apply_invincibiity()
+	

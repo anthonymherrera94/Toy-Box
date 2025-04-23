@@ -24,6 +24,8 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export var explosion: PackedScene
 @export var demon: PackedScene
 @export var fireball: PackedScene
+
+@export var firework: PackedScene
 @export var fade: PackedScene
 @export var menu: PackedScene
 
@@ -38,11 +40,14 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export var bonus_round_timer: Timer
 @export var respawn_delay_timer: Timer
 @export var bonus_time_tick: Timer
+@export var restart_level_delay: Timer
 
 var event: Event
 var _menu: Menu
 var level: Node2D
 var change_on_level: PackedScene
+
+var score := 0
 
 var current_treat: Treat.TYPE = 0
 
@@ -86,10 +91,11 @@ func _on_restart() -> void:
 	bonus_time_tick.stop()
 	fade_in()
 
-
-func _on_next_level(scene: PackedScene) -> void:
+func _on_next_level(scene: PackedScene, score_ := 0) -> void:
 	event = Event.ChangeLevel
 	change_on_level = scene
+	
+	score = score_
 	
 	fade_in()
 
@@ -129,7 +135,7 @@ func start_scene(_scene: PackedScene) -> void:
 	var scene_controller: SceneController = scene.get_child(0)
 	
 	level = scene
-	
+
 	scene_controller.spawning.balloon = balloon
 	scene_controller.spawning.treat = treat
 	scene_controller.spawning.key = key
@@ -147,14 +153,16 @@ func start_scene(_scene: PackedScene) -> void:
 	scene_controller.spawning.explosion = explosion
 	scene_controller.spawning.demon = demon
 	scene_controller.spawning.fireball = fireball
-	
+	scene_controller.spawning.firework = firework
+
 	scene_controller.treats_picked_delay = treats_picked_delay
 	scene_controller.ballon_pop_delay = balloon_pop_delay
 	scene_controller.bonus_round_timer = bonus_round_timer
 	scene_controller.respawn_delay_timer = respawn_delay_timer
 	scene_controller.game_stats.current_balloon = current_balloon
 	scene_controller.game_stats.current_treat = current_treat
-	
+	scene_controller.game_stats.restart_level_delay = restart_level_delay
+
 	viewport.add_child(scene)
 	
 	scene_controller.restart.connect(_on_restart)
@@ -163,8 +171,13 @@ func start_scene(_scene: PackedScene) -> void:
 	scene_controller.balloon_popped.connect(_on_balloon_popped)
 	scene_controller.treat_picked.connect(_on_treat_picked)
 	
+	scene_controller.stop_bonus_time_tick.connect( func(): bonus_time_tick.stop() )
+
+	scene_controller.game_stats.add_score(score)
+	
 	for i in popped_balloons:
 		scene_controller.game_stats.set_popped_balloon(i)
+
 	treats_spawn_timer.timeout.connect( func(): level.get_child(0).show_treat() )
 	treats_spawn_timer.start()
 	bonus_time_tick.start()

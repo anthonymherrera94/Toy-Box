@@ -26,6 +26,7 @@ var bomb: PackedScene
 var explosion: PackedScene
 var demon: PackedScene
 var fireball: PackedScene
+var firework: PackedScene
 
 var is_balloon_spawned := false
 var is_treat_spawned := false
@@ -229,6 +230,13 @@ func spawn_fireball(pos: Vector2, direction: Fireball.Direction) -> void:
 	var obj: Fireball = fireball.instantiate()
 	obj.direction = direction
 	obj.position = pos
+	main.get_parent().add_child.call_deferred(obj)
+
+
+func spawn_firework() -> void:
+	var obj: Firework = firework.instantiate()
+	obj.position = Vector2(randf_range(map_size.position.x * 16, map_size.size.x * 16), \
+		randf_range(map_size.position.y * 16, map_size.size.y * 16) )
 	main.get_parent().add_child.call_deferred(obj)
 
 

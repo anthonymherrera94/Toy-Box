@@ -1,6 +1,6 @@
 class_name PowerUp extends Area2D
 
-@export var power_up_anim: AnimatedSprite2D
+@export var anim: AnimatedSprite2D
 
 enum TYPE {
 	BubbleGun,
@@ -18,14 +18,14 @@ func _ready():
 func set_type():
 	match power_up_type:
 		TYPE.BubbleGun:
-			power_up_anim.play("BubbleGun")
+			anim.play("BubbleGun")
 		TYPE.JackInTheBox:
-			power_up_anim.play("JackInTheBox")
-			power_up_anim.position.y -= 8
+			anim.play("JackInTheBox")
+			anim.position.y -= 8
 		TYPE.RollerSkate:
-			power_up_anim.play("RollerSkate")
+			anim.play("RollerSkate")
 		TYPE.ToyHammer:
-			power_up_anim.play("ToyHammer")
+			anim.play("ToyHammer")
 
 
 func _on_body_entered(body: Node2D) -> void:

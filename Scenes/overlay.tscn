@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dpqtsjc5umcq2"]
+[gd_scene load_steps=40 format=3 uid="uid://dpqtsjc5umcq2"]
 
 [ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
 [ext_resource type="Script" uid="uid://cd8nxalfxkcr" path="res://Scripts/overlay.gd" id="1_btq4h"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bynji6lrovmbq" path="res://Scenes/items/balloons.tscn" id="2_vcrxe"]
 [ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="3_bb1nd"]
 [ext_resource type="PackedScene" uid="uid://cr6hvixe2en31" path="res://Scenes/toy_town_2.tscn" id="3_gd3qc"]
-[ext_resource type="PackedScene" uid="uid://k0j7ujbqyukg" path="res://Scenes/fade.tscn" id="4_5g481"]
+[ext_resource type="PackedScene" uid="uid://k0j7ujbqyukg" path="res://Scenes/effects/fade.tscn" id="4_5g481"]
 [ext_resource type="PackedScene" uid="uid://61u0gpkf3fep" path="res://Scenes/toy_town_3.tscn" id="4_nj4x6"]
 [ext_resource type="PackedScene" uid="uid://di6p0kpcaq675" path="res://Scenes/sweet_lands_1.tscn" id="5_0pcue"]
 [ext_resource type="PackedScene" uid="uid://bi41guy5y3fyx" path="res://Scenes/items/key.tscn" id="5_6qwki"]
@@ -38,8 +38,9 @@
 [ext_resource type="PackedScene" uid="uid://hv6m32onw6s5" path="res://Scenes/hazards/demon/demon.tscn" id="19_u8l87"]
 [ext_resource type="PackedScene" uid="uid://ccj8ln6lfi8x" path="res://Scenes/hazards/demon/fireball.tscn" id="20_o3wyo"]
 [ext_resource type="PackedScene" uid="uid://d3aovfe8yhhyv" path="res://Scenes/cheat_console.tscn" id="25_o3wyo"]
+[ext_resource type="PackedScene" uid="uid://43k28hk6a0lc" path="res://Scenes/effects/firework.tscn" id="35_1rl0w"]
 
-[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "cheat_console", "treats_spawn_timer", "treats_picked_delay", "balloon_pop_delay", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick")]
+[node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "cheat_console", "treats_spawn_timer", "treats_picked_delay", "balloon_pop_delay", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick", "restart_level_delay")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -66,6 +67,7 @@ bomb = ExtResource("17_atlcp")
 explosion = ExtResource("18_u8l87")
 demon = ExtResource("19_u8l87")
 fireball = ExtResource("20_o3wyo")
+firework = ExtResource("35_1rl0w")
 fade = ExtResource("4_5g481")
 menu = ExtResource("1_47hrg")
 viewport = NodePath("SubViewportContainer/SubViewport")
@@ -76,6 +78,7 @@ balloon_pop_delay = NodePath("BalloonPopDelay")
 bonus_round_timer = NodePath("BonusRound")
 respawn_delay_timer = NodePath("RespawnDelay")
 bonus_time_tick = NodePath("BonusTimeTick")
+restart_level_delay = NodePath("RestartLevelDelay")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
@@ -125,6 +128,10 @@ one_shot = true
 
 [node name="BonusTimeTick" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="RestartLevelDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="CheatConsole" parent="." instance=ExtResource("25_o3wyo")]
 visible = false

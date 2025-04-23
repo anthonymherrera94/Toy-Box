@@ -35,6 +35,8 @@ var ballon_pop_delay: Timer
 var bonus_round_timer: Timer
 var respawn_delay_timer: Timer
 
+signal stop_bonus_time_tick
+
 
 func _ready() -> void:
 	for i in get_parent().get_children():
@@ -46,9 +48,9 @@ func _ready() -> void:
 	
 	if tiles != null:
 		tiles.hide()
-	
+
 	_initialize()
-	
+
 	for i in get_parent().get_children():
 		if i is Aoy:
 			i.change_pos.connect(_on_aoy_change_pos)
@@ -78,21 +80,24 @@ func _ready() -> void:
 			i.set_type(game_stats.current_treat)
 			i.picked.connect(_on_treat_picked)
 			objects_holder.treat = i
-	
+
 	for card in objects_holder.cards:
 		card.object_into = randi() % Card.ObjectsInto.size()
 	
 	if objects_holder.cards.size() > 0:
 		objects_holder.cards[randi() % objects_holder.cards.size()].object_into = Card.ObjectsInto.Balloon
-	
+
 	#for i in range(cards_amount):
 		#spawning.spawn_card()
 	#
 	#for i in toys_textures:
 		#spawning.spawn_toy(i)
-	
+
 	ballon_pop_delay.timeout.connect(_on_balloon_pop_time_end)
 	treats_picked_delay.timeout.connect(_on_treats_picked_time_end)
+	bonus_round_timer.timeout.connect(_on_bonus_round_time_end)
+	
+
 
 func _initialize() -> void:
 	spawning.main = self
@@ -135,7 +140,24 @@ func _on_enemy_defeated(type: Enemy.TYPE, spawn_pos: Vector2) -> void:
 
 func _on_indoor() -> void:
 	objects_holder.aoy.victory(objects_holder.door.global_position)
-	next_level.emit(next_scene)
+
+	stop_bonus_time_tick.emit()
+
+	spawning_fireworks()
+
+	while (game_stats.bonus_time > 0):
+		game_stats.score_counting()
+		
+		await get_tree().create_timer(0.1).timeout
+
+	next_level.emit(next_scene, game_stats.score)
+
+func spawning_fireworks() -> void:
+	while (game_stats.bonus_time > 0):
+		spawning.spawn_firework()
+		
+		await get_tree().create_timer(0.5).timeout
+	
 
 
 func _on_treats_picked_time_end() -> void:
@@ -157,11 +179,13 @@ func remove_gemstones() -> void:
 
 
 func _on_balloon_popped(type: Balloons.TYPE) -> void:
-	bonus_round = true
 	game_stats.game_ui.pop_balloon(type)
 	balloon_popped.emit(type)
 	
-	if type >= Balloons.TYPE.size() - 1: spawning.spawn_gemstones()
+	if type >= Balloons.TYPE.size() - 1:
+		bonus_round = true
+		bonus_round_timer.start()
+		spawning.spawn_gemstones()
 
 func _on_gemstone_picked() -> void:
 	game_stats.add_score(300)
@@ -217,5 +241,6 @@ func _on_demon_split_fireball(pos: Vector2, direction: Fireball.Direction) -> vo
 
 
 func show_treat() -> void:
-	if objects_holder.treat != null: objects_holder.treat.show()
-	treats_picked_delay.start()
+	if objects_holder.treat != null:
+		objects_holder.treat.show()
+		treats_picked_delay.start()

@@ -160,7 +160,7 @@ func _on_respawn_delay_timeout() -> void:
 
 func defeat() -> void:
 	defeated.emit(type, start_pos)
-	queue_free()
+	get_parent().queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -170,17 +170,29 @@ func _on_area_entered(area: Area2D) -> void:
 func turn_around() -> void:
 	match state:
 		STATE.WALK_RIGHT:
-			state = STATE.WALK_LEFT
-			move(Vector2.LEFT)
+			if check_collision(check_left):
+				change_direction()
+			else:
+				state = STATE.WALK_LEFT
+				move(Vector2.LEFT)
 		
 		STATE.WALK_LEFT:
-			state = STATE.WALK_RIGHT
-			move(Vector2.RIGHT)
+			if check_collision(check_right):
+				change_direction()
+			else:
+				state = STATE.WALK_RIGHT
+				move(Vector2.RIGHT)
 		
 		STATE.WALK_UP:
-			state = STATE.WALK_DOWN
-			move(Vector2.DOWN)
+			if check_collision(check_down):
+				change_direction()
+			else:
+				state = STATE.WALK_DOWN
+				move(Vector2.DOWN)
 		
 		STATE.WALK_DOWN:
-			state = STATE.WALK_UP
-			move(Vector2.UP)
+			if check_collision(check_up):
+				change_direction()
+			else:
+				state = STATE.WALK_UP
+				move(Vector2.UP)

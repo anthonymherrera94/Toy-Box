@@ -257,12 +257,12 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw5bp"]
 size = Vector2(12, 12)
 
-[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("player_anim", "hammer", "bubble_gun", "jack_in_the_box", "toy", "invincibility_timer", "slow_down_effect_timer", "check_left", "check_right", "check_up", "check_down")]
+[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("anim", "hammer", "bubble_gun", "jack_in_the_box", "toy", "invincibility_timer", "slow_down_effect_timer", "check_left", "check_right", "check_up", "check_down")]
 process_mode = 1
 z_index = 2
 floor_constant_speed = true
 script = ExtResource("1_ilnme")
-player_anim = NodePath("AnimatedSprite2D")
+anim = NodePath("AnimatedSprite2D")
 hammer = NodePath("Hammer")
 bubble_gun = NodePath("BubbleGun")
 jack_in_the_box = NodePath("JackInTheBox")

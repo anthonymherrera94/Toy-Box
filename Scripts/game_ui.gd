@@ -32,8 +32,8 @@ func _ready() -> void:
 		balloons[i].hide()
 
 
-func set_score(_up: int) -> void:
-	score.text = str(_up)
+func set_score(_score: int) -> void:
+	score.text = str(_score)
 
 func set_high_score(_score: int) -> void:
 	high_score.text = str(_score)

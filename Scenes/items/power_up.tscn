@@ -44,9 +44,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g076h"]
 size = Vector2(11, 12)
 
-[node name="PowerUp" type="Area2D" node_paths=PackedStringArray("power_up_anim")]
+[node name="PowerUp" type="Area2D" node_paths=PackedStringArray("anim")]
 script = ExtResource("1_q7h18")
-power_up_anim = NodePath("AnimatedSprite2D")
+anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ua2mf")
