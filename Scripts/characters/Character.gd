@@ -19,6 +19,12 @@ var snap_delay := Timer.new()
 var speed_ := Vector2.ZERO
 
 
+#region stucking
+var prev_position: Vector2
+var stucking_duration := 0
+#endregion stucking
+
+
 enum STATE{
 	IDLE_DOWN,
 	IDLE_UP,
@@ -46,8 +52,9 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	velocity = speed_
+	check_stucking()
 	
+	velocity = speed_
 	move_and_slide()
 	
 
@@ -91,6 +98,19 @@ func snap_to_grid() -> void:
 	var snapped_pos = global_position.snappedf(16)
 	global_position = snapped_pos
 	speed_ = Vector2.ZERO
+
+func check_stucking() -> void:
+	match state:
+		STATE.WALK_LEFT, STATE.WALK_RIGHT, STATE.WALK_UP ,STATE.WALK_DOWN:
+			if prev_position == position:
+				stucking_duration += 1
+			else:
+				stucking_duration = 0
+
+	prev_position = position
+
+	if stucking_duration > 120:
+		snap_to_grid()
 
 
 func state_idle_down():

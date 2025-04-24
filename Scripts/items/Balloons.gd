@@ -20,7 +20,7 @@ signal popped
 
 func _ready():
 	set_type()
-	
+
 func set_type():
 	match balloon_type:
 		TYPE.S:
@@ -33,6 +33,7 @@ func set_type():
 			balloon_anim.play("E")
 		TYPE.R:
 			balloon_anim.play("R")
+	
 
 
 func _on_body_entered(body: Node2D) -> void:

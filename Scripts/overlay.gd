@@ -174,6 +174,7 @@ func start_scene(_scene: PackedScene) -> void:
 	scene_controller.stop_bonus_time_tick.connect( func(): bonus_time_tick.stop() )
 
 	scene_controller.game_stats.add_score(score)
+	scene_controller.game_stats.set_high_score(Globals.get_high_score())
 	
 	for i in popped_balloons:
 		scene_controller.game_stats.set_popped_balloon(i)

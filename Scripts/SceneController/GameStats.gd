@@ -40,7 +40,10 @@ func score_counting() -> void:
 
 	game_ui.set_score(score)
 	game_ui.set_bonus_time(bonus_time)
-	
+
+
+func set_high_score(points: int) -> void:
+	game_ui.set_high_score(points)
 
 
 func earn_score_from_enemy() -> void:

@@ -37,7 +37,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_c10nc")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hide",
 "speed": 5.0
 }, {
@@ -68,13 +68,13 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("15_8jgnj")
 }],
-"loop": true,
+"loop": false,
 "name": &"Show",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1dxk2"]
-size = Vector2(16, 16)
+size = Vector2(12, 12)
 
 [node name="RainbowBridge" type="StaticBody2D" node_paths=PackedStringArray("anim", "spawn_timer", "hide_timer")]
 z_index = 1
@@ -93,14 +93,16 @@ texture = ExtResource("2_754qt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_754qt")
-animation = &"Show"
+animation = &"Hide"
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 autostart = true
 
 [node name="HideTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1dxk2")

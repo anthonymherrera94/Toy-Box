@@ -150,7 +150,13 @@ func _on_indoor() -> void:
 		
 		await get_tree().create_timer(0.1).timeout
 
+	_update_high_score()
+
 	next_level.emit(next_scene, game_stats.score)
+
+func _update_high_score() -> void:
+	if Globals.get_high_score() < game_stats.score:
+		Globals.set_high_score(game_stats.score)
 
 func spawning_fireworks() -> void:
 	while (game_stats.bonus_time > 0):
