@@ -41,13 +41,14 @@ func _ready() -> void:
 
 func _process(delta):
 	if Input.is_action_just_pressed("action"): action_pressed()
-	
+
 	if check_state():
 		animate()
 
 func check_state() -> bool:
 	if state != STATE.KO and state != STATE.HIT and state != STATE.VICTORY:
 		return true
+
 	return false
 
 func _physics_process(delta):
@@ -189,7 +190,7 @@ func action_pressed() -> void:
 				put_jack_in_the_box.emit(global_position)
 				
 				power_up_count -= 1
-	
+
 
 func animate():
 	match state:
@@ -268,25 +269,14 @@ func _on_colliding_body_entered(body: Node2D):
 	
 	if body is RainbowBridge:
 		hit()
-	
+
 
 func hit() -> void:
-	global_position = start_pos
-	snap_to_grid()
 	make_unsolid()
 
 	previous_state = state
 	state = STATE.HIT
 	animate()
-
-	apply_invincibiity()
-	lose_live.emit()
-
-func defeated() -> void:
-	snap_to_grid()
-	make_unsolid()
-
-	defeated_animation()
 
 	apply_invincibiity()
 
@@ -298,7 +288,9 @@ func defeated_animation() -> void:
 		anim.rotation_degrees -= 45
 		
 		await get_tree().create_timer(0.2).timeout
-	
+
+	await get_tree().create_timer(1.0).timeout
+
 
 
 func apply_invincibiity() -> void:
@@ -307,7 +299,7 @@ func apply_invincibiity() -> void:
 
 func _on_invincibility_timeout() -> void:
 	is_invincibility = false
-	
+
 
 
 func make_solid() -> void:
@@ -342,13 +334,19 @@ func drop_toy() -> void:
 func _on_animation_finished() -> void:
 	match state:
 		STATE.HIT:
-			snap_to_grid()
+			await defeated_animation()
+
 			make_solid()
+			lose_live.emit()
+
 			state = previous_state
 			animate()
 
+			global_position = start_pos
+			snap_to_grid()
+
 			invincibility_animation()
-	
+
 
 func invincibility_animation() -> void:
 	while (is_invincibility):
@@ -360,7 +358,7 @@ func invincibility_animation() -> void:
 		await get_tree().create_timer(0.1).timeout
 	
 	anim.show()
-	
+
 
 
 func slow_down() -> void:
@@ -380,4 +378,3 @@ func victory(door_pos: Vector2) -> void:
 	animate()
 
 	apply_invincibiity()
-	

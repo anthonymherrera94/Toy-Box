@@ -72,8 +72,6 @@ func _on_lose_live() -> void:
 		game_ui.set_lives(lives)
 
 	else:
-		objects_holder.aoy.defeated()
-		
 		restart_level_delay.start()
 		await get_tree().process_frame
 		await restart_level_delay.timeout
