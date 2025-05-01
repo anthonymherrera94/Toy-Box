@@ -42,12 +42,12 @@ animations = [{
 "texture": ExtResource("6_cfm1l")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_y852i")
+"texture": ExtResource("4_maqxo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_maqxo")
+"texture": ExtResource("3_y852i")
 }],
-"loop": true,
+"loop": false,
 "name": &"Bottom",
 "speed": 5.0
 }, {
@@ -64,16 +64,16 @@ animations = [{
 "texture": ExtResource("9_2o5cu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_5c7hs")
-}, {
-"duration": 1.0,
 "texture": ExtResource("11_eu3x0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_av11t")
+"texture": ExtResource("10_5c7hs")
 }, {
 "duration": 1.0,
 "texture": ExtResource("13_3v6fv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_av11t")
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_eu3x0")
@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_2o5cu")
 }],
-"loop": true,
+"loop": false,
 "name": &"Side",
 "speed": 5.0
 }]
@@ -95,11 +95,12 @@ anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x4te5")
-animation = &"Bottom"
+animation = &"Side"
 autoplay = "Hole"
 offset = Vector2(0, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2o5cu")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

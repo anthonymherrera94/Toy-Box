@@ -198,40 +198,49 @@ func animate():
 			anim.play("IdleLeft")
 			hammer.stop()
 			bubble_gun.stop()
+		
 		STATE.IDLE_RIGHT:
 			anim.play("IdleRight")
 			hammer.stop()
 			bubble_gun.stop()
+		
 		STATE.IDLE_UP:
 			anim.play("IdleUp")
 			hammer.stop()
 			bubble_gun.stop()
+		
 		STATE.IDLE_DOWN:
 			anim.play("IdleDown")
 			hammer.stop()
 			bubble_gun.stop()
+
 		STATE.WALK_LEFT:
 			anim.play("WalkLeft")
 			hammer.play("Left")
 			bubble_gun.play("Left")
+		
 		STATE.WALK_RIGHT:
 			anim.play("WalkRight")
 			hammer.play("Right")
 			bubble_gun.play("Right")
+		
 		STATE.WALK_UP:
 			anim.play("WalkUp")
 			hammer.play("Up")
 			bubble_gun.play("Up")
+		
 		STATE.WALK_DOWN:
 			anim.play("WalkDown")
 			hammer.play("Down")
 			bubble_gun.play("Down")
+
 		STATE.HIT:
 			anim.play("Hit")
 			hide_power_ups()
 		STATE.KO:
 			anim.play("KO")
 			hide_power_ups()
+		
 		STATE.VICTORY:
 			anim.play("Victory")
 			hide_power_ups()
@@ -272,6 +281,7 @@ func _on_colliding_body_entered(body: Node2D):
 
 
 func hit() -> void:
+	snap_to_grid()
 	make_unsolid()
 
 	previous_state = state
@@ -290,6 +300,7 @@ func defeated_animation() -> void:
 		await get_tree().create_timer(0.2).timeout
 
 	await get_tree().create_timer(1.0).timeout
+	anim.rotation_degrees = 0
 
 
 
@@ -334,10 +345,11 @@ func drop_toy() -> void:
 func _on_animation_finished() -> void:
 	match state:
 		STATE.HIT:
+			lose_live.emit()
+
 			await defeated_animation()
 
 			make_solid()
-			lose_live.emit()
 
 			state = previous_state
 			animate()
@@ -356,7 +368,7 @@ func invincibility_animation() -> void:
 			anim.show()
 		
 		await get_tree().create_timer(0.1).timeout
-	
+
 	anim.show()
 
 

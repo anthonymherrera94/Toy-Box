@@ -111,6 +111,7 @@ process_mode = 1
 [node name="EnemyBase" parent="." node_paths=PackedStringArray("enemy_anim") instance=ExtResource("2_1mxve")]
 enemy_anim = NodePath("AnimatedSprite2D")
 type = 2
+speed = 60
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
 process_mode = 3

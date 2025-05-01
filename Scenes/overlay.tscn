@@ -130,7 +130,7 @@ one_shot = true
 wait_time = 0.1
 
 [node name="RestartLevelDelay" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="CheatConsole" parent="." instance=ExtResource("25_o3wyo")]
