@@ -1,4 +1,4 @@
-class_name Fireball extends Area2D
+class_name DemonFireball extends Area2D
 
 enum Direction {
 	Right,
@@ -29,7 +29,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Aoy:
 		if not body.is_invincibility:
 			body.hit()
-	
+
 	queue_free()
 
 

@@ -226,8 +226,8 @@ func spawn_demon() -> void:
 	obj.split_fireball.connect(main._on_demon_split_fireball)
 	main.get_parent().add_child.call_deferred(obj)
 
-func spawn_fireball(pos: Vector2, direction: Fireball.Direction) -> void:
-	var obj: Fireball = fireball.instantiate()
+func spawn_fireball(pos: Vector2, direction: DemonFireball.Direction) -> void:
+	var obj: DemonFireball = fireball.instantiate()
 	obj.direction = direction
 	obj.position = pos
 	main.get_parent().add_child.call_deferred(obj)

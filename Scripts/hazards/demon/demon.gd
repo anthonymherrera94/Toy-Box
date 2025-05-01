@@ -11,22 +11,22 @@ signal split_fireball
 
 
 func _on_split_fireball_timeout() -> void:
-	var fireball_direction: Fireball.Direction
+	var fireball_direction: DemonFireball.Direction
 	
 	while (true):
-		fireball_direction = randi() % Fireball.Direction.size()
+		fireball_direction = randi() % DemonFireball.Direction.size()
 		
 		match fireball_direction:
-			Fireball.Direction.Left:
+			DemonFireball.Direction.Left:
 				if check_place(check_left):
 					break
-			Fireball.Direction.Right:
+			DemonFireball.Direction.Right:
 				if check_place(check_right):
 					break
-			Fireball.Direction.Up:
+			DemonFireball.Direction.Up:
 				if check_place(check_up):
 					break
-			Fireball.Direction.Down:
+			DemonFireball.Direction.Down:
 				if check_place(check_down):
 					break
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://ixjpv3ga5bky"]
+[gd_scene load_steps=32 format=4 uid="uid://ixjpv3ga5bky"]
 
 [ext_resource type="Texture2D" uid="uid://bro1xfobtfj85" path="res://Sprites/Levels/Levels/Arcade Zone 2.png" id="1_6t5rs"]
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_p4or5"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://durdochdwpoe1" path="res://Sprites/Items/Toys/Yo-Yo.png" id="8_2iby6"]
 [ext_resource type="Texture2D" uid="uid://bcsvm1ce5p3mg" path="res://Sprites/Items/Toys/Toy Boat.png" id="9_tugkg"]
 [ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="12_lil0g"]
-[ext_resource type="PackedScene" uid="uid://bbdrjh5xph45e" path="res://Scenes/hazards/oil_drum.tscn" id="21_4h7lq"]
+[ext_resource type="PackedScene" uid="uid://bbdrjh5xph45e" path="res://Scenes/hazards/oil_drum/oil_drum.tscn" id="21_4h7lq"]
 [ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="22_wvpsk"]
 [ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="23_73usr"]
 [ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="24_c5uhy"]
@@ -29,6 +29,30 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twft1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afixi"]
+
+[sub_resource type="Curve2D" id="Curve2D_c5uhy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 16, 96, 0, 0, 0, 0, -16, 96, 0, 0, 0, 0, -16, 288, 0, 0, 0, 0, 16, 288)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_2iby6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16, 0, 0, 0, 0, 0, -16, 96, 0, 0, 0, 0, 16, 96, 0, 0, 0, 0, 16, 288, 0, 0, 0, 0, -16, 288)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_tugkg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16, 0, 0, 0, 0, 0, -16, 48, 0, 0, 0, 0, -48, 48, 0, 0, 0, 0, -48, 80, 0, 0, 0, 0, -16, 80, 0, 0, 0, 0, -16, 112, 0, 0, 0, 0, 0, 112, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, -48, 160)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_f5t0c"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 16, 48, 0, 0, 0, 0, 48, 48, 0, 0, 0, 0, 48, 80, 0, 0, 0, 0, 16, 80, 0, 0, 0, 0, 16, 112, 0, 0, 0, 0, 0, 112, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 48, 160)
+}
+point_count = 10
 
 [node name="Arcade Zone 2" type="Node2D"]
 
@@ -337,17 +361,43 @@ position = Vector2(0, 16)
 
 [node name="GameUI" parent="." instance=ExtResource("7_tc6i4")]
 
-[node name="OilDrum" parent="." instance=ExtResource("21_4h7lq")]
+[node name="OilDrum" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("21_4h7lq")]
 position = Vector2(-80, -192)
+path_follow = NodePath("Path2D/PathFollow2D")
 
-[node name="OilDrum2" parent="." instance=ExtResource("21_4h7lq")]
+[node name="Path2D" type="Path2D" parent="OilDrum"]
+curve = SubResource("Curve2D_c5uhy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum/Path2D"]
+
+[node name="OilDrum2" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("21_4h7lq")]
 position = Vector2(80, -192)
+path_follow = NodePath("Path2D/PathFollow2D")
 
-[node name="OilDrum3" parent="." instance=ExtResource("21_4h7lq")]
+[node name="Path2D" type="Path2D" parent="OilDrum2"]
+curve = SubResource("Curve2D_2iby6")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum2/Path2D"]
+rotation = 3.14159
+
+[node name="OilDrum3" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("21_4h7lq")]
 position = Vector2(-16, -64)
+path_follow = NodePath("Path2D/PathFollow2D")
 
-[node name="OilDrum4" parent="." instance=ExtResource("21_4h7lq")]
+[node name="Path2D" type="Path2D" parent="OilDrum3"]
+curve = SubResource("Curve2D_tugkg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum3/Path2D"]
+rotation = 3.14159
+
+[node name="OilDrum4" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("21_4h7lq")]
 position = Vector2(16, -64)
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="OilDrum4"]
+curve = SubResource("Curve2D_f5t0c")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum4/Path2D"]
 
 [node name="Toy" parent="." instance=ExtResource("22_wvpsk")]
 position = Vector2(0, 160)

@@ -242,7 +242,7 @@ func _on_bomb_explode(pos: Vector2) -> void:
 	spawning.spawn_explosion(pos)
 
 
-func _on_demon_split_fireball(pos: Vector2, direction: Fireball.Direction) -> void:
+func _on_demon_split_fireball(pos: Vector2, direction: DemonFireball.Direction) -> void:
 	spawning.spawn_fireball(pos, direction)
 
 
