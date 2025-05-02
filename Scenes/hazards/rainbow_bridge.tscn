@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1dxk2"]
-size = Vector2(12, 12)
+size = Vector2(8, 8)
 
 [node name="RainbowBridge" type="StaticBody2D" node_paths=PackedStringArray("anim", "spawn_timer", "hide_timer")]
 z_index = 1

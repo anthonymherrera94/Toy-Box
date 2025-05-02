@@ -275,8 +275,11 @@ func _on_colliding_body_entered(body: Node2D):
 				_:
 					if not is_invincibility:
 						hit()
-	
+
 	if body is RainbowBridge:
+		hit()
+	
+	if body is Worm:
 		hit()
 
 
