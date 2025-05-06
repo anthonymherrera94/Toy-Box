@@ -92,7 +92,7 @@ func check_snapped(delimeter: float) -> bool:
 func move(direction: Vector2) -> void:
 	snap_to_grid()
 	speed_ = direction * speed
-	snap_delay.start(0.05)
+	snap_delay.start(0.1)
 
 func snap_to_grid() -> void:
 	var snapped_pos = global_position.snappedf(16)

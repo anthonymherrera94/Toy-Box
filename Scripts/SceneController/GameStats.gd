@@ -58,7 +58,8 @@ func _on_bonus_time_tick() -> void:
 	if bonus_time > 0:
 		bonus_time -= 10
 	else:
-		if objects_holder.xob == null: spawning.spawn_xob()
+		if not main.is_it_final_battle:
+			if objects_holder.xob == null: spawning.spawn_xob()
 	
 	game_ui.set_bonus_time(bonus_time)
 

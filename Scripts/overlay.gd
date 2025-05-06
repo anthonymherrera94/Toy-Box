@@ -24,6 +24,8 @@ enum XobSpawnSide { Top, Bottom, Left, Right }
 @export var explosion: PackedScene
 @export var demon: PackedScene
 @export var fireball: PackedScene
+@export var xob_fireball: PackedScene
+@export var aoy_in_true_form: PackedScene
 
 @export var firework: PackedScene
 @export var fade: PackedScene
@@ -131,57 +133,62 @@ func fade_out() -> void:
 
 
 func start_scene(_scene: PackedScene) -> void:
-	var scene: Node2D = _scene.instantiate()
-	var scene_controller: SceneController = scene.get_child(0)
-	
-	level = scene
+	var scene: Node = _scene.instantiate()
+	var scene_controller: Node = scene.get_child(0)
 
-	scene_controller.spawning.balloon = balloon
-	scene_controller.spawning.treat = treat
-	scene_controller.spawning.key = key
-	scene_controller.spawning.power_up = power_up
-	scene_controller.spawning.gemstone = gemstone
-	scene_controller.spawning.enemy_respawn_anim = enemy_respawn_anim
-	scene_controller.spawning.tic = tic
-	scene_controller.spawning.tac = tac
-	scene_controller.spawning.toe = toe
-	scene_controller.spawning.fire_bubble = fire_bubble
-	scene_controller.spawning.jack_in_the_box = jack_in_the_box
-	scene_controller.spawning.xob = xob
-	scene_controller.spawning.syrup = syrup
-	scene_controller.spawning.bomb = bomb
-	scene_controller.spawning.explosion = explosion
-	scene_controller.spawning.demon = demon
-	scene_controller.spawning.fireball = fireball
-	scene_controller.spawning.firework = firework
+	if scene_controller is SceneController:
+		level = scene
 
-	scene_controller.treats_picked_delay = treats_picked_delay
-	scene_controller.ballon_pop_delay = balloon_pop_delay
-	scene_controller.bonus_round_timer = bonus_round_timer
-	scene_controller.respawn_delay_timer = respawn_delay_timer
-	scene_controller.game_stats.current_balloon = current_balloon
-	scene_controller.game_stats.current_treat = current_treat
-	scene_controller.game_stats.restart_level_delay = restart_level_delay
+		scene_controller.spawning.balloon = balloon
+		scene_controller.spawning.treat = treat
+		scene_controller.spawning.key = key
+		scene_controller.spawning.power_up = power_up
+		scene_controller.spawning.gemstone = gemstone
+		scene_controller.spawning.enemy_respawn_anim = enemy_respawn_anim
+		scene_controller.spawning.tic = tic
+		scene_controller.spawning.tac = tac
+		scene_controller.spawning.toe = toe
+		scene_controller.spawning.fire_bubble = fire_bubble
+		scene_controller.spawning.jack_in_the_box = jack_in_the_box
+		scene_controller.spawning.xob = xob
+		scene_controller.spawning.syrup = syrup
+		scene_controller.spawning.bomb = bomb
+		scene_controller.spawning.explosion = explosion
+		scene_controller.spawning.demon = demon
+		scene_controller.spawning.fireball = fireball
+		scene_controller.spawning.xob_fireball = xob_fireball
+		scene_controller.spawning.firework = firework
+		scene_controller.spawning.aoy_in_true_form = aoy_in_true_form
+
+		scene_controller.treats_picked_delay = treats_picked_delay
+		scene_controller.ballon_pop_delay = balloon_pop_delay
+		scene_controller.bonus_round_timer = bonus_round_timer
+		scene_controller.respawn_delay_timer = respawn_delay_timer
+		scene_controller.game_stats.current_balloon = current_balloon
+		scene_controller.game_stats.current_treat = current_treat
+		scene_controller.game_stats.restart_level_delay = restart_level_delay
+		
+		scene_controller.restart.connect(_on_restart)
+		scene_controller.next_level.connect(_on_next_level)
+		
+		scene_controller.balloon_popped.connect(_on_balloon_popped)
+		scene_controller.treat_picked.connect(_on_treat_picked)
+		
+		scene_controller.stop_bonus_time_tick.connect( func(): bonus_time_tick.stop() )
+
+		scene_controller._initialize()
+
+		scene_controller.game_stats.add_score(score)
+		scene_controller.game_stats.set_high_score(Globals.get_high_score())
+		
+		for i in popped_balloons:
+			scene_controller.game_stats.set_popped_balloon(i)
+
+		treats_spawn_timer.timeout.connect( func(): level.get_child(0).show_treat() )
+		treats_spawn_timer.start()
+		bonus_time_tick.start()
 
 	viewport.add_child(scene)
-	
-	scene_controller.restart.connect(_on_restart)
-	scene_controller.next_level.connect(_on_next_level)
-	
-	scene_controller.balloon_popped.connect(_on_balloon_popped)
-	scene_controller.treat_picked.connect(_on_treat_picked)
-	
-	scene_controller.stop_bonus_time_tick.connect( func(): bonus_time_tick.stop() )
-
-	scene_controller.game_stats.add_score(score)
-	scene_controller.game_stats.set_high_score(Globals.get_high_score())
-	
-	for i in popped_balloons:
-		scene_controller.game_stats.set_popped_balloon(i)
-
-	treats_spawn_timer.timeout.connect( func(): level.get_child(0).show_treat() )
-	treats_spawn_timer.start()
-	bonus_time_tick.start()
 
 
 func return_to_menu() -> void:

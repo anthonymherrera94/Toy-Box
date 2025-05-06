@@ -14,7 +14,7 @@ var directions := {
 	Directions.Up: 270
 }
 
-var direction: Directions = 0
+@export var direction := Directions.Right
 
 
 func _physics_process(delta: float) -> void:
@@ -28,6 +28,9 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	if body is Enemy:
+		return
+	
+	if body is XobInTrueFormFireball:
 		return
 	
 	if direction < Directions.size() - 1:

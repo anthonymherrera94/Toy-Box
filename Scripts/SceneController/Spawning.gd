@@ -26,7 +26,9 @@ var bomb: PackedScene
 var explosion: PackedScene
 var demon: PackedScene
 var fireball: PackedScene
+var xob_fireball: PackedScene
 var firework: PackedScene
+var aoy_in_true_form: PackedScene
 
 var is_balloon_spawned := false
 var is_treat_spawned := false
@@ -240,6 +242,21 @@ func spawn_firework() -> void:
 	main.get_parent().add_child.call_deferred(obj)
 
 
+func spawn_xob_fireball(pos: Vector2) -> void:
+	if main.tiles.get_cell_atlas_coords(main.tiles.local_to_map(pos) - Vector2i.ONE) == Vector2i(1, 0) \
+	and pos.distance_to(objects_holder.toy_chest.global_position / 16) > 2.0:
+		var obj: XobInTrueFormFireball = xob_fireball.instantiate()
+		obj.position = main.tiles.map_to_local(main.tiles.local_to_map(pos) - Vector2i.ONE)
+		main.get_parent().add_child.call_deferred(obj)
+
+func spawn_aoy_in_true_form(pos: Vector2) -> void:
+	var obj: AoyInTrueForm = aoy_in_true_form.instantiate()
+	obj.position = pos
+	obj.change_pos.connect(main._on_aoy_change_pos)
+	obj.game_end.connect(main._on_game_end)
+	main.get_parent().add_child.call_deferred(obj)
+
+
 func pick_random_pos() -> Vector2:
 	var obj_pos: Vector2i
 	
@@ -247,10 +264,15 @@ func pick_random_pos() -> Vector2:
 		obj_pos = Vector2i(randi_range(map_size.position.x + 1, map_size.size.x - 2), \
 		randi_range(map_size.position.y + 1, map_size.size.y - 2))
 		
-		if main.tiles.get_cell_atlas_coords(obj_pos - Vector2i.ONE) == Vector2i(1, 0) \
-		and obj_pos.distance_to(objects_holder.aoy.global_position / 16) > 2.0 \
-		and obj_pos.distance_to(objects_holder.toy_chest.global_position / 16) > 2.0:
-			break
+		if objects_holder.aoy != null:
+			if main.tiles.get_cell_atlas_coords(obj_pos - Vector2i.ONE) == Vector2i(1, 0) \
+			and obj_pos.distance_to(objects_holder.aoy.global_position / 16) > 2.0 \
+			and obj_pos.distance_to(objects_holder.toy_chest.global_position / 16) > 2.0:
+				break
+		else:
+			if main.tiles.get_cell_atlas_coords(obj_pos - Vector2i.ONE) == Vector2i(1, 0) \
+			and obj_pos.distance_to(objects_holder.toy_chest.global_position / 16) > 2.0:
+				break
 	
 	obj_pos = main.tiles.map_to_local(obj_pos) - Vector2.ONE * 8
 	

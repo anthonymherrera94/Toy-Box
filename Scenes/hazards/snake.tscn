@@ -95,7 +95,7 @@ anim = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x4te5")
-animation = &"Side"
+animation = &"Hole"
 autoplay = "Hole"
 offset = Vector2(0, 8)
 

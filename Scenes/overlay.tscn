@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dpqtsjc5umcq2"]
+[gd_scene load_steps=42 format=3 uid="uid://dpqtsjc5umcq2"]
 
 [ext_resource type="PackedScene" uid="uid://lvb2m8anpfa4" path="res://Scenes/menu.tscn" id="1_47hrg"]
 [ext_resource type="Script" uid="uid://cd8nxalfxkcr" path="res://Scripts/overlay.gd" id="1_btq4h"]
@@ -39,6 +39,8 @@
 [ext_resource type="PackedScene" uid="uid://ccj8ln6lfi8x" path="res://Scenes/hazards/demon/fireball.tscn" id="20_o3wyo"]
 [ext_resource type="PackedScene" uid="uid://d3aovfe8yhhyv" path="res://Scenes/cheat_console.tscn" id="25_o3wyo"]
 [ext_resource type="PackedScene" uid="uid://43k28hk6a0lc" path="res://Scenes/effects/firework.tscn" id="35_1rl0w"]
+[ext_resource type="PackedScene" uid="uid://dbh0xgo5lfjbo" path="res://Scenes/characters/Xob_in_True_form/fireball.tscn" id="35_gd3qc"]
+[ext_resource type="PackedScene" uid="uid://b4i4opo2cr5te" path="res://Scenes/characters/AoyInTrueForm.tscn" id="36_nj4x6"]
 
 [node name="Overlay" type="Control" node_paths=PackedStringArray("viewport", "cheat_console", "treats_spawn_timer", "treats_picked_delay", "balloon_pop_delay", "bonus_round_timer", "respawn_delay_timer", "bonus_time_tick", "restart_level_delay")]
 process_mode = 3
@@ -67,6 +69,8 @@ bomb = ExtResource("17_atlcp")
 explosion = ExtResource("18_u8l87")
 demon = ExtResource("19_u8l87")
 fireball = ExtResource("20_o3wyo")
+xob_fireball = ExtResource("35_gd3qc")
+aoy_in_true_form = ExtResource("36_nj4x6")
 firework = ExtResource("35_1rl0w")
 fade = ExtResource("4_5g481")
 menu = ExtResource("1_47hrg")

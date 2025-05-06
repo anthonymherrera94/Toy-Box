@@ -35,22 +35,12 @@ var ballon_pop_delay: Timer
 var bonus_round_timer: Timer
 var respawn_delay_timer: Timer
 
+var is_it_final_battle := false
+
 signal stop_bonus_time_tick
 
 
 func _ready() -> void:
-	for i in get_parent().get_children():
-		if i is GameUI:
-			game_stats.game_ui = i
-			game_stats.initialize()
-		if i is TileMapLayer and tiles == null:
-			tiles = i
-	
-	if tiles != null:
-		tiles.hide()
-
-	_initialize()
-
 	for i in get_parent().get_children():
 		if i is Aoy:
 			i.change_pos.connect(_on_aoy_change_pos)
@@ -80,6 +70,8 @@ func _ready() -> void:
 			i.set_type(game_stats.current_treat)
 			i.picked.connect(_on_treat_picked)
 			objects_holder.treat = i
+		if i is XobInTrueForm:
+			i.spawn_fireball.connect(spawning.spawn_xob_fireball)
 
 	for card in objects_holder.cards:
 		card.object_into = randi() % Card.ObjectsInto.size()
@@ -100,6 +92,16 @@ func _ready() -> void:
 
 
 func _initialize() -> void:
+	for i in get_parent().get_children():
+		if i is GameUI:
+			game_stats.game_ui = i
+			game_stats.initialize()
+		if i is TileMapLayer and tiles == null:
+			tiles = i
+	
+	if tiles != null:
+		tiles.hide()
+	
 	spawning.main = self
 	spawning.objects_holder = objects_holder
 	spawning.game_stats = game_stats
@@ -126,6 +128,12 @@ func _on_power_up_picked() -> void:
 	game_stats.power_up_score = 400
 
 
+func show_treat() -> void:
+	if objects_holder.treat != null:
+		objects_holder.treat.show()
+		treats_picked_delay.start()
+
+
 func _on_shoot_fire_bubble(pos: Vector2, direction: FireBubble.DIRECTION) -> void:
 	spawning.spawn_fire_bubble(pos, direction)
 
@@ -141,6 +149,11 @@ func _on_enemy_defeated(type: Enemy.TYPE, spawn_pos: Vector2) -> void:
 func _on_indoor() -> void:
 	objects_holder.aoy.victory(objects_holder.door.global_position)
 
+	_score_counting()
+
+	next_level.emit(next_scene, game_stats.score)
+
+func _score_counting() -> void:
 	stop_bonus_time_tick.emit()
 
 	spawning_fireworks()
@@ -151,8 +164,6 @@ func _on_indoor() -> void:
 		await get_tree().create_timer(0.1).timeout
 
 	_update_high_score()
-
-	next_level.emit(next_scene, game_stats.score)
 
 func _update_high_score() -> void:
 	if Globals.get_high_score() < game_stats.score:
@@ -235,18 +246,23 @@ func _on_toy_dropped() -> void:
 		game_stats.toys_left -= 1
 	else:
 		objects_holder.toy_chest.close()
-		spawning.spawn_key()
+		
+		if not is_it_final_battle:
+			spawning.spawn_key()
+		
+		else:
+			spawning.spawn_aoy_in_true_form(objects_holder.aoy.global_position)
+			objects_holder.aoy.queue_free()
 
 
 func _on_bomb_explode(pos: Vector2) -> void:
 	spawning.spawn_explosion(pos)
 
-
 func _on_demon_split_fireball(pos: Vector2, direction: DemonFireball.Direction) -> void:
 	spawning.spawn_fireball(pos, direction)
 
 
-func show_treat() -> void:
-	if objects_holder.treat != null:
-		objects_holder.treat.show()
-		treats_picked_delay.start()
+func _on_game_end() -> void:
+	_score_counting()
+
+	next_level.emit(next_scene, game_stats.score)

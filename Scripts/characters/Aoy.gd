@@ -278,9 +278,14 @@ func _on_colliding_body_entered(body: Node2D):
 
 	if body is RainbowBridge:
 		hit()
-	
+
 	if body is Worm:
 		hit()
+
+	if body is XobInTrueFormFireball:
+		if not is_invincibility:
+			body.queue_free()
+			hit()
 
 
 func hit() -> void:
