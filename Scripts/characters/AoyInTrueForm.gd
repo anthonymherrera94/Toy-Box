@@ -2,9 +2,7 @@ class_name AoyInTrueForm extends Character
 
 @export var anim: AnimatedSprite2D
 
-var picked_key := false
-
-var previous_state: STATE
+var movement_bounds: Rect2
 
 signal change_pos
 
@@ -23,20 +21,24 @@ func _physics_process(delta):
 		var input = get_input()
 		
 		if input.x > 0:
-			state = STATE.WALK_RIGHT
-			move(Vector2.RIGHT)
+			if movement_bounds.size.x < global_position.x:
+				state = STATE.WALK_RIGHT
+				move(Vector2.RIGHT)
 		
 		elif input.x < 0:
-			state = STATE.WALK_LEFT
-			move(Vector2.LEFT)
+			if movement_bounds.position.x > global_position.x:
+				state = STATE.WALK_LEFT
+				move(Vector2.LEFT)
 		
 		if input.y > 0:
-			state = STATE.WALK_DOWN
-			move(Vector2.DOWN)
+			if movement_bounds.size.y < global_position.y:
+				state = STATE.WALK_DOWN
+				move(Vector2.DOWN)
 		
 		elif input.y < 0:
-			state = STATE.WALK_UP
-			move(Vector2.UP)
+			if movement_bounds.position.y > global_position.y:
+				state = STATE.WALK_UP
+				move(Vector2.UP)
 
 		if input == Vector2.ZERO:
 			match state:

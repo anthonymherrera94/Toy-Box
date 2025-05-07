@@ -34,3 +34,9 @@ frame_progress = 0.689699
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6ore4")
+
+[node name="SpawnFireballs" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SpawnFireballs" to="." method="_on_spawn_fireballs_timeout"]

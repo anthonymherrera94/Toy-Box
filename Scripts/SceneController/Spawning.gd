@@ -251,6 +251,10 @@ func spawn_xob_fireball(pos: Vector2) -> void:
 
 func spawn_aoy_in_true_form(pos: Vector2) -> void:
 	var obj: AoyInTrueForm = aoy_in_true_form.instantiate()
+	obj.movement_bounds = Rect2(
+		Vector2(main.map_size.position.x * 16, main.map_size.size.x * 16), 
+		Vector2(main.map_size.position.y * 16, main.map_size.size.y * 16)
+	)
 	obj.position = pos
 	obj.change_pos.connect(main._on_aoy_change_pos)
 	obj.game_end.connect(main._on_game_end)

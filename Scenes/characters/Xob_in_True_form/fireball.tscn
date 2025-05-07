@@ -1,39 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbh0xgo5lfjbo"]
+[gd_scene load_steps=8 format=3 uid="uid://dbh0xgo5lfjbo"]
 
-[ext_resource type="Texture2D" uid="uid://c8vfrfvigbfvc" path="res://Sprites/Levels/Hazards/Demon Breath 3.PNG" id="1_5kkpo"]
 [ext_resource type="Script" uid="uid://cyu3uj7owa76" path="res://Scripts/characters/Xob_in_True_form/fireball.gd" id="1_nueir"]
-[ext_resource type="Texture2D" uid="uid://cu5gf17jraup4" path="res://Sprites/Levels/Hazards/Demon Breath 4.PNG" id="2_nueir"]
-[ext_resource type="Texture2D" uid="uid://dpyy4t5fcje0a" path="res://Sprites/Levels/Hazards/Demon Breath 1.PNG" id="3_7cigk"]
-[ext_resource type="Texture2D" uid="uid://dum7ccis0ieli" path="res://Sprites/Levels/Hazards/Demon Breath 2.PNG" id="4_qnofq"]
+[ext_resource type="Texture2D" uid="uid://b8k1bcn81fl7d" path="res://Sprites/Levels/Hazards/Fire 1.PNG" id="2_c2gdy"]
+[ext_resource type="Texture2D" uid="uid://balwgxa0jwm4f" path="res://Sprites/Levels/Hazards/Fire 2.PNG" id="3_5kkpo"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rq0xf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nueir"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_5kkpo")
+"texture": ExtResource("2_c2gdy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_nueir")
+"texture": ExtResource("3_5kkpo")
 }],
 "loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_7cigk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_qnofq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_5kkpo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_nueir")
-}],
-"loop": false,
-"name": &"Spawn",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -56,9 +37,7 @@ check_up = NodePath("CheckUp")
 check_down = NodePath("CheckDown")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_rq0xf")
-animation = &"Idle"
-autoplay = "Spawn"
+sprite_frames = SubResource("SpriteFrames_nueir")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5kkpo")

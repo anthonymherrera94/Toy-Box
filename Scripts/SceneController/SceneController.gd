@@ -72,6 +72,8 @@ func _ready() -> void:
 			objects_holder.treat = i
 		if i is XobInTrueForm:
 			i.spawn_fireball.connect(spawning.spawn_xob_fireball)
+		if i is OilDrum:
+			i.spawn_fireball.connect(spawning.spawn_xob_fireball)
 
 	for card in objects_holder.cards:
 		card.object_into = randi() % Card.ObjectsInto.size()

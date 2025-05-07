@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bpjn0c6nhdfyi"]
+[gd_scene load_steps=34 format=4 uid="uid://bpjn0c6nhdfyi"]
 
 [ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_5x1bi"]
 [ext_resource type="Texture2D" uid="uid://dhfgne77jww4t" path="res://Sprites/Levels/Levels/Final Battle.png" id="1_p1w0h"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://dn0m26vh4nil4" path="res://Scenes/hazards/spikes.tscn" id="26_61bq7"]
 [ext_resource type="PackedScene" uid="uid://b612rd8qw2lhg" path="res://Scenes/hazards/worm.tscn" id="27_0ogx5"]
 [ext_resource type="PackedScene" uid="uid://cxlvkh285f4eb" path="res://Scenes/characters/Xob_in_True_form/Xob_in_True_form.tscn" id="28_6ienb"]
+[ext_resource type="PackedScene" uid="uid://bbdrjh5xph45e" path="res://Scenes/hazards/oil_drum/oil_drum.tscn" id="31_bfotn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0k2j2"]
 
@@ -475,6 +476,9 @@ position = Vector2(0, -16)
 
 [node name="Worm2" parent="." instance=ExtResource("27_0ogx5")]
 position = Vector2(0, 48)
+
+[node name="OilDrum" parent="." instance=ExtResource("31_bfotn")]
+position = Vector2(16, 80)
 
 [node name="Xob_in_True_form" parent="." instance=ExtResource("28_6ienb")]
 position = Vector2(0, -112)
