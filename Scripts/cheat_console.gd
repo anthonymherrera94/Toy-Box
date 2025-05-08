@@ -65,9 +65,14 @@ func _on_input_text_submitted(text: String) -> void:
 				create_output("You couldn't change a level! Because that level doesn't exist.")
 	
 	else:
-		match command[0]:
-			_:
-				create_output("I don't know this command...")
+		if text == "immortal":
+			Globals.aoy_invincibility = true
+			create_output("Aoy is immortal now!")
+		elif text == "mortal":
+			Globals.aoy_invincibility = false
+			create_output("Aoy is mortal now!")
+		else:
+			create_output("I don't know this command...")
 	
 	_input.clear()
 

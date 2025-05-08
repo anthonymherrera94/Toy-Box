@@ -21,22 +21,22 @@ func _physics_process(delta):
 		var input = get_input()
 		
 		if input.x > 0:
-			if movement_bounds.size.x < global_position.x:
+			if movement_bounds.size.x > global_position.x:
 				state = STATE.WALK_RIGHT
 				move(Vector2.RIGHT)
 		
 		elif input.x < 0:
-			if movement_bounds.position.x > global_position.x:
+			if movement_bounds.position.x < global_position.x:
 				state = STATE.WALK_LEFT
 				move(Vector2.LEFT)
 		
 		if input.y > 0:
-			if movement_bounds.size.y < global_position.y:
+			if movement_bounds.size.y > global_position.y:
 				state = STATE.WALK_DOWN
 				move(Vector2.DOWN)
 		
 		elif input.y < 0:
-			if movement_bounds.position.y > global_position.y:
+			if movement_bounds.position.y < global_position.y:
 				state = STATE.WALK_UP
 				move(Vector2.UP)
 

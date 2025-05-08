@@ -29,7 +29,7 @@ animations = [{
 size = Vector2(28, 28)
 
 [node name="Xob_in_True_form" type="Area2D"]
-z_index = 3
+z_index = 4
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_ufi5f")
 

@@ -289,14 +289,15 @@ func _on_colliding_body_entered(body: Node2D):
 
 
 func hit() -> void:
-	snap_to_grid()
-	make_unsolid()
+	if not Globals.aoy_invincibility:
+		snap_to_grid()
+		make_unsolid()
 
-	previous_state = state
-	state = STATE.HIT
-	animate()
+		previous_state = state
+		state = STATE.HIT
+		animate()
 
-	apply_invincibiity()
+		apply_invincibiity()
 
 func defeated_animation() -> void:
 	state = STATE.KO

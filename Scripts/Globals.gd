@@ -6,6 +6,8 @@ const HIGH_SCORE := "High Score: "
 
 var config: Dictionary
 
+var aoy_invincibility := false
+
 
 	
 func _ready() -> void:

@@ -111,6 +111,7 @@ func check_stucking() -> void:
 
 	if stucking_duration > 120:
 		snap_to_grid()
+		stucking_duration = 0
 
 
 func state_idle_down():
