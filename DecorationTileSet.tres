@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cdogj6tjronkw"]
+
+[ext_resource type="Texture2D" uid="uid://c20701x5yqcjq" path="res://Sprites/Tiles/BigDecorations.png" id="1_bvigg"]
+[ext_resource type="Texture2D" uid="uid://vkm1mh2a6ole" path="res://Sprites/Tiles/Decorations.png" id="1_xkb4m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5k1xl"]
+texture = ExtResource("1_bvigg")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x21yv"]
+texture = ExtResource("1_xkb4m")
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+2:0/animation_frame_0/duration = 1.0
+2:0/animation_frame_1/duration = 1.0
+2:0/0 = 0
+
+[resource]
+sources/8 = SubResource("TileSetAtlasSource_x21yv")
+sources/12 = SubResource("TileSetAtlasSource_5k1xl")
+tile_proxies/coords_level = [[0, Vector2i(0, 0)], [8, Vector2i(0, 0)], [1, Vector2i(0, 0)], [8, Vector2i(1, 0)], [2, Vector2i(0, 0)], [8, Vector2i(2, 0)], [3, Vector2i(0, 0)], [8, Vector2i(3, 0)], [6, Vector2i(0, 0)], [9, Vector2i(0, 0)], [6, Vector2i(0, 1)], [9, Vector2i(0, 1)], [6, Vector2i(1, 0)], [9, Vector2i(1, 0)], [6, Vector2i(1, 1)], [9, Vector2i(1, 1)], [7, Vector2i(0, 0)], [9, Vector2i(2, 0)], [7, Vector2i(0, 1)], [9, Vector2i(2, 1)], [7, Vector2i(1, 0)], [9, Vector2i(3, 0)], [7, Vector2i(1, 1)], [9, Vector2i(3, 1)], [10, Vector2i(0, 0)], [12, Vector2i(0, 0)], [11, Vector2i(0, 0)], [12, Vector2i(1, 0)]]

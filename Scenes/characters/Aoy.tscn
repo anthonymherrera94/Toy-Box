@@ -1,0 +1,348 @@
+[gd_scene load_steps=40 format=3 uid="uid://caeyw58brrar7"]
+
+[ext_resource type="Script" uid="uid://d1uolc1stkk7g" path="res://Scripts/characters/Aoy.gd" id="1_ilnme"]
+[ext_resource type="Texture2D" uid="uid://dfa3li851hjd4" path="res://Sprites/Characters/Aoy/Aoy Hit.png" id="2_33itf"]
+[ext_resource type="Texture2D" uid="uid://c1wi2caj7njo7" path="res://Sprites/Characters/Aoy/Aoy D1.png" id="2_qxx25"]
+[ext_resource type="Texture2D" uid="uid://dg75wogeffc6" path="res://Sprites/Characters/Aoy/Aoy Embarrass 1.png" id="2_slhmj"]
+[ext_resource type="Texture2D" uid="uid://mhmqhyah3lgr" path="res://Sprites/Characters/Aoy/Aoy Stand L.png" id="3_p8srk"]
+[ext_resource type="Texture2D" uid="uid://cxqvhj4k7c8df" path="res://Sprites/Characters/Aoy/Aoy Embarrass 2.png" id="3_udgtg"]
+[ext_resource type="Texture2D" uid="uid://c7axvid2h0aa" path="res://Sprites/Characters/Aoy/Aoy Embarrass 3.png" id="4_6gr5a"]
+[ext_resource type="Texture2D" uid="uid://bvunsqprailsj" path="res://Sprites/Characters/Aoy/Aoy Stand R.png" id="4_b45cx"]
+[ext_resource type="Texture2D" uid="uid://cpk6ahvqpgxl0" path="res://Sprites/Characters/Aoy/Aoy U1.png" id="5_4xumu"]
+[ext_resource type="Texture2D" uid="uid://cjrippsg2fn8w" path="res://Sprites/Characters/Aoy/Aoy Embarrass 4.png" id="5_xqbg3"]
+[ext_resource type="Texture2D" uid="uid://b5m2xyur5tyoq" path="res://Sprites/Characters/Aoy/Aoy KO.png" id="6_m6m0e"]
+[ext_resource type="Texture2D" uid="uid://dhxx0ryla64wx" path="res://Sprites/Characters/Aoy/Aoy D2.png" id="6_yrlur"]
+[ext_resource type="Texture2D" uid="uid://pkna8wlxtbt4" path="res://Sprites/Characters/Aoy/Aoy D3.png" id="7_etnj4"]
+[ext_resource type="Texture2D" uid="uid://db4qnn43xw4px" path="res://Sprites/Characters/Aoy/Aoy L1.png" id="8_ebg64"]
+[ext_resource type="Texture2D" uid="uid://cag6wsga16jlb" path="res://Sprites/Characters/Aoy/Aoy L2.png" id="9_7tjba"]
+[ext_resource type="Texture2D" uid="uid://tvbmflq4oe4n" path="res://Sprites/Characters/Aoy/Aoy L3.png" id="10_lf8nl"]
+[ext_resource type="Texture2D" uid="uid://72ujfprt0s38" path="res://Sprites/Characters/Aoy/Aoy R1.png" id="11_h41tp"]
+[ext_resource type="Texture2D" uid="uid://bymhhjvxnk3od" path="res://Sprites/Characters/Aoy/Aoy R2.png" id="12_838qh"]
+[ext_resource type="Texture2D" uid="uid://3m52dy50oi6c" path="res://Sprites/Characters/Aoy/Aoy Victory.png" id="12_udgtg"]
+[ext_resource type="Texture2D" uid="uid://ddn6b3pnvv2q6" path="res://Sprites/Characters/Aoy/Aoy R3.png" id="13_uhx5d"]
+[ext_resource type="Texture2D" uid="uid://bdi2r2fl1j0wt" path="res://Sprites/Characters/Aoy/Aoy U2.png" id="14_yh4ob"]
+[ext_resource type="Texture2D" uid="uid://b03h1amx7xj8k" path="res://Sprites/Characters/Aoy/Aoy U3.png" id="15_njtc5"]
+[ext_resource type="Texture2D" uid="uid://ca2aw6f7ryd8a" path="res://Sprites/Items/Power Ups/Toy Hammer (side view).png" id="17_rcacr"]
+[ext_resource type="Texture2D" uid="uid://cfjbkdsbkkf7q" path="res://Sprites/Items/Power Ups/Toy Hammer D.png" id="18_14gmc"]
+[ext_resource type="Texture2D" uid="uid://3v1h6pc8ytli" path="res://Sprites/Items/Power Ups/Toy Hammer L.png" id="18_dxyum"]
+[ext_resource type="Texture2D" uid="uid://bsmbh211tt5h2" path="res://Sprites/Items/Power Ups/Toy Hammer R.png" id="19_rdb7h"]
+[ext_resource type="Texture2D" uid="uid://bosbkhjf2hep6" path="res://Sprites/Items/Power Ups/Toy Hammer (top view).png" id="20_e865u"]
+[ext_resource type="Texture2D" uid="uid://btjulilk8juqq" path="res://Sprites/Items/Power Ups/Toy Hammer U.png" id="21_87b4f"]
+[ext_resource type="Texture2D" uid="uid://3dknwlnu5tr8" path="res://Sprites/Items/Power Ups/Bubble Gun D.png" id="23_ixfxo"]
+[ext_resource type="Texture2D" uid="uid://dtrnksw6ikxfa" path="res://Sprites/Items/Power Ups/Bubble Gun L.png" id="24_ilwnn"]
+[ext_resource type="Texture2D" uid="uid://41j5wfg4pm8r" path="res://Sprites/Items/Power Ups/Bubble Gun R.png" id="25_qdoiv"]
+[ext_resource type="Texture2D" uid="uid://0fut2t0uknxa" path="res://Sprites/Items/Power Ups/Bubble Gun U.png" id="26_pla0j"]
+[ext_resource type="Texture2D" uid="uid://coe754ae22sgw" path="res://Sprites/Items/Power Ups/Jack-in-the-box 1.png" id="27_e5ol3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6lcf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_slhmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_udgtg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6gr5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xqbg3")
+}],
+"loop": false,
+"name": &"Embarrass",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_33itf")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qxx25")
+}],
+"loop": true,
+"name": &"IdleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p8srk")
+}],
+"loop": true,
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_b45cx")
+}],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4xumu")
+}],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_m6m0e")
+}],
+"loop": true,
+"name": &"KO",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_udgtg")
+}],
+"loop": true,
+"name": &"Victory",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qxx25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yrlur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_etnj4")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ebg64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7tjba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lf8nl")
+}],
+"loop": true,
+"name": &"WalkLeft",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_h41tp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_838qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_uhx5d")
+}],
+"loop": true,
+"name": &"WalkRight",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4xumu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yh4ob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_njtc5")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ap180"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_e865u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_14gmc")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_rcacr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dxyum")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_rcacr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rdb7h")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_e865u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_87b4f")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5vur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_ixfxo")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_ilwnn")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_qdoiv")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_pla0j")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udgtg"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gr5a"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw5bp"]
+size = Vector2(12, 12)
+
+[node name="Aoy" type="CharacterBody2D" node_paths=PackedStringArray("anim", "hammer", "bubble_gun", "jack_in_the_box", "toy", "invincibility_timer", "slow_down_effect_timer", "check_left", "check_right", "check_up", "check_down")]
+process_mode = 1
+z_index = 3
+floor_constant_speed = true
+script = ExtResource("1_ilnme")
+anim = NodePath("AnimatedSprite2D")
+hammer = NodePath("Hammer")
+bubble_gun = NodePath("BubbleGun")
+jack_in_the_box = NodePath("JackInTheBox")
+toy = NodePath("Toy")
+invincibility_timer = NodePath("Invincibility")
+slow_down_effect_timer = NodePath("SlowDownEffect")
+check_left = NodePath("CheckLeft")
+check_right = NodePath("CheckRight")
+check_up = NodePath("CheckUp")
+check_down = NodePath("CheckDown")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n6lcf")
+animation = &"IdleDown"
+autoplay = "IdleRight"
+
+[node name="Hammer" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_ap180")
+animation = &"Down"
+
+[node name="BubbleGun" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_m5vur")
+animation = &"Down"
+
+[node name="JackInTheBox" type="Sprite2D" parent="."]
+visible = false
+z_index = 4
+texture = ExtResource("27_e5ol3")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_udgtg")
+
+[node name="Colliding" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
+shape = SubResource("RectangleShape2D_6gr5a")
+
+[node name="CheckLeft" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckLeft"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="CheckRight" type="Area2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRight"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="CheckUp" type="Area2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckUp"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="CheckDown" type="Area2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown"]
+shape = SubResource("RectangleShape2D_uw5bp")
+
+[node name="Toy" type="Sprite2D" parent="."]
+z_index = 4
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
+
+[node name="Invincibility" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="SlowDownEffect" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="Colliding" to="." method="_on_colliding_body_entered"]
+[connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]
+[connection signal="timeout" from="SlowDownEffect" to="." method="_on_slow_down_effect_timeout"]

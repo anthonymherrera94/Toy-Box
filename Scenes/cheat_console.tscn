@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3aovfe8yhhyv"]
+
+[ext_resource type="Script" uid="uid://dtbx43o21kje0" path="res://Scripts/cheat_console.gd" id="1_g4fw6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4fw6"]
+bg_color = Color(0, 0, 0, 0.498039)
+
+[node name="CheatConsole" type="Control" node_paths=PackedStringArray("_input", "_output")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g4fw6")
+_input = NodePath("Input")
+_output = NodePath("Output/ScrollContainer/OutputBlocks")
+
+[node name="Input" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 64.0
+
+[node name="Output" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 1888.0
+offset_bottom = 288.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4fw6")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Output"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="OutputBlocks" type="VBoxContainer" parent="Output/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="text_submitted" from="Input" to="." method="_on_input_text_submitted"]

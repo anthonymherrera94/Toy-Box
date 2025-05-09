@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://c42pjt7acga4v"]
+
+[ext_resource type="Script" uid="uid://xc2v0i2ctg4c" path="res://Scripts/characters/Enemy.gd" id="1_2e24u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77kub"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3kfh"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ssw"]
+size = Vector2(12, 12)
+
+[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("respawn_delay", "down_raycast", "up_raycast", "left_raycast", "right_raycast", "check_left", "check_right", "check_up", "check_down")]
+process_mode = 1
+z_index = 1
+floor_constant_speed = true
+script = ExtResource("1_2e24u")
+type = 1
+respawn_delay = NodePath("RespawnDelay")
+down_raycast = NodePath("DownRayCast")
+up_raycast = NodePath("UpRayCast")
+left_raycast = NodePath("LeftRayCast")
+right_raycast = NodePath("RightRayCast")
+check_left = NodePath("CheckLeft")
+check_right = NodePath("CheckRight")
+check_up = NodePath("CheckUp")
+check_down = NodePath("CheckDown")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_77kub")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 6.0
+
+[node name="DownRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 128)
+
+[node name="UpRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, -128)
+
+[node name="LeftRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(-128, 0)
+
+[node name="RightRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(128, 0)
+
+[node name="Colliding" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
+shape = SubResource("RectangleShape2D_b3kfh")
+
+[node name="CheckLeft" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckLeft"]
+shape = SubResource("RectangleShape2D_v3ssw")
+
+[node name="CheckRight" type="Area2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRight"]
+shape = SubResource("RectangleShape2D_v3ssw")
+
+[node name="CheckUp" type="Area2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckUp"]
+shape = SubResource("RectangleShape2D_v3ssw")
+
+[node name="CheckDown" type="Area2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown"]
+shape = SubResource("RectangleShape2D_v3ssw")
+
+[node name="RespawnDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="Colliding" to="." method="_on_area_entered"]
+[connection signal="timeout" from="RespawnDelay" to="." method="_on_respawn_delay_timeout"]

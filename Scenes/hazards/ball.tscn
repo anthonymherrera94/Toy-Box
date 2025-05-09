@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cesyymgoge144"]
+
+[ext_resource type="Script" uid="uid://b10lbj2nf5f5a" path="res://Scripts/hazards/ball.gd" id="1_wcomi"]
+[ext_resource type="Texture2D" uid="uid://b5pho4g8xyjev" path="res://Sprites/Levels/Hazards/Ball 1.PNG" id="2_wkvbi"]
+[ext_resource type="Texture2D" uid="uid://dusakowd2b5eu" path="res://Sprites/Levels/Hazards/Ball 2.PNG" id="3_bj442"]
+[ext_resource type="Texture2D" uid="uid://blopn3t3fccu2" path="res://Sprites/Levels/Hazards/Ball 3.PNG" id="4_5d0kk"]
+[ext_resource type="Texture2D" uid="uid://uhy1783exi67" path="res://Sprites/Levels/Hazards/Ball 4.PNG" id="5_rcnr5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wcomi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wkvbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bj442")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5d0kk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rcnr5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wkvbi"]
+radius = 6.0
+
+[node name="Ball" type="Area2D"]
+script = ExtResource("1_wcomi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wcomi")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wkvbi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

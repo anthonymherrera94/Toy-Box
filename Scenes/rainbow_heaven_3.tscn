@@ -1,6 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://chlrt0kqt316h"]
+[gd_scene load_steps=29 format=4 uid="uid://chlrt0kqt316h"]
 
 [ext_resource type="Texture2D" uid="uid://bkhh0atvepf2l" path="res://Sprites/Levels/Levels/Rainbow Heaven 3.png" id="1_bxh48"]
+[ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_fxear"]
+[ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_l8rjk"]
+[ext_resource type="PackedScene" uid="uid://5ps8mcd747s7" path="res://Scenes/arcade_zone_1.tscn" id="2_swph2"]
+[ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_to3er"]
+[ext_resource type="Texture2D" uid="uid://c1qmw4rrqxsmt" path="res://Sprites/Items/Toys/Sports Ball.png" id="2_x1i5y"]
+[ext_resource type="Texture2D" uid="uid://dhtm8w6pnoc35" path="res://Sprites/Items/Toys/Roly Poly Clown.png" id="3_44omj"]
+[ext_resource type="Texture2D" uid="uid://xf2lwkyef6ar" path="res://Sprites/Items/Toys/Teddy Bear.png" id="4_jmkwm"]
+[ext_resource type="Texture2D" uid="uid://durdochdwpoe1" path="res://Sprites/Items/Toys/Yo-Yo.png" id="5_5qrd1"]
+[ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="5_nolyu"]
+[ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="6_08uma"]
+[ext_resource type="Texture2D" uid="uid://yjfpg4drh07m" path="res://Sprites/Items/Toys/Toy Robot.png" id="6_ge4r8"]
+[ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="6_scrlu"]
+[ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="7_3vpr4"]
+[ext_resource type="Texture2D" uid="uid://cr55q6xbdrvv1" path="res://Sprites/Items/Toys/Doll.png" id="7_5y1ig"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="7_52c3l"]
+[ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="8_5xs8h"]
+[ext_resource type="Texture2D" uid="uid://xc4mwt32umjv" path="res://Sprites/Items/Toys/Ring Stack.png" id="8_krykf"]
+[ext_resource type="Texture2D" uid="uid://2uy36thrqnut" path="res://Sprites/Items/Toys/Rubber Duck.png" id="9_36y85"]
+[ext_resource type="Texture2D" uid="uid://c3shr54dayhxu" path="res://Sprites/Items/Toys/Toy Car.png" id="10_mnsl8"]
+[ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="12_s08q6"]
+[ext_resource type="TileSet" uid="uid://cdogj6tjronkw" path="res://DecorationTileSet.tres" id="14_44omj"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="23_jmkwm"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="24_5qrd1"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="25_ge4r8"]
+[ext_resource type="PackedScene" uid="uid://bg6n4loc1p5kl" path="res://Scenes/hazards/rainbow_bridge.tscn" id="26_5y1ig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybxb8"]
 
@@ -8,11 +33,18 @@
 
 [node name="Rainbow Heaven 3" type="Node2D"]
 
+[node name="SceneController" parent="." instance=ExtResource("1_fxear")]
+map_size = Rect2i(-12, -8, 10, 5)
+next_scene = ExtResource("2_swph2")
+toys_textures = Array[Texture2D]([ExtResource("2_x1i5y"), ExtResource("3_44omj"), ExtResource("4_jmkwm"), ExtResource("5_5qrd1"), ExtResource("6_ge4r8"), ExtResource("7_5y1ig"), ExtResource("8_krykf"), ExtResource("9_36y85"), ExtResource("10_mnsl8")])
+cards_amount = 6
+
 [node name="RainbowHeaven3" type="Sprite2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, -8)
 texture = ExtResource("1_bxh48")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="Node2D" parent="."]
+visible = false
 
 [node name="16 x 16 collision" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-64, -16)
@@ -352,3 +384,111 @@ position = Vector2(0, 124)
 rotation = 1.5708
 scale = Vector2(0.4, 18.4)
 shape = SubResource("RectangleShape2D_l0l0j")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+position = Vector2(8, 8)
+tile_map_data = PackedByteArray("AADz//f/AgAAAAAAAADz//j/AgAAAAAAAADz//n/AgAAAAAAAADz//r/AgAAAAAAAADz//v/AgAAAAAAAADz//z/AgAAAAAAAADz//3/AgAAAAAAAADz//7/AgAAAAAAAADz////AgAAAAAAAADz/wAAAgAAAAAAAADz/wEAAgAAAAAAAADz/wIAAgAAAAAAAADz/wMAAgAAAAAAAADz/wQAAgAAAAAAAADz/wUAAgAAAAAAAADz/wYAAgAAAAAAAAD0/wYAAgAAAAAAAAD1/wYAAgAAAAAAAAD2/wYAAgAAAAAAAAD3/wYAAgAAAAAAAAD4/wYAAgAAAAAAAAD5/wYAAgAAAAAAAAD6/wYAAgAAAAAAAAD7/wYAAgAAAAAAAAD8/wYAAgAAAAAAAAD9/wYAAgAAAAAAAAD+/wYAAgAAAAAAAAD//wYAAgAAAAAAAAAAAAYAAgAAAAAAAAABAAYAAgAAAAAAAAACAAYAAgAAAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAFAAYAAgAAAAAAAAAGAAYAAgAAAAAAAAAHAAYAAgAAAAAAAAAIAAYAAgAAAAAAAAAJAAYAAgAAAAAAAAAKAAYAAgAAAAAAAAALAAYAAgAAAAAAAAALAAUAAgAAAAAAAAALAAQAAgAAAAAAAAALAAMAAgAAAAAAAAALAAIAAgAAAAAAAAALAAEAAgAAAAAAAAALAAAAAgAAAAAAAAALAP//AgAAAAAAAAALAP7/AgAAAAAAAAALAP3/AgAAAAAAAAALAPz/AgAAAAAAAAALAPv/AgAAAAAAAAALAPr/AgAAAAAAAAALAPn/AgAAAAAAAAALAPj/AgAAAAAAAAALAPf/AgAAAAAAAAAKAPf/AgAAAAAAAAAJAPf/AgAAAAAAAAAIAPf/AgAAAAAAAAAHAPf/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAEAPf/AgAAAAAAAAADAPf/AgAAAAAAAAACAPf/AgAAAAAAAAABAPf/AgAAAAAAAAAAAPf/AgAAAAAAAAD///f/AgAAAAAAAAD+//f/AgAAAAAAAAD9//f/AgAAAAAAAAD8//f/AgAAAAAAAAD7//f/AgAAAAAAAAD6//f/AgAAAAAAAAD5//f/AgAAAAAAAAD4//f/AgAAAAAAAAD3//f/AgAAAAAAAAD2//f/AgAAAAAAAAD1//f/AgAAAAAAAAD0//f/AgAAAAAAAAD1//n/AgAAAAAAAAD1//r/AgAAAAAAAAD2//r/AgAAAAAAAAD2//n/AgAAAAAAAAD4//j/AgAAAAAAAAD4//r/AgAAAAAAAAAIAPn/AgAAAAAAAAAIAPr/AgAAAAAAAAAJAPr/AgAAAAAAAAAJAPn/AgAAAAAAAAAGAPr/AgAAAAAAAAAGAPj/AgAAAAAAAAAEAPr/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPv/AgAAAAAAAAADAPv/AgAAAAAAAAD6//r/AgAAAAAAAAD6//v/AgAAAAAAAAD7//v/AgAAAAAAAAD6//j/AgAAAAAAAAD8//n/AgAAAAAAAAD+//n/AgAAAAAAAAAAAPn/AgAAAAAAAAACAPn/AgAAAAAAAAABAPv/AgAAAAAAAAD9//v/AgAAAAAAAAD9//3/AgAAAAAAAAD+//3/AgAAAAAAAAD///3/AgAAAAAAAAAAAP3/AgAAAAAAAAABAP3/AgAAAAAAAAD///v/AgAAAAAAAAD///z/AgAAAAAAAAD///7/AgAAAAAAAAD/////AgAAAAAAAAD7//3/AgAAAAAAAAADAP3/AgAAAAAAAAABAP//AgAAAAAAAAACAP//AgAAAAAAAAADAP//AgAAAAAAAAACAAAAAgAAAAAAAAD8/wAAAgAAAAAAAAD8////AgAAAAAAAAD7////AgAAAAAAAAD9////AgAAAAAAAAD8/wIAAgAAAAAAAAD8/wMAAgAAAAAAAAD8/wQAAgAAAAAAAAD7/wMAAgAAAAAAAAD9/wMAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAD//wUAAgAAAAAAAAD+/wUAAgAAAAAAAAAAAAUAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAABAAMAAgAAAAAAAAADAAMAAgAAAAAAAAAEAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAUAAgAAAAAAAAAEAAUAAgAAAAAAAAAKAAUAAgAAAAAAAAAKAAEAAgAAAAAAAAD6/wEAAgAAAAAAAAD6/wUAAgAAAAAAAAD4/wUAAgAAAAAAAAD4/wEAAgAAAAAAAAD0/wEAAgAAAAAAAAD0/wUAAgAAAAAAAAD2/wIAAgAAAAAAAAD2/wMAAgAAAAAAAAD2/wQAAgAAAAAAAAD1/wMAAgAAAAAAAAD3/wMAAgAAAAAAAAD4/wMAAgAAAAAAAAAGAAMAAgAAAAAAAAAHAAMAAgAAAAAAAAAIAAMAAgAAAAAAAAAJAAMAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAQAAgAAAAAAAAD3//7/AgAAAAAAAAD3////AgAAAAAAAAD2////AgAAAAAAAAD1////AgAAAAAAAAD2/wAAAgAAAAAAAAAJAP//AgAAAAAAAAAIAP//AgAAAAAAAAAIAAAAAgAAAAAAAAAHAP//AgAAAAAAAAAHAP7/AgAAAAAAAAAHAPz/AgAAAAAAAAAIAPz/AgAAAAAAAAAJAPz/AgAAAAAAAAAJAP3/AgAAAAAAAAD3//z/AgAAAAAAAAD2//z/AgAAAAAAAAD1//z/AgAAAAAAAAD1//3/AgAAAAAAAAAFAP//AgAAAAAAAAAFAP7/AgAAAAAAAAAFAP3/AgAAAAAAAAAFAPz/AgAAAAAAAAAFAPv/AgAAAAAAAAAFAPr/AgAAAAAAAAAFAPn/AgABAAAAAAAFAPj/AgAAAAAAAAAEAPn/AgABAAAAAAADAPn/AgABAAAAAAADAPj/AgABAAAAAAACAPj/AgABAAAAAAABAPj/AgABAAAAAAAAAPj/AgABAAAAAAD///j/AgABAAAAAAD+//j/AgABAAAAAAD9//j/AgABAAAAAAD8//j/AgABAAAAAAD7//j/AgABAAAAAAD7//n/AgABAAAAAAD6//n/AgABAAAAAAD5//n/AgABAAAAAAD5//j/AgAAAAAAAAD4//n/AgABAAAAAAD3//n/AgABAAAAAAD3//j/AgABAAAAAAD2//j/AgABAAAAAAD1//j/AgABAAAAAAD0//j/AgABAAAAAAD0//n/AgABAAAAAAD0//r/AgABAAAAAAD0//v/AgABAAAAAAD0//z/AgABAAAAAAD0//3/AgABAAAAAAD0//7/AgABAAAAAAD0////AgABAAAAAAD0/wAAAgABAAAAAAD1/wAAAgABAAAAAAD1/wEAAgABAAAAAAD1/wIAAgABAAAAAAD0/wIAAgABAAAAAAD0/wMAAgABAAAAAAD0/wQAAgABAAAAAAD1/wQAAgABAAAAAAD1/wUAAgABAAAAAAD2/wUAAgABAAAAAAD3/wUAAgABAAAAAAD3/wQAAgABAAAAAAD4/wQAAgABAAAAAAD5/wQAAgABAAAAAAD5/wMAAgAAAAAAAAD5/wIAAgABAAAAAAD5/wEAAgAAAAAAAAD5/wAAAgAAAAAAAAD5////AgAAAAAAAAD5//7/AgAAAAAAAAD5//3/AgAAAAAAAAD5//z/AgAAAAAAAAD5//v/AgAAAAAAAAD5//r/AgAAAAAAAAD4//v/AgABAAAAAAD3//v/AgABAAAAAAD3//r/AgABAAAAAAD2//v/AgABAAAAAAD1//v/AgABAAAAAAD4//z/AgABAAAAAAD4//3/AgABAAAAAAD3//3/AgABAAAAAAD2//3/AgABAAAAAAD2//7/AgABAAAAAAD1//7/AgABAAAAAAD4//7/AgABAAAAAAD4////AgABAAAAAAD4/wAAAgABAAAAAAD3/wAAAgABAAAAAAD3/wEAAgABAAAAAAD2/wEAAgABAAAAAAD3/wIAAgABAAAAAAD4/wIAAgABAAAAAAD6//z/AgABAAAAAAD6//3/AgABAAAAAAD6//7/AgABAAAAAAD6////AgABAAAAAAD6/wAAAgABAAAAAAD7/wAAAgABAAAAAAD7/wEAAgABAAAAAAD7/wIAAgABAAAAAAD6/wIAAgABAAAAAAD6/wMAAgABAAAAAAD6/wQAAgABAAAAAAD7/wQAAgABAAAAAAD7/wUAAgABAAAAAAD8/wUAAgABAAAAAAD9/wUAAgABAAAAAAD9/wQAAgABAAAAAAD+/wQAAgABAAAAAAD+/wMAAgABAAAAAAD+/wIAAgABAAAAAAD+/wEAAgABAAAAAAD+/wAAAgABAAAAAAD+////AgABAAAAAAD+//7/AgABAAAAAAD9//7/AgABAAAAAAD8//7/AgABAAAAAAD8//3/AgABAAAAAAD8//z/AgABAAAAAAD8//v/AgABAAAAAAD8//r/AgABAAAAAAD7//r/AgABAAAAAAD9//r/AgABAAAAAAD9//n/AgABAAAAAAD+//r/AgABAAAAAAD+//v/AgABAAAAAAD+//z/AgABAAAAAAD9//z/AgABAAAAAAD///r/AgABAAAAAAD///n/AgABAAAAAAAAAPr/AgABAAAAAAAAAPv/AgABAAAAAAAAAPz/AgABAAAAAAABAPz/AgABAAAAAAACAPz/AgABAAAAAAACAPv/AgABAAAAAAACAPr/AgABAAAAAAABAPr/AgABAAAAAAABAPn/AgABAAAAAAADAPr/AgABAAAAAAACAP3/AgABAAAAAAACAP7/AgABAAAAAAABAP7/AgABAAAAAAAAAP7/AgABAAAAAAAAAP//AgABAAAAAAAAAAAAAgABAAAAAAD//wAAAgABAAAAAAD//wEAAgABAAAAAAD//wIAAgABAAAAAAAAAAIAAgABAAAAAAAAAAEAAgABAAAAAAABAAEAAgABAAAAAAABAAAAAgABAAAAAAABAAIAAgABAAAAAAACAAEAAgABAAAAAAADAAEAAgABAAAAAAADAAAAAgABAAAAAAAEAAAAAgABAAAAAAAEAP//AgABAAAAAAAEAP7/AgABAAAAAAAEAP3/AgABAAAAAAAEAPz/AgABAAAAAAADAPz/AgABAAAAAAADAP7/AgABAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgABAAAAAAAEAAIAAgABAAAAAAADAAIAAgABAAAAAAAEAAMAAgABAAAAAAAEAAQAAgABAAAAAAADAAQAAgABAAAAAAADAAUAAgABAAAAAAACAAUAAgABAAAAAAABAAUAAgABAAAAAAABAAQAAgABAAAAAAAAAAQAAgABAAAAAAAAAAMAAgABAAAAAAAFAAQAAgABAAAAAAAFAAMAAgAAAAAAAAAFAAUAAgAAAAAAAAAGAAQAAgABAAAAAAAHAAQAAgABAAAAAAAHAAUAAgABAAAAAAAIAAUAAgABAAAAAAAJAAUAAgABAAAAAAAJAAQAAgABAAAAAAAKAAQAAgABAAAAAAAKAAMAAgABAAAAAAAKAAIAAgABAAAAAAAJAAIAAgABAAAAAAAJAAEAAgABAAAAAAAJAAAAAgABAAAAAAAKAAAAAgABAAAAAAAKAP//AgABAAAAAAAKAP7/AgABAAAAAAAKAP3/AgABAAAAAAAKAPz/AgABAAAAAAAKAPv/AgABAAAAAAAKAPr/AgABAAAAAAAKAPn/AgABAAAAAAAKAPj/AgABAAAAAAAJAPj/AgABAAAAAAAIAPj/AgABAAAAAAAHAPj/AgABAAAAAAAHAPn/AgABAAAAAAAGAPn/AgABAAAAAAAHAPr/AgABAAAAAAAHAPv/AgABAAAAAAAGAPv/AgABAAAAAAAGAPz/AgABAAAAAAAGAP3/AgABAAAAAAAGAP7/AgABAAAAAAAGAP//AgABAAAAAAAGAAAAAgABAAAAAAAHAAAAAgABAAAAAAAHAAEAAgABAAAAAAAHAAIAAgABAAAAAAAGAAIAAgABAAAAAAAIAAEAAgABAAAAAAAHAP3/AgABAAAAAAAIAP3/AgABAAAAAAAIAP7/AgABAAAAAAAJAP7/AgABAAAAAAAIAPv/AgABAAAAAAAJAPv/AgABAAAAAAD7//z/AgABAAAAAAD7//7/AgABAAAAAAD9/wAAAgABAAAAAAD9/wEAAgABAAAAAAD8/wEAAgABAAAAAAD9/wIAAgABAAAAAAD5/wUAAgAAAAAAAAA=")
+tile_set = ExtResource("2_l8rjk")
+
+[node name="Decoration" type="TileMapLayer" parent="."]
+z_index = 1
+position = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD2//r/DAAAAAAAAAAJAPr/DAAAAAAAAAD5//j/CAAAAAAAAAD5//n/CAAAAAAAAAD5//r/CAAAAAAAAAD5//v/CAAAAAAAAAD5//z/CAAAAAAAAAD5//3/CAAAAAAAAAD5//7/CAAAAAAAAAD5////CAAAAAAAAAD5/wAACAAAAAAAAAD5/wEACAAAAAAAAAD5/wIACAAAAAAAAAD5/wMACAAAAAAAAAD5/wQACAAAAAAAAAD5/wUACAAAAAAAAAD5/wYACAAAAAAAAAAFAPj/CAAAAAAAAAAFAPn/CAAAAAAAAAAFAPr/CAAAAAAAAAAFAPv/CAAAAAAAAAAFAPz/CAAAAAAAAAAFAP3/CAAAAAAAAAAFAP7/CAAAAAAAAAAFAP//CAAAAAAAAAAFAAAACAAAAAAAAAAFAAEACAAAAAAAAAAFAAIACAAAAAAAAAAFAAMACAAAAAAAAAAFAAQACAAAAAAAAAAFAAUACAAAAAAAAAAFAAYACAAAAAAAAAD5//f/CAACAAAAAAAFAPf/CAACAAAAAAA=")
+tile_set = ExtResource("14_44omj")
+
+[node name="Aoy" parent="." instance=ExtResource("2_to3er")]
+position = Vector2(0, 48)
+
+[node name="Camera2D" parent="Aoy" instance=ExtResource("5_nolyu")]
+
+[node name="Tic" parent="." instance=ExtResource("7_3vpr4")]
+position = Vector2(-176, -112)
+
+[node name="Tac" parent="." instance=ExtResource("6_scrlu")]
+position = Vector2(176, -112)
+
+[node name="Toe" parent="." instance=ExtResource("8_5xs8h")]
+position = Vector2(0, -112)
+
+[node name="ToyChest" parent="." instance=ExtResource("6_08uma")]
+position = Vector2(0, 32)
+
+[node name="Door" parent="." instance=ExtResource("12_s08q6")]
+position = Vector2(0, -80)
+
+[node name="GameUI" parent="." instance=ExtResource("7_52c3l")]
+
+[node name="Toy" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-144, -16)
+texture = ExtResource("7_5y1ig")
+
+[node name="Toy2" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-160, 96)
+texture = ExtResource("8_krykf")
+
+[node name="Toy3" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(160, 32)
+texture = ExtResource("3_44omj")
+
+[node name="Toy4" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(128, -80)
+texture = ExtResource("9_36y85")
+
+[node name="Toy5" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(32, -96)
+texture = ExtResource("2_x1i5y")
+
+[node name="Toy6" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-64, -112)
+texture = ExtResource("4_jmkwm")
+
+[node name="Toy7" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(64, 32)
+texture = ExtResource("10_mnsl8")
+
+[node name="Toy8" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-64, 80)
+texture = ExtResource("6_ge4r8")
+
+[node name="Toy9" parent="." instance=ExtResource("23_jmkwm")]
+position = Vector2(-16, -48)
+texture = ExtResource("5_5qrd1")
+
+[node name="Card" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(-144, 32)
+
+[node name="Card2" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(144, -16)
+
+[node name="Card3" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(-48, -80)
+
+[node name="Card4" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(64, -48)
+
+[node name="Card5" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(144, 96)
+
+[node name="Card6" parent="." instance=ExtResource("24_5qrd1")]
+position = Vector2(-32, 80)
+
+[node name="RainbowBridge" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(-96, -96)
+
+[node name="RainbowBridge2" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(96, -96)
+
+[node name="RainbowBridge3" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(-96, 48)
+
+[node name="RainbowBridge4" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(96, 48)
+
+[node name="RainbowBridge5" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(-96, 80)
+
+[node name="RainbowBridge6" parent="." instance=ExtResource("26_5y1ig")]
+position = Vector2(96, 80)
+
+[node name="Treats" parent="." instance=ExtResource("25_ge4r8")]
+position = Vector2(0, 16)

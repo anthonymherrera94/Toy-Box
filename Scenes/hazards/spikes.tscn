@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn0m26vh4nil4"]
+
+[ext_resource type="Script" uid="uid://dt1tkrus7ej63" path="res://Scripts/hazards/spikes.gd" id="1_6xgx2"]
+[ext_resource type="Texture2D" uid="uid://b6x2f56t5jyoo" path="res://Sprites/Levels/Hazards/Spike 1.PNG" id="1_ph8dh"]
+[ext_resource type="Texture2D" uid="uid://bfhxlex2fvy73" path="res://Sprites/Levels/Hazards/Spike 2.PNG" id="2_k52ty"]
+[ext_resource type="Texture2D" uid="uid://brjhe8tj3bdkj" path="res://Sprites/Levels/Hazards/Spike 3.PNG" id="3_qvj73"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6e31"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k52ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qvj73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k52ty")
+}],
+"loop": false,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ph8dh")
+}],
+"loop": true,
+"name": &"Inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xgx2"]
+size = Vector2(16, 16)
+
+[node name="Spikes" type="Area2D" node_paths=PackedStringArray("anim")]
+monitoring = false
+script = ExtResource("1_6xgx2")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r6e31")
+animation = &"Active"
+autoplay = "Inactive"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6xgx2")
+
+[node name="Activate" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Activate" to="." method="_on_activate_timeout"]

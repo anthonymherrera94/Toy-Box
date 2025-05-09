@@ -1,0 +1,106 @@
+[gd_scene load_steps=16 format=3 uid="uid://d1m6axmvsemln"]
+
+[ext_resource type="Script" uid="uid://dgtakny1xxq7w" path="res://Scripts/hazards/snake.gd" id="1_6o78c"]
+[ext_resource type="Texture2D" uid="uid://ikb8xggcfv8a" path="res://Sprites/Levels/Hazards/Snake Down 1.PNG" id="2_x5yxm"]
+[ext_resource type="Texture2D" uid="uid://co3dotvpgf4ob" path="res://Sprites/Levels/Hazards/Snake Down 2.PNG" id="3_y852i"]
+[ext_resource type="Texture2D" uid="uid://dxpybeg5ccd61" path="res://Sprites/Levels/Hazards/Snake Down 3.PNG" id="4_maqxo"]
+[ext_resource type="Texture2D" uid="uid://viiqanftndm2" path="res://Sprites/Levels/Hazards/Snake Down 4.PNG" id="5_kk1ag"]
+[ext_resource type="Texture2D" uid="uid://waov15c8je7x" path="res://Sprites/Levels/Hazards/Snake Down 5.PNG" id="6_cfm1l"]
+[ext_resource type="Texture2D" uid="uid://bni8cgfqj0sid" path="res://Sprites/Levels/Hazards/Snake Down 6.PNG" id="7_2o5cu"]
+[ext_resource type="Texture2D" uid="uid://dskdbnkx3rh34" path="res://Sprites/Levels/Hazards/Snake Down 7.PNG" id="8_5c7hs"]
+[ext_resource type="Texture2D" uid="uid://v4x3j77t5ci6" path="res://Sprites/Levels/Hazards/Snake Side 1.PNG" id="9_2o5cu"]
+[ext_resource type="Texture2D" uid="uid://d0xcjblfk3h7p" path="res://Sprites/Levels/Hazards/Snake Side 2.PNG" id="10_5c7hs"]
+[ext_resource type="Texture2D" uid="uid://dvwpwpe7qsd4r" path="res://Sprites/Levels/Hazards/Snake Side 3.PNG" id="11_eu3x0"]
+[ext_resource type="Texture2D" uid="uid://dh1tri8n52sdi" path="res://Sprites/Levels/Hazards/Snake Side 4.PNG" id="12_av11t"]
+[ext_resource type="Texture2D" uid="uid://c2s8iwqprugbo" path="res://Sprites/Levels/Hazards/Snake Side 5.PNG" id="13_3v6fv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4te5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x5yxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y852i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_maqxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kk1ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cfm1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2o5cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5c7hs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cfm1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_maqxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y852i")
+}],
+"loop": false,
+"name": &"Bottom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x5yxm")
+}],
+"loop": true,
+"name": &"Hole",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2o5cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_eu3x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5c7hs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3v6fv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_av11t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_eu3x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2o5cu")
+}],
+"loop": false,
+"name": &"Side",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2o5cu"]
+size = Vector2(12, 12)
+
+[node name="Snake" type="Area2D" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_6o78c")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x4te5")
+animation = &"Hole"
+autoplay = "Hole"
+offset = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2o5cu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

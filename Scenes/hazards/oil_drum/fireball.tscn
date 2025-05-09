@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3ds10gymprxg"]
+
+[ext_resource type="Script" uid="uid://cfjh6bb2m1fqi" path="res://Scripts/hazards/old_drum/fireball.gd" id="1_osarm"]
+[ext_resource type="Texture2D" uid="uid://b8k1bcn81fl7d" path="res://Sprites/Levels/Hazards/Fire 1.PNG" id="2_ora3r"]
+[ext_resource type="Texture2D" uid="uid://balwgxa0jwm4f" path="res://Sprites/Levels/Hazards/Fire 2.PNG" id="3_7v145"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_osarm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ora3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7v145")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmtpu"]
+radius = 8.0
+
+[node name="Fireball" type="Area2D"]
+script = ExtResource("1_osarm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.57079
+sprite_frames = SubResource("SpriteFrames_osarm")
+frame_progress = 0.653674
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xmtpu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

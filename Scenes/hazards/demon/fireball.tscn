@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccj8ln6lfi8x"]
+
+[ext_resource type="Script" uid="uid://do4oe6ro7oll5" path="res://Scripts/hazards/demon/fireball.gd" id="1_11t54"]
+[ext_resource type="Texture2D" uid="uid://dpyy4t5fcje0a" path="res://Sprites/Levels/Hazards/Demon Breath 1.PNG" id="1_xmtpu"]
+[ext_resource type="Texture2D" uid="uid://dum7ccis0ieli" path="res://Sprites/Levels/Hazards/Demon Breath 2.PNG" id="2_11t54"]
+[ext_resource type="Texture2D" uid="uid://c8vfrfvigbfvc" path="res://Sprites/Levels/Hazards/Demon Breath 3.PNG" id="3_115my"]
+[ext_resource type="Texture2D" uid="uid://cu5gf17jraup4" path="res://Sprites/Levels/Hazards/Demon Breath 4.PNG" id="4_tsouk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_07lpu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_115my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tsouk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xmtpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_11t54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_115my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tsouk")
+}],
+"loop": false,
+"name": &"Spawn",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmtpu"]
+radius = 8.0
+
+[node name="Fireball" type="Area2D" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_11t54")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_07lpu")
+animation = &"Idle"
+autoplay = "Spawn"
+frame_progress = 0.791267
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xmtpu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

@@ -1,6 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://di6p0kpcaq675"]
+[gd_scene load_steps=23 format=4 uid="uid://di6p0kpcaq675"]
 
 [ext_resource type="Texture2D" uid="uid://gkqgrhbq2w1l" path="res://Sprites/Levels/Levels/Sweet Land 1.PNG" id="1_jca7p"]
+[ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_kicte"]
+[ext_resource type="PackedScene" uid="uid://dmv1m23maf3ou" path="res://Scenes/sweet_lands_2.tscn" id="2_b7oqt"]
+[ext_resource type="Texture2D" uid="uid://cr55q6xbdrvv1" path="res://Sprites/Items/Toys/Doll.png" id="2_gk4el"]
+[ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="2_ltwq8"]
+[ext_resource type="PackedScene" uid="uid://cuioyxnvj0tlw" path="res://Scenes/SpawningControllers/SpawningSyrupController.tscn" id="2_vs18o"]
+[ext_resource type="Texture2D" uid="uid://dhtm8w6pnoc35" path="res://Sprites/Items/Toys/Roly Poly Clown.png" id="3_7napa"]
+[ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="3_ji7v4"]
+[ext_resource type="Texture2D" uid="uid://xf2lwkyef6ar" path="res://Sprites/Items/Toys/Teddy Bear.png" id="4_nkwil"]
+[ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="5_0nrvi"]
+[ext_resource type="Texture2D" uid="uid://yjfpg4drh07m" path="res://Sprites/Items/Toys/Toy Robot.png" id="5_jkhnx"]
+[ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="5_uwsmh"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_1jdea"]
+[ext_resource type="Texture2D" uid="uid://cuva8a8mpoqqv" path="res://Sprites/Items/Toys/Spinning Top.png" id="6_ewg3c"]
+[ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="6_y7a5t"]
+[ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_3mbsf"]
+[ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="12_3u6b8"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="18_7napa"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="19_jkhnx"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="20_ewg3c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erfky"]
 
@@ -8,11 +27,21 @@
 
 [node name="Sweet Lands 1" type="Node2D"]
 
+[node name="SceneController" parent="." instance=ExtResource("1_kicte")]
+map_size = Rect2i(-7, -8, 5, 5)
+next_scene = ExtResource("2_b7oqt")
+toys_textures = Array[Texture2D]([ExtResource("2_gk4el"), ExtResource("3_7napa"), ExtResource("4_nkwil"), ExtResource("5_jkhnx"), ExtResource("6_ewg3c")])
+cards_amount = 4
+
+[node name="SpawningSyrupController" parent="SceneController" instance=ExtResource("2_vs18o")]
+
 [node name="SweetLand1" type="Sprite2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, -8)
 texture = ExtResource("1_jca7p")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="Node2D" parent="."]
+visible = false
+position = Vector2(8, 8)
 
 [node name="16 x 16 Collision" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-16, 32)
@@ -161,3 +190,66 @@ position = Vector2(0, 124)
 rotation = 1.5708
 scale = Vector2(0.4, 10.4)
 shape = SubResource("RectangleShape2D_ai5qj")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+visible = false
+position = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD4//f/AgAAAAAAAAD4//j/AgAAAAAAAAD4//n/AgAAAAAAAAD4//r/AgAAAAAAAAD4//v/AgAAAAAAAAD4//z/AgAAAAAAAAD4//3/AgAAAAAAAAD4//7/AgAAAAAAAAD4////AgAAAAAAAAD4/wAAAgAAAAAAAAD4/wEAAgAAAAAAAAD4/wIAAgAAAAAAAAD4/wMAAgAAAAAAAAD4/wQAAgAAAAAAAAD4/wUAAgAAAAAAAAD4/wYAAgAAAAAAAAD5/wYAAgAAAAAAAAD6/wYAAgAAAAAAAAD7/wYAAgAAAAAAAAD8/wYAAgAAAAAAAAD9/wYAAgAAAAAAAAD+/wYAAgAAAAAAAAD//wYAAgAAAAAAAAAAAAYAAgAAAAAAAAABAAYAAgAAAAAAAAACAAYAAgAAAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAFAAYAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAP//AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAPz/AgAAAAAAAAAGAPv/AgAAAAAAAAAGAPr/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAEAPf/AgAAAAAAAAADAPf/AgAAAAAAAAACAPf/AgAAAAAAAAABAPf/AgAAAAAAAAAAAPf/AgAAAAAAAAD///f/AgAAAAAAAAD+//f/AgAAAAAAAAD9//f/AgAAAAAAAAD8//f/AgAAAAAAAAD7//f/AgAAAAAAAAD6//f/AgAAAAAAAAD5//f/AgAAAAAAAAD6//r/AgAAAAAAAAD6//n/AgAAAAAAAAD7//n/AgAAAAAAAAD8//n/AgAAAAAAAAD+//n/AgAAAAAAAAAAAPn/AgAAAAAAAAACAPn/AgAAAAAAAAADAPn/AgAAAAAAAAAEAPn/AgAAAAAAAAAEAPr/AgAAAAAAAAACAPv/AgAAAAAAAAACAPz/AgAAAAAAAAACAP3/AgAAAAAAAAACAP7/AgAAAAAAAAAEAPz/AgAAAAAAAAADAPz/AgAAAAAAAAD8//v/AgAAAAAAAAD8//z/AgAAAAAAAAD8//3/AgAAAAAAAAD8//7/AgAAAAAAAAD6//z/AgAAAAAAAAD7//z/AgAAAAAAAAD+//v/AgAAAAAAAAD+//z/AgAAAAAAAAAAAPv/AgAAAAAAAAAAAPz/AgAAAAAAAAD+/wAAAgAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAD8/wAAAgAAAAAAAAD8/wEAAgAAAAAAAAD8/wIAAgAAAAAAAAD6/wEAAgAAAAAAAAD6/wAAAgAAAAAAAAD6////AgAAAAAAAAD6//7/AgAAAAAAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAD//wIAAgAAAAAAAAD+/wIAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAMAAgAAAAAAAAD8/wQAAgAAAAAAAAD7/wQAAgAAAAAAAAD6/wQAAgAAAAAAAAD6/wMAAgAAAAAAAAAFAP3/AgABAAAAAAAFAPz/AgABAAAAAAAFAPv/AgABAAAAAAAFAPr/AgABAAAAAAAFAPn/AgABAAAAAAAFAPj/AgABAAAAAAAEAPj/AgABAAAAAAADAPj/AgABAAAAAAACAPj/AgABAAAAAAABAPj/AgABAAAAAAAAAPj/AgABAAAAAAD///j/AgABAAAAAAD+//j/AgABAAAAAAD9//j/AgABAAAAAAD8//j/AgABAAAAAAD7//j/AgABAAAAAAD6//j/AgABAAAAAAD5//j/AgABAAAAAAD5//n/AgABAAAAAAD5//r/AgABAAAAAAD5//v/AgABAAAAAAD5//z/AgABAAAAAAD5//3/AgABAAAAAAD5//7/AgABAAAAAAD5////AgABAAAAAAD5/wAAAgABAAAAAAD5/wEAAgABAAAAAAD5/wIAAgABAAAAAAD5/wMAAgABAAAAAAD5/wQAAgABAAAAAAD5/wUAAgABAAAAAAD6/wUAAgABAAAAAAD7/wUAAgABAAAAAAD8/wUAAgABAAAAAAD9/wUAAgABAAAAAAD9/wQAAgABAAAAAAD9/wMAAgABAAAAAAD9/wIAAgABAAAAAAD9/wEAAgABAAAAAAD9/wAAAgABAAAAAAD9////AgABAAAAAAD9//7/AgABAAAAAAD9//3/AgABAAAAAAD9//z/AgABAAAAAAD9//v/AgABAAAAAAD9//r/AgABAAAAAAD9//n/AgABAAAAAAD8//r/AgABAAAAAAD7//r/AgABAAAAAAD7//v/AgABAAAAAAD6//v/AgABAAAAAAD+//r/AgABAAAAAAD///r/AgABAAAAAAD///n/AgABAAAAAAD///v/AgABAAAAAAD///z/AgABAAAAAAD///3/AgABAAAAAAD+//3/AgABAAAAAAD+//7/AgABAAAAAAD+////AgABAAAAAAD/////AgABAAAAAAD///7/AgABAAAAAAAAAP7/AgABAAAAAAAAAP3/AgABAAAAAAABAP3/AgABAAAAAAABAPz/AgABAAAAAAABAPv/AgABAAAAAAABAPr/AgABAAAAAAABAPn/AgABAAAAAAAAAPr/AgABAAAAAAACAPr/AgABAAAAAAADAPr/AgABAAAAAAADAPv/AgABAAAAAAAEAPv/AgABAAAAAAABAP7/AgABAAAAAAABAP//AgABAAAAAAAAAP//AgABAAAAAAABAAAAAgABAAAAAAABAAEAAgABAAAAAAAAAAEAAgABAAAAAAD//wEAAgABAAAAAAD//wAAAgABAAAAAAD+/wEAAgABAAAAAAABAAIAAgABAAAAAAABAAMAAgABAAAAAAAAAAMAAgABAAAAAAD//wMAAgABAAAAAAD+/wMAAgABAAAAAAABAAQAAgABAAAAAAABAAUAAgABAAAAAAAAAAUAAgABAAAAAAD//wUAAgABAAAAAAD+/wUAAgABAAAAAAACAAUAAgABAAAAAAADAAUAAgABAAAAAAAEAAUAAgABAAAAAAAFAAUAAgABAAAAAAAFAAQAAgABAAAAAAAFAAMAAgABAAAAAAAFAAIAAgABAAAAAAAFAAEAAgABAAAAAAAFAAAAAgABAAAAAAAFAP//AgABAAAAAAAFAP7/AgABAAAAAAAEAAIAAgABAAAAAAADAAIAAgABAAAAAAADAAEAAgABAAAAAAADAAAAAgABAAAAAAADAP//AgABAAAAAAADAP7/AgABAAAAAAADAP3/AgABAAAAAAAEAP3/AgABAAAAAAACAP//AgABAAAAAAADAAMAAgABAAAAAAACAAMAAgABAAAAAAD8////AgABAAAAAAD7////AgABAAAAAAD7//7/AgABAAAAAAD7//3/AgABAAAAAAD6//3/AgABAAAAAAD7/wAAAgABAAAAAAD7/wEAAgABAAAAAAD7/wIAAgABAAAAAAD6/wIAAgABAAAAAAD7/wMAAgABAAAAAAD8/wMAAgABAAAAAAA=")
+tile_set = ExtResource("2_ltwq8")
+
+[node name="Aoy" parent="." instance=ExtResource("3_ji7v4")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="Tic" parent="." instance=ExtResource("5_uwsmh")]
+position = Vector2(-96, -112)
+
+[node name="Tac" parent="." instance=ExtResource("6_y7a5t")]
+position = Vector2(96, -112)
+
+[node name="Toe" parent="." instance=ExtResource("7_3mbsf")]
+position = Vector2(-96, 96)
+
+[node name="ToyChest" parent="." instance=ExtResource("5_0nrvi")]
+position = Vector2(0, -16)
+
+[node name="Door" parent="." instance=ExtResource("12_3u6b8")]
+position = Vector2(0, 64)
+
+[node name="GameUI" parent="." instance=ExtResource("6_1jdea")]
+
+[node name="Toy" parent="." instance=ExtResource("18_7napa")]
+position = Vector2(-64, -80)
+texture = ExtResource("2_gk4el")
+
+[node name="Toy2" parent="." instance=ExtResource("18_7napa")]
+position = Vector2(80, 48)
+texture = ExtResource("3_7napa")
+
+[node name="Toy3" parent="." instance=ExtResource("18_7napa")]
+position = Vector2(-64, 32)
+texture = ExtResource("4_nkwil")
+
+[node name="Toy4" parent="." instance=ExtResource("18_7napa")]
+position = Vector2(32, -96)
+texture = ExtResource("5_jkhnx")
+
+[node name="Toy5" parent="." instance=ExtResource("18_7napa")]
+position = Vector2(0, 96)
+texture = ExtResource("6_ewg3c")
+
+[node name="Card" parent="." instance=ExtResource("19_jkhnx")]
+position = Vector2(64, -80)
+
+[node name="Card2" parent="." instance=ExtResource("19_jkhnx")]
+position = Vector2(-32, 80)
+
+[node name="Card3" parent="." instance=ExtResource("19_jkhnx")]
+position = Vector2(-64, -32)
+
+[node name="Card4" parent="." instance=ExtResource("19_jkhnx")]
+position = Vector2(64, 0)
+
+[node name="Treats" parent="." instance=ExtResource("20_ewg3c")]
+position = Vector2(0, -80)

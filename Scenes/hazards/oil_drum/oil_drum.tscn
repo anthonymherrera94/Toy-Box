@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbdrjh5xph45e"]
+
+[ext_resource type="Script" uid="uid://bkhsvgac838do" path="res://Scripts/hazards/old_drum/oil_drum.gd" id="1_7vueh"]
+[ext_resource type="Texture2D" uid="uid://bdnw3ytmeboap" path="res://Sprites/Levels/Hazards/Oil Drum 1.PNG" id="2_7uc4o"]
+[ext_resource type="PackedScene" uid="uid://c3ds10gymprxg" path="res://Scenes/hazards/oil_drum/fireball.tscn" id="2_lcrxn"]
+[ext_resource type="Texture2D" uid="uid://bbcflxdlfcoyg" path="res://Sprites/Levels/Hazards/Oil Drum 2.PNG" id="3_lcrxn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mltyx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7uc4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lcrxn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ore4"]
+size = Vector2(16, 16)
+
+[node name="OilDrum" type="StaticBody2D"]
+z_index = 1
+script = ExtResource("1_7vueh")
+fireball_scene = ExtResource("2_lcrxn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mltyx")
+autoplay = "default"
+frame_progress = 0.689699
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6ore4")
+
+[node name="SpawnFireballs" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SpawnFireballs" to="." method="_on_spawn_fireballs_timeout"]

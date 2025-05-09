@@ -1,0 +1,112 @@
+[gd_scene load_steps=17 format=3 uid="uid://drmw5ddw1arun"]
+
+[ext_resource type="Texture2D" uid="uid://c3ql48dyuwchm" path="res://Sprites/Characters/TicTacToe/Tic Flatten.png" id="2_278f2"]
+[ext_resource type="Texture2D" uid="uid://bkawaa3tvnpj" path="res://Sprites/Characters/TicTacToe/Tic D1.png" id="2_n0pja"]
+[ext_resource type="Texture2D" uid="uid://cfbpwwr0uu0s8" path="res://Sprites/Characters/TicTacToe/Tic Flatten 2.png" id="3_dtsog"]
+[ext_resource type="Texture2D" uid="uid://bln63csh3w7un" path="res://Sprites/Characters/TicTacToe/Tic D2.png" id="3_ldyg3"]
+[ext_resource type="Texture2D" uid="uid://b4lelbaum63e" path="res://Sprites/Characters/TicTacToe/Tic L1.png" id="4_3p2lt"]
+[ext_resource type="Texture2D" uid="uid://diy4l40a61g4p" path="res://Sprites/Characters/TicTacToe/TTT scared 1.png" id="4_w2ffs"]
+[ext_resource type="Texture2D" uid="uid://c5gsfsfvn427e" path="res://Sprites/Characters/TicTacToe/TTT Scared 2.png" id="5_tha61"]
+[ext_resource type="Texture2D" uid="uid://d3fhrw76eeihm" path="res://Sprites/Characters/TicTacToe/Tic L2.png" id="5_w1nib"]
+[ext_resource type="Texture2D" uid="uid://da0vnpae2cqi8" path="res://Sprites/Characters/TicTacToe/TTT trapped 1.png" id="6_h2mnw"]
+[ext_resource type="Texture2D" uid="uid://bjipxy145m047" path="res://Sprites/Characters/TicTacToe/Tic R1.png" id="6_naw8p"]
+[ext_resource type="Texture2D" uid="uid://c0eb3p1h5jdud" path="res://Sprites/Characters/TicTacToe/TTT trapped 2.png" id="7_g03td"]
+[ext_resource type="Texture2D" uid="uid://d3wtt62qo1u31" path="res://Sprites/Characters/TicTacToe/Tic R2.png" id="7_lydxg"]
+[ext_resource type="Texture2D" uid="uid://bvt6gd4thsb2c" path="res://Sprites/Characters/TicTacToe/Tic U1.png" id="8_22sc0"]
+[ext_resource type="Texture2D" uid="uid://ymh0r22453cg" path="res://Sprites/Characters/TicTacToe/Tic U2.png" id="9_3queh"]
+[ext_resource type="PackedScene" uid="uid://c42pjt7acga4v" path="res://Scenes/characters/EnemyBase.tscn" id="9_n2a04"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qavws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_278f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dtsog")
+}],
+"loop": true,
+"name": &"Flatten",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_w2ffs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tha61")
+}],
+"loop": true,
+"name": &"Scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_h2mnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g03td")
+}],
+"loop": true,
+"name": &"Trapped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n0pja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ldyg3")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3p2lt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w1nib")
+}],
+"loop": true,
+"name": &"WalkLeft",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_naw8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lydxg")
+}],
+"loop": true,
+"name": &"WalkRight",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_22sc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3queh")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 8.0
+}]
+
+[node name="Tic" type="Node2D"]
+process_mode = 1
+
+[node name="EnemyBase" parent="." node_paths=PackedStringArray("enemy_anim") instance=ExtResource("9_n2a04")]
+enemy_anim = NodePath("AnimatedSprite2D")
+type = 0
+speed = 60
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_qavws")
+animation = &"WalkRight"
+autoplay = "WalkRight"
+frame_progress = 0.646459

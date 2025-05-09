@@ -1,0 +1,194 @@
+[gd_scene load_steps=8 format=3 uid="uid://nix2txmiynxq"]
+
+[ext_resource type="Script" uid="uid://chduh2jwk1tbq" path="res://Scripts/game_ui.gd" id="1_2pu42"]
+[ext_resource type="PackedScene" uid="uid://83j1bck4eopc" path="res://Scenes/prefabs/life.tscn" id="2_sj2bp"]
+[ext_resource type="Texture2D" uid="uid://ccq788a0wyawi" path="res://Sprites/Animated/Balloon S.tres" id="3_qg1ss"]
+[ext_resource type="Texture2D" uid="uid://xkwq52ch3yih" path="res://Sprites/Animated/Balloon U.tres" id="4_xs2ul"]
+[ext_resource type="Texture2D" uid="uid://dakjseenl84w7" path="res://Sprites/Animated/Balloon P.tres" id="5_phglg"]
+[ext_resource type="Texture2D" uid="uid://dspidvaenfjm8" path="res://Sprites/Animated/Balloon E.tres" id="6_gba2s"]
+[ext_resource type="Texture2D" uid="uid://cctjoiulvgbhl" path="res://Sprites/Animated/Balloon R.tres" id="7_aqjcd"]
+
+[node name="GameUI" type="CanvasLayer" node_paths=PackedStringArray("score", "high_score", "bonus", "lives", "balloon_s", "balloon_u", "balloon_p", "balloon_e", "balloon_r")]
+visible = false
+script = ExtResource("1_2pu42")
+life = ExtResource("2_sj2bp")
+score = NodePath("VBoxContainer/TopPanel/VBoxContainer/Counts/ScoreCount")
+high_score = NodePath("VBoxContainer/TopPanel/VBoxContainer/Counts/HighScoreCount")
+bonus = NodePath("VBoxContainer/TopPanel/VBoxContainer/Counts/BonusCount")
+lives = NodePath("VBoxContainer/BottomPanel/Stats/Lives")
+balloon_s = NodePath("VBoxContainer/BottomPanel/Stats/Balloons/S")
+balloon_u = NodePath("VBoxContainer/BottomPanel/Stats/Balloons/U")
+balloon_p = NodePath("VBoxContainer/BottomPanel/Stats/Balloons/P")
+balloon_e = NodePath("VBoxContainer/BottomPanel/Stats/Balloons/E")
+balloon_r = NodePath("VBoxContainer/BottomPanel/Stats/Balloons/R")
+
+[node name="VBoxContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopPanel" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 224.0
+offset_bottom = 32.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Labels" type="HBoxContainer" parent="VBoxContainer/TopPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpTXT" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "1Up"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoreTXT" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "High_score"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BonusTXT" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Bonus"
+vertical_alignment = 1
+uppercase = true
+
+[node name="Spacer4" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Labels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Counts" type="HBoxContainer" parent="VBoxContainer/TopPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="ScoreCount" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HighScoreCount" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BonusCount" type="Label" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Spacer4" type="Control" parent="VBoxContainer/TopPanel/VBoxContainer/Counts"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="BottomPanel" type="Panel" parent="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+
+[node name="Stats" type="HBoxContainer" parent="VBoxContainer/BottomPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lives" type="HBoxContainer" parent="VBoxContainer/BottomPanel/Stats"]
+layout_mode = 2
+
+[node name="YOLO" parent="VBoxContainer/BottomPanel/Stats/Lives" instance=ExtResource("2_sj2bp")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer/BottomPanel/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Balloons" type="HBoxContainer" parent="VBoxContainer/BottomPanel/Stats"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="S" type="TextureRect" parent="VBoxContainer/BottomPanel/Stats/Balloons"]
+layout_mode = 2
+texture = ExtResource("3_qg1ss")
+expand_mode = 2
+
+[node name="U" type="TextureRect" parent="VBoxContainer/BottomPanel/Stats/Balloons"]
+layout_mode = 2
+texture = ExtResource("4_xs2ul")
+expand_mode = 2
+
+[node name="P" type="TextureRect" parent="VBoxContainer/BottomPanel/Stats/Balloons"]
+layout_mode = 2
+texture = ExtResource("5_phglg")
+expand_mode = 2
+
+[node name="E" type="TextureRect" parent="VBoxContainer/BottomPanel/Stats/Balloons"]
+layout_mode = 2
+texture = ExtResource("6_gba2s")
+expand_mode = 2
+
+[node name="R" type="TextureRect" parent="VBoxContainer/BottomPanel/Stats/Balloons"]
+layout_mode = 2
+texture = ExtResource("7_aqjcd")
+expand_mode = 2

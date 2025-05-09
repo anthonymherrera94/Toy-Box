@@ -1,19 +1,70 @@
-[gd_scene load_steps=5 format=3 uid="uid://5ps8mcd747s7"]
+[gd_scene load_steps=29 format=4 uid="uid://5ps8mcd747s7"]
 
+[ext_resource type="PackedScene" uid="uid://c2shvhx56pd2e" path="res://Scenes/SceneController.tscn" id="1_bln5a"]
+[ext_resource type="TileSet" uid="uid://c3ovxbwphhlyo" path="res://TileSet.tres" id="1_t8ybu"]
 [ext_resource type="Texture2D" uid="uid://d3p1ncknqki5m" path="res://Sprites/Levels/Levels/Arcade Zone 1.png" id="1_xgtes"]
-[ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/aoy.tscn" id="2_814gm"]
+[ext_resource type="PackedScene" uid="uid://caeyw58brrar7" path="res://Scenes/characters/Aoy.tscn" id="2_814gm"]
+[ext_resource type="PackedScene" uid="uid://ixjpv3ga5bky" path="res://Scenes/arcade_zone_2.tscn" id="2_ndql4"]
+[ext_resource type="Texture2D" uid="uid://c3shr54dayhxu" path="res://Sprites/Items/Toys/Toy Car.png" id="2_oh1b2"]
+[ext_resource type="Texture2D" uid="uid://b4lis51om3hln" path="res://Sprites/Items/Toys/Toy Dino.png" id="3_54l0g"]
+[ext_resource type="Texture2D" uid="uid://yjfpg4drh07m" path="res://Sprites/Items/Toys/Toy Robot.png" id="4_7qgla"]
+[ext_resource type="PackedScene" uid="uid://ec2o7h7prfny" path="res://Scenes/characters/Tac.tscn" id="5_5hjs4"]
+[ext_resource type="Texture2D" uid="uid://c1qmw4rrqxsmt" path="res://Sprites/Items/Toys/Sports Ball.png" id="5_n0mci"]
+[ext_resource type="PackedScene" uid="uid://mf8qe4kptclh" path="res://Scenes/items/toy_chest.tscn" id="5_s0cnu"]
+[ext_resource type="PackedScene" uid="uid://drmw5ddw1arun" path="res://Scenes/characters/Tic.tscn" id="6_2ycb1"]
+[ext_resource type="Texture2D" uid="uid://bcsvm1ce5p3mg" path="res://Sprites/Items/Toys/Toy Boat.png" id="6_lhasm"]
+[ext_resource type="PackedScene" uid="uid://nix2txmiynxq" path="res://Scenes/game_ui.tscn" id="6_uetb7"]
+[ext_resource type="Texture2D" uid="uid://durdochdwpoe1" path="res://Sprites/Items/Toys/Yo-Yo.png" id="7_hv668"]
+[ext_resource type="PackedScene" uid="uid://ceouuyxbirjs5" path="res://Scenes/characters/Toe.tscn" id="7_ust18"]
+[ext_resource type="PackedScene" uid="uid://cy5h6q6ch4wpx" path="res://Scenes/items/door.tscn" id="11_nslld"]
+[ext_resource type="PackedScene" uid="uid://bbdrjh5xph45e" path="res://Scenes/hazards/oil_drum/oil_drum.tscn" id="18_54l0g"]
+[ext_resource type="PackedScene" uid="uid://xh8jwujxoio8" path="res://Scenes/items/toy.tscn" id="19_7qgla"]
+[ext_resource type="PackedScene" uid="uid://stjmcgspfc51" path="res://Scenes/items/card.tscn" id="20_n0mci"]
+[ext_resource type="PackedScene" uid="uid://bgeecpdk5cqku" path="res://Scenes/items/treats.tscn" id="21_lhasm"]
+[ext_resource type="PackedScene" uid="uid://b612rd8qw2lhg" path="res://Scenes/hazards/worm.tscn" id="22_hv668"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h36y8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g80su"]
 
+[sub_resource type="Curve2D" id="Curve2D_hv668"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 48, -32, 0, 0, 0, 0, 16, -32, 0, 0, 0, 0, 16, -80, 0, 0, 0, 0, 48, -80, 0, 0, 0, 0, 48, -144, 0, 0, 0, 0, -16, -144, 0, 0, 0, 0, -16, -48)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_1ugj4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 16, 16, 0, 0, 0, 0, 64, 16, 0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 48, 64, 0, 0, 0, 0, 48, 128, 0, 0, 0, 0, 32, 128, 0, 0, 0, 0, 32, 160, 0, 0, 0, 0, -16, 160, 0, 0, 0, 0, -16, 48)
+}
+point_count = 11
+
+[sub_resource type="Curve2D" id="Curve2D_usxc4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -16, 0, 0, 0, 0, 0, -16, 16, 0, 0, 0, 0, -64, 16, 0, 0, 0, 0, -64, 64, 0, 0, 0, 0, -48, 64, 0, 0, 0, 0, -48, 128, 0, 0, 0, 0, -32, 128, 0, 0, 0, 0, -32, 160, 0, 0, 0, 0, 16, 160, 0, 0, 0, 0, 16, 48)
+}
+point_count = 11
+
+[sub_resource type="Curve2D" id="Curve2D_rrjo3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -48, 0, 0, 0, 0, 0, -48, -32, 0, 0, 0, 0, -16, -32, 0, 0, 0, 0, -16, -80, 0, 0, 0, 0, -48, -80, 0, 0, 0, 0, -48, -144, 0, 0, 0, 0, 16, -144, 0, 0, 0, 0, 16, -48)
+}
+point_count = 9
+
 [node name="Arcade Zone 1" type="Node2D"]
 
+[node name="SceneController" parent="." instance=ExtResource("1_bln5a")]
+map_size = Rect2i(0, 0, 12, 13)
+next_scene = ExtResource("2_ndql4")
+toys_textures = Array[Texture2D]([ExtResource("2_oh1b2"), ExtResource("3_54l0g"), ExtResource("4_7qgla"), ExtResource("5_n0mci"), ExtResource("6_lhasm"), ExtResource("7_hv668")])
+cards_amount = 4
+
 [node name="ArcadeZone1" type="Sprite2D" parent="."]
-position = Vector2(113, 148)
+position = Vector2(112, 120)
 texture = ExtResource("1_xgtes")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="Node2D" parent="."]
+visible = false
 position = Vector2(113, 140)
 
 [node name="16 x 16 collision" type="CollisionShape2D" parent="StaticBody2D"]
@@ -169,5 +220,120 @@ rotation = 1.5708
 scale = Vector2(0.4, 10.4)
 shape = SubResource("RectangleShape2D_g80su")
 
+[node name="Walls" type="TileMapLayer" parent="."]
+visible = false
+position = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAAFAAgAAgAAAAAAAAAFAAkAAgAAAAAAAAAFAAoAAgAAAAAAAAAFAAsAAgAAAAAAAAAFAAwAAgAAAAAAAAAEAAwAAgAAAAAAAAAHAAgAAgAAAAAAAAAHAAkAAgAAAAAAAAAHAAoAAgAAAAAAAAAHAAsAAgAAAAAAAAAHAAwAAgAAAAAAAAAIAAwAAgAAAAAAAAAKAAwAAgAAAAAAAAALAAwAAgAAAAAAAAALAAsAAgAAAAAAAAALAAkAAgAAAAAAAAAJAAoAAgAAAAAAAAAJAAgAAgAAAAAAAAADAAgAAgAAAAAAAAADAAoAAgAAAAAAAAABAAsAAgAAAAAAAAABAAwAAgAAAAAAAAACAAwAAgAAAAAAAAABAAkAAgAAAAAAAAABAAcAAgAAAAAAAAABAAYAAgAAAAAAAAABAAUAAgAAAAAAAAADAAUAAgAAAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAEAAUAAgAAAAAAAAAFAAMAAgAAAAAAAAAGAAMAAgAAAAAAAAAHAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAAAAAAIAAUAAgAAAAAAAAAIAAYAAgAAAAAAAAAJAAYAAgAAAAAAAAAJAAUAAgAAAAAAAAALAAUAAgAAAAAAAAALAAYAAgAAAAAAAAALAAcAAgAAAAAAAAALAAMAAgAAAAAAAAAJAAMAAgAAAAAAAAAJAAIAAgAAAAAAAAAJAAEAAgAAAAAAAAAKAAEAAgAAAAAAAAALAAEAAgAAAAAAAAADAAMAAgAAAAAAAAADAAIAAgAAAAAAAAADAAEAAgAAAAAAAAACAAEAAgAAAAAAAAABAAEAAgAAAAAAAAABAAMAAgAAAAAAAAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAD//wUAAgAAAAAAAAD//wYAAgAAAAAAAAD//wcAAgAAAAAAAAD//wgAAgAAAAAAAAD//wkAAgAAAAAAAAD//woAAgAAAAAAAAD//wsAAgAAAAAAAAD//wwAAgAAAAAAAAD//w0AAgAAAAAAAAD//w4AAgAAAAAAAAAAAA4AAgAAAAAAAAABAA4AAgAAAAAAAAACAA4AAgAAAAAAAAADAA4AAgAAAAAAAAAEAA4AAgAAAAAAAAAFAA4AAgAAAAAAAAAGAA4AAgAAAAAAAAAHAA4AAgAAAAAAAAAIAA4AAgAAAAAAAAAJAA4AAgAAAAAAAAAKAA4AAgAAAAAAAAALAA4AAgAAAAAAAAAMAA4AAgAAAAAAAAANAA4AAgAAAAAAAAANAA0AAgAAAAAAAAANAAwAAgAAAAAAAAANAAsAAgAAAAAAAAANAAoAAgAAAAAAAAANAAkAAgAAAAAAAAANAAgAAgAAAAAAAAANAAcAAgAAAAAAAAANAAYAAgAAAAAAAAANAAUAAgAAAAAAAAANAAQAAgAAAAAAAAANAAMAAgAAAAAAAAANAAIAAgAAAAAAAAANAAEAAgAAAAAAAAANAAAAAgAAAAAAAAANAP//AgAAAAAAAAAMAP//AgAAAAAAAAALAP//AgAAAAAAAAAKAP//AgAAAAAAAAAJAP//AgAAAAAAAAAIAP//AgAAAAAAAAAHAP//AgAAAAAAAAAGAP//AgAAAAAAAAAFAP//AgAAAAAAAAAEAP//AgAAAAAAAAADAP//AgAAAAAAAAACAP//AgAAAAAAAAABAP//AgAAAAAAAAAAAP//AgAAAAAAAAAJAAwAAgABAAAAAAAJAAsAAgABAAAAAAAIAAsAAgABAAAAAAAIAAoAAgABAAAAAAAIAAkAAgABAAAAAAAIAAgAAgABAAAAAAAIAAcAAgABAAAAAAAHAAcAAgABAAAAAAAHAAYAAgABAAAAAAAHAAUAAgABAAAAAAAHAAQAAgABAAAAAAAIAAQAAgABAAAAAAAIAAMAAgABAAAAAAAIAAIAAgABAAAAAAAIAAEAAgABAAAAAAAIAAAAAgABAAAAAAAHAAAAAgABAAAAAAAGAAAAAgABAAAAAAAFAAAAAgABAAAAAAAEAAAAAgABAAAAAAADAAAAAgABAAAAAAACAAAAAgABAAAAAAABAAAAAgABAAAAAAAAAAAAAgABAAAAAAAAAAEAAgABAAAAAAAAAAIAAgABAAAAAAAAAAMAAgABAAAAAAAAAAQAAgABAAAAAAAAAAUAAgABAAAAAAAAAAYAAgABAAAAAAAAAAcAAgABAAAAAAAAAAgAAgABAAAAAAAAAAkAAgABAAAAAAAAAAoAAgABAAAAAAAAAAsAAgABAAAAAAAAAAwAAgABAAAAAAAAAA0AAgABAAAAAAABAA0AAgABAAAAAAACAA0AAgABAAAAAAADAA0AAgABAAAAAAADAAwAAgABAAAAAAADAAsAAgABAAAAAAACAAsAAgABAAAAAAACAAoAAgABAAAAAAACAAkAAgABAAAAAAACAAgAAgABAAAAAAACAAcAAgABAAAAAAACAAYAAgABAAAAAAACAAUAAgABAAAAAAACAAQAAgABAAAAAAACAAMAAgABAAAAAAACAAIAAgABAAAAAAABAAIAAgABAAAAAAABAAQAAgABAAAAAAADAAQAAgABAAAAAAAEAAQAAgABAAAAAAAEAAMAAgABAAAAAAAEAAIAAgABAAAAAAAEAAEAAgABAAAAAAAFAAEAAgABAAAAAAAFAAIAAgABAAAAAAAGAAIAAgABAAAAAAAGAAEAAgABAAAAAAAHAAEAAgABAAAAAAAHAAIAAgABAAAAAAAFAAQAAgABAAAAAAAFAAUAAgABAAAAAAAFAAYAAgABAAAAAAAFAAcAAgABAAAAAAAEAAcAAgABAAAAAAADAAcAAgABAAAAAAAEAAgAAgABAAAAAAAEAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAoAAgABAAAAAAAEAAsAAgABAAAAAAAGAAcAAgABAAAAAAAGAAgAAgABAAAAAAAGAAkAAgABAAAAAAAGAAoAAgABAAAAAAAGAAsAAgABAAAAAAAGAAwAAgABAAAAAAAGAA0AAgABAAAAAAAFAA0AAgABAAAAAAAEAA0AAgABAAAAAAAHAA0AAgABAAAAAAAIAA0AAgABAAAAAAAJAA0AAgABAAAAAAAKAA0AAgABAAAAAAALAA0AAgABAAAAAAAMAA0AAgABAAAAAAAMAAwAAgABAAAAAAAMAAsAAgABAAAAAAAMAAoAAgABAAAAAAAMAAkAAgABAAAAAAAMAAgAAgABAAAAAAAMAAcAAgABAAAAAAAMAAYAAgABAAAAAAAMAAUAAgABAAAAAAAMAAQAAgABAAAAAAAMAAMAAgABAAAAAAAMAAIAAgABAAAAAAAMAAEAAgABAAAAAAAMAAAAAgABAAAAAAALAAAAAgABAAAAAAAKAAAAAgABAAAAAAAJAAAAAgABAAAAAAALAAIAAgABAAAAAAAKAAIAAgABAAAAAAAKAAMAAgABAAAAAAAKAAQAAgABAAAAAAAJAAQAAgABAAAAAAAKAAUAAgABAAAAAAAKAAYAAgABAAAAAAAKAAcAAgABAAAAAAAJAAcAAgABAAAAAAAKAAgAAgABAAAAAAAKAAkAAgABAAAAAAAJAAkAAgABAAAAAAAKAAoAAgABAAAAAAAKAAsAAgABAAAAAAALAAoAAgABAAAAAAALAAgAAgABAAAAAAALAAQAAgABAAAAAAABAAgAAgABAAAAAAABAAoAAgABAAAAAAA=")
+tile_set = ExtResource("1_t8ybu")
+
 [node name="Aoy" parent="." instance=ExtResource("2_814gm")]
-position = Vector2(81, 69)
+position = Vector2(112, 48)
+
+[node name="ToyChest" parent="." instance=ExtResource("5_s0cnu")]
+position = Vector2(112, 32)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(112, 112)
+
+[node name="Tic" parent="." instance=ExtResource("6_2ycb1")]
+position = Vector2(208, 224)
+
+[node name="Tac" parent="." instance=ExtResource("5_5hjs4")]
+position = Vector2(16, 224)
+
+[node name="Toe" parent="." instance=ExtResource("7_ust18")]
+position = Vector2(112, 224)
+
+[node name="OilDrum" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("18_54l0g")]
+position = Vector2(32, 160)
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="OilDrum"]
+curve = SubResource("Curve2D_hv668")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum/Path2D"]
+
+[node name="OilDrum2" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("18_54l0g")]
+position = Vector2(32, 64)
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="OilDrum2"]
+curve = SubResource("Curve2D_1ugj4")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum2/Path2D"]
+
+[node name="OilDrum3" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("18_54l0g")]
+position = Vector2(192, 64)
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="OilDrum3"]
+curve = SubResource("Curve2D_usxc4")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum3/Path2D"]
+rotation = 3.14159
+
+[node name="OilDrum4" parent="." node_paths=PackedStringArray("path_follow") instance=ExtResource("18_54l0g")]
+position = Vector2(192, 160)
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="OilDrum4"]
+curve = SubResource("Curve2D_rrjo3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="OilDrum4/Path2D"]
+rotation = 3.14159
+
+[node name="Door" parent="." instance=ExtResource("11_nslld")]
+position = Vector2(112, 128)
+
+[node name="GameUI" parent="." instance=ExtResource("6_uetb7")]
+
+[node name="Toy" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(48, 48)
+texture = ExtResource("2_oh1b2")
+
+[node name="Toy2" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(112, 176)
+texture = ExtResource("3_54l0g")
+
+[node name="Toy3" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(160, 224)
+texture = ExtResource("4_7qgla")
+
+[node name="Toy4" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(160, 80)
+texture = ExtResource("6_lhasm")
+
+[node name="Toy5" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(16, 192)
+texture = ExtResource("5_n0mci")
+
+[node name="Toy6" parent="." instance=ExtResource("19_7qgla")]
+position = Vector2(208, 112)
+texture = ExtResource("7_hv668")
+
+[node name="Card" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(48, 16)
+
+[node name="Card2" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(176, 112)
+
+[node name="Card3" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(48, 192)
+
+[node name="Card4" parent="." instance=ExtResource("20_n0mci")]
+position = Vector2(96, 80)
+
+[node name="Treats" parent="." instance=ExtResource("21_lhasm")]
+position = Vector2(112, 208)
+
+[node name="Worm" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(80, 64)
+
+[node name="Worm2" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(144, 64)
+
+[node name="Worm3" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(160, 160)
+
+[node name="Worm4" parent="." instance=ExtResource("22_hv668")]
+position = Vector2(64, 160)

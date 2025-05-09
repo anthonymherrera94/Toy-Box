@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://dknlan704yn2o"]
+
+[ext_resource type="Texture2D" uid="uid://bqxv0vvk1xwmk" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 3.PNG" id="1_kqfcp"]
+[ext_resource type="Texture2D" uid="uid://0psoqutqwoj0" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 6.PNG" id="2_f81xi"]
+[ext_resource type="Texture2D" uid="uid://ibsfonkopjy1" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 1.PNG" id="3_22mnp"]
+[ext_resource type="Texture2D" uid="uid://djyh1pska0cpa" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 7.PNG" id="3_ntxrk"]
+[ext_resource type="Texture2D" uid="uid://5d26c3m60bwf" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 2.PNG" id="4_ntxrk"]
+[ext_resource type="Texture2D" uid="uid://bdbd3m7w3nrrk" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 8.PNG" id="4_tm0xr"]
+[ext_resource type="Texture2D" uid="uid://cck7x7pfgaye7" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 4.PNG" id="5_tm0xr"]
+[ext_resource type="Texture2D" uid="uid://bocuca1je2fm3" path="res://Sprites/Levels/Blocks/Xob’s party/Skull 5.PNG" id="6_fdtl6"]
+[ext_resource type="Script" uid="uid://bxre8v22kuenk" path="res://Scripts/hazards/skull.gd" id="9_ntxrk"]
+
+[sub_resource type="Gradient" id="Gradient_ntxrk"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tm0xr"]
+gradient = SubResource("Gradient_ntxrk")
+width = 4
+height = 4
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82hf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_22mnp")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ntxrk")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tm0xr")
+}],
+"loop": true,
+"name": &"LeftDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f81xi")
+}],
+"loop": true,
+"name": &"LeftUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kqfcp")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ntxrk")
+}],
+"loop": true,
+"name": &"RightDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tm0xr")
+}],
+"loop": true,
+"name": &"RightUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_fdtl6")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntxrk"]
+size = Vector2(12, 12)
+
+[node name="Skull" type="StaticBody2D" node_paths=PackedStringArray("anim", "look")]
+script = ExtResource("9_ntxrk")
+anim = NodePath("AnimatedSprite2D")
+look = NodePath("LookAt")
+
+[node name="LookAt" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+collide_with_bodies = false
+
+[node name="DebugThing" type="Sprite2D" parent="LookAt"]
+visible = false
+position = Vector2(48, 0)
+texture = SubResource("GradientTexture2D_tm0xr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_82hf4")
+animation = &"Up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ntxrk")

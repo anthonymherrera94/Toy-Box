@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://bynji6lrovmbq"]
 
-[ext_resource type="Script" path="res://Scripts/Balloons.gd" id="1_ejpq6"]
+[ext_resource type="Script" uid="uid://x6dtkrnbs0p" path="res://Scripts/items/Balloons.gd" id="1_ejpq6"]
 [ext_resource type="Texture2D" uid="uid://b2saph6l68fa0" path="res://Sprites/Items/Important items/Balloon E1.png" id="2_wsi8y"]
 [ext_resource type="Texture2D" uid="uid://bvg6h55t6jmpy" path="res://Sprites/Items/Important items/Balloon E2.png" id="3_twsfc"]
 [ext_resource type="Texture2D" uid="uid://bo87jgavwn4ge" path="res://Sprites/Items/Important items/Balloon E3.png" id="4_3bbaf"]
@@ -50,9 +50,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_ngjew")
 }],
-"loop": true,
+"loop": false,
 "name": &"EPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -75,9 +75,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_844db")
 }],
-"loop": true,
+"loop": false,
 "name": &"PPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -100,9 +100,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_alx1r")
 }],
-"loop": true,
+"loop": false,
 "name": &"RPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,9 +125,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("21_sodfr")
 }],
-"loop": true,
+"loop": false,
 "name": &"SPop",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,22 +150,26 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("26_vf5g4")
 }],
-"loop": true,
+"loop": false,
 "name": &"UPop",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g076h"]
 size = Vector2(11, 12)
 
-[node name="Balloons" type="Area2D"]
+[node name="Balloons" type="Area2D" node_paths=PackedStringArray("balloon_anim")]
 script = ExtResource("1_ejpq6")
+balloon_anim = NodePath("AnimatedSprite2D")
 balloon_type = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r17jt")
-animation = &"E"
+animation = &"EPop"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_g076h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

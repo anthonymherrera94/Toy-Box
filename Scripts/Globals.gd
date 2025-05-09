@@ -1,8 +1,39 @@
 extends Node
 
+const CONF_PATH := "user://Config.ini"
 
-func fade_in(scene):
-	var fade_scene = preload("res://Scenes/fade.tscn")
-	var scene_obj = fade_scene.instantiate()
-	get_parent().add_child(scene_obj)
-	scene_obj.start_fade_in(scene)
+const HIGH_SCORE := "High Score: "
+
+var config: Dictionary
+
+var aoy_invincibility := false
+
+
+	
+func _ready() -> void:
+	_read_config()
+
+func _read_config() -> void:
+	if FileAccess.file_exists(CONF_PATH):
+		var file := FileAccess.open(CONF_PATH, FileAccess.READ)
+		config = file.get_var()
+		file.close()
+	else:
+		_create_config()
+
+func _create_config() -> void:
+	config[HIGH_SCORE] = 0
+	_write_config()
+
+func _write_config() -> void:
+	var file := FileAccess.open(CONF_PATH, FileAccess.WRITE)
+	file.store_var(config)
+	file.close()
+	
+
+
+func get_high_score() -> int: return config[HIGH_SCORE]
+
+func set_high_score (score: int) -> void:
+	config[HIGH_SCORE] = score
+	_write_config()

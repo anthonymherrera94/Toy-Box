@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=3 uid="uid://ec2o7h7prfny"]
+
+[ext_resource type="Texture2D" uid="uid://cwsqaiwkhdbsn" path="res://Sprites/Characters/TicTacToe/Tac Flatten.png" id="2_c1068"]
+[ext_resource type="Texture2D" uid="uid://dxlgi0dg4fvfg" path="res://Sprites/Characters/TicTacToe/Tac D1.png" id="2_efqb2"]
+[ext_resource type="PackedScene" uid="uid://c42pjt7acga4v" path="res://Scenes/characters/EnemyBase.tscn" id="2_elpsh"]
+[ext_resource type="Texture2D" uid="uid://byvuj8jib72bp" path="res://Sprites/Characters/TicTacToe/Tac Kiss.PNG" id="3_3xj55"]
+[ext_resource type="Texture2D" uid="uid://b5fyr11hc343s" path="res://Sprites/Characters/TicTacToe/Tac D2.png" id="3_ysgij"]
+[ext_resource type="Texture2D" uid="uid://chn8x3v5dhe4l" path="res://Sprites/Characters/TicTacToe/Tac L1.png" id="4_h2m6w"]
+[ext_resource type="Texture2D" uid="uid://diy4l40a61g4p" path="res://Sprites/Characters/TicTacToe/TTT scared 1.png" id="4_xrh6e"]
+[ext_resource type="Texture2D" uid="uid://c5gsfsfvn427e" path="res://Sprites/Characters/TicTacToe/TTT Scared 2.png" id="5_1k7pf"]
+[ext_resource type="Texture2D" uid="uid://cwkgo57ex247y" path="res://Sprites/Characters/TicTacToe/Tac L2.png" id="5_gsep2"]
+[ext_resource type="Texture2D" uid="uid://da0vnpae2cqi8" path="res://Sprites/Characters/TicTacToe/TTT trapped 1.png" id="6_apnof"]
+[ext_resource type="Texture2D" uid="uid://cjdfnkqluxow0" path="res://Sprites/Characters/TicTacToe/Tac R1.png" id="6_o18rw"]
+[ext_resource type="Texture2D" uid="uid://c0eb3p1h5jdud" path="res://Sprites/Characters/TicTacToe/TTT trapped 2.png" id="7_ekxmi"]
+[ext_resource type="Texture2D" uid="uid://dkr2jq8do3n4i" path="res://Sprites/Characters/TicTacToe/Tac R2.png" id="7_md0ti"]
+[ext_resource type="Texture2D" uid="uid://dxdeg28twkymi" path="res://Sprites/Characters/TicTacToe/Tac U1.png" id="8_x03lu"]
+[ext_resource type="Texture2D" uid="uid://be1l6enpu1k0b" path="res://Sprites/Characters/TicTacToe/Tac U2.png" id="9_eaufm"]
+[ext_resource type="Texture2D" uid="uid://dfkt2lf1thvp7" path="res://Sprites/Characters/TicTacToe/Tac Wink.PNG" id="12_xrh6e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6h3k5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c1068")
+}],
+"loop": true,
+"name": &"Flatten",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3xj55")
+}],
+"loop": true,
+"name": &"Kiss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xrh6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1k7pf")
+}],
+"loop": true,
+"name": &"Scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_apnof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ekxmi")
+}],
+"loop": true,
+"name": &"Trapped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_efqb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ysgij")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h2m6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gsep2")
+}],
+"loop": true,
+"name": &"WalkLeft",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_o18rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_md0ti")
+}],
+"loop": true,
+"name": &"WalkRight",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_x03lu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_eaufm")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_xrh6e")
+}],
+"loop": true,
+"name": &"Wink",
+"speed": 5.0
+}]
+
+[node name="Tac" type="Node2D"]
+process_mode = 1
+
+[node name="EnemyBase" parent="." node_paths=PackedStringArray("enemy_anim") instance=ExtResource("2_elpsh")]
+enemy_anim = NodePath("AnimatedSprite2D")
+speed = 60
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBase"]
+process_mode = 3
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_6h3k5")
+animation = &"WalkRight"
+autoplay = "WalkRight"

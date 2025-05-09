@@ -1,0 +1,167 @@
+[gd_scene load_steps=21 format=3 uid="uid://b4i4opo2cr5te"]
+
+[ext_resource type="Script" uid="uid://c2epka12vrdcy" path="res://Scripts/characters/AoyInTrueForm.gd" id="1_yqx5x"]
+[ext_resource type="Texture2D" uid="uid://kio8v0pgydq" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) Stand 1.png" id="2_empss"]
+[ext_resource type="Texture2D" uid="uid://c7hue1gay4d0a" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) Stand 2.png" id="3_48vll"]
+[ext_resource type="Texture2D" uid="uid://b3o85nwwdesok" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) Stand 3.png" id="4_1bui0"]
+[ext_resource type="Texture2D" uid="uid://fywmfst6ifg" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) D1.png" id="5_y081d"]
+[ext_resource type="Texture2D" uid="uid://x1aq0wplhvcw" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) D2.png" id="6_y3dvf"]
+[ext_resource type="Texture2D" uid="uid://bwn6e0lfgbtkt" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) D3.png" id="7_pdx30"]
+[ext_resource type="Texture2D" uid="uid://r5bk5kymd8hw" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) L1.png" id="8_yqx5x"]
+[ext_resource type="Texture2D" uid="uid://rtuamwh22srt" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) L2.png" id="9_h3n4q"]
+[ext_resource type="Texture2D" uid="uid://c08k712gl04ux" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) L3.png" id="10_k3o2a"]
+[ext_resource type="Texture2D" uid="uid://8spwrx43yhse" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) R1.png" id="11_n1ngy"]
+[ext_resource type="Texture2D" uid="uid://dltlnom37hpjt" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) R2.png" id="12_unhk2"]
+[ext_resource type="Texture2D" uid="uid://bwq3ph3b6cvqm" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) R3.png" id="13_mmn1g"]
+[ext_resource type="Texture2D" uid="uid://dls15ue47i03m" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) U1.png" id="14_kk5vw"]
+[ext_resource type="Texture2D" uid="uid://4tbfom7vdk8g" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) U2.png" id="15_7j10v"]
+[ext_resource type="Texture2D" uid="uid://crrhu1d0b30pu" path="res://Sprites/Characters/Aoy (True Form)/Aoy (true form) U3.png" id="16_arle1"]
+[ext_resource type="PackedScene" uid="uid://civpdipdjurlm" path="res://Scenes/prefabs/movable_camera.tscn" id="17_ih51n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kk5vw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_empss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48vll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1bui0")
+}],
+"loop": true,
+"name": &"IdleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_empss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48vll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1bui0")
+}],
+"loop": true,
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_empss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48vll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1bui0")
+}],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_empss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48vll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1bui0")
+}],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_y081d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y3dvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pdx30")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_yqx5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_h3n4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_k3o2a")
+}],
+"loop": true,
+"name": &"WalkLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_n1ngy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_unhk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mmn1g")
+}],
+"loop": true,
+"name": &"WalkRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_kk5vw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7j10v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_arle1")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udgtg"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gr5a"]
+size = Vector2(28, 28)
+
+[node name="AoyInTrueForm" type="CharacterBody2D" node_paths=PackedStringArray("anim")]
+process_mode = 1
+z_index = 2
+floor_constant_speed = true
+script = ExtResource("1_yqx5x")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_kk5vw")
+animation = &"WalkDown"
+autoplay = "IdleRight"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_udgtg")
+disabled = true
+
+[node name="Colliding" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliding"]
+shape = SubResource("RectangleShape2D_6gr5a")
+
+[node name="Camera2D" parent="." instance=ExtResource("17_ih51n")]
+
+[connection signal="area_entered" from="Colliding" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="Colliding" to="." method="_on_colliding_body_entered"]
